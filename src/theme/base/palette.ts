@@ -1,0 +1,387 @@
+/**
+ * @fileoverview Extends the base MUI Palette types and defines base light/dark color palettes.
+ *
+ * This file serves two main purposes:
+ * 1. Type Augmentation: It uses TypeScript module augmentation (`declare module '@mui/material/styles'`)
+ *    to add custom color properties (e.g., `neutral`, `tertiary`, `statusApproved`, `tableHeaderRow`,
+ *    `dataGridHeaderRow`) to the MUI `Palette` and `PaletteOptions` interfaces. This provides
+ *    type safety for custom theme colors.
+ * 2. Base Palette Definitions: It defines `basePaletteLight` and `basePaletteDark` which provide
+ *    default color values for both standard MUI palette keys (like `primary`, `error`, `background`)
+ *    and the custom augmented keys. These palettes utilize the color values defined in `brand-tokens.ts`.
+ *    These base palettes are then merged with brand-specific overrides (like in `betanxtTheme.ts`)
+ *    to create the final theme palettes.
+ */
+import { createTheme } from '@mui/material'
+import { grey } from '@mui/material/colors'
+import { PaletteOptions } from '@mui/material/styles'
+
+import {
+  bnblue,
+  bnteal,
+  micGrey,
+  neutral,
+  nxtBlue,
+  orangered,
+  persimmon,
+  seagrass,
+  turquoise,
+} from './palette-tokens/brand-tokens'
+import { chartsDark, chartsLight } from './palette-tokens/charts'
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    neutral: Palette['primary']
+    tertiary: Palette['primary']
+    micGrey: Palette['primary']
+    inputOutlinedEnabledFill: string
+    appBarPrimary: {
+      defaultFill: string
+      defaultContrast: string
+      tabIndicator: string
+      hover: string
+    }
+    appBarSecondary: {
+      defaultFill: string
+      defaultContrast: string
+      tabIndicator: string
+      hover: string
+    }
+    appSwitcherBackground: string
+    logoFill: string
+    logoPoweredBy: string
+    tableHeaderRow: {
+      restingFill: string
+      border: string
+    }
+    tableCellRow: {
+      fill: string
+      zebraFill: string
+    }
+    dataGridDefaultFill: string
+    link: string
+    dataGridHeaderRow: {
+      restingFill: string
+      border: string
+    }
+    dataGridSubHeader: {
+      backgroundFill: string
+    }
+    dataGridCellRow: {
+      border: string
+    }
+    dataGridPagination: {
+      backgroundFill: string
+      border: string
+    }
+    values: {
+      negative: string
+      positive: string
+      positiveOnDark: string
+      negativeOnDark: string
+    }
+    footer: {
+      background: string
+    }
+  }
+
+  interface PaletteOptions {
+    neutral?: PaletteOptions['primary']
+    micGrey?: PaletteOptions['primary']
+    tertiary?: PaletteOptions['primary']
+    inputOutlinedEnabledFill?: string
+    inputOutlinedEnabledBorder?: string
+    inputOutlinedHoverBorder?: string
+    footer?: {
+      background?: string
+    }
+    appBarPrimary?: {
+      defaultContrast?: string
+      hover?: string
+      defaultFill?: string
+      tabIndicator?: string
+    }
+    appBarSecondary?: {
+      defaultFill?: string
+      defaultContrast?: string
+      tabIndicator?: string
+      hover?: string
+    }
+    appswitcher?: {
+      background?: string
+    }
+    tableHeaderRow?: {
+      restingFill?: string
+      border?: string
+    }
+    tableCellRow?: {
+      fill?: string
+      zebraFill?: string
+    }
+    link?: string
+    dataGridHeaderRow?: {
+      restingFill?: string
+      border?: string
+    }
+    dataGridSubHeader?: {
+      backgroundFill?: string
+    }
+    dataGridCellRow?: {
+      border?: string
+    }
+    dataGridPagination?: {
+      backgroundFill?: string
+      border?: string
+    }
+    dataGridDefaultFill?: string
+    footerBackground?: string
+    logoFill?: string
+    logoPoweredBy?: string
+    values?: {
+      negative?: string
+      positive?: string
+      positiveOnDark?: string
+      negativeOnDark?: string
+    }
+  }
+}
+
+const basePaletteThemeOptions = {
+  tonalOffset: 0.2,
+  contrastThreshold: 4.5,
+} as const
+
+const baseTheme = createTheme()
+
+export const basePaletteLight: PaletteOptions = {
+  ...basePaletteThemeOptions,
+  mode: 'light',
+
+  neutral: {
+    main: neutral[400],
+    dark: neutral[700],
+    light: neutral[100],
+    contrastText: neutral[900],
+  },
+  text: {
+    primary: '#1e1e1e',
+    secondary: 'rgba(30, 30, 30, 0.70)',
+    disabled: 'rgba(30, 30, 30, 0.38)',
+  },
+  action: {
+    active: 'rgba(0, 0, 0, 0.56)',
+    hover: 'rgba(0, 0, 0, 0.04)',
+    selected: 'rgba(0, 0, 0, 0.08)',
+    disabled: 'rgba(0, 0, 0, 0.38)',
+    disabledBackground: 'rgba(0, 0, 0, 0.12)',
+  },
+  error: {
+    main: orangered[500],
+    dark: orangered[600],
+    light: orangered[400],
+    contrastText: '#ffffff',
+  },
+  warning: {
+    main: persimmon[500],
+    dark: persimmon[700],
+    light: persimmon[400],
+    contrastText: '#ffffff',
+  },
+  info: {
+    main: bnblue[500],
+    dark: bnblue[700],
+    light: bnblue[400],
+    contrastText: '#ffffff',
+  },
+  success: {
+    main: seagrass[600],
+    dark: seagrass[800],
+    light: seagrass[500],
+    contrastText: '#ffffff',
+  },
+  divider: 'rgba(31, 30, 28, 0.12)',
+  inputOutlinedEnabledBorder: 'rgba(0, 0, 0, 0.23)',
+  inputOutlinedHoverBorder: '#000000',
+  inputOutlinedEnabledFill: '#ffffff',
+  appBarPrimary: {
+    defaultContrast: '#ffffff',
+    hover: nxtBlue[300],
+    defaultFill: nxtBlue[800],
+    tabIndicator: '#ffffff',
+  },
+  appBarSecondary: {
+    defaultFill: '#ffffff',
+    defaultContrast: bnteal[700],
+    tabIndicator: nxtBlue[700],
+    hover: nxtBlue[500],
+  },
+  appswitcher: {
+    background: micGrey[900],
+  },
+  link: bnblue[500],
+  tableCellRow: {
+    fill: baseTheme.palette.common.white,
+    zebraFill: neutral[200],
+  },
+  tableHeaderRow: {
+    restingFill: '#e5e5e5',
+    border: 'rgba(30, 30, 30, 0.12)',
+  },
+  dataGridHeaderRow: {
+    restingFill: '#e5e5e5',
+    border: neutral[500],
+  },
+  dataGridSubHeader: {
+    backgroundFill: grey[100],
+  },
+  dataGridCellRow: {
+    border: 'rgba(30, 30, 30, 0.12)',
+  },
+  dataGridPagination: {
+    backgroundFill: '#f3f3f3',
+    border: 'rgba(30, 30, 30, 0.12)',
+  },
+  dataGridDefaultFill: '#ffffff',
+  footer: {
+    background: '#171717',
+  },
+  logoPoweredBy: turquoise[500],
+  logoFill: '#0D6580',
+  micGrey: baseTheme.palette.augmentColor({
+    color: {
+      main: 'hsla(205, 15%, 25%, 1)',
+    },
+    name: 'micGrey',
+  }),
+  background: {
+    default: '#f9f9f9',
+    paper: '#f3f3f3',
+  },
+  values: {
+    negative: '#db0d0f',
+    positive: '#237b14',
+    positiveOnDark: '#41bf36',
+    negativeOnDark: '#fb6769',
+  },
+  ...chartsLight,
+}
+
+export const basePaletteDark: PaletteOptions = {
+  ...basePaletteThemeOptions,
+  mode: 'dark',
+  primary: {
+    main: nxtBlue[300],
+    dark: nxtBlue[400],
+    light: nxtBlue[200],
+    contrastText: '#000000',
+  },
+  secondary: {
+    main: bnteal[200],
+    dark: bnteal[400],
+    light: bnteal[50],
+    contrastText: '#000000',
+  },
+  tertiary: {
+    main: bnblue[300],
+    dark: bnblue[500],
+    light: bnblue[200],
+    contrastText: '#ffffff',
+  },
+  text: {
+    primary: '#f3f3f3',
+    secondary: 'rgba(243, 243, 243, 0.70)',
+    disabled: 'rgba(243, 243, 243, 0.38)',
+  },
+  action: {
+    active: 'rgba(243, 243, 243, 0.56)',
+    hover: 'rgba(243, 243, 243, 0.08)',
+    selected: 'rgba(243, 243, 243, 0.16)',
+    disabled: 'rgba(243, 243, 243, 0.38)',
+    disabledBackground: 'rgba(243, 243, 243, 0.12)',
+  },
+  error: {
+    main: orangered[500],
+    dark: orangered[600],
+    light: orangered[400],
+    contrastText: '#ffffff',
+  },
+  warning: {
+    main: persimmon[400],
+    dark: persimmon[500],
+    light: persimmon[300],
+    contrastText: '#000000',
+  },
+  info: {
+    main: bnblue[400],
+    dark: bnblue[600],
+    light: bnblue[300],
+    contrastText: '#000000',
+  },
+  success: {
+    main: seagrass[400],
+    dark: seagrass[700],
+    light: seagrass[300],
+    contrastText: '#000000',
+  },
+  neutral: {
+    main: neutral[700],
+    dark: neutral[600],
+    light: neutral[400],
+    contrastText: neutral[50],
+  },
+  divider: 'rgba(243, 243, 243, 0.12)',
+  inputOutlinedEnabledBorder: 'rgba(243, 243, 243, 0.3)',
+  inputOutlinedHoverBorder: '#ffffff',
+  inputOutlinedEnabledFill: 'rgba(0, 0, 0, 0.3)',
+  appBarPrimary: {
+    defaultContrast: '#ffffff',
+    hover: nxtBlue[300],
+    defaultFill: '#171717',
+    tabIndicator: '#ffffff',
+  },
+  appBarSecondary: {
+    defaultFill: '#171717',
+    defaultContrast: '#ffffff',
+    tabIndicator: nxtBlue[300],
+    hover: nxtBlue[300],
+  },
+  appswitcher: {
+    background: micGrey[900],
+  },
+  link: nxtBlue[300],
+  tableCellRow: {
+    fill: 'rgba(0, 0, 0, 0.4)',
+  },
+  tableHeaderRow: {
+    restingFill: 'rgba(243, 243, 243, 0.15)',
+    border: 'rgba(243, 243, 243, 0.8)',
+  },
+  dataGridDefaultFill: 'rgba(0, 0, 0, 0.4)',
+  dataGridHeaderRow: {
+    restingFill: 'rgba(243, 243, 243, 0.15)',
+    border: 'rgba(243, 243, 243, 0.8)',
+  },
+  dataGridCellRow: {
+    border: 'rgba(243, 243, 243, 0.12)',
+  },
+  dataGridPagination: {
+    backgroundFill: 'rgba(243, 243, 243, 0.13)',
+    border: 'rgba(243, 243, 243, 0.12)',
+  },
+  footer: {
+    background: '#171717',
+  },
+  logoPoweredBy: turquoise[500],
+  logoFill: nxtBlue[300],
+  background: {
+    default: '#0d0d0d',
+    paper: '#171717',
+  },
+  values: {
+    negative: '#fb6769',
+    positive: '#41bf36',
+    positiveOnDark: '#41bf36',
+    negativeOnDark: '#fb6769',
+  },
+  ...chartsDark,
+}

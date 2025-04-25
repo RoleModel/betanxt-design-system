@@ -1,4 +1,4 @@
-interface LayoutVars {
+export interface LayoutVars {
   navbarHeight: number
   appSwitcherHeight: number
   footerHeight: number
@@ -7,11 +7,11 @@ interface LayoutVars {
 
 declare module '@mui/material/styles' {
   interface Theme {
-    layout: LayoutVars
+    layout?: LayoutVars
   }
 
   interface ThemeOptions {
-    layout: LayoutVars
+    layout?: LayoutVars
   }
 }
 

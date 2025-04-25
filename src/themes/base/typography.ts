@@ -1,4 +1,4 @@
-import type { ThemeOptions, TypographyOptions } from '@mui/material'
+import type { ThemeOptions } from '@mui/material'
 
 declare module '@mui/material/styles' {
   interface TypographyOptions {

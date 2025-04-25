@@ -14,7 +14,7 @@
  */
 import { createTheme } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { PaletteOptions } from '@mui/material/styles'
+import type { PaletteOptions } from '@mui/material/styles'
 
 import {
   bnblue,
@@ -26,8 +26,8 @@ import {
   persimmon,
   seagrass,
   turquoise,
-} from './palette-tokens/brand-tokens'
-import { chartsDark, chartsLight } from './palette-tokens/charts'
+} from './palette-tokens/brand-tokens.js'
+import { chartsDark, chartsLight } from './palette-tokens/charts.js'
 
 declare module '@mui/material/styles' {
   interface Palette {

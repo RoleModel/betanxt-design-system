@@ -1,7 +1,7 @@
 import { deepPurple, pink } from '@mui/material/colors'
-import { PaletteOptions } from '@mui/material/styles'
+import type { PaletteOptions } from '@mui/material/styles'
 
-import { bnteal, gold, nxtBlue, orangered, persimmon, seagrass } from './brand-tokens'
+import { bnteal, gold, nxtBlue, orangered, persimmon, seagrass } from './brand-tokens.js'
 
 declare module '@mui/material/styles' {
   interface Palette {

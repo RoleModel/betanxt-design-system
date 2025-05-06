@@ -440,20 +440,21 @@ export const components: ThemeOptions['components'] = {
   MuiDataGrid: {
     styleOverrides: {
       root: ({ theme }) => ({
-        backgroundColor: theme.vars.palette?.dataGridDefaultFill,
+        '--unstable_DataGrid-radius': theme.vars.shape.borderRadius,
+        '--DataGrid-containerBackground':
+          theme.vars.palette.dataGridDefaultFill,
+        '--DataGrid-rowBorderColor': theme.vars.palette.dataGridCellRow.border,
         border: 'none',
-        borderColor: 'transparent',
-        borderRadius: theme.vars.shape.borderRadius,
+        backgroundColor: theme.vars.palette.dataGridDefaultFill,
         boxShadow: theme.shadows[5],
-        fontSize: theme.typography.dataCell.fontSize,
-        '& .MuiTypography-root': {
-          fontSize: theme.typography.dataCell.fontSize,
-        },
-        '--DataGrid-rowBorderColor': theme.vars.palette?.dataGridCellRow?.border,
+        fontSize: theme.typography.body3.fontSize,
         '& .MuiDataGrid-overlayWrapperInner': {
-          backgroundColor: theme.vars.palette?.dataGridDefaultFill,
+          backgroundColor: theme.vars.palette.dataGridDefaultFill,
         },
         '& .MuiDataGrid-toolbarContainer': {
+          backgroundColor: theme.vars.palette.dataGridHeaderRow.restingFill,
+        },
+        '& .MuiDataGrid-cell--editing': {
           backgroundColor: theme.vars.palette.dataGridDefaultFill,
         },
         '& .MuiTablePagination-toolbar': {
@@ -465,32 +466,55 @@ export const components: ThemeOptions['components'] = {
         '& .MuiTablePagination-displayedRows': {
           fontSize: 'inherit',
         },
-        '& .MuiDataGrid-columnHeaderTitle': {
-          fontWeight: 500,
-          lineHeight: theme.typography.dataHeader.lineHeight,
-        },
         '& .MuiDataGrid-columnSeparator': {
           color: theme.vars.palette.divider,
         },
-        '& .MuiDataGrid-container--top [role=row]': {
-          backgroundColor: theme.vars.palette?.dataGridHeaderRow?.restingFill,
-        },
         '& .MuiDataGrid-columnHeaders': {
-          borderColor: theme.vars.palette?.dataGridHeaderRow?.border,
-          ...theme.typography.dataHeader,
+          background: theme.vars.palette.dataGridHeaderRow.restingFill,
         },
-        '& .MuiDataGrid-columnHeader:focus': {
-          outline: 'none',
+        '& .MuiDataGrid-columnHeader': {
+          background: theme.vars.palette.dataGridHeaderRow.restingFill,
+          backdropFilter: 'blur(4px)',
+        },
+        '& .MuiDataGrid-container--top [role="row"]': {
+          background: theme.vars.palette.dataGridHeaderRow.restingFill,
         },
         '& .MuiDataGrid-footerContainer': {
-          backgroundColor: theme.vars.palette?.dataGridPagination?.backgroundFill,
-          borderColor: theme.vars.palette?.dataGridPagination?.border,
+          backgroundColor: theme.vars.palette.dataGridPagination.backgroundFill,
+          borderColor: theme.vars.palette.dataGridCellRow.border,
         },
-        '& .MuiDataGrid-cell:focus': {
-          outline: 'none',
+        '& .MuiDataGrid-filler': {
+          backgroundColor: theme.vars.palette.dataGridDefaultFill,
         },
-        '& .MuiDataGrid-menu': {
-          boxShadow: theme.vars.shadows[8],
+        '& .MuiDataGrid-virtualScroller': {
+          backgroundColor: theme.vars.palette.dataGridDefaultFill,
+        },
+        // Row Hover Styling
+        '& .MuiDataGrid-row:hover': {
+          backgroundColor: theme.vars.palette.action.hover,
+        },
+        // Pinned Column Stying
+        '& .MuiDataGrid-filler--pinnedRight': {
+          backgroundColor: theme.vars.palette.dataGridDefaultFill,
+        },
+        '& .MuiDataGrid-cell--pinnedLeft': {
+          backgroundColor: theme.vars.palette.dataGridDefaultFill,
+          backdropFilter: 'blur(6px)',
+        },
+        '& .MuiDataGrid-cell--pinnedRight': {
+          backgroundColor: theme.vars.palette.dataGridDefaultFill,
+          backdropFilter: 'blur(6px)',
+        },
+        '& .MuiDataGrid-row:hover .MuiDataGrid-cell--pinnedRight': {
+          backgroundColor: 'transparent',
+        },
+        '& .MuiDataGrid-row:hover .MuiDataGrid-cell--pinnedLeft': {
+          backgroundColor: 'transparent',
+        },
+        '& .MuiDataGrid-cell': {
+          [`&:focus`]: {
+            outline: 'none',
+          },
         },
       }),
     },

@@ -1,6 +1,6 @@
 import { PaletteOptions, ThemeOptions } from '@mui/material/styles'
-
 import { bnblue, bnteal, neutral, nxtBlue } from '../base/palette-tokens/brand-tokens'
+
 import { baseTheme } from '../baseTheme'
 
 export const betanxtPaletteLight: PaletteOptions = {
@@ -12,7 +12,7 @@ export const betanxtPaletteLight: PaletteOptions = {
     light: nxtBlue[600],
   },
   secondary: {
-    contrastText: '#ffffff',
+    contrastText: '#000000',
     main: bnteal[400],
     dark: bnteal[700],
     light: bnteal[300],
@@ -22,6 +22,12 @@ export const betanxtPaletteLight: PaletteOptions = {
     dark: bnblue[800],
     light: bnblue[300],
     contrastText: '#ffffff',
+  },
+  neutral: {
+    main: neutral[300],
+    dark: neutral[700],
+    light: neutral[100],
+    contrastText: neutral[900],
   },
   text: {
     primary: '#1f1e1c',
@@ -55,8 +61,11 @@ export const betanxtPaletteLight: PaletteOptions = {
 
 export const betanxtPaletteDark: PaletteOptions = {
   mode: 'dark',
-  text: {
-    primary: '#f3f3f3',
+  neutral: {
+    main: nxtBlue[700],
+    dark: nxtBlue[900],
+    light: nxtBlue[500],
+    contrastText: '#ffffff',
   },
   tableCellRow: {
     fill: '#000000',
@@ -78,14 +87,14 @@ export const betanxtPaletteDark: PaletteOptions = {
     hover: nxtBlue[300],
   },
   dataGridHeaderRow: {
-    restingFill: '#042e3e',
+    restingFill: 'rgba(4, 46, 62, 0.8)',
     border: '#0d4459',
   },
   dataGridPagination: {
     backgroundFill: '#042e3e',
     border: '#0d4459',
   },
-  dataGridDefaultFill: '#010b0f',
+  dataGridDefaultFill: 'rgba(0, 0, 0, 0.5)',
   footer: {
     background: nxtBlue[800],
   },

@@ -1,3 +1,17 @@
+import {
+  bnblue,
+  bnteal,
+  micGrey,
+  neutral,
+  nxtBlue,
+  orangered,
+  persimmon,
+  seagrass,
+  turquoise,
+} from './palette-tokens/brand-tokens'
+import { chartsDark, chartsLight } from './palette-tokens/charts'
+
+import { PaletteOptions } from '@mui/material/styles'
 /**
  * @fileoverview Extends the base MUI Palette types and defines base light/dark color palettes.
  *
@@ -14,20 +28,6 @@
  */
 import { createTheme } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import { PaletteOptions } from '@mui/material/styles'
-
-import {
-  bnblue,
-  bnteal,
-  micGrey,
-  neutral,
-  nxtBlue,
-  orangered,
-  persimmon,
-  seagrass,
-  turquoise,
-} from './palette-tokens/brand-tokens'
-import { chartsDark, chartsLight } from './palette-tokens/charts'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -158,10 +158,10 @@ export const basePaletteLight: PaletteOptions = {
   mode: 'light',
 
   neutral: {
-    main: neutral[400],
-    dark: neutral[700],
-    light: neutral[100],
-    contrastText: neutral[900],
+    main: grey[300],
+    dark: grey[500],
+    light: grey[100],
+    contrastText: '#000000',
   },
   text: {
     primary: '#1e1e1e',
@@ -287,6 +287,12 @@ export const basePaletteDark: PaletteOptions = {
     light: bnblue[200],
     contrastText: '#ffffff',
   },
+  neutral: {
+    main: grey[900],
+    dark: grey[800],
+    light: grey[700],
+    contrastText: grey[50],
+  },
   text: {
     primary: '#f3f3f3',
     secondary: 'rgba(243, 243, 243, 0.70)',
@@ -323,12 +329,6 @@ export const basePaletteDark: PaletteOptions = {
     light: seagrass[300],
     contrastText: '#000000',
   },
-  neutral: {
-    main: neutral[700],
-    dark: neutral[600],
-    light: neutral[400],
-    contrastText: neutral[50],
-  },
   divider: 'rgba(243, 243, 243, 0.12)',
   inputOutlinedEnabledBorder: 'rgba(243, 243, 243, 0.3)',
   inputOutlinedHoverBorder: '#ffffff',
@@ -350,22 +350,22 @@ export const basePaletteDark: PaletteOptions = {
   },
   link: nxtBlue[300],
   tableCellRow: {
-    fill: 'rgba(0, 0, 0, 0.4)',
+    fill: 'rgba(0, 0, 0, 0.5)',
   },
   tableHeaderRow: {
     restingFill: 'rgba(243, 243, 243, 0.15)',
     border: 'rgba(243, 243, 243, 0.8)',
   },
-  dataGridDefaultFill: 'rgba(0, 0, 0, 0.4)',
+  dataGridDefaultFill: 'rgba(0, 0, 0, 0.5)',
   dataGridHeaderRow: {
-    restingFill: 'rgba(243, 243, 243, 0.15)',
+    restingFill: 'rgba(55, 55, 55, 0.75)',
     border: 'rgba(243, 243, 243, 0.8)',
   },
   dataGridCellRow: {
     border: 'rgba(243, 243, 243, 0.12)',
   },
   dataGridPagination: {
-    backgroundFill: 'rgba(243, 243, 243, 0.13)',
+    backgroundFill: 'rgba(55, 55, 55, 0.6)',
     border: 'rgba(243, 243, 243, 0.12)',
   },
   footer: {

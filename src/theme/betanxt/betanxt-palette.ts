@@ -61,6 +61,9 @@ export const betanxtPaletteLight: PaletteOptions = {
 
 export const betanxtPaletteDark: PaletteOptions = {
   mode: 'dark',
+  text: {
+    primary: '#f3f3f3',
+  },
   neutral: {
     main: nxtBlue[700],
     dark: nxtBlue[900],

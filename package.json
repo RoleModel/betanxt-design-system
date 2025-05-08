@@ -1,5 +1,5 @@
 {
-  "name": "@betanxt/design-system",
+  "name": "@rolemodel/betanxt-design-system",
   "version": "0.0.1",
   "description": "The BetaNXT design system for MUI.",
   "type": "module",

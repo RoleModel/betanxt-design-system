@@ -35,12 +35,12 @@ To use this package in other projects:
 2. Create or update `.npmrc` in your project:
 
    ```
-   @betanxt:registry=https://npm.pkg.github.com
+   @rolemodel:registry=https://npm.pkg.github.com
    ```
 
 3. Install the package:
    ```
-   npm install @betanxt/design-system
+   npm install @rolemodel/betanxt-design-system
    ```
 
 ### Access Control

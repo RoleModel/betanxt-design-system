@@ -1,34 +1,4 @@
-import type { Overlays as MUIOverlays } from '@mui/material/styles'
-
-type OverlaysArray = [
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-  string,
-]
-
-type Overlays = MUIOverlays | OverlaysArray
+import type { Overlays } from '@mui/material/styles'
 
 function getOverlayLightness(elevation: number): number {
   // Start at 7% and increase by 0.65% for each elevation level
@@ -36,7 +6,7 @@ function getOverlayLightness(elevation: number): number {
   return Math.round(lightnessValue * 10) / 10
 }
 
-export function createDarkOverlays(): OverlaysArray {
+export function createDarkOverlays(): Overlays {
   // Ensure we create exactly 25 elements
   const overlays = Array(25)
     .fill(0)
@@ -52,7 +22,7 @@ export function createDarkOverlays(): OverlaysArray {
       return `linear-gradient(hsl(199, 89%, ${lightness}%), hsl(199, 89%, ${lightness}%))`
     })
 
-  return overlays as OverlaysArray
+  return overlays as Overlays
 }
 
 function getBaseOverlayLightness(elevation: number): number {
@@ -61,7 +31,7 @@ function getBaseOverlayLightness(elevation: number): number {
   return Math.round(lightnessValue * 10) / 10
 }
 
-export function createBaseDarkOverlays(): OverlaysArray {
+export function createBaseDarkOverlays(): Overlays {
   // Ensure we create exactly 25 elements
   const overlays = Array(25)
     .fill(0)
@@ -77,14 +47,5 @@ export function createBaseDarkOverlays(): OverlaysArray {
       return `linear-gradient(hsl(0, 0%, ${lightness}%), hsl(0, 0%, ${lightness}%))`
     })
 
-  return overlays as OverlaysArray
+  return overlays as Overlays
 }
-
-// declare module '@mui/material/styles' {
-//   interface Theme {
-//     overlays: Overlays
-//   }
-//   interface ThemeOptions {
-//     overlays?: Overlays
-//   }
-// }

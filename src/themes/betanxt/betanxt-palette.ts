@@ -12,7 +12,7 @@ export const betanxtPaletteLight: PaletteOptions = {
     light: nxtBlue[600],
   },
   secondary: {
-    contrastText: '#ffffff',
+    contrastText: '#000000',
     main: bnteal[400],
     dark: bnteal[700],
     light: bnteal[300],
@@ -57,6 +57,12 @@ export const betanxtPaletteDark: PaletteOptions = {
   mode: 'dark',
   text: {
     primary: '#f3f3f3',
+  },
+  neutral: {
+    main: neutral[700],
+    dark: neutral[900],
+    light: neutral[500],
+    contrastText: '#ffffff',
   },
   tableCellRow: {
     fill: '#000000',

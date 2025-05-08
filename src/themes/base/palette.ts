@@ -1,20 +1,6 @@
-/**
- * @fileoverview Extends the base MUI Palette types and defines base light/dark color palettes.
- *
- * This file serves two main purposes:
- * 1. Type Augmentation: It uses TypeScript module augmentation (`declare module '@mui/material/styles'`)
- *    to add custom color properties (e.g., `neutral`, `tertiary`, `statusApproved`, `tableHeaderRow`,
- *    `dataGridHeaderRow`) to the MUI `Palette` and `PaletteOptions` interfaces. This provides
- *    type safety for custom theme colors.
- * 2. Base Palette Definitions: It defines `basePaletteLight` and `basePaletteDark` which provide
- *    default color values for both standard MUI palette keys (like `primary`, `error`, `background`)
- *    and the custom augmented keys. These palettes utilize the color values defined in `brand-tokens.ts`.
- *    These base palettes are then merged with brand-specific overrides (like in `betanxtTheme.ts`)
- *    to create the final theme palettes.
- */
 import { createTheme } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import type { PaletteOptions } from '@mui/material/styles'
+import type { PaletteColorOptions, PaletteOptions } from '@mui/material/styles'
 
 import {
   bnblue,
@@ -31,9 +17,9 @@ import { chartsDark, chartsLight } from './palette-tokens/charts.js'
 
 declare module '@mui/material/styles' {
   interface Palette {
-    neutral: Palette['primary']
-    tertiary: Palette['primary']
-    micGrey: Palette['primary']
+    neutral: PaletteColorOptions
+    tertiary: PaletteColorOptions
+    micGrey: PaletteColorOptions
     inputOutlinedEnabledFill: string
     appBarPrimary: {
       defaultFill: string
@@ -86,9 +72,9 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
-    neutral?: PaletteOptions['primary']
-    micGrey?: PaletteOptions['primary']
-    tertiary?: PaletteOptions['primary']
+    neutral?: PaletteColorOptions
+    micGrey?: PaletteColorOptions
+    tertiary?: PaletteColorOptions
     inputOutlinedEnabledFill?: string
     inputOutlinedEnabledBorder?: string
     inputOutlinedHoverBorder?: string
@@ -158,10 +144,10 @@ export const basePaletteLight: PaletteOptions = {
   mode: 'light',
 
   neutral: {
-    main: neutral[400],
-    dark: neutral[700],
-    light: neutral[100],
-    contrastText: neutral[900],
+    main: grey[300],
+    dark: grey[500],
+    light: grey[100],
+    contrastText: '#000000',
   },
   text: {
     primary: '#1e1e1e',
@@ -324,10 +310,10 @@ export const basePaletteDark: PaletteOptions = {
     contrastText: '#000000',
   },
   neutral: {
-    main: neutral[700],
-    dark: neutral[600],
-    light: neutral[400],
-    contrastText: neutral[50],
+    main: grey[700],
+    dark: grey[800],
+    light: grey[500],
+    contrastText: grey[50],
   },
   divider: 'rgba(243, 243, 243, 0.12)',
   inputOutlinedEnabledBorder: 'rgba(243, 243, 243, 0.3)',
@@ -350,22 +336,22 @@ export const basePaletteDark: PaletteOptions = {
   },
   link: nxtBlue[300],
   tableCellRow: {
-    fill: 'rgba(0, 0, 0, 0.4)',
+    fill: 'rgba(0, 0, 0, 0.5)',
   },
   tableHeaderRow: {
     restingFill: 'rgba(243, 243, 243, 0.15)',
     border: 'rgba(243, 243, 243, 0.8)',
   },
-  dataGridDefaultFill: 'rgba(0, 0, 0, 0.4)',
+  dataGridDefaultFill: 'rgba(0, 0, 0, 0.5)',
   dataGridHeaderRow: {
-    restingFill: 'rgba(243, 243, 243, 0.15)',
+    restingFill: 'rgba(55, 55, 55, 0.75)',
     border: 'rgba(243, 243, 243, 0.8)',
   },
   dataGridCellRow: {
     border: 'rgba(243, 243, 243, 0.12)',
   },
   dataGridPagination: {
-    backgroundFill: 'rgba(243, 243, 243, 0.13)',
+    backgroundFill: 'rgba(55, 55, 55, 0.6)',
     border: 'rgba(243, 243, 243, 0.12)',
   },
   footer: {

@@ -1,0 +1,56 @@
+flowchart TB
+ subgraph Color
+        Charts["charts.ts"]
+        BrandTokens["brand-tokens.ts"]
+        Palette["palette.ts"]
+        BetanxtPalette["betanxt-palette.ts"]
+  end
+ subgraph ThemeOptions
+        BaseThemeOptions["baseThemeOptions"]
+        BetanxtThemeOptions["betanxtThemeOptions"]
+        Components["base/components.ts"]
+        Layout["base/layout.ts"]
+        Overlays["base/overlays.ts"]
+        Shadows["base/shadows.ts"]
+        Typography["base/typography.ts"]
+  end
+    Charts --> Palette
+    BrandTokens --> Charts & Palette & BetanxtPalette
+    Palette -- BasePaletteThemeOptions--> BaseThemeOptions
+
+    Typography --> BaseThemeOptions
+    Shadows --> BaseThemeOptions
+    Overlays -- createDarkOverlays --> BetanxtTheme["betanxtTheme.ts<br>createTheme"]
+    Overlays -- createBaseDarkOverlays --> BaseThemeOptions
+    Layout --> BaseThemeOptions
+    Components --> BaseThemeOptions
+
+    BetanxtThemeOptions --> BetanxtTheme
+    BaseThemeOptions -- export --> BaseTheme["baseTheme.ts<br>createTheme"]
+
+    BetanxtPalette --> BetanxtThemeOptions
+    BaseTheme -- deepmerge --> BetanxtThemeOptions
+
+    BaseTheme --> ThemeProvider["ThemeProvider.tsx"]
+    BetanxtTheme --> ThemeProvider
+
+     Charts:::constants
+     BrandTokens:::constants
+     Palette:::palettes
+     BetanxtPalette:::palettes
+     Components:::baseConfig
+     Layout:::baseConfig
+     Overlays:::baseConfig
+     Shadows:::baseConfig
+     Typography:::baseConfig
+     BaseTheme:::themes
+     BetanxtTheme:::themes
+    classDef constants fill:#117dac,color:#fff
+    classDef palettes fill:#95bdc3,color:#000
+    classDef baseConfig fill:#f4b400, color:#000
+    classDef themes fill:#69d2e7,color:#000
+    style BaseThemeOptions fill:#FFFFFF, color:#000
+    style BetanxtThemeOptions fill:#FFFFFF, color:#000
+    style ThemeOptions fill:#FFFFFF, color:#000
+
+

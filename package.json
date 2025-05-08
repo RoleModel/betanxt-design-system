@@ -1,6 +1,6 @@
 {
   "name": "@rolemodel/betanxt-design-system",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The BetaNXT design system for MUI.",
   "type": "module",
   "exports": {
@@ -18,6 +18,11 @@
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check ."
   },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RoleModel/betanxt-design-system.git"

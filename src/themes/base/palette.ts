@@ -1,3 +1,7 @@
+import { createTheme } from '@mui/material'
+import { grey } from '@mui/material/colors'
+import type { PaletteColorOptions, PaletteOptions } from '@mui/material/styles'
+
 import {
   bnblue,
   bnteal,
@@ -11,15 +15,11 @@ import {
 } from './palette-tokens/brand-tokens.js'
 import { chartsDark, chartsLight } from './palette-tokens/charts.js'
 
-import type { PaletteOptions } from '@mui/material/styles'
-import { createTheme } from '@mui/material'
-import { grey } from '@mui/material/colors'
-
 declare module '@mui/material/styles' {
   interface Palette {
-    neutral: Palette['primary']
-    tertiary: Palette['primary']
-    micGrey: Palette['primary']
+    neutral: PaletteColorOptions
+    tertiary: PaletteColorOptions
+    micGrey: PaletteColorOptions
     inputOutlinedEnabledFill: string
     appBarPrimary: {
       defaultFill: string
@@ -72,9 +72,9 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
-    neutral?: PaletteOptions['primary']
-    micGrey?: PaletteOptions['primary']
-    tertiary?: PaletteOptions['primary']
+    neutral?: PaletteColorOptions
+    micGrey?: PaletteColorOptions
+    tertiary?: PaletteColorOptions
     inputOutlinedEnabledFill?: string
     inputOutlinedEnabledBorder?: string
     inputOutlinedHoverBorder?: string

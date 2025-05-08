@@ -94,7 +94,6 @@ const components: ThemeOptions['components'] = {
       }),
     },
   },
-
 }
 
 export default components

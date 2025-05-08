@@ -1,6 +1,6 @@
-import type { PaletteOptions } from '@mui/material/styles'
-
 import { bnblue, bnteal, neutral, nxtBlue } from '../base/palette-tokens/brand-tokens.js'
+
+import type { PaletteOptions } from '@mui/material/styles'
 import baseTheme from '../baseTheme.js'
 
 export const betanxtPaletteLight: PaletteOptions = {
@@ -12,7 +12,7 @@ export const betanxtPaletteLight: PaletteOptions = {
     light: nxtBlue[600],
   },
   secondary: {
-    contrastText: '#ffffff',
+    contrastText: '#000000',
     main: bnteal[400],
     dark: bnteal[700],
     light: bnteal[300],
@@ -57,6 +57,12 @@ export const betanxtPaletteDark: PaletteOptions = {
   mode: 'dark',
   text: {
     primary: '#f3f3f3',
+  },
+  neutral: {
+    main: nxtBlue[700],
+    dark: nxtBlue[900],
+    light: nxtBlue[500],
+    contrastText: '#ffffff',
   },
   tableCellRow: {
     fill: '#000000',

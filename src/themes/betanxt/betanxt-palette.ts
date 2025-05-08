@@ -59,9 +59,9 @@ export const betanxtPaletteDark: PaletteOptions = {
     primary: '#f3f3f3',
   },
   neutral: {
-    main: nxtBlue[700],
-    dark: nxtBlue[900],
-    light: nxtBlue[500],
+    main: neutral[700],
+    dark: neutral[900],
+    light: neutral[500],
     contrastText: '#ffffff',
   },
   tableCellRow: {

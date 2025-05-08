@@ -11,8 +11,7 @@ The primary way to apply a theme is by using MUI's `ThemeProvider` to wrap your 
 "use client"; // Or remove if not using Next.js App Router specific features directly here
 
 import { ReactNode } from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 // Choose the theme you want to use:
 import theme from "[path-to-themes]/baseTheme";
@@ -25,7 +24,7 @@ export default function App({ children }: { children: ReactNode }) {
     <ThemeProvider theme={theme}>
       {/* CssBaseline applies baseline styles and enables color scheme switching */}
       <CssBaseline enableColorScheme />
-      {children} {/* This would be the rest of your application */}
+      {children}
     </ThemeProvider>
   );
 }
@@ -53,26 +52,71 @@ import Box from '@mui/material/Box'
 // Example of using theme.vars with the sx prop on an MUI Box component
 const MyStyledBox = () => (
   <Box
-    sx={{
-      backgroundColor: (theme) => theme.vars.palette.primary.main,
-      color: (theme) => theme.vars.palette.primary.contrastText,
-      padding: (theme) => theme.vars.spacing[2], // Accesses 'var(--mui-spacing-2)'
-      fontSize: (theme) => theme.vars.typography.fontSize,
-      fontFamily: (theme) => theme.vars.typography.fontFamily,
-      border: (theme) => `1px solid ${theme.vars.palette.divider}`,
-      borderRadius: (theme) => theme.vars.shape.borderRadius,
+    sx={(theme) => ({
+      backgroundColor: theme.vars.palette.primary.main,
+      color: theme.vars.palette.primary.contrastText,
+      padding: theme.vars.spacing[2], // Accesses 'var(--mui-spacing-2)'
+      fontSize: theme.vars.typography.fontSize,
+      fontFamily: theme.vars.typography.fontFamily,
+      border: `1px solid ${theme.vars.palette.divider}`,
+      borderRadius: theme.vars.shape.borderRadius,
       '&:hover': {
-        backgroundColor: (theme) => theme.vars.palette.primary.dark,
+        backgroundColor: theme.vars.palette.primary.dark,
       },
-    }}
+    })}
   >
     This Box is styled using theme.vars via the sx prop.
   </Box>
 )
 ```
 
-<aside>
-**Note:** When using `theme.vars` within the `sx` prop, you often wrap the access in a function `(theme) => theme.vars...`. This allows the `sx` prop to correctly resolve the theme object and access its `vars` property. The key is that `theme.vars` provides the CSS variable string (e.g., `var(--mui-palette-primary-main)`).
-</aside>
-
 You can explore `theme.vars` for other properties like `shadows`, component-specific variables, etc.
+
+## Publishing to GitHub Packages
+
+This package is published to GitHub Packages registry. The publishing process is automated using GitHub Actions.
+
+### Publishing a New Version
+
+There are two ways to publish a new version:
+
+1. **Create a GitHub Release**:
+
+   - Go to the repository's Releases page on GitHub
+   - Click "Create a new release"
+   - Enter a tag version (e.g., v1.0.0)
+   - The workflow will automatically publish the package
+
+2. **Manually trigger the workflow**:
+   - Go to the "Actions" tab in the GitHub repository
+   - Select "Publish Package to GitHub Packages" workflow
+   - Click "Run workflow"
+   - Select the branch and specify version bump type (patch, minor, major, or specific version)
+   - Click "Run workflow"
+
+### Consuming the Package
+
+To use this package in other projects:
+
+1. Authenticate with GitHub Packages:
+
+   ```
+   echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
+   ```
+
+2. Create or update `.npmrc` in your project:
+
+   ```
+   @rolemodel:registry=https://npm.pkg.github.com
+   ```
+
+3. Install the package:
+   ```
+   npm install @rolemodel/betanxt-design-system
+   ```
+
+### Access Control
+
+Only users with write access to the repository can publish new versions of the package.
+
+---

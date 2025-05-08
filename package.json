@@ -5,9 +5,12 @@
   "type": "module",
   "exports": {
     "./*": {
-      "types": "./src/*.ts",
-      "default": "./dist/*.js"
+      "types": "./dist/*.ts",
+      "import": "./dist/*.js"
     }
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "build": "tsc",

@@ -17,6 +17,7 @@
 
     /* Output Options */
     "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
     "sourceMap": true,
     "rootDir": "src",
@@ -24,5 +25,6 @@
 
     "lib": ["es2022", "dom", "dom.iterable"]
   },
+  "include": ["src/**/*"],
   "exclude": ["prettier.config.js", "dist", "node_modules"]
 }

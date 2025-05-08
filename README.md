@@ -1,9 +1,5 @@
 # BetaNXT Design System
 
-## BetaNXT UI Theming Documentation
-
-This document explains how to use the BetaNXT UI theme system (`baseTheme` and `betanxtTheme`), built upon Material UI (MUI), in your Next.js application.
-
 ## Using the Themes
 
 The primary way to apply a theme is by using MUI's `ThemeProvider` to wrap your application and `CssBaseline` for consistent styling and built-in color scheme (light/dark mode) support.

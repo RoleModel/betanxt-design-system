@@ -4,9 +4,9 @@
   "description": "The BetaNXT design system for MUI.",
   "type": "module",
   "exports": {
-    "./themes/*": {
-      "types": "./dist/themes/*.d.ts",
-      "default": "./dist/themes/*.js"
+    "./*": {
+      "types": "./src/*.ts",
+      "default": "./dist/*.js"
     }
   },
   "scripts": {

@@ -4,7 +4,7 @@ const components: ThemeOptions['components'] = {
   MuiDataGrid: {
     styleOverrides: {
       root: ({ theme }) => ({
-        fontSize: theme.typography.body3.fontSize,
+        fontSize: theme.typography.dataCell.fontSize,
         boxShadow: theme.shadows[5],
         borderRadius: theme.vars.shape.borderRadius,
         border: 'none',

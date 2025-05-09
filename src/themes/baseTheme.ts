@@ -3,12 +3,12 @@
 import { createTheme } from '@mui/material'
 import type {} from '@mui/material/themeCssVarsAugmentation'
 
-import { components } from './base/components.js'
-import { layout } from './base/layout.js'
-import { createBaseDarkOverlays } from './base/overlays.js'
-import { basePaletteDark, basePaletteLight } from './base/palette.js'
-import { shadows } from './base/shadows.js'
-import { typography } from './base/typography.js'
+import { components } from './base/components'
+import { layout } from './base/layout'
+import { createBaseDarkOverlays } from './base/overlays'
+import { basePaletteDark, basePaletteLight } from './base/palette'
+import { shadows } from './base/shadows'
+import { typography } from './base/typography'
 
 const baseThemeOptions = {
   cssVariables: {

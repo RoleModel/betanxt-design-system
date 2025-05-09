@@ -4,9 +4,9 @@ import { createTheme } from '@mui/material/styles'
 import type {} from '@mui/material/themeCssVarsAugmentation'
 import { deepmerge } from '@mui/utils'
 
-import { createDarkOverlays } from './base/overlays.js'
-import { baseThemeOptions } from './baseTheme.js'
-import { betanxtPaletteDark, betanxtPaletteLight } from './betanxt/betanxt-palette.js'
+import { createDarkOverlays } from './base/overlays'
+import { baseThemeOptions } from './baseTheme'
+import { betanxtPaletteDark, betanxtPaletteLight } from './betanxt/betanxt-palette'
 
 const betanxtThemeOptions = deepmerge(baseThemeOptions, {
   colorSchemes: {

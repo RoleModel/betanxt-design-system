@@ -12,8 +12,8 @@ import {
   persimmon,
   seagrass,
   turquoise,
-} from './palette-tokens/brand-tokens.js'
-import { chartsDark, chartsLight } from './palette-tokens/charts.js'
+} from './palette-tokens/brand-tokens'
+import { chartsDark, chartsLight } from './palette-tokens/charts'
 
 declare module '@mui/material/styles' {
   interface Palette {

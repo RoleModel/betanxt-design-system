@@ -1,14 +1,6 @@
 import type { ThemeOptions } from '@mui/material'
 
 declare module '@mui/material/styles' {
-  interface TypographyOptions {
-    fontFamilyCondensed: string
-  }
-
-  interface Typography {
-    fontFamilyCondensed: string
-  }
-
   interface TypographyVariants {
     appTitle: React.CSSProperties
     body3: React.CSSProperties

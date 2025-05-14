@@ -6,7 +6,7 @@ import { deepmerge } from '@mui/utils'
 
 import { createDarkOverlays } from './base/overlays'
 import { baseThemeOptions } from './baseTheme'
-import { betanxtPaletteDark, betanxtPaletteLight } from './betanxt/betanxt-palette'
+import { betanxtPaletteDark, betanxtPaletteLight } from './betanxt/palette'
 
 const betanxtThemeOptions = deepmerge(baseThemeOptions, {
   colorSchemes: {

@@ -141,27 +141,27 @@ interface ColorGroupProps {
 }
 
 const ColorGroup = ({ title, subtitle, colors }: ColorGroupProps) => {
-  const preferredShadeOrder = ['main', 'dark', 'light', 'contrastText'];
+  const preferredShadeOrder = ['main', 'dark', 'light', 'contrastText']
 
   const sortedColorEntries = Object.entries(colors).sort(([keyA], [keyB]) => {
     // Extract the shade part of the key (e.g., 'main' from 'primary.main')
-    const shadeA = keyA.substring(keyA.lastIndexOf('.') + 1);
-    const shadeB = keyB.substring(keyB.lastIndexOf('.') + 1);
+    const shadeA = keyA.substring(keyA.lastIndexOf('.') + 1)
+    const shadeB = keyB.substring(keyB.lastIndexOf('.') + 1)
 
-    const indexA = preferredShadeOrder.indexOf(shadeA);
-    const indexB = preferredShadeOrder.indexOf(shadeB);
+    const indexA = preferredShadeOrder.indexOf(shadeA)
+    const indexB = preferredShadeOrder.indexOf(shadeB)
 
     if (indexA !== -1 && indexB !== -1) {
-      return indexA - indexB; // Both are in preferred order
+      return indexA - indexB // Both are in preferred order
     }
     if (indexA !== -1) {
-      return -1; // A is preferred, B is not
+      return -1 // A is preferred, B is not
     }
     if (indexB !== -1) {
-      return 1; // B is preferred, A is not
+      return 1 // B is preferred, A is not
     }
-    return shadeA.localeCompare(shadeB); // Alphabetical for others
-  });
+    return shadeA.localeCompare(shadeB) // Alphabetical for others
+  })
 
   return (
     <Box sx={{ mb: 3 }}>
@@ -179,15 +179,13 @@ const ColorGroup = ({ title, subtitle, colors }: ColorGroupProps) => {
         }}
       >
         {sortedColorEntries.map(([fullKey, colorValue]) => {
-          const shadeLabel = fullKey.substring(fullKey.lastIndexOf('.') + 1);
-          return (
-            <ColorSwatch key={fullKey} color={colorValue} label={shadeLabel} />
-          );
+          const shadeLabel = fullKey.substring(fullKey.lastIndexOf('.') + 1)
+          return <ColorSwatch key={fullKey} color={colorValue} label={shadeLabel} />
         })}
       </Box>
     </Box>
   )
-};
+}
 
 const ColorGuide = () => {
   const theme = useTheme()

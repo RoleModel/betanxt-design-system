@@ -3,14 +3,14 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
-
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import { dark, light } from './theme'
-
 import type { Preview } from '@storybook/react'
 import React from 'react'
-import betanxtTheme from '../src/themes/betanxtTheme'
+
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { useColorScheme } from '@mui/material/styles'
+
+import betanxtTheme from '../src/themes/betanxtTheme'
+import { dark, light } from './theme'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 type ThemeClass = 'light' | 'dark'
@@ -103,4 +103,3 @@ const preview: Preview = {
 }
 
 export default preview
-

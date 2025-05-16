@@ -35,17 +35,13 @@ const config: StorybookConfig = {
   viteFinal: async (viteConfig) => {
     const buildConfig = (viteConfig.build ??= {})
     const rollupOptions = (buildConfig.rollupOptions ??= {})
-
     const originalOnWarn = rollupOptions.onwarn
-
     rollupOptions.onwarn = (warning, warn) => {
       if (warning.code === 'MODULE_LEVEL_DIRECTIVE') return
-
       if (typeof originalOnWarn === 'function') {
         originalOnWarn(warning, warn)
         return
       }
-
       warn(warning)
     }
 

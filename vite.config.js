@@ -10,6 +10,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['@mui/material', '@mui/icons-material'],
+    exclude: ['@storybook/addon-docs', '@storybook/blocks'],
   },
   // This empty config is sufficient for Storybook to work
 })

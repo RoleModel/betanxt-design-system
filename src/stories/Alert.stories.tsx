@@ -1,8 +1,8 @@
+import { DocsPage } from '@storybook/addon-docs'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
 import { userEvent, waitFor, within } from '@storybook/test'
 import React from 'react'
-import { DocsPage } from '@storybook/addon-docs'
 
 import { Button, Slide, Snackbar } from '@mui/material'
 
@@ -156,23 +156,23 @@ export const SnackBarAlert: Story = {
     const canvas = within(canvasElement)
 
     await step('Verify alert appears and is visible', async () => {
-      const alert = await canvas.findByTestId('alert', {}, { timeout: 2000 });
-      expect(alert).toBeInTheDocument();
-      expect(alert).toBeVisible();
+      const alert = await canvas.findByTestId('alert', {}, { timeout: 2000 })
+      expect(alert).toBeInTheDocument()
+      expect(alert).toBeVisible()
 
-      console.log('[Test] Alert is visible. Pausing for 2 seconds...');
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('[Test] Alert is visible. Pausing for 2 seconds...')
+      await new Promise((resolve) => setTimeout(resolve, 2000))
     })
 
     await step('Verify alert dismisses when close button is clicked', async () => {
-      const alertToClose = canvas.getByTestId('alert');
-      expect(alertToClose).toBeVisible();
+      const alertToClose = canvas.getByTestId('alert')
+      expect(alertToClose).toBeVisible()
 
-      const closeButton = within(alertToClose).getByRole('button', { name: /close/i });
+      const closeButton = within(alertToClose).getByRole('button', { name: /close/i })
 
-      console.log('[Test] Attempting to click close button...', closeButton);
-      await userEvent.click(closeButton);
-      console.log('[Test] Close button clicked.');
+      console.log('[Test] Attempting to click close button...', closeButton)
+      await userEvent.click(closeButton)
+      console.log('[Test] Close button clicked.')
 
       await waitFor(
         () => {
@@ -303,4 +303,3 @@ export const SnackBarAlert: Story = {
     )
   },
 }
-

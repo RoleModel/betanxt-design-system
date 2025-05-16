@@ -9,12 +9,11 @@
     "moduleDetection": "force",
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-
+    "jsx": "react-jsx",
     /* Strictness */
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
-
     /* Output Options */
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -22,9 +21,8 @@
     "sourceMap": true,
     "rootDir": "src",
     "declaration": true,
-
     "lib": ["es2022", "dom", "dom.iterable"]
   },
   "include": ["src/**/*"],
-  "exclude": ["prettier.config.js", "dist", "node_modules"]
+  "exclude": ["prettier.config.js", "dist", "node_modules", "src/stories/**/*"]
 }

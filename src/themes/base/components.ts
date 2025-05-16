@@ -1,7 +1,4 @@
-import type {} from '@mui/lab/themeAugmentation'
 import type { ThemeOptions } from '@mui/material/styles'
-import type {} from '@mui/material/themeCssVarsAugmentation'
-import type {} from '@mui/x-data-grid/themeAugmentation'
 
 import MuiAppBar from './components/MuiAppBar'
 import MuiAutocomplete from './components/MuiAutocomplete'

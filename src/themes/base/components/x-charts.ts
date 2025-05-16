@@ -1,5 +1,4 @@
 import type { ThemeOptions } from '@mui/material/styles'
-import type {} from '@mui/x-charts/themeAugmentation'
 
 export const components: ThemeOptions['components'] = {
   MuiAreaElement: {

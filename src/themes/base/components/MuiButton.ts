@@ -1,11 +1,5 @@
 import type { ThemeOptions } from '@mui/material/styles'
 
-declare module '@mui/material/Button' {
-  interface ButtonPropsColorOverrides {
-    tertiary: true
-  }
-}
-
 const components: ThemeOptions['components'] = {
   MuiButton: {
     defaultProps: {

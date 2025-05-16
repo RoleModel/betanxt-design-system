@@ -1,0 +1,225 @@
+import type {} from '@mui/lab/themeAugmentation'
+import type { PaletteColorOptions } from '@mui/material/styles'
+import type {} from '@mui/material/themeCssVarsAugmentation'
+import type {} from '@mui/x-charts/themeAugmentation'
+import type {} from '@mui/x-data-grid/themeAugmentation'
+
+import type { LayoutVars } from './base/layout'
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    neutral: PaletteColorOptions
+    tertiary: PaletteColorOptions
+    micGrey: PaletteColorOptions
+    inputOutlinedEnabledFill: string
+    appBarPrimary: {
+      defaultFill: string
+      defaultContrast: string
+      tabIndicator: string
+      hover: string
+    }
+    appBarSecondary: {
+      defaultFill: string
+      defaultContrast: string
+      tabIndicator: string
+      hover: string
+    }
+    appSwitcherBackground: string
+    logoFill: string
+    logoPoweredBy: string
+    tableHeaderRow: {
+      restingFill: string
+      border: string
+    }
+    tableCellRow: {
+      fill: string
+      zebraFill: string
+    }
+    dataGridDefaultFill: string
+    link: string
+    dataGridHeaderRow: {
+      restingFill: string
+      border: string
+    }
+    dataGridSubHeader: {
+      backgroundFill: string
+    }
+    dataGridCellRow: {
+      border: string
+    }
+    dataGridPagination: {
+      backgroundFill: string
+      border: string
+    }
+    values: {
+      negative: string
+      positive: string
+      positiveOnDark: string
+      negativeOnDark: string
+    }
+    footer: {
+      background: string
+    }
+    chartSeries1: Palette['primary']
+    chartSeries2: Palette['primary']
+    chartSeries3: Palette['primary']
+    chartSeries4: Palette['primary']
+    chartSeries5: Palette['primary']
+    chartSeries6: Palette['primary']
+    chartSeries7: Palette['primary']
+    chartSeries8: Palette['primary']
+    chartSeries9: Palette['primary']
+  }
+
+  interface PaletteOptions {
+    neutral?: PaletteColorOptions
+    micGrey?: PaletteColorOptions
+    tertiary?: PaletteColorOptions
+    inputOutlinedEnabledFill?: string
+    inputOutlinedEnabledBorder?: string
+    inputOutlinedHoverBorder?: string
+    footer?: {
+      background?: string
+    }
+    appBarPrimary?: {
+      defaultContrast?: string
+      hover?: string
+      defaultFill?: string
+      tabIndicator?: string
+    }
+    appBarSecondary?: {
+      defaultFill?: string
+      defaultContrast?: string
+      tabIndicator?: string
+      hover?: string
+    }
+    appswitcher?: {
+      background?: string
+    }
+    tableHeaderRow?: {
+      restingFill?: string
+      border?: string
+    }
+    tableCellRow?: {
+      fill?: string
+      zebraFill?: string
+    }
+    link?: string
+    dataGridHeaderRow?: {
+      restingFill?: string
+      border?: string
+    }
+    dataGridSubHeader?: {
+      backgroundFill?: string
+    }
+    dataGridCellRow?: {
+      border?: string
+    }
+    dataGridPagination?: {
+      backgroundFill?: string
+      border?: string
+    }
+    dataGridDefaultFill?: string
+    footerBackground?: string
+    logoFill?: string
+    logoPoweredBy?: string
+    values?: {
+      negative?: string
+      positive?: string
+      positiveOnDark?: string
+      negativeOnDark?: string
+    }
+    chartSeries1?: PaletteOptions['primary']
+    chartSeries2?: PaletteOptions['primary']
+    chartSeries3?: PaletteOptions['primary']
+    chartSeries4?: PaletteOptions['primary']
+    chartSeries5?: PaletteOptions['primary']
+    chartSeries6?: PaletteOptions['primary']
+    chartSeries7?: PaletteOptions['primary']
+    chartSeries8?: PaletteOptions['primary']
+    chartSeries9?: PaletteOptions['primary']
+  }
+
+  interface Theme {
+    layout?: LayoutVars
+  }
+
+  interface ThemeOptions {
+    layout?: LayoutVars
+  }
+
+  interface TypographyVariants {
+    appTitle: React.CSSProperties
+    body3: React.CSSProperties
+    condensed: React.CSSProperties
+    dataCell: React.CSSProperties
+    dataHeader: React.CSSProperties
+    hero: React.CSSProperties
+    input: React.CSSProperties
+    navTab: React.CSSProperties
+    pageTitle: React.CSSProperties
+    tableTitle: React.CSSProperties
+  }
+
+  interface TypographyVariantsOptions {
+    appTitle: React.CSSProperties
+    body3: React.CSSProperties
+    condensed: React.CSSProperties
+    dataCell: React.CSSProperties
+    dataHeader: React.CSSProperties
+    hero: React.CSSProperties
+    input: React.CSSProperties
+    navTab: React.CSSProperties
+    pageTitle: React.CSSProperties
+    tableTitle: React.CSSProperties
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    appTitle: true
+    body3: true
+    condensed: true
+    dataCell: true
+    dataHeader: true
+    hero: true
+    input: true
+    navTab: true
+    pageTitle: true
+    tableTitle: true
+  }
+}
+
+// This is needed because MUI doesn't have a background color for default badge and setting a background color
+// on the root element overrides the semantic colors background. We need to create a new color prop.
+declare module '@mui/material/Badge' {
+  interface BadgePropsColorOverrides {
+    neutral: true
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    tertiary: true
+  }
+}
+
+declare module '@mui/material/ToggleButton' {
+  interface ToggleButtonPropsVariantOverrides {
+    report: true
+  }
+
+  interface ToggleButtonOwnProps {
+    variant?: 'report'
+  }
+}
+
+declare module '@mui/material/ToggleButtonGroup' {
+  interface ToggleButtonGroupPropsVariantOverrides {
+    tall: true
+  }
+
+  interface ToggleButtonGroupProps {
+    variant?: 'tall'
+  }
+}

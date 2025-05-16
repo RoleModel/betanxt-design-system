@@ -3,32 +3,6 @@ import type { PaletteOptions } from '@mui/material/styles'
 
 import { bnteal, gold, nxtBlue, orangered, persimmon, seagrass } from './brand-tokens'
 
-declare module '@mui/material/styles' {
-  interface Palette {
-    chartSeries1: Palette['primary']
-    chartSeries2: Palette['primary']
-    chartSeries3: Palette['primary']
-    chartSeries4: Palette['primary']
-    chartSeries5: Palette['primary']
-    chartSeries6: Palette['primary']
-    chartSeries7: Palette['primary']
-    chartSeries8: Palette['primary']
-    chartSeries9: Palette['primary']
-  }
-
-  interface PaletteOptions {
-    chartSeries1?: PaletteOptions['primary']
-    chartSeries2?: PaletteOptions['primary']
-    chartSeries3?: PaletteOptions['primary']
-    chartSeries4?: PaletteOptions['primary']
-    chartSeries5?: PaletteOptions['primary']
-    chartSeries6?: PaletteOptions['primary']
-    chartSeries7?: PaletteOptions['primary']
-    chartSeries8?: PaletteOptions['primary']
-    chartSeries9?: PaletteOptions['primary']
-  }
-}
-
 export const chartsLight: PaletteOptions = {
   chartSeries1: {
     main: nxtBlue[700],

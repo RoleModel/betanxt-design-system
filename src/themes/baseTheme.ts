@@ -1,7 +1,6 @@
 'use client'
 
 import { createTheme } from '@mui/material'
-import type {} from '@mui/material/themeCssVarsAugmentation'
 
 import { components } from './base/components'
 import { layout } from './base/layout'

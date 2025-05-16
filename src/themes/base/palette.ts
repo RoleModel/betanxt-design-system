@@ -15,123 +15,6 @@ import {
 } from './palette-tokens/brand-tokens'
 import { chartsDark, chartsLight } from './palette-tokens/charts'
 
-declare module '@mui/material/styles' {
-  interface Palette {
-    neutral: PaletteColorOptions
-    tertiary: PaletteColorOptions
-    micGrey: PaletteColorOptions
-    inputOutlinedEnabledFill: string
-    appBarPrimary: {
-      defaultFill: string
-      defaultContrast: string
-      tabIndicator: string
-      hover: string
-    }
-    appBarSecondary: {
-      defaultFill: string
-      defaultContrast: string
-      tabIndicator: string
-      hover: string
-    }
-    appSwitcherBackground: string
-    logoFill: string
-    logoPoweredBy: string
-    tableHeaderRow: {
-      restingFill: string
-      border: string
-    }
-    tableCellRow: {
-      fill: string
-      zebraFill: string
-    }
-    dataGridDefaultFill: string
-    link: string
-    dataGridHeaderRow: {
-      restingFill: string
-      border: string
-    }
-    dataGridSubHeader: {
-      backgroundFill: string
-    }
-    dataGridCellRow: {
-      border: string
-    }
-    dataGridPagination: {
-      backgroundFill: string
-      border: string
-    }
-    values: {
-      negative: string
-      positive: string
-      positiveOnDark: string
-      negativeOnDark: string
-    }
-    footer: {
-      background: string
-    }
-  }
-
-  interface PaletteOptions {
-    neutral?: PaletteColorOptions
-    micGrey?: PaletteColorOptions
-    tertiary?: PaletteColorOptions
-    inputOutlinedEnabledFill?: string
-    inputOutlinedEnabledBorder?: string
-    inputOutlinedHoverBorder?: string
-    footer?: {
-      background?: string
-    }
-    appBarPrimary?: {
-      defaultContrast?: string
-      hover?: string
-      defaultFill?: string
-      tabIndicator?: string
-    }
-    appBarSecondary?: {
-      defaultFill?: string
-      defaultContrast?: string
-      tabIndicator?: string
-      hover?: string
-    }
-    appswitcher?: {
-      background?: string
-    }
-    tableHeaderRow?: {
-      restingFill?: string
-      border?: string
-    }
-    tableCellRow?: {
-      fill?: string
-      zebraFill?: string
-    }
-    link?: string
-    dataGridHeaderRow?: {
-      restingFill?: string
-      border?: string
-    }
-    dataGridSubHeader?: {
-      backgroundFill?: string
-    }
-    dataGridCellRow?: {
-      border?: string
-    }
-    dataGridPagination?: {
-      backgroundFill?: string
-      border?: string
-    }
-    dataGridDefaultFill?: string
-    footerBackground?: string
-    logoFill?: string
-    logoPoweredBy?: string
-    values?: {
-      negative?: string
-      positive?: string
-      positiveOnDark?: string
-      negativeOnDark?: string
-    }
-  }
-}
-
 const basePaletteThemeOptions = {
   tonalOffset: 0.2,
   contrastThreshold: 4.5,
@@ -142,7 +25,6 @@ const baseTheme = createTheme()
 export const basePaletteLight: PaletteOptions = {
   ...basePaletteThemeOptions,
   mode: 'light',
-
   neutral: {
     main: grey[300],
     dark: grey[500],

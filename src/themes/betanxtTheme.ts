@@ -1,7 +1,6 @@
 'use client'
 
 import { createTheme } from '@mui/material/styles'
-import type {} from '@mui/material/themeCssVarsAugmentation'
 import { deepmerge } from '@mui/utils'
 
 import { createDarkOverlays } from './base/overlays'

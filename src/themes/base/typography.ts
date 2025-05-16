@@ -1,48 +1,5 @@
 import type { ThemeOptions } from '@mui/material'
 
-declare module '@mui/material/styles' {
-  interface TypographyVariants {
-    appTitle: React.CSSProperties
-    body3: React.CSSProperties
-    condensed: React.CSSProperties
-    dataCell: React.CSSProperties
-    dataHeader: React.CSSProperties
-    hero: React.CSSProperties
-    input: React.CSSProperties
-    navTab: React.CSSProperties
-    pageTitle: React.CSSProperties
-    tableTitle: React.CSSProperties
-  }
-
-  interface TypographyVariantsOptions {
-    appTitle: React.CSSProperties
-    body3: React.CSSProperties
-    condensed: React.CSSProperties
-    dataCell: React.CSSProperties
-    dataHeader: React.CSSProperties
-    hero: React.CSSProperties
-    input: React.CSSProperties
-    navTab: React.CSSProperties
-    pageTitle: React.CSSProperties
-    tableTitle: React.CSSProperties
-  }
-}
-
-declare module '@mui/material/Typography' {
-  interface TypographyPropsVariantOverrides {
-    appTitle: true
-    body3: true
-    condensed: true
-    dataCell: true
-    dataHeader: true
-    hero: true
-    input: true
-    navTab: true
-    pageTitle: true
-    tableTitle: true
-  }
-}
-
 export const typography: ThemeOptions['typography'] = {
   fontFamily: 'var(--font-roboto)',
   fontWeightLight: 300,

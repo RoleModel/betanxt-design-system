@@ -5,16 +5,6 @@ export interface LayoutVars {
   drawerWidth: number
 }
 
-declare module '@mui/material/styles' {
-  interface Theme {
-    layout?: LayoutVars
-  }
-
-  interface ThemeOptions {
-    layout?: LayoutVars
-  }
-}
-
 export const layout: LayoutVars = {
   navbarHeight: 66,
   appSwitcherHeight: 38,

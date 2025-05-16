@@ -1,25 +1,5 @@
 import type { ThemeOptions } from '@mui/material/styles'
 
-declare module '@mui/material/ToggleButton' {
-  interface ToggleButtonPropsVariantOverrides {
-    report: true
-  }
-
-  interface ToggleButtonOwnProps {
-    variant?: 'report'
-  }
-}
-
-declare module '@mui/material/ToggleButtonGroup' {
-  interface ToggleButtonGroupPropsVariantOverrides {
-    tall: true
-  }
-
-  interface ToggleButtonGroupProps {
-    variant?: 'tall'
-  }
-}
-
 const components: ThemeOptions['components'] = {
   MuiToggleButtonGroup: {
     styleOverrides: {

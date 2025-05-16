@@ -16,7 +16,10 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "prettier": "prettier --write .",
-    "prettier:check": "prettier --check ."
+    "prettier:check": "prettier --check .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_404e2dd823ffbf3"
   },
   "files": [
     "dist",
@@ -31,6 +34,19 @@
   "license": "UNLICENSED",
   "homepage": "https://github.com/RoleModel/betanxt-design-system#readme",
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.6",
+    "@storybook/addon-designs": "^8.2.1",
+    "@storybook/addon-docs": "^8.6.13",
+    "@storybook/addon-essentials": "^8.6.13",
+    "@storybook/addon-interactions": "^8.6.13",
+    "@storybook/addon-themes": "^8.6.13",
+    "@storybook/blocks": "^8.6.13",
+    "@storybook/core-events": "^8.6.13",
+    "@storybook/manager-api": "^8.6.13",
+    "@storybook/react": "^8.6.13",
+    "@storybook/react-vite": "^8.6.13",
+    "@storybook/test": "^8.6.13",
+    "@storybook/theming": "^8.6.13",
     "@mui/icons-material": "^7.1.0",
     "@mui/lab": "^7.0.0-beta.12",
     "@mui/material": "7.1.0",
@@ -38,7 +54,10 @@
     "@mui/x-data-grid": "^8.3.1",
     "@mui/x-data-grid-pro": "^8.3.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "chromatic": "^11.28.2",
     "prettier": "^3.5.3",
+    "storybook": "^8.6.13",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
@@ -66,5 +85,11 @@
     "@mui/x-data-grid-pro": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "@fontsource/material-icons": "^5.2.5",
+    "@fontsource/roboto": "^5.2.5",
+    "@fontsource/roboto-condensed": "^5.2.5",
+    "preact": "^10.26.6"
   }
 }

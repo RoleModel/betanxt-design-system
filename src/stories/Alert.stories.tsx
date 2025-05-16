@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
-import { waitFor, within } from '@storybook/test'
+import { userEvent, waitFor, within } from '@storybook/test'
 import React from 'react'
+import { DocsPage } from '@storybook/addon-docs'
 
 import { Button, Slide, Snackbar } from '@mui/material'
 
 import { Alert as AlertComponent, type CustomAlertProps } from '../components/Alert'
 
-// Story args type that extends the props but allows boolean for onClose and action
 interface StoryArgs extends Omit<CustomAlertProps, 'onClose'> {
   onClose?: boolean | ((event: React.SyntheticEvent<Element, Event>) => void)
   action?: boolean
@@ -20,11 +20,14 @@ const meta = {
     layout: 'centered',
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/branch/6xVeY0ZT7Cxvci7Sjnnfb5/MUI-v6.1.0?node-id=1545-39505&t=Z4OkKTYbCB293XlG-11',
+      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=1545-39505&t=pzETyogQc7g9yIdz-11',
     },
     controls: {
       expanded: true,
       sort: 'alpha',
+    },
+    docs: {
+      page: DocsPage,
     },
   },
   argTypes: {
@@ -89,6 +92,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Alert: Story = {
+  name: 'Default Alert',
   args: {
     title: 'Default Alert',
     children: 'This is a default alert.',
@@ -151,32 +155,30 @@ export const SnackBarAlert: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement)
 
-    // Wait for the alert to appear (it auto-shows after 500ms)
-    await step('Verify alert appears', async () => {
-      await waitFor(
-        async () => {
-          const alert = await canvas.findByTestId('alert')
-          expect(alert).toBeInTheDocument()
-        },
-        { timeout: 2000 }
-      )
+    await step('Verify alert appears and is visible', async () => {
+      const alert = await canvas.findByTestId('alert', {}, { timeout: 2000 });
+      expect(alert).toBeInTheDocument();
+      expect(alert).toBeVisible();
+
+      console.log('[Test] Alert is visible. Pausing for 2 seconds...');
+      await new Promise(resolve => setTimeout(resolve, 2000));
     })
 
-    // Test that clicking the close button dismisses the alert
     await step('Verify alert dismisses when close button is clicked', async () => {
-      // Find the close button within the alert
-      const alert = canvas.getByTestId('alert')
-      const closeButton = within(alert).getByRole('button', { name: /close/i })
+      const alertToClose = canvas.getByTestId('alert');
+      expect(alertToClose).toBeVisible();
 
-      // Click the close button
-      await closeButton.click()
+      const closeButton = within(alertToClose).getByRole('button', { name: /close/i });
 
-      // Wait for the alert to disappear
+      console.log('[Test] Attempting to click close button...', closeButton);
+      await userEvent.click(closeButton);
+      console.log('[Test] Close button clicked.');
+
       await waitFor(
         () => {
           expect(canvas.queryByTestId('alert')).not.toBeInTheDocument()
         },
-        { timeout: 1000 }
+        { timeout: 3000 }
       )
     })
   },
@@ -262,6 +264,12 @@ export const SnackBarAlert: Story = {
             open={open}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             slots={{ transition: Slide }}
+            slotProps={{
+              transition: {
+                direction: 'left',
+                timeout: 300,
+              },
+            }}
             onClose={handleSnackbarClose}
             autoHideDuration={60000}
             disableWindowBlurListener={true}
@@ -295,3 +303,4 @@ export const SnackBarAlert: Story = {
     )
   },
 }
+

@@ -77,8 +77,9 @@ const preview: Preview = {
       page: CustomAutodocsTemplateOne,
     },
     storySort: {
-      method: 'configure',
-      order: ['Introduction', ['Welcome', 'UsingTheTheme'], 'Foundation', 'Components'],
+      method: 'alphabetical',
+      includeNames: false,
+      order: ['AWelcome', 'BUsing the Theme', 'Foundation', 'Components'],
     },
     backgrounds: { disable: true },
     controls: {

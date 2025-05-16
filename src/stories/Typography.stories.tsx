@@ -4,7 +4,7 @@ import { Typography as TypographyComponent } from '@mui/material'
 import type { TypographyProps } from '@mui/material/Typography'
 
 const meta = {
-  title: 'Foundation/Typography',
+  title: 'Components/Typography',
   component: TypographyComponent,
   args: {
     children: 'Typography',

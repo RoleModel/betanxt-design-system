@@ -20,6 +20,7 @@ import MuiTabs from './components/MuiTabs'
 import MuiTimeline from './components/MuiTimeline'
 import MuiToggleButton from './components/MuiToggleButton'
 import MuiTypography from './components/MuiTypography'
+import XCharts from './components/x-charts'
 
 export const components: ThemeOptions['components'] = {
   ...MuiAppBar,
@@ -42,4 +43,5 @@ export const components: ThemeOptions['components'] = {
   ...MuiTimeline,
   ...MuiToggleButton,
   ...MuiTypography,
+  ...XCharts,
 }

@@ -1,6 +1,6 @@
 import type { ThemeOptions } from '@mui/material/styles'
 
-export const components: ThemeOptions['components'] = {
+const components: ThemeOptions['components'] = {
   MuiAreaElement: {
     styleOverrides: {
       root: {
@@ -19,3 +19,5 @@ export const components: ThemeOptions['components'] = {
     },
   },
 }
+
+export default components

@@ -320,25 +320,17 @@ const ColorGuide = () => {
 }
 
 const meta = {
-  title: '1. Foundation/Color',
+  title: 'Foundation/Color',
   component: ColorGuide,
+  tags: ['!autodocs'],
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      page: null,
-    },
     options: {
       showPanel: false,
     },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/design/bzKBQnSJutd64yHqyIJvj3/%E2%9D%96-MUI-Variables---Styles?node-id=32-6908&t=459c8TBlbE118Lpj-11',
-    },
-    previewTabs: {
-      canvas: { hidden: false },
-      'storybook/docs/panel': {
-        hidden: true,
-      },
     },
   },
 } satisfies Meta<typeof ColorGuide>

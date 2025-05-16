@@ -5,8 +5,9 @@ import { Box, Paper, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid'
 
 const meta: Meta<typeof Paper> = {
-  title: '1. Foundation/Elevation',
+  title: 'Foundation/Elevation',
   component: Paper,
+  tags: ['!autodocs'],
   parameters: {
     layout: 'centered',
     design: {

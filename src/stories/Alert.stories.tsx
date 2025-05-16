@@ -1,4 +1,3 @@
-import { DocsPage } from '@storybook/addon-docs'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
 import { userEvent, waitFor, within } from '@storybook/test'
@@ -26,9 +25,7 @@ const meta = {
       expanded: true,
       sort: 'alpha',
     },
-    docs: {
-      page: DocsPage,
-    },
+
   },
   argTypes: {
     showIcon: {
@@ -268,6 +265,10 @@ export const SnackBarAlert: Story = {
               transition: {
                 direction: 'left',
                 timeout: 300,
+                unmountOnExit: true,
+                onExited: () => {
+                  console.log('[Test Diagnostic] Slide transition onExited triggered.');
+                },
               },
             }}
             onClose={handleSnackbarClose}

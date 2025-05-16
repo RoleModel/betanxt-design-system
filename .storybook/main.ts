@@ -1,11 +1,16 @@
 import type { StorybookConfig } from '@storybook/react-vite'
+// import reactSwc from '@vitejs/plugin-react-swc'; // vite.config.js handles this
 
 const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
     disableWhatsNewNotifications: true,
   },
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../src/**/*.mdx',
+    '../src/**/*.stories.mdx',
+    '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'
+  ],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',

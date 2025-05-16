@@ -3,14 +3,15 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
-import type { Preview } from '@storybook/react'
-import React from 'react'
 
 import { CssBaseline, ThemeProvider } from '@mui/material'
-import { useColorScheme } from '@mui/material/styles'
 
+import { CustomAutodocsTemplateOne } from './CustomAutoDocs'
+import type { Preview } from '@storybook/react'
+import React from 'react'
 import betanxtTheme from '../src/themes/betanxtTheme'
-import { dark, light } from './theme'
+import { light } from './theme'
+import { useColorScheme } from '@mui/material/styles'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 type ThemeClass = 'light' | 'dark'
@@ -73,10 +74,11 @@ const preview: Preview = {
   parameters: {
     docs: {
       theme: light,
+      page: CustomAutodocsTemplateOne,
     },
-    options: {
-      storySort: (a, b) =>
-        a.id === b.id ? 0 : a.id.localeCompare(b.id, undefined, { numeric: true }),
+    storySort: {
+      method: 'configure',
+      order: ['Introduction', ['Welcome', 'UsingTheTheme'], 'Foundation', 'Components'],
     },
     backgrounds: { disable: true },
     controls: {
@@ -86,6 +88,7 @@ const preview: Preview = {
       },
     },
   },
+  tags: ['autodocs'],
   decorators: [
     (Story, { globals }) => {
       const mode = globals.mode as ThemeMode

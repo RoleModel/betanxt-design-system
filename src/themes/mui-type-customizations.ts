@@ -60,17 +60,17 @@ declare module '@mui/material/styles' {
     footer: {
       background: string
     }
-    chartSeries: {
-      0: PaletteColorOptions
-      1: PaletteColorOptions
-      2: PaletteColorOptions
-      3: PaletteColorOptions
-      4: PaletteColorOptions
-      5: PaletteColorOptions
-      6: PaletteColorOptions
-      7: PaletteColorOptions
-      8: PaletteColorOptions
-    }
+    chartSeries: [
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+    ]
   }
 
   interface PaletteOptions {
@@ -131,17 +131,17 @@ declare module '@mui/material/styles' {
       positiveOnDark?: string
       negativeOnDark?: string
     }
-    chartSeries?: {
-      0?: PaletteColorOptions
-      1?: PaletteColorOptions
-      2?: PaletteColorOptions
-      3?: PaletteColorOptions
-      4?: PaletteColorOptions
-      5?: PaletteColorOptions
-      6?: PaletteColorOptions
-      7?: PaletteColorOptions
-      8?: PaletteColorOptions
-    }
+    chartSeries?: [
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+      PaletteColorOptions,
+    ]
   }
 
   interface Theme {

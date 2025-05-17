@@ -35,6 +35,32 @@ const components: ThemeOptions['components'] = {
       }),
     },
   },
+  MuiPickersInputBase: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        input: {
+          '&:-webkit-autofill': {
+            WebkitBoxShadow: `0 0 0px 100px ${theme.vars.palette.inputOutlinedEnabledFill} inset`,
+            WebkitTextFillColor: theme.vars.palette.text.primary,
+            caretColor: theme.vars.palette.text.primary,
+          },
+          '.dark &:-webkit-autofill': {
+            WebkitBoxShadow: `0 0 0px 100px ${theme.vars.palette.inputOutlinedEnabledFill} inset`,
+            WebkitTextFillColor: theme.vars.palette.text.primary,
+            caretColor: theme.vars.palette.text.primary,
+          },
+        },
+      }),
+    },
+  },
+  MuiPickersOutlinedInput: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        backgroundColor: theme.vars.palette.inputOutlinedEnabledFill,
+        fontSize: theme.typography.body3.fontSize,
+      }),
+    },
+  },
 }
 
 export default components

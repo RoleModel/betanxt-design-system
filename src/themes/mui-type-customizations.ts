@@ -1,8 +1,9 @@
 import type {} from '@mui/lab/themeAugmentation'
-import type { PaletteColorOptions } from '@mui/material/styles'
+import type { PaletteColor, PaletteColorOptions } from '@mui/material/styles'
 import type {} from '@mui/material/themeCssVarsAugmentation'
 import type {} from '@mui/x-charts/themeAugmentation'
 import type {} from '@mui/x-data-grid/themeAugmentation'
+import type {} from '@mui/x-date-pickers/themeAugmentation'
 
 import type { LayoutVars } from './base/layout'
 
@@ -61,15 +62,15 @@ declare module '@mui/material/styles' {
       background: string
     }
     chartSeries: [
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
     ]
   }
 
@@ -132,15 +133,15 @@ declare module '@mui/material/styles' {
       negativeOnDark?: string
     }
     chartSeries?: [
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
-      PaletteColorOptions,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
+      PaletteColor,
     ]
   }
 

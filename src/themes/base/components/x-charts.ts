@@ -1,10 +1,12 @@
 import type { ThemeOptions } from '@mui/material/styles'
 
 const components: ThemeOptions['components'] = {
-  MuiAreaElement: {
+  MuiChartsSurface: {
     styleOverrides: {
       root: {
-        opacity: 0.2,
+        '& .MuiAreaElement-root': {
+          opacity: 0.2,
+        },
       },
     },
   },

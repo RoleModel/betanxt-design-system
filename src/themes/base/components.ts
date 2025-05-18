@@ -1,5 +1,6 @@
 import type { ThemeOptions } from '@mui/material/styles'
 
+import MuiAlert from './components/MuiAlert'
 import MuiAppBar from './components/MuiAppBar'
 import MuiAutocomplete from './components/MuiAutocomplete'
 import MuiBadge from './components/MuiBadge'
@@ -23,6 +24,7 @@ import MuiTypography from './components/MuiTypography'
 import XCharts from './components/x-charts'
 
 export const components: ThemeOptions['components'] = {
+  ...MuiAlert,
   ...MuiAppBar,
   ...MuiAutocomplete,
   ...MuiBadge,

@@ -4,9 +4,9 @@ import { userEvent, waitFor, within } from '@storybook/test'
 import React from 'react'
 import { DocsPage } from '@storybook/addon-docs'
 
-import { Button, Slide, Snackbar } from '@mui/material'
+import { Box, Button, Slide, Snackbar, Typography } from '@mui/material'
 
-import { Alert as AlertComponent, type CustomAlertProps } from '../components/Alert'
+import { Alert as AlertComponent, type CustomAlertProps } from './Alert'
 
 interface StoryArgs extends Omit<CustomAlertProps, 'onClose'> {
   onClose?: boolean | ((event: React.SyntheticEvent<Element, Event>) => void)
@@ -20,13 +20,12 @@ const meta = {
     layout: 'centered',
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=1545-39505&t=pzETyogQc7g9yIdz-11',
+      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=16634-38351&t=sYUxZrP9FUvNvstp-11',
     },
     controls: {
       expanded: true,
-      sort: 'alpha',
+      sort: 'none',
     },
-
   },
   argTypes: {
     showIcon: {
@@ -34,10 +33,17 @@ const meta = {
       name: 'Show Icon',
       description: 'Whether to show the icon',
     },
+    elevation: {
+      control: 'number',
+      max: 24,
+      min: 0,
+      name: 'Elevation',
+      description: 'The elevation of the alert',
+    },
     action: {
       control: 'boolean',
-      name: 'Show Action Button',
-      description: 'Whether to show an action button',
+      name: 'Show Action',
+      description: 'Whether to show the action button',
     },
     actionButtonVariant: {
       control: 'select',
@@ -70,18 +76,19 @@ const meta = {
     },
     onClose: {
       control: 'boolean',
-      name: 'Show Close Button',
-      description: 'Show close button',
+      name: 'Show Close',
+      description: 'Show close icon',
     },
   },
   args: {
     title: 'Alert Title',
     children: 'This is an alert message.',
-    severity: 'error',
+    severity: 'info',
     variant: 'filled',
     showTopBorder: false,
     showIcon: true,
     centerText: false,
+    elevation: 0,
   },
 } as Meta<StoryArgs>
 
@@ -92,13 +99,15 @@ type Story = StoryObj<typeof meta>
 export const Alert: Story = {
   name: 'Default Alert',
   args: {
-    title: 'Default Alert',
-    children: 'This is a default alert.',
+    title: 'Alert Title',
+    children: 'This is the alert message.',
     onClose: false,
     action: false,
+    elevation: 0,
   },
   render: function AlertRender(args) {
-    const { action, actionButtonVariant, severity, onClose, ...otherProps } = args
+    const { action, actionButtonVariant, severity, onClose, elevation, ...otherProps } =
+      args
 
     // Handle close button (convert boolean to function)
     const handleClose = (event: React.SyntheticEvent<Element, Event>) => {
@@ -120,6 +129,7 @@ export const Alert: Story = {
     return (
       <AlertComponent
         {...otherProps}
+        elevation={elevation}
         severity={severity}
         onClose={onClose ? handleClose : undefined}
         action={actionButton}
@@ -129,20 +139,50 @@ export const Alert: Story = {
   },
 }
 
+export const TopBorder: Story = {
+  name: 'Alert with Top Border',
+  args: {
+    title: 'Alert with Top Border',
+    children: 'This is an alert with a top border.',
+    showTopBorder: true,
+    onClose: false,
+    centerText: true,
+    showIcon: false,
+    elevation: 0,
+    variant: 'filled',
+    action: false,
+  },
+  render: Alert.render,
+}
+
+export const AlertWithAction: Story = {
+  name: 'Alert with Action',
+  args: {
+    title: 'Alert with Action',
+    children: 'This is an alert with an action button.',
+    action: true,
+    actionButtonVariant: 'contained',
+    onClose: false,
+    elevation: 0,
+  },
+  render: Alert.render,
+}
+
 // Alert in Snackbar demo
 export const SnackBarAlert: Story = {
   args: {
     title: 'Snackbar Alert',
-    children: 'This alert appears in a Snackbar and stays visible for 60 seconds.',
+    children: 'This alert appears in a Snackbar',
     severity: 'info',
-    variant: 'outlined',
+    variant: 'filled',
     showIcon: true,
     action: false,
     actionButtonVariant: 'text',
     onClose: true,
+    elevation: 10,
   },
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
     docs: {
       description: {
         story:
@@ -238,7 +278,8 @@ export const SnackBarAlert: Story = {
     }
 
     // Extract props we need to handle specially
-    const { action, actionButtonVariant, severity, onClose, ...otherProps } = args
+    const { action, actionButtonVariant, severity, onClose, elevation, ...otherProps } =
+      args
 
     // Create action button if action=true
     const actionButton = action ? (
@@ -256,7 +297,7 @@ export const SnackBarAlert: Story = {
     const closeHandler = onClose ? handleAlertClose : undefined
 
     return (
-      <>
+      <Box sx={{ minHeight: 500, p: 2 }}>
         <div onClick={(e) => e.stopPropagation()}>
           <Snackbar
             open={open}
@@ -268,7 +309,7 @@ export const SnackBarAlert: Story = {
                 timeout: 300,
                 unmountOnExit: true,
                 onExited: () => {
-                  console.log('[Test Diagnostic] Slide transition onExited triggered.');
+                  console.log('[Test Diagnostic] Slide transition onExited triggered.')
                 },
               },
             }}
@@ -279,6 +320,7 @@ export const SnackBarAlert: Story = {
           >
             <AlertComponent
               {...otherProps}
+              elevation={elevation}
               severity={severity}
               onClose={closeHandler}
               action={actionButton}
@@ -297,11 +339,11 @@ export const SnackBarAlert: Story = {
         </Button>
 
         {open && (
-          <div style={{ marginTop: '20px', fontSize: '14px', color: '#666' }}>
+          <Typography color="text.secondary" variant="body3">
             Auto-dismissing in {timeLeft}s
-          </div>
+          </Typography>
         )}
-      </>
+      </Box>
     )
   },
 }

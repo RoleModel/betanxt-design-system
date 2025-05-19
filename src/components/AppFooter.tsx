@@ -5,7 +5,7 @@ import { Box, Divider, Link, Typography } from '@mui/material'
 import { BetaNXTLogo } from './betanxt-logo'
 import { useTheme } from '@mui/material/styles'
 
-export function AppsFooter({
+export function AppFooter({
   logoEnabled = true,
   privacyPolicyLink = 'https://www.mediantinc.com/privacy-policy',
   additionalCopyright,

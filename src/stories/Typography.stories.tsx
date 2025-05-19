@@ -1,16 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
 
 import { Typography as TypographyComponent } from '@mui/material'
 import type { TypographyProps } from '@mui/material/Typography'
+
+// Force the correct displayName for Typography component
+(TypographyComponent as any).displayName = 'Typography';
 
 const meta = {
   title: 'Components/Typography',
   component: TypographyComponent,
   args: {
-    children: 'Typography',
-    variant: 'h1',
+    children: 'Typography Component',
+    variant: 'body1',
     fontWeight: 'normal',
-    fontFamily: 'Roboto',
     gutterBottom: false,
     textAlign: 'left',
     color: 'text.primary',
@@ -78,13 +81,11 @@ const meta = {
       control: 'boolean',
     },
   },
+  tags: ['!autodocs'],
   parameters: {
     layout: 'centered',
     backgrounds: {
       default: 'Light',
-    },
-    docs: {
-      page: null,
     },
   },
 } satisfies Meta<TypographyProps>
@@ -92,4 +93,7 @@ const meta = {
 export default meta
 type Story = StoryObj<TypographyProps>
 
-export const Typography: Story = {}
+export const Typography: Story = {
+  name: 'Typography',
+  render: (args) => <TypographyComponent {...args} />
+}

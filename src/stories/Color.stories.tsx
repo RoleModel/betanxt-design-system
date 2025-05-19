@@ -72,30 +72,23 @@ const ColorSwatch = ({ color, label }: ColorSwatchProps) => {
   const isVariable = processedColor.startsWith('var(--')
   const variableName = isVariable ? processedColor.match(/var\((.*?)\)/)?.[1] : null
 
-  // For displaying a useful color value
-  const [computedColor, setComputedColor] = React.useState<string>('')
+  const [computedColor, setComputedColor] = React.useState<string>(processedColor)
 
   React.useEffect(() => {
-    // Skip in non-browser environments
-    if (typeof window === 'undefined' || typeof document === 'undefined') {
-      return
+    let displayValue = processedColor;
+
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      if (variableName) {
+        const rootStyle = window.getComputedStyle(document.documentElement);
+        const variableActualValue = rootStyle.getPropertyValue(variableName).trim();
+
+        if (variableActualValue) {
+          displayValue = variableActualValue;
+        }
+      }
     }
-
-    // Create a temporary element to compute the actual color
-    const tempEl = document.createElement('div')
-    tempEl.style.display = 'none'
-    tempEl.style.backgroundColor = processedColor
-    document.body.appendChild(tempEl)
-
-    // Get the computed style
-    const computedStyle = window.getComputedStyle(tempEl)
-    const rgbColor = computedStyle.backgroundColor
-
-    // Remove the temporary element
-    document.body.removeChild(tempEl)
-
-    setComputedColor(rgbColor)
-  }, [processedColor])
+    setComputedColor(displayValue);
+  }, [processedColor, variableName]);
 
   return (
     <Box sx={{ width: '20%', minWidth: 120, padding: 1 }}>
@@ -125,7 +118,7 @@ const ColorSwatch = ({ color, label }: ColorSwatchProps) => {
                 color: 'text.secondary',
               }}
             >
-              {computedColor || processedColor}
+              {computedColor}
             </Typography>
           </Stack>
         </Stack>
@@ -165,10 +158,10 @@ const ColorGroup = ({ title, subtitle, colors }: ColorGroupProps) => {
 
   return (
     <Box sx={{ mb: 3 }}>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h2" gutterBottom>
         {title}
       </Typography>
-      <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
         {subtitle}
       </Typography>
       <Box
@@ -256,11 +249,11 @@ const ColorGuide = () => {
     const muiSortOrder = [
       'primary',
       'secondary',
-      'common',
       'error',
       'warning',
       'info',
       'success',
+      'common',
       'action',
       'grey',
       'text',
@@ -287,7 +280,7 @@ const ColorGuide = () => {
 
   return (
     <Box sx={{ p: 3, bgcolor: 'background.default', color: 'text.primary' }}>
-      <Typography variant="pageTitle" component="h1" gutterBottom>
+      <Typography variant="h1" component="h1" gutterBottom>
         BetaNXT UI Colors
       </Typography>
 

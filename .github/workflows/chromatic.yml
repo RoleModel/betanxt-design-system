@@ -15,10 +15,9 @@ jobs:
         with:
           node-version: 22.12.0
       - name: Install dependencies
-        # What would the correct command be?
-        run: npm ci
+        run: npm install
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
-          # Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN || vars.CHROMATIC_PROJECT_TOKEN }}
+

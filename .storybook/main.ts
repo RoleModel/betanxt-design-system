@@ -6,6 +6,7 @@ const config: StorybookConfig = {
     disableWhatsNewNotifications: true,
   },
   stories: [
+    '../src/stories/Introduction.mdx',
     '../src/**/*.mdx',
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],

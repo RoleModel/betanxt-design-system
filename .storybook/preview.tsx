@@ -3,18 +3,23 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import '../src/storybook-utils/patch-mui-display-name'
 
-import { CssBaseline, ThemeProvider } from '@mui/material'
-
-import { CustomAutodocsTemplateOne } from './CustomAutoDocs'
-import type { Preview } from '@storybook/react'
 import React from 'react'
-import betanxtTheme from '../src/themes/betanxtTheme'
-import { light } from './theme'
+import { CssBaseline, ThemeProvider, GlobalStyles } from '@mui/material'
 import { useColorScheme } from '@mui/material/styles'
+
+import type { Preview } from '@storybook/react'
+import { CustomAutodocsTemplate } from '../src/storybook-utils/CustomAutoDocs'
+import betanxtTheme from '../src/themes/betanxtTheme'
+import baseTheme from '../src/themes/baseTheme'
+
+import { light } from './theme'
+import { DocsContainer } from '@storybook/blocks'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 type ThemeClass = 'light' | 'dark'
+type SelectedTheme = 'betanxtTheme' | 'baseTheme'
 
 function SyncWithToolbar({
   mode,
@@ -25,32 +30,46 @@ function SyncWithToolbar({
 }) {
   const { setMode } = useColorScheme()
 
+  // Simpler, synchronous approach that only deals with MUI theme
   React.useEffect(() => {
-    if (mode === 'system') {
-      const mq = window.matchMedia('(prefers-color-scheme: dark)')
-      const apply = () => setMode(mq.matches ? 'dark' : 'light')
-      apply()
-      mq.addEventListener('change', apply)
-      return () => mq.removeEventListener('change', apply)
+    // Determine the effective mode (light/dark) based on system or explicit selection
+    const getEffectiveMode = (): 'light' | 'dark' => {
+      if (mode === 'system' && typeof window !== 'undefined') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      }
+      return mode as 'light' | 'dark'
     }
-    setMode(mode)
 
-    if (typeof window !== 'undefined') {
-      window.document.documentElement.dataset.theme = mode
-      window.document.documentElement.classList.remove('light', 'dark')
+    // Immediately set the MUI theme mode
+    const effectiveMode = getEffectiveMode()
+    setMode(effectiveMode)
 
-      const getThemeClass = (selectedMode: ThemeMode): ThemeClass => {
-        if (selectedMode === 'system') {
-          return window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light'
-        }
-        return selectedMode as ThemeClass
+    // For system preference only, add a change listener
+    if (mode === 'system' && typeof window !== 'undefined') {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)')
+
+      const handleChange = () => {
+        setMode(mq.matches ? 'dark' : 'light')
       }
 
-      window.document.documentElement.classList.add(getThemeClass(mode))
+      mq.addEventListener('change', handleChange)
+      return () => mq.removeEventListener('change', handleChange)
     }
   }, [mode, setMode])
+
+  // Add a simple utility effect to manage document styles directly
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Clear both classes first
+      document.documentElement.classList.remove('light', 'dark')
+
+      // Then add the appropriate one based on mode
+      const effectiveMode = mode === 'system'
+        ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        : mode;
+      document.documentElement.classList.add(effectiveMode);
+    }
+  }, [mode]);
 
   return <>{children}</>
 }
@@ -58,15 +77,26 @@ function SyncWithToolbar({
 const preview: Preview = {
   globalTypes: {
     mode: {
-      name: 'Theme',
+      name: 'Mode',
       defaultValue: 'system',
       toolbar: {
-        icon: 'contrast',
+        icon: 'browser',
         dynamicTitle: true,
         items: [
-          { value: 'light', title: 'Light Mode' },
-          { value: 'dark', title: 'Dark Mode' },
-          { value: 'system', title: 'System Mode' },
+          { value: 'light', title: 'Light', icon: 'sun' },
+          { value: 'dark', title: 'Dark', icon: 'moon' },
+          { value: 'system', title: 'System', icon: 'browser' },
+        ],
+      },
+    },
+    theme: {
+      name: 'Theme',
+      defaultValue: 'betanxtTheme',
+      toolbar: {
+        dynamicTitle: true,
+        items: [
+          { value: 'betanxtTheme', title: 'Betanxt Theme' },
+          { value: 'baseTheme', title: 'Base Theme' },
         ],
       },
     },
@@ -74,28 +104,45 @@ const preview: Preview = {
   parameters: {
     docs: {
       theme: light,
-      page: CustomAutodocsTemplateOne,
+      container: ({ children, context }) => {
+        return (
+          <ThemeProvider theme={betanxtTheme}>
+            <CssBaseline enableColorScheme />
+            <DocsContainer context={context} theme={light}>
+              {children}
+            </DocsContainer>
+          </ThemeProvider>
+        )
+      },
     },
     storySort: {
-      method: 'alphabetical',
-      includeNames: false,
-      order: ['AWelcome', 'BUsing the Theme', 'Foundation', 'Components'],
+      method: 'none',
+      includeNames: true,
+      order: ['Foundation', 'Components'],
     },
-    backgrounds: { disable: true },
+    backgrounds: { disabled: true },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+      expanded: true,
+      sort: 'none',
     },
   },
   tags: ['autodocs'],
   decorators: [
     (Story, { globals }) => {
       const mode = globals.mode as ThemeMode
+      const selectedThemeName = globals.theme as SelectedTheme
+
+      const currentTheme = selectedThemeName === 'betanxtTheme' ? betanxtTheme : baseTheme;
+
+      // Create a stable theme reference
+      const memoizedTheme = React.useMemo(() => currentTheme, [selectedThemeName]);
 
       return (
-        <ThemeProvider theme={betanxtTheme}>
+        <ThemeProvider theme={memoizedTheme}>
           <SyncWithToolbar mode={mode}>
             <CssBaseline enableColorScheme />
             <Story />
@@ -106,4 +153,4 @@ const preview: Preview = {
   ],
 }
 
-export default preview
+export default preview;

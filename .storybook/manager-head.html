@@ -1,10 +1,9 @@
-<style>
-  button.css-32asp7 {
-    color: #ffffff;
-  }
+<link rel="icon" type="image/png" href="/favicon.png" sizes="192x192">
 
-  button.css-32asp7 svg {
-    path {
+<style>
+
+  .sidebar-container .css-17fv6jh button {
+     path {
       fill: #ffffff;
       stroke-width: 1.5;
       stroke: #ffffff;
@@ -12,6 +11,7 @@
   }
 
   #storybook-explorer-tree .sidebar-item svg {
+    transition: color 250ms ease;
     color: #00212d;
   }
 
@@ -28,10 +28,11 @@
 
   .sidebar-item a,
   .sidebar-item button {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .sidebar-item:hover {
+    --tree-node-background-hover: #053f5a !important;
     background-color: #053f5a !important;
     color: #ffffff !important;
   }
@@ -41,7 +42,7 @@
   }
 
   .sidebar-item[data-selected='true'] {
-    background-color: #021d27 !important;
+    background: rgb(13, 90, 125) !important;
     color: #ffffff !important;
   }
 
@@ -49,3 +50,4 @@
     color: #ffffff !important;
   }
 </style>
+

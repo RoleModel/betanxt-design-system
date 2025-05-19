@@ -13,10 +13,11 @@ const config: StorybookConfig = {
   ],
   addons: [
     '@storybook/addon-essentials',
+    '@storybook/addon-docs',
     '@storybook/addon-interactions',
     '@storybook/addon-designs',
-    '@storybook/addon-mdx-gfm',
     '@chromatic-com/storybook',
+    '@storybook/addon-a11y'
   ],
   framework: {
     name: '@storybook/react-vite',
@@ -32,6 +33,10 @@ const config: StorybookConfig = {
       },
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) =>
+        prop.parent
+          ? !/node_modules\/(?!@mui)/.test(prop.parent.fileName)
+          : true,
     },
   },
   docs: {

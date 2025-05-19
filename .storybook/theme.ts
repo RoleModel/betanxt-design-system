@@ -10,11 +10,11 @@ export const light = create({
   colorSecondary: '#032f3f',
 
   // UI colors
-  appBg: '#f7f5f0',
-  appContentBg: '#fdfbf5',
-  appPreviewBg: '#f7f5f0',
+  appBg: 'rgb(247, 245, 240)',
+  appContentBg: 'rgb(253, 251, 245)',
+  appPreviewBg: 'rgb(253, 251, 245)',
   appBorderColor: 'rgba(31, 30, 28, 0.12)',
-  appBorderRadius: 5,
+  appBorderRadius: 4,
 
   // Text colors
   textColor: '#1e1e1e',
@@ -24,7 +24,7 @@ export const light = create({
   buttonBorder: '#032f3f',
 
   // Toolbar default and active colors
-  barTextColor: '#d8f3fd',
+  barTextColor: '#ffffff',
   barSelectedColor: '#34c0f3',
   barHoverColor: '#34c0f3',
   barBg: '#021d27',
@@ -44,7 +44,6 @@ export const light = create({
 export const dark = create({
   base: 'dark',
   brandTitle: 'BetaNXT Connected Design System',
-  brandTarget: '_self',
   brandImage: '/betanxt-logo-dark.svg',
 
   // Color palette

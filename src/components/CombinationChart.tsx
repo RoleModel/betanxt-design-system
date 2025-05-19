@@ -16,6 +16,9 @@ export interface CombinationChartProps {
   showTooltip?: boolean
   showLegend?: boolean
   legendPosition?: 'top' | 'bottom'
+  color1?: string
+  color2?: string
+  color3?: string
 }
 
 const dataset = [
@@ -34,27 +37,30 @@ export default function CombinationChart({
   showTooltip = true,
   showLegend = true,
   legendPosition = 'bottom',
+  color1 = 'var(--mui-palette-chartSeries-0-main)',
+  color2 = 'var(--mui-palette-chartSeries-1-main)',
+  color3 = 'var(--mui-palette-chartSeries-2-main)',
 }: CombinationChartProps) {
   const series = [
     showRevenue && {
       type: 'bar',
       dataKey: 'revenue',
       label: 'Total Revenue',
-      color: 'var(--mui-palette-chartSeries-0-main)',
+      color: color1,
       yAxisId: 'leftAxis',
     },
     showNetIncome && {
       type: 'bar',
       dataKey: 'netIncome',
       label: 'Net Income',
-      color: 'var(--mui-palette-chartSeries-3-main)',
+      color: color2,
       yAxisId: 'leftAxis',
     },
     showNetMargin && {
       type: 'line',
       dataKey: 'netMargin',
       label: 'Net Margin %',
-      color: 'var(--mui-palette-chartSeries-4-main)',
+      color: color3,
       yAxisId: 'rightAxis',
     },
   ].filter(Boolean)

@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
 import reactSwc from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [reactSwc()],
@@ -9,7 +9,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['@mui/material', '@mui/icons-material']
+    include: ['@mui/material', '@mui/icons-material'],
   },
   // This empty config is sufficient for Storybook to work
 })

@@ -168,9 +168,9 @@ export const basePaletteDark: PaletteOptions = {
     disabledBackground: 'rgba(243, 243, 243, 0.12)',
   },
   error: {
-    main: orangered[500],
-    dark: orangered[600],
-    light: orangered[400],
+    main: orangered[400],
+    dark: orangered[500],
+    light: orangered[300],
     contrastText: '#ffffff',
   },
   warning: {

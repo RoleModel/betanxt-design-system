@@ -1,7 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 
-// import reactSwc from '@vitejs/plugin-react-swc'; // vite.config.js handles this
-
 const config: StorybookConfig = {
   core: {
     disableTelemetry: true,

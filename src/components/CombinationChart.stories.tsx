@@ -56,10 +56,10 @@ export const Default: Story = {
     docs: {
       source: {
         transform: (code: string, storyContext: any) => {
-          const { args } = storyContext;
+          const { args } = storyContext
 
           // Build series array based on active options
-          const seriesItems = [];
+          const seriesItems = []
           if (args.showRevenue) {
             seriesItems.push(`    {
       type: 'bar',
@@ -67,7 +67,7 @@ export const Default: Story = {
       label: 'Total Revenue',
       color: 'var(--mui-palette-chartSeries-0-main)',
       yAxisId: 'leftAxis',
-    }`);
+    }`)
           }
 
           if (args.showNetIncome) {
@@ -77,7 +77,7 @@ export const Default: Story = {
       label: 'Net Income',
       color: 'var(--mui-palette-chartSeries-1-main)',
       yAxisId: 'leftAxis',
-    }`);
+    }`)
           }
 
           if (args.showNetMargin) {
@@ -87,32 +87,34 @@ export const Default: Story = {
       label: 'Net Margin %',
       color: 'var(--mui-palette-chartSeries-3-main)',
       yAxisId: 'rightAxis',
-    }`);
+    }`)
           }
 
           // Build children elements
-          const children = [];
+          const children = []
           if (args.gridHorizontal) {
-            children.push('  <ChartsGrid horizontal />');
+            children.push('  <ChartsGrid horizontal />')
           }
 
-          children.push('  <BarPlot />');
+          children.push('  <BarPlot />')
 
           if (args.showNetMargin) {
-            children.push('  <LinePlot />');
-            children.push('  <MarkPlot />');
+            children.push('  <LinePlot />')
+            children.push('  <MarkPlot />')
           }
 
-          children.push('  <ChartsXAxis />');
-          children.push('  <ChartsYAxis axisId="leftAxis" />');
-          children.push('  <ChartsYAxis axisId="rightAxis" />');
+          children.push('  <ChartsXAxis />')
+          children.push('  <ChartsYAxis axisId="leftAxis" />')
+          children.push('  <ChartsYAxis axisId="rightAxis" />')
 
           if (args.showLegend) {
-            children.push(`  <ChartsLegend slotProps={{ legend: { position: { vertical: '${args.legendPosition || 'bottom'}', horizontal: 'center' } } }} />`);
+            children.push(
+              `  <ChartsLegend slotProps={{ legend: { position: { vertical: '${args.legendPosition || 'bottom'}', horizontal: 'center' } } }} />`
+            )
           }
 
           if (args.showTooltip) {
-            children.push('  <ChartsTooltip />');
+            children.push('  <ChartsTooltip />')
           }
 
           return `<ChartContainer
@@ -141,10 +143,10 @@ ${seriesItems.join(',\n')}
   width={800}
 >
 ${children.join('\n')}
-</ChartContainer>`;
-        }
-      }
-    }
+</ChartContainer>`
+        },
+      },
+    },
   },
   args: {
     showRevenue: true,

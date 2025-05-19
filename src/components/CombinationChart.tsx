@@ -1,21 +1,21 @@
-import { ChartContainer } from '@mui/x-charts/ChartContainer';
-import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart';
-import { BarPlot } from '@mui/x-charts/BarChart';
-import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis';
-import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis';
-import { ChartsGrid } from '@mui/x-charts/ChartsGrid';
-import { ChartsTooltip } from '@mui/x-charts/ChartsTooltip';
-import { ChartsLegend } from '@mui/x-charts/ChartsLegend';
-import { ChartsAxisHighlight } from '@mui/x-charts';
+import { ChartsAxisHighlight } from '@mui/x-charts'
+import { BarPlot } from '@mui/x-charts/BarChart'
+import { ChartContainer } from '@mui/x-charts/ChartContainer'
+import { ChartsGrid } from '@mui/x-charts/ChartsGrid'
+import { ChartsLegend } from '@mui/x-charts/ChartsLegend'
+import { ChartsTooltip } from '@mui/x-charts/ChartsTooltip'
+import { ChartsXAxis } from '@mui/x-charts/ChartsXAxis'
+import { ChartsYAxis } from '@mui/x-charts/ChartsYAxis'
+import { LinePlot, MarkPlot } from '@mui/x-charts/LineChart'
 
 export interface CombinationChartProps {
-  showRevenue?: boolean;
-  showNetIncome?: boolean;
-  showNetMargin?: boolean;
-  gridHorizontal?: boolean;
-  showTooltip?: boolean;
-  showLegend?: boolean;
-  legendPosition?: 'top' | 'bottom';
+  showRevenue?: boolean
+  showNetIncome?: boolean
+  showNetMargin?: boolean
+  gridHorizontal?: boolean
+  showTooltip?: boolean
+  showLegend?: boolean
+  legendPosition?: 'top' | 'bottom'
 }
 
 const dataset = [
@@ -24,7 +24,7 @@ const dataset = [
   { quarter: "Q1 '25", revenue: 45, netIncome: 24, netMargin: 37.5 },
   { quarter: "Q2 '25", revenue: 50, netIncome: 25, netMargin: 34.5 },
   { quarter: "Q3 '25", revenue: 41, netIncome: 26, netMargin: 36.5 },
-];
+]
 
 export default function CombinationChart({
   showRevenue = true,
@@ -57,7 +57,7 @@ export default function CombinationChart({
       color: 'var(--mui-palette-chartSeries-4-main)',
       yAxisId: 'rightAxis',
     },
-  ].filter(Boolean);
+  ].filter(Boolean)
 
   return (
     <ChartContainer
@@ -71,7 +71,14 @@ export default function CombinationChart({
       ]}
       yAxis={[
         { id: 'leftAxis', label: 'Billions (USD)', width: 60 },
-        { id: 'rightAxis', position: 'right', label: 'Net margin %', width: 60, min: 30, max: 38 },
+        {
+          id: 'rightAxis',
+          position: 'right',
+          label: 'Net margin %',
+          width: 60,
+          min: 30,
+          max: 38,
+        },
       ]}
       dataset={dataset}
       height={400}
@@ -85,8 +92,14 @@ export default function CombinationChart({
       <ChartsYAxis axisId="leftAxis" />
       <ChartsYAxis axisId="rightAxis" />
       <ChartsAxisHighlight x="band" />
-      {showLegend && <ChartsLegend slotProps={{ legend: { position: { vertical: legendPosition, horizontal: 'center' } } }} />}
+      {showLegend && (
+        <ChartsLegend
+          slotProps={{
+            legend: { position: { vertical: legendPosition, horizontal: 'center' } },
+          }}
+        />
+      )}
       {showTooltip && <ChartsTooltip />}
     </ChartContainer>
-  );
+  )
 }

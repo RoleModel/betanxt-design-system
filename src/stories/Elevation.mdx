@@ -1,6 +1,6 @@
 import { Canvas, Meta, Source, Story, Unstyled } from '@storybook/blocks'
 
-import * as ElevationStories from './Elevation.stories'
+import * as ElevationStories from './Elevation.stories.tsx'
 
 <Meta title="Foundation/Elevation" of={ElevationStories} />
 <Unstyled>
@@ -12,6 +12,7 @@ increasing intensity. Higher elevation values create more pronounced shadows,
 giving the impression that elements are raised further from the surface.
 
 To use the Elevation component, you can use the `elevation` prop to set the elevation level.
+
 </Unstyled>
 
 <Source
@@ -22,12 +23,12 @@ To use the Elevation component, you can use the `elevation` prop to set the elev
 import { Paper, Typography } from '@mui/material';
 
 // Example usage
+
 <Paper elevation={1}>
   <Typography>Elevation 1</Typography>
 </Paper>
-`}
-/>
+`} />
 
 <Canvas>
-<Story of={ElevationStories.Elevation} />
+  <Story of={ElevationStories.Elevation} />
 </Canvas>

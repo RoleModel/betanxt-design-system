@@ -1,8 +1,8 @@
+import { DocsPage } from '@storybook/addon-docs'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
 import { userEvent, waitFor, within } from '@storybook/test'
 import React from 'react'
-import { DocsPage } from '@storybook/addon-docs'
 
 import { Box, Button, Slide, Snackbar, Typography } from '@mui/material'
 
@@ -347,4 +347,3 @@ export const SnackBarAlert: Story = {
     )
   },
 }
-

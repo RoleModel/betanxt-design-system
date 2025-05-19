@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
 import { Button as ButtonComponent } from '@mui/material'
 
 const meta: Meta<typeof ButtonComponent> = {

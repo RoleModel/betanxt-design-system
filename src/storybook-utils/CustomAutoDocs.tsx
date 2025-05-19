@@ -1,15 +1,15 @@
-import { Controls, Primary, Stories, Unstyled } from '@storybook/blocks';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { Description, Subtitle, Title } from '@storybook/blocks';
+import { Controls, Primary, Stories, Unstyled } from '@storybook/blocks'
+import { Description, Subtitle, Title } from '@storybook/blocks'
+import { Meta } from '@storybook/blocks'
+import React from 'react'
 
-import { Meta } from '@storybook/blocks';
-import React from 'react';
-import betanxtTheme from '../themes/betanxtTheme';
+import { CssBaseline, ThemeProvider } from '@mui/material'
 
+import betanxtTheme from '../themes/betanxtTheme'
 
 type Props = {
-  specialMDX?: React.ReactElement;
-};
+  specialMDX?: React.ReactElement
+}
 export const CustomAutodocsTemplate: React.FC<Props> = ({ specialMDX }) => (
   <ThemeProvider theme={betanxtTheme}>
     <CssBaseline />
@@ -24,5 +24,4 @@ export const CustomAutodocsTemplate: React.FC<Props> = ({ specialMDX }) => (
       <Stories title="" includePrimary={false} />
     </Unstyled>
   </ThemeProvider>
-);
-
+)

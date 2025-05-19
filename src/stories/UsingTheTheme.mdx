@@ -15,25 +15,25 @@ The primary way to apply a theme is by using MUI's `ThemeProvider` to wrap your 
   code={`// In your application's root component (e.g., App.tsx, main.tsx)
   "use client"; // Or remove if not using Next.js App Router specific features directly here
 
-  import { ReactNode } from "react";
-  import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ReactNode } from "react";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
-  // Choose the theme you want to use:
-  import theme from "[path-to-themes]/baseTheme";
-  // Or, to use betanxtTheme:
-  // import theme from "[path-to-themes]/betanxtTheme";
+// Choose the theme you want to use:
+import theme from "[path-to-themes]/baseTheme";
+// Or, to use betanxtTheme:
+// import theme from "[path-to-themes]/betanxtTheme";
 
-  // Your application's root component
-  export default function App({ children }: { children: ReactNode }) {
-    return (
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline applies baseline styles and enables native browser components in dark mode */}
-        <CssBaseline enableColorScheme />
-        {children}
-      </ThemeProvider>
-    );
-  }
-  `}
+// Your application's root component
+export default function App({ children }: { children: ReactNode }) {
+return (
+<ThemeProvider theme={theme}>
+{/* CssBaseline applies baseline styles and enables native browser components in dark mode */}
+<CssBaseline enableColorScheme />
+{children}
+</ThemeProvider>
+);
+}
+`}
 />
 
 **Apply this setup at the root of your application.**
@@ -50,7 +50,6 @@ Both `baseTheme` and `betanxtTheme` support light and dark modes. There are mult
 
 The `colorSchemes` option lets you automatically switch between light and dark themes based on the user's system preference:
 
-
 <Source
   language='jsx'
   dark
@@ -61,12 +60,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import betanxtTheme from "[path-to-themes]/betanxtTheme";
 
 function App() {
-  return (
-    <ThemeProvider theme={betanxtTheme}>
-      <CssBaseline enableColorScheme />
-      {children}
-    </ThemeProvider>
-  );
+return (
+<ThemeProvider theme={betanxtTheme}>
+<CssBaseline enableColorScheme />
+{children}
+</ThemeProvider>
+);
 }
 `}
 />
@@ -75,11 +74,14 @@ function App() {
 
 To set light or dark as the default mode, use the `defaultMode` prop:
 
-<Source dark code={`<ThemeProvider theme={betanxtTheme} defaultMode="dark">
+<Source
+  dark
+  code={`<ThemeProvider theme={betanxtTheme} defaultMode="dark">
   <CssBaseline enableColorScheme />
   {children}
 </ThemeProvider>
-`} />
+`}
+/>
 
 ### 3. Toggling between modes
 
@@ -90,25 +92,24 @@ import { Button, CssBaseline, ThemeProvider } from '@mui/material';
 import { useColorScheme } from '@mui/material/styles';
 
 function ModeToggle() {
-  const { mode, setMode } = useColorScheme();
+const { mode, setMode } = useColorScheme();
 
-  return (
-    <Button
-      onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
-    >
-      {mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-    </Button>
-  );
+return (
+<Button
+onClick={() => setMode(mode === 'light' ? 'dark' : 'light')} >
+{mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+</Button>
+);
 }
 
 function App() {
-  return (
-    <ThemeProvider theme={betanxtTheme}>
-      <CssBaseline enableColorScheme />
-      <ModeToggle />
-      {children}
-    </ThemeProvider>
-  );
+return (
+<ThemeProvider theme={betanxtTheme}>
+<CssBaseline enableColorScheme />
+<ModeToggle />
+{children}
+</ThemeProvider>
+);
 }
 `} />
 
@@ -125,6 +126,7 @@ import Box from '@mui/material/Box'
 
 // Example of using theme.vars with the sx prop on an MUI Box component
 const MyStyledBox = () => (
+
   <Box
     sx={(theme) => ({
       backgroundColor: theme.vars.palette.primary.main,

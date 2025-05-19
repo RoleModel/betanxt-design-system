@@ -51,5 +51,5 @@ export const Elevation: Story = {
         </Grid>
       </Container>
     )
-  }
+  },
 }

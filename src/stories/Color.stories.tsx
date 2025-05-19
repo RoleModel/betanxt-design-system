@@ -75,20 +75,20 @@ const ColorSwatch = ({ color, label }: ColorSwatchProps) => {
   const [computedColor, setComputedColor] = React.useState<string>(processedColor)
 
   React.useEffect(() => {
-    let displayValue = processedColor;
+    let displayValue = processedColor
 
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       if (variableName) {
-        const rootStyle = window.getComputedStyle(document.documentElement);
-        const variableActualValue = rootStyle.getPropertyValue(variableName).trim();
+        const rootStyle = window.getComputedStyle(document.documentElement)
+        const variableActualValue = rootStyle.getPropertyValue(variableName).trim()
 
         if (variableActualValue) {
-          displayValue = variableActualValue;
+          displayValue = variableActualValue
         }
       }
     }
-    setComputedColor(displayValue);
-  }, [processedColor, variableName]);
+    setComputedColor(displayValue)
+  }, [processedColor, variableName])
 
   return (
     <Box sx={{ width: '20%', minWidth: 120, padding: 1 }}>

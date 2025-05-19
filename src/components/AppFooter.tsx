@@ -1,9 +1,9 @@
 'use client'
 
 import { Box, Divider, Link, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles'
 
 import { BetaNXTLogo } from './betanxt-logo'
-import { useTheme } from '@mui/material/styles'
 
 export function AppFooter({
   logoEnabled = true,

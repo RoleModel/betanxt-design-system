@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { AppFooter as AppFooterComponent } from './AppFooter'
 
-const meta = {
+const meta: Meta<typeof AppFooterComponent> = {
   title: 'Components/AppFooter',
   component: AppFooterComponent,
-} satisfies Meta<typeof AppFooterComponent>
+}
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof AppFooterComponent>
 
 export const AppFooter: Story = {
   args: {

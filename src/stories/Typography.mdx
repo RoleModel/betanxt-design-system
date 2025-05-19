@@ -2,22 +2,28 @@ import { Canvas, Markdown, Meta, Source, Story, Unstyled } from '@storybook/bloc
 
 import { Typography } from '@mui/material'
 
-import * as TypographyStories from './Typography.stories'
+import * as TypographyStories from './Typography.stories.tsx'
 
 <Meta title="Foundation/Typography" component={Typography} of={TypographyStories} />
 
-
 # Typography
 
-Typography defines the visual style of text and plays a key role in creating clear, accessible, and consistent user interfaces. We use MUI’s `Typography` component to apply predefined typographic styles that align with our brand guidelines and design tokens.
+Typography defines the visual style of text and plays a key role in creating clear, accessible, and consistent user interfaces. We use MUI's `Typography` component to apply predefined typographic styles that align with our brand guidelines and design tokens.
+
 <Canvas>
-<Story name="Typography" of={TypographyStories.Typography} />
+  <Story name="Typography" of={TypographyStories.Typography} />
 </Canvas>
 
 ## Usage
 
 Use the `Typography` component whenever displaying text to ensure consistency across the application. Each variant maps to a semantic and stylistic purpose, allowing both accessibility and visual hierarchy.
-<Source dark code={'import { Typography } from "@mui/material";\n\n<Typography variant="h1">Heading Text</Typography>'} />
+
+<Source
+  dark
+  code={
+    'import { Typography } from "@mui/material";\n\n<Typography variant="h1">Heading Text</Typography>'
+  }
+/>
 
 ## Guidelines
 
@@ -27,7 +33,7 @@ Use the `Typography` component whenever displaying text to ensure consistency ac
 
 ## Custom Variants
 
-In addition to standard MUI variants, we’ve defined custom ones to suit application needs:
+In addition to standard MUI variants, we've defined custom ones to suit application needs:
 
 - `appTitle`: Used in global headers or application-level branding.
 - `pageTitle`: For top-level page titles.
@@ -38,20 +44,52 @@ In addition to standard MUI variants, we’ve defined custom ones to suit applic
 Below are all available variants displayed using the `Typography` component:
 
 <Unstyled>
-<Typography variant="h1" gutterBottom>H1 - Heading 1</Typography>
-<Typography variant="h2" gutterBottom>H2 - Heading 2</Typography>
-<Typography variant="h3" gutterBottom>H3 - Heading 3</Typography>
-<Typography variant="h4" gutterBottom>H4 - Heading 4</Typography>
-<Typography variant="h5" gutterBottom>H5 - Heading 5</Typography>
-<Typography variant="h6" gutterBottom>H6 - Heading 6</Typography>
-<Typography variant="subtitle1" gutterBottom>Subtitle 1</Typography>
-<Typography variant="subtitle2" gutterBottom>Subtitle 2</Typography>
-<Typography variant="body1" gutterBottom>Body 1 - Primary text</Typography>
-<Typography variant="body2" gutterBottom>Body 2 - Secondary text</Typography>
-<Typography variant="body3" gutterBottom>Body 3 - Tertiary text</Typography>
-<Typography variant="caption" gutterBottom>Caption - Small annotation text</Typography>
-<Typography variant="overline" gutterBottom>Overline - All caps label</Typography>
-<Typography variant="appTitle" gutterBottom>App Title - Brand heading</Typography>
-<Typography variant="pageTitle" gutterBottom>Page Title - Top of screen title</Typography>
-<Typography variant="tableTitle" gutterBottom>Table Title - Label for data sections</Typography>
-    </Unstyled>
+  <Typography variant="h1" gutterBottom>
+    H1 - Heading 1
+  </Typography>
+  <Typography variant="h2" gutterBottom>
+    H2 - Heading 2
+  </Typography>
+  <Typography variant="h3" gutterBottom>
+    H3 - Heading 3
+  </Typography>
+  <Typography variant="h4" gutterBottom>
+    H4 - Heading 4
+  </Typography>
+  <Typography variant="h5" gutterBottom>
+    H5 - Heading 5
+  </Typography>
+  <Typography variant="h6" gutterBottom>
+    H6 - Heading 6
+  </Typography>
+  <Typography variant="subtitle1" gutterBottom>
+    Subtitle 1
+  </Typography>
+  <Typography variant="subtitle2" gutterBottom>
+    Subtitle 2
+  </Typography>
+  <Typography variant="body1" gutterBottom>
+    Body 1 - Primary text
+  </Typography>
+  <Typography variant="body2" gutterBottom>
+    Body 2 - Secondary text
+  </Typography>
+  <Typography variant="body3" gutterBottom>
+    Body 3 - Tertiary text
+  </Typography>
+  <Typography variant="caption" gutterBottom>
+    Caption - Small annotation text
+  </Typography>
+  <Typography variant="overline" gutterBottom>
+    Overline - All caps label
+  </Typography>
+  <Typography variant="appTitle" gutterBottom>
+    App Title - Brand heading
+  </Typography>
+  <Typography variant="pageTitle" gutterBottom>
+    Page Title - Top of screen title
+  </Typography>
+  <Typography variant="tableTitle" gutterBottom>
+    Table Title - Label for data sections
+  </Typography>
+</Unstyled>

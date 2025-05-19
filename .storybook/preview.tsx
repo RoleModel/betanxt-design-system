@@ -3,19 +3,17 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
-import '../src/storybook-utils/patch-mui-display-name'
-
+import { DocsContainer } from '@storybook/blocks'
+import type { Preview } from '@storybook/react'
 import React from 'react'
-import { CssBaseline, ThemeProvider, GlobalStyles } from '@mui/material'
+
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { useColorScheme } from '@mui/material/styles'
 
-import type { Preview } from '@storybook/react'
-import { CustomAutodocsTemplate } from '../src/storybook-utils/CustomAutoDocs'
-import betanxtTheme from '../src/themes/betanxtTheme'
+import '../src/storybook-utils/patch-mui-display-name'
 import baseTheme from '../src/themes/baseTheme'
-
+import betanxtTheme from '../src/themes/betanxtTheme'
 import { light } from './theme'
-import { DocsContainer } from '@storybook/blocks'
 
 type ThemeMode = 'light' | 'dark' | 'system'
 type ThemeClass = 'light' | 'dark'
@@ -35,7 +33,9 @@ function SyncWithToolbar({
     // Determine the effective mode (light/dark) based on system or explicit selection
     const getEffectiveMode = (): 'light' | 'dark' => {
       if (mode === 'system' && typeof window !== 'undefined') {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light'
       }
       return mode as 'light' | 'dark'
     }
@@ -64,12 +64,15 @@ function SyncWithToolbar({
       document.documentElement.classList.remove('light', 'dark')
 
       // Then add the appropriate one based on mode
-      const effectiveMode = mode === 'system'
-        ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-        : mode;
-      document.documentElement.classList.add(effectiveMode);
+      const effectiveMode =
+        mode === 'system'
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+          : mode
+      document.documentElement.classList.add(effectiveMode)
     }
-  }, [mode]);
+  }, [mode])
 
   return <>{children}</>
 }
@@ -136,10 +139,10 @@ const preview: Preview = {
       const mode = globals.mode as ThemeMode
       const selectedThemeName = globals.theme as SelectedTheme
 
-      const currentTheme = selectedThemeName === 'betanxtTheme' ? betanxtTheme : baseTheme;
+      const currentTheme = selectedThemeName === 'betanxtTheme' ? betanxtTheme : baseTheme
 
       // Create a stable theme reference
-      const memoizedTheme = React.useMemo(() => currentTheme, [selectedThemeName]);
+      const memoizedTheme = React.useMemo(() => currentTheme, [selectedThemeName])
 
       return (
         <ThemeProvider theme={memoizedTheme}>
@@ -153,4 +156,4 @@ const preview: Preview = {
   ],
 }
 
-export default preview;
+export default preview

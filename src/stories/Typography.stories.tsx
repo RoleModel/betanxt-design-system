@@ -5,7 +5,7 @@ import { Typography as TypographyComponent } from '@mui/material'
 import type { TypographyProps } from '@mui/material/Typography'
 
 // Force the correct displayName for Typography component
-(TypographyComponent as any).displayName = 'Typography';
+;(TypographyComponent as any).displayName = 'Typography'
 
 const meta = {
   title: 'Components/Typography',
@@ -95,5 +95,5 @@ type Story = StoryObj<TypographyProps>
 
 export const Typography: Story = {
   name: 'Typography',
-  render: (args) => <TypographyComponent {...args} />
+  render: (args) => <TypographyComponent {...args} />,
 }

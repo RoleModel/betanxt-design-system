@@ -87,7 +87,5 @@ export const Default: Story = {
     height: 300,
     width: 800,
   },
-  render: function RenderVerticalBarChart(args: VerticalBarChartProps) {
-    return <VerticalBarChart {...args} />
-  },
+  render: (args) => <VerticalBarChart {...args} />
 }

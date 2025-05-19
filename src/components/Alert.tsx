@@ -1,9 +1,9 @@
-import AlertTitle from '@mui/material/AlertTitle'
+import React from 'react'
+
 import MuiAlert from '@mui/material/Alert'
 import type { AlertProps as MuiAlertProps } from '@mui/material/Alert'
-import React from 'react'
+import AlertTitle from '@mui/material/AlertTitle'
 import { styled } from '@mui/material/styles'
-
 
 const CustomAlert = styled(MuiAlert, {
   shouldForwardProp: (prop) => prop !== 'ownerState',
@@ -24,10 +24,10 @@ const CustomAlert = styled(MuiAlert, {
   }),
   ...(ownerState?.showTopBorder === true &&
     ownerState?.variant === 'filled' && {
-    borderTop: ownerState.severity
-      ? `10px solid ${theme.vars.palette[ownerState.severity]?.light}`
-      : `10px solid ${theme.vars.palette.primary.light}`,
-  }),
+      borderTop: ownerState.severity
+        ? `10px solid ${theme.vars.palette[ownerState.severity]?.light}`
+        : `10px solid ${theme.vars.palette.primary.light}`,
+    }),
   ...(ownerState?.centerText === true && {
     textAlign: 'center',
     '& .MuiAlert-message': {
@@ -42,28 +42,28 @@ const CustomAlert = styled(MuiAlert, {
   }),
   ...(ownerState?.variant === 'filled' &&
     ownerState?.severity && {
-    '& .MuiButton-contained': {
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
-      color: theme.vars.palette[ownerState.severity]?.main,
-      '&:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      '& .MuiButton-contained': {
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        color: theme.vars.palette[ownerState.severity]?.main,
+        '&:hover': {
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+        },
       },
-    },
-    '& .MuiButton-text': {
-      color: 'inherit',
-      '&:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      '& .MuiButton-text': {
+        color: 'inherit',
+        '&:hover': {
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        },
       },
-    },
-    '& .MuiButton-outlined': {
-      color: 'inherit',
-      borderColor: 'rgba(255, 255, 255, 0.5)',
-      '&:hover': {
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        borderColor: 'rgba(255, 255, 255, 0.8)',
+      '& .MuiButton-outlined': {
+        color: 'inherit',
+        borderColor: 'rgba(255, 255, 255, 0.5)',
+        '&:hover': {
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderColor: 'rgba(255, 255, 255, 0.8)',
+        },
       },
-    },
-  }),
+    }),
 }))
 
 interface CustomAlertProps extends Omit<MuiAlertProps, 'variant'> {

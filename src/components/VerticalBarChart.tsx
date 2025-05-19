@@ -1,17 +1,17 @@
-import { BarChart } from '@mui/x-charts/BarChart';
-import { ChartsTooltip } from '@mui/x-charts';
+import { ChartsTooltip } from '@mui/x-charts'
+import { BarChart } from '@mui/x-charts/BarChart'
 
 export interface VerticalBarChartProps {
-  series1?: boolean;
-  series2?: boolean;
-  series3?: boolean;
-  series4?: boolean;
-  gridHorizontal?: boolean;
-  showTooltip?: boolean;
-  hideLegend?: boolean;
-  legendPositionVertical?: 'top' | 'bottom';
-  height?: number;
-  width?: number;
+  series1?: boolean
+  series2?: boolean
+  series3?: boolean
+  series4?: boolean
+  gridHorizontal?: boolean
+  showTooltip?: boolean
+  hideLegend?: boolean
+  legendPositionVertical?: 'top' | 'bottom'
+  height?: number
+  width?: number
 }
 
 const dataset = [
@@ -99,9 +99,9 @@ const dataset = [
     cloud: 128,
     month: 'December',
   },
-];
+]
 
-const valueFormatter = (value: number | null) => `$${value}M`;
+const valueFormatter = (value: number | null) => `$${value}M`
 
 export default function VerticalBarChart({
   series1 = true,
@@ -120,27 +120,27 @@ export default function VerticalBarChart({
       dataKey: 'software',
       label: 'Software Revenue',
       color: 'var(--mui-palette-chartSeries-0-main)',
-      valueFormatter
+      valueFormatter,
     },
     series2 && {
       dataKey: 'hardware',
       label: 'Hardware Revenue',
       color: 'var(--mui-palette-chartSeries-1-main)',
-      valueFormatter
+      valueFormatter,
     },
     series3 && {
       dataKey: 'services',
       label: 'Services Revenue',
       color: 'var(--mui-palette-chartSeries-2-main)',
-      valueFormatter
+      valueFormatter,
     },
     series4 && {
       dataKey: 'cloud',
       label: 'Cloud Revenue',
       color: 'var(--mui-palette-chartSeries-3-main)',
-      valueFormatter
-    }
-  ].filter(Boolean);
+      valueFormatter,
+    },
+  ].filter(Boolean)
 
   return (
     <BarChart
@@ -150,9 +150,7 @@ export default function VerticalBarChart({
           scaleType: 'band',
           dataKey: 'month',
           valueFormatter: (month, context) =>
-            context.location === 'tick'
-              ? `${month.slice(0, 3)} \n2025`
-              : `${month} 2025`,
+            context.location === 'tick' ? `${month.slice(0, 3)} \n2025` : `${month} 2025`,
           height: 60,
         },
       ]}
@@ -163,16 +161,22 @@ export default function VerticalBarChart({
       grid={{ horizontal: gridHorizontal }}
       hideLegend={hideLegend}
       slotProps={{
-        legend: !hideLegend ? {
-          position: {
-            vertical: legendPositionVertical,
-            horizontal: 'center'
-          }
-        } : undefined,
+        legend: !hideLegend
+          ? {
+              position: {
+                vertical: legendPositionVertical,
+                horizontal: 'center',
+              },
+            }
+          : undefined,
       }}
-      slots={showTooltip ? {
-        tooltip: ChartsTooltip,
-      } : undefined}
+      slots={
+        showTooltip
+          ? {
+              tooltip: ChartsTooltip,
+            }
+          : undefined
+      }
     />
-  );
+  )
 }

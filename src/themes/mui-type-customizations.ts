@@ -195,8 +195,20 @@ declare module '@mui/material/Typography' {
   }
 }
 
-// This is needed because MUI doesn't have a background color for default badge and setting a background color
-// on the root element overrides the semantic colors background. We need to create a new color prop.
+declare module '@mui/material/Alert' {
+  interface AlertPropsVariantOverrides {
+    standard?: true
+    filled?: true
+    outlined?: true
+  }
+
+  interface AlertOwnProps {
+    bordertop?: string
+    centertext?: string
+    showicon?: string
+  }
+}
+
 declare module '@mui/material/Badge' {
   interface BadgePropsColorOverrides {
     neutral: true

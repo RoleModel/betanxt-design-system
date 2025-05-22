@@ -25,7 +25,6 @@ declare module '@mui/material/styles' {
       tabIndicator: string
       hover: string
     }
-    appSwitcherBackground: string
     logoFill: string
     logoPoweredBy: string
     tableHeaderRow: {
@@ -98,6 +97,8 @@ declare module '@mui/material/styles' {
     }
     appswitcher?: {
       background?: string
+      hover?: string
+      contrastText?: string
     }
     tableHeaderRow?: {
       restingFill?: string

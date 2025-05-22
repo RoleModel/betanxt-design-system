@@ -85,6 +85,8 @@ export const basePaletteLight: PaletteOptions = {
   },
   appswitcher: {
     background: micGrey[900],
+    hover: nxtBlue[800],
+    contrastText: '#FFFFFF',
   },
   link: bnblue[500],
   tableCellRow: {
@@ -215,6 +217,8 @@ export const basePaletteDark: PaletteOptions = {
   },
   appswitcher: {
     background: micGrey[900],
+    hover: nxtBlue[800],
+    contrastText: '#FFFFFF',
   },
   link: nxtBlue[300],
   tableCellRow: {

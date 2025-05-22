@@ -50,10 +50,10 @@ export const basePaletteLight: PaletteOptions = {
     contrastText: '#ffffff',
   },
   warning: {
-    main: persimmon[500],
+    main: persimmon[600],
     dark: persimmon[700],
     light: persimmon[400],
-    contrastText: '#ffffff',
+    contrastText: '#FFFFFF',
   },
   info: {
     main: bnblue[500],
@@ -85,6 +85,8 @@ export const basePaletteLight: PaletteOptions = {
   },
   appswitcher: {
     background: micGrey[900],
+    hover: nxtBlue[800],
+    contrastText: '#FFFFFF',
   },
   link: bnblue[500],
   tableCellRow: {
@@ -215,6 +217,8 @@ export const basePaletteDark: PaletteOptions = {
   },
   appswitcher: {
     background: micGrey[900],
+    hover: nxtBlue[800],
+    contrastText: '#FFFFFF',
   },
   link: nxtBlue[300],
   tableCellRow: {

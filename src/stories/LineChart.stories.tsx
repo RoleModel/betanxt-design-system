@@ -31,7 +31,7 @@ const colorOptions = [
   'var(--mui-palette-chartSeries-7-main)',
   'var(--mui-palette-chartSeries-8-main)',
   'var(--mui-palette-chartSeries-9-main)',
-];
+]
 
 const meta: Meta<LineChartStoryArgs> = {
   title: 'Components/Charts/LineChart',
@@ -41,7 +41,7 @@ const meta: Meta<LineChartStoryArgs> = {
     layout: 'centered',
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/...?node-id=...', // Replace with actual Figma link if available
+      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=11768-89901&t=nNrQpChNXPORG1Z5-11', // Replace with actual Figma link if available
     },
     controls: {
       expanded: true,
@@ -238,7 +238,6 @@ export const DefaultLineChart: Story = {
         label: 'FTSE 100',
         area: showArea,
         yAxisKey: 'two',
-        grid: true,
         color: color2,
         labelMarkType: 'circle',
       },
@@ -248,7 +247,6 @@ export const DefaultLineChart: Story = {
         label: 'Dow Jones',
         area: showArea,
         yAxisKey: 'three',
-        grid: true,
         color: color3,
         labelMarkType: 'circle',
       },

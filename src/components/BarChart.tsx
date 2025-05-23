@@ -1,7 +1,7 @@
 import { ChartsTooltip } from '@mui/x-charts'
-import { BarChart } from '@mui/x-charts/BarChart'
+import { BarChart as MuiBarChart } from '@mui/x-charts/BarChart'
 
-export interface VerticalBarChartProps {
+export interface BarChartProps {
   series1?: boolean
   series2?: boolean
   series3?: boolean
@@ -103,7 +103,7 @@ const dataset = [
 
 const valueFormatter = (value: number | null) => `$${value}M`
 
-export default function VerticalBarChart({
+export default function BarChart({
   series1 = true,
   series2 = true,
   series3 = true,
@@ -114,7 +114,7 @@ export default function VerticalBarChart({
   legendPositionVertical = 'bottom',
   height = 300,
   width = 800,
-}: VerticalBarChartProps) {
+}: BarChartProps) {
   const series = [
     series1 && {
       dataKey: 'software',
@@ -143,13 +143,13 @@ export default function VerticalBarChart({
   ].filter(Boolean)
 
   return (
-    <BarChart
+    <MuiBarChart
       dataset={dataset}
       xAxis={[
         {
           scaleType: 'band',
           dataKey: 'month',
-          valueFormatter: (month, context) =>
+          valueFormatter: (month: string, context: { location: string }) =>
             context.location === 'tick' ? `${month.slice(0, 3)} \n2025` : `${month} 2025`,
           height: 60,
         },

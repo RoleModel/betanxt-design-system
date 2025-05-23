@@ -56,6 +56,7 @@ const components: ThemeOptions['components'] = {
               textAlign: 'center',
               '& .MuiAlert-message': {
                 textAlign: 'center',
+                width: '100%',
               },
             },
           },

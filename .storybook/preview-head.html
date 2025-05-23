@@ -37,9 +37,25 @@
     font: var(--mui-font-h6);
     color: var(--mui-palette-text-primary) !important;
   }
+
   p {
-    font: var(--mui-font-body2);
+    font: var(--mui-font-body3);
     color: var(--mui-palette-text-primary);
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    padding-inline-start: 2rem;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  hr {
+    border-color: var(--mui-palette-divider) !important;
   }
 
   .docs-story > div:first-child {
@@ -84,7 +100,9 @@
   .sb-docs.sbdocs-wrapper {
     background: transparent;
     color: var(--mui-palette-text-primary);
+    padding: 3rem 20px;
   }
+
   .sbdocs.sbdocs-preview {
     background: transparent;
     color: var(--mui-palette-text-primary);

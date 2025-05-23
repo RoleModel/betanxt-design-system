@@ -12,7 +12,7 @@ const meta: Meta<typeof Paper> = {
     layout: 'fullscreen',
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=16447-20814&t=njdQUyzVttt456w5-11',
+      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=16458-90076&t=nNrQpChNXPORG1Z5-11',
     },
     docs: {
       page: null,

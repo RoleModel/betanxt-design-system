@@ -5,6 +5,7 @@ import { Typography as TypographyComponent } from '@mui/material'
 import type { TypographyProps } from '@mui/material/Typography'
 
 // Force the correct displayName for Typography component
+
 ;(TypographyComponent as any).displayName = 'Typography'
 
 const meta = {

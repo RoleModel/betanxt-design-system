@@ -7,6 +7,9 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles'
 
+// Import brand tokens
+import { bnblue, orangered, persimmon, seagrass } from '../themes/base/palette-tokens/brand-tokens'
+
 interface ColorVars {
   [category: string]: {
     [key: string]: string
@@ -201,6 +204,20 @@ const ColorGuide = () => {
         return
       }
 
+      // New: Special handling for chartSeries
+      if (key === 'chartSeries') {
+        Object.entries(value).forEach(([seriesKey, seriesValue]) => {
+          if (typeof seriesValue === 'object' && seriesValue !== null) {
+            Object.entries(seriesValue).forEach(([shadeKey, shadeValue]) => {
+              if (shadeValue && typeof shadeValue === 'string' && !shadeKey.includes('Channel')) {
+                colors[`${key}.${seriesKey}.${shadeKey}`] = `var(--mui-palette-${key}-${seriesKey}-${shadeKey})`
+              }
+            })
+          }
+        })
+        return // Ensure we don't process chartSeries with the generic object logic below
+      }
+
       if (typeof value === 'object') {
         if (
           'main' in value ||
@@ -226,6 +243,50 @@ const ColorGuide = () => {
       } else if (typeof value === 'string') {
         // Handle direct color values
         colors[key] = `var(--mui-palette-${key})`
+      }
+    })
+
+    // Manually define direct token mappings for specific Alert CSS variables (light mode)
+    const alertTokenMapping: Record<string, string> = {
+      infoStandardBg: bnblue[100],
+      successStandardBg: seagrass[100],
+      errorStandardBg: orangered[100],
+      warningStandardBg: persimmon[100],
+      infoColor: bnblue[600],
+      errorColor: orangered[700],
+      // successColor and warningColor are not mapped here because their
+      // token values differ between standard and outlined variants in MuiAlert.ts
+    }
+
+    // Add specific Alert component CSS variables
+    const alertVariableSuffixes = [
+      'successColor',
+      'errorColor',
+      'warningColor',
+      'infoColor',
+      'successStandardBg',
+      'errorStandardBg',
+      'warningStandardBg',
+      'infoStandardBg',
+      'successFilledBg',
+      'successFilledColor',
+      'errorFilledBg',
+      'errorFilledColor',
+      'warningFilledBg',
+      'warningFilledColor',
+      'infoFilledBg',
+      'infoFilledColor',
+    ]
+
+    alertVariableSuffixes.forEach((suffix) => {
+      const storyKey = `Alert.${suffix}`
+      const mappedTokenValue = alertTokenMapping[suffix]
+
+      if (mappedTokenValue) {
+        colors[storyKey] = mappedTokenValue // Use the direct token value
+      } else {
+        // Fallback to var() for variables not in our explicit map or for those with context-dependent tokens
+        colors[storyKey] = `var(--mui-palette-Alert-${suffix})`
       }
     })
 

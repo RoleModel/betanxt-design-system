@@ -1,7 +1,8 @@
-import { Canvas, Markdown, Meta, Source } from '@storybook/blocks'
+import { Canvas, Markdown, Meta, Source, Unstyled } from '@storybook/blocks'
 
 <Meta title="Using the Theme" />
 
+<Unstyled>
 # Using the Theme
 
 The primary way to apply a theme is by using MUI's `ThemeProvider` to wrap your application and `CssBaseline` for consistent styling and built-in color scheme (light/dark mode) support.
@@ -15,8 +16,9 @@ The primary way to apply a theme is by using MUI's `ThemeProvider` to wrap your 
   code={`// In your application's root component (e.g., App.tsx, main.tsx)
   "use client"; // Or remove if not using Next.js App Router specific features directly here
 
-import { ReactNode } from "react";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ReactNode } from 'react'
+
+import { CssBaseline, ThemeProvider } from '@mui/material'
 
 // Choose the theme you want to use:
 import theme from "[path-to-themes]/baseTheme";
@@ -26,15 +28,13 @@ import theme from "[path-to-themes]/baseTheme";
 // Your application's root component
 export default function App({ children }: { children: ReactNode }) {
 return (
+
 <ThemeProvider theme={theme}>
-{/* CssBaseline applies baseline styles and enables native browser components in dark mode */}
-<CssBaseline enableColorScheme />
-{children}
+  {/* CssBaseline applies baseline styles and enables native browser components in dark mode */}
+  <CssBaseline enableColorScheme />
+  {children}
 </ThemeProvider>
-);
-}
-`}
-/>
+); } `} />
 
 **Apply this setup at the root of your application.**
 How you do this depends on your framework (e.g., in `index.tsx` for Create React App, or a root layout for other setups).
@@ -61,14 +61,12 @@ import betanxtTheme from "[path-to-themes]/betanxtTheme";
 
 function App() {
 return (
+
 <ThemeProvider theme={betanxtTheme}>
-<CssBaseline enableColorScheme />
-{children}
+  <CssBaseline enableColorScheme />
+  {children}
 </ThemeProvider>
-);
-}
-`}
-/>
+); } `} />
 
 ### 2. Setting a specific default mode
 
@@ -95,23 +93,21 @@ function ModeToggle() {
 const { mode, setMode } = useColorScheme();
 
 return (
-<Button
-onClick={() => setMode(mode === 'light' ? 'dark' : 'light')} >
-{mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+
+<Button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+  {mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
 </Button>
-);
-}
+); }
 
 function App() {
 return (
+
 <ThemeProvider theme={betanxtTheme}>
-<CssBaseline enableColorScheme />
-<ModeToggle />
-{children}
+  <CssBaseline enableColorScheme />
+  <ModeToggle />
+  {children}
 </ThemeProvider>
-);
-}
-`} />
+); } `} />
 
 For more detailed information on implementing dark mode, refer to the [MUI Dark Mode Documentation](https://mui.com/material-ui/customization/dark-mode/).
 
@@ -145,3 +141,4 @@ const MyStyledBox = () => (
   </Box>
 )
 `} />
+</Unstyled>

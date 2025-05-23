@@ -3,53 +3,62 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import '../src/themes/mui-type-customizations'
 import { DocsContainer } from '@storybook/blocks'
-import type { Preview } from '@storybook/react'
+import type { Preview, StoryContext } from '@storybook/react'
 import React from 'react'
 
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { useColorScheme } from '@mui/material/styles'
 
-import '../src/storybook-utils/patch-mui-display-name'
+import './storybook-utils/patch-mui-display-name'
 import baseTheme from '../src/themes/baseTheme'
 import betanxtTheme from '../src/themes/betanxtTheme'
-import { light } from './theme'
+import { light, dark } from './theme'
 
 type ThemeMode = 'light' | 'dark' | 'system'
-type ThemeClass = 'light' | 'dark'
 type SelectedTheme = 'betanxtTheme' | 'baseTheme'
 
-function SyncWithToolbar({
-  mode,
-  children,
-}: {
+const SyncWithToolbar: React.FC<{
   mode: ThemeMode
   children: React.ReactNode
-}) {
+}> = ({ mode, children }) => {
   const { setMode } = useColorScheme()
 
-  // Simpler, synchronous approach that only deals with MUI theme
   React.useEffect(() => {
-    // Determine the effective mode (light/dark) based on system or explicit selection
-    const getEffectiveMode = (): 'light' | 'dark' => {
-      if (mode === 'system' && typeof window !== 'undefined') {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
+    let actualResolvedMode: 'light' | 'dark'
+
+    if (mode === 'system') {
+      if (typeof window !== 'undefined') {
+        actualResolvedMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      } else {
+        actualResolvedMode = 'light' // Default for SSR or undefined window
       }
-      return mode as 'light' | 'dark'
+    } else if (mode === 'dark') {
+      actualResolvedMode = 'dark'
+    } else { // Covers 'light' and any unexpected or default cases
+      actualResolvedMode = 'light'
     }
 
-    // Immediately set the MUI theme mode
-    const effectiveMode = getEffectiveMode()
-    setMode(effectiveMode)
+    // Set MUI's internal theme mode
+    setMode(actualResolvedMode)
+
+    // Set the mui-mode cookie with the resolved mode
+    if (typeof window !== 'undefined') {
+      document.cookie = `mui-mode=${actualResolvedMode};path=/;SameSite=Lax`
+    }
 
     // For system preference only, add a change listener
     if (mode === 'system' && typeof window !== 'undefined') {
       const mq = window.matchMedia('(prefers-color-scheme: dark)')
 
       const handleChange = () => {
-        setMode(mq.matches ? 'dark' : 'light')
+        const newResolvedMode = mq.matches ? 'dark' : 'light'
+        setMode(newResolvedMode)
+        // Update cookie when system preference changes
+        if (typeof window !== 'undefined') {
+          document.cookie = `mui-mode=${newResolvedMode};path=/;SameSite=Lax`
+        }
       }
 
       mq.addEventListener('change', handleChange)
@@ -57,24 +66,64 @@ function SyncWithToolbar({
     }
   }, [mode, setMode])
 
-  // Add a simple utility effect to manage document styles directly
+  // This useEffect handles the class on <html> for Tailwind's dark mode or other CSS purposes
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
-      // Clear both classes first
       document.documentElement.classList.remove('light', 'dark')
 
-      // Then add the appropriate one based on mode
-      const effectiveMode =
-        mode === 'system'
-          ? window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light'
-          : mode
-      document.documentElement.classList.add(effectiveMode)
+      let resolvedModeForHtmlClass: 'light' | 'dark'
+      if (mode === 'system') {
+        resolvedModeForHtmlClass = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      } else if (mode === 'dark') {
+        resolvedModeForHtmlClass = 'dark'
+      } else { // Covers 'light' and any unexpected or default cases
+        resolvedModeForHtmlClass = 'light'
+      }
+      document.documentElement.classList.add(resolvedModeForHtmlClass)
     }
   }, [mode])
 
   return <>{children}</>
+}
+
+const DocsWrapper: React.FC<{
+  children: React.ReactNode
+  context: any
+}> = ({ children, context }) => {
+  const mode = (context.globals?.mode as ThemeMode) || 'system'
+  const selectedThemeName = (context.globals?.theme as SelectedTheme) || 'betanxtTheme'
+
+  const currentTheme = selectedThemeName === 'betanxtTheme' ? betanxtTheme : baseTheme
+  const memoizedTheme = React.useMemo(() => currentTheme, [selectedThemeName])
+
+  return (
+    <ThemeProvider theme={memoizedTheme}>
+      <SyncWithToolbar mode={mode}>
+        <CssBaseline enableColorScheme />
+        <DocsContainer context={context} theme={mode === 'dark' ? dark : light}>
+          {children}
+        </DocsContainer>
+      </SyncWithToolbar>
+    </ThemeProvider>
+  )
+}
+
+const ThemeDecorator = (Story: React.ComponentType, context: StoryContext) => {
+  const mode = context.globals.mode as ThemeMode
+  const selectedThemeName = context.globals.theme as SelectedTheme
+
+  const currentTheme = selectedThemeName === 'betanxtTheme' ? betanxtTheme : baseTheme
+
+  const memoizedTheme = React.useMemo(() => currentTheme, [selectedThemeName])
+
+  return (
+    <ThemeProvider theme={memoizedTheme}>
+      <SyncWithToolbar mode={mode}>
+        <CssBaseline enableColorScheme />
+        <Story />
+      </SyncWithToolbar>
+    </ThemeProvider>
+  )
 }
 
 const preview: Preview = {
@@ -106,24 +155,19 @@ const preview: Preview = {
   },
   parameters: {
     docs: {
-      theme: light,
+      backgrounds: { disabled: true },
       container: ({ children, context }) => {
-        return (
-          <ThemeProvider theme={betanxtTheme}>
-            <CssBaseline enableColorScheme />
-            <DocsContainer context={context} theme={light}>
-              {children}
-            </DocsContainer>
-          </ThemeProvider>
-        )
+        return <DocsWrapper context={context}>{children}</DocsWrapper>
       },
     },
-    storySort: {
-      method: 'none',
-      includeNames: true,
-      order: ['Foundation', 'Components'],
+    options: {
+      storySort: {
+        method: 'none',
+        includeNames: false,
+        order: ['Introduction', 'Foundation', 'Components'],
+      },
     },
-    backgrounds: { disabled: true },
+    backgrounds: { disable: true},
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -134,26 +178,7 @@ const preview: Preview = {
     },
   },
   tags: ['autodocs'],
-  decorators: [
-    (Story, { globals }) => {
-      const mode = globals.mode as ThemeMode
-      const selectedThemeName = globals.theme as SelectedTheme
-
-      const currentTheme = selectedThemeName === 'betanxtTheme' ? betanxtTheme : baseTheme
-
-      // Create a stable theme reference
-      const memoizedTheme = React.useMemo(() => currentTheme, [selectedThemeName])
-
-      return (
-        <ThemeProvider theme={memoizedTheme}>
-          <SyncWithToolbar mode={mode}>
-            <CssBaseline enableColorScheme />
-            <Story />
-          </SyncWithToolbar>
-        </ThemeProvider>
-      )
-    },
-  ],
+  decorators: [ThemeDecorator],
 }
 
 export default preview

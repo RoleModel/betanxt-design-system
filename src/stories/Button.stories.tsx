@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import React from 'react'
+
 import { Button as ButtonComponent } from '@mui/material'
+import  {FileDownloadOutlined} from '@mui/icons-material'
 
 const meta: Meta<typeof ButtonComponent> = {
   title: 'Components/Button',
@@ -19,6 +22,12 @@ const meta: Meta<typeof ButtonComponent> = {
       control: 'select',
       options: ['contained', 'outlined', 'text'],
     },
+    startIcon: {
+      control: 'boolean',
+    },
+    endIcon: {
+      control: 'boolean',
+    },
     color: {
       control: 'select',
       options: ['primary', 'secondary', 'error', 'info', 'success', 'warning', 'inherit'],
@@ -37,6 +46,8 @@ const meta: Meta<typeof ButtonComponent> = {
     variant: 'contained',
     color: 'primary',
     size: 'large',
+    startIcon: false,
+    endIcon: false,
   },
 }
 
@@ -48,4 +59,11 @@ export const Button: Story = {
     variant: 'contained',
     children: 'Contained',
   },
+  render: (args) => (
+    <ButtonComponent
+      {...args}
+      startIcon={args.startIcon ? <FileDownloadOutlined /> : undefined}
+      endIcon={args.endIcon ? <FileDownloadOutlined /> : undefined}
+    />
+  ),
 }

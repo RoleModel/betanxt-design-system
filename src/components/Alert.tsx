@@ -1,115 +1,56 @@
 import React from 'react'
 
-import MuiAlert from '@mui/material/Alert'
-import type { AlertProps as MuiAlertProps } from '@mui/material/Alert'
+import MuiAlert, { type AlertProps as MuiAlertProps } from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
-import { styled } from '@mui/material/styles'
 
-const CustomAlert = styled(MuiAlert, {
-  shouldForwardProp: (prop) => prop !== 'ownerState',
-})<{
-  ownerState?: {
-    severity?: MuiAlertProps['severity']
-    showTopBorder?: boolean
-    showIcon?: boolean
-    centerText?: boolean
-    variant?: 'outlined' | 'filled' | 'standard'
-  }
-}>(({ theme, ownerState }) => ({
-  ...(ownerState?.showTopBorder === true && {
-    borderRadius: 8,
-    borderTop: ownerState.severity
-      ? `10px solid ${theme.vars.palette[ownerState.severity]?.main}`
-      : `10px solid ${theme.vars.palette.primary.main}`,
-  }),
-  ...(ownerState?.showTopBorder === true &&
-    ownerState?.variant === 'filled' && {
-      borderTop: ownerState.severity
-        ? `10px solid ${theme.vars.palette[ownerState.severity]?.light}`
-        : `10px solid ${theme.vars.palette.primary.light}`,
-    }),
-  ...(ownerState?.centerText === true && {
-    textAlign: 'center',
-    '& .MuiAlert-message': {
-      width: '100%',
-      textAlign: 'center',
-    },
-  }),
-  ...(ownerState?.showIcon === false && {
-    '& .MuiAlert-icon': {
-      display: 'none !important',
-    },
-  }),
-  ...(ownerState?.variant === 'filled' &&
-    ownerState?.severity && {
-      '& .MuiButton-contained': {
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        color: theme.vars.palette[ownerState.severity]?.main,
-        '&:hover': {
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        },
-      },
-      '& .MuiButton-text': {
-        color: 'inherit',
-        '&:hover': {
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        },
-      },
-      '& .MuiButton-outlined': {
-        color: 'inherit',
-        borderColor: 'rgba(255, 255, 255, 0.5)',
-        '&:hover': {
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
-          borderColor: 'rgba(255, 255, 255, 0.8)',
-        },
-      },
-    }),
-}))
-
-interface CustomAlertProps extends Omit<MuiAlertProps, 'variant'> {
+export interface CustomAlertProps extends Omit<MuiAlertProps, 'variant' | 'title' | 'icon'> {
   variant?: 'outlined' | 'filled' | 'standard'
-  title?: string
-  showTopBorder?: boolean
-  showIcon?: boolean
-  centerText?: boolean
+  title?: React.ReactNode
+  showicon?: boolean
+  centertext?: boolean
   action?: React.ReactNode
   actionButtonVariant?: 'text' | 'contained' | 'outlined'
+  bordertop?: boolean
+  icon?: MuiAlertProps['icon']
 }
 
-export type { CustomAlertProps }
-
 export const Alert: React.FC<CustomAlertProps> = ({
-  variant = 'outlined',
+  variant = 'standard',
   title,
   children,
   severity,
-  icon,
-  actionButtonVariant = 'text',
-  showTopBorder = false,
-  showIcon = true,
-  centerText = false,
+  icon: customIcon,
+  showicon = true,
+  centertext,
   action,
-  ...other
+  bordertop,
+  ...otherProps
 }) => {
-  const ownerState = {
-    severity,
-    showTopBorder,
-    showIcon,
-    centerText,
+  const muiAlertIcon = showicon ? customIcon : false
+
+  const allPropsForMuiAlert: any = {
+    ...otherProps,
     variant,
+    severity,
+    icon: muiAlertIcon,
+    action,
+    showicon: showicon.toString(),
+  }
+
+  if (bordertop !== undefined) {
+    allPropsForMuiAlert.bordertop = bordertop.toString()
+  }
+  if (centertext !== undefined) {
+    allPropsForMuiAlert.centertext = centertext.toString()
   }
 
   return (
-    <CustomAlert
-      ownerState={ownerState}
-      variant={variant}
-      severity={severity}
-      icon={showIcon ? icon : null}
-      action={action}
-      {...other}
+    <MuiAlert
+      elevation={0}
+      {...allPropsForMuiAlert}
     >
       {title && <AlertTitle>{title}</AlertTitle>}
       {children}
-    </CustomAlert>
+    </MuiAlert>
   )
 }

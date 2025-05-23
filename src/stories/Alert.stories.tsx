@@ -1,4 +1,3 @@
-import { DocsPage } from '@storybook/addon-docs'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect } from '@storybook/test'
 import { userEvent, waitFor, within } from '@storybook/test'
@@ -6,7 +5,7 @@ import React from 'react'
 
 import { Box, Button, Slide, Snackbar, Typography } from '@mui/material'
 
-import { Alert as AlertComponent, type CustomAlertProps } from './Alert'
+import { Alert as AlertComponent, type CustomAlertProps } from '../components/Alert'
 
 interface StoryArgs extends Omit<CustomAlertProps, 'onClose'> {
   onClose?: boolean | ((event: React.SyntheticEvent<Element, Event>) => void)
@@ -20,7 +19,7 @@ const meta = {
     layout: 'centered',
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=16634-38351&t=sYUxZrP9FUvNvstp-11',
+      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=16634-38351&t=DB0ilIbdxEUVV0VU-11',
     },
     controls: {
       expanded: true,
@@ -28,7 +27,7 @@ const meta = {
     },
   },
   argTypes: {
-    showIcon: {
+    showicon: {
       control: 'boolean',
       name: 'Show Icon',
       description: 'Whether to show the icon',
@@ -52,12 +51,7 @@ const meta = {
       description: 'Button variant when action is true',
       if: { arg: 'action', truthy: true },
     },
-    showTopBorder: {
-      control: 'boolean',
-      name: 'Show Top Border',
-      description: 'Whether to show a top border',
-    },
-    centerText: {
+    centertext: {
       control: 'boolean',
       name: 'Center Text',
       description: 'Whether to center text',
@@ -74,6 +68,11 @@ const meta = {
       name: 'Variant',
       description: 'The variant to use',
     },
+    bordertop: {
+      control: 'boolean',
+      name: 'Border Top',
+      description: 'Whether to show a top border',
+    },
     onClose: {
       control: 'boolean',
       name: 'Show Close',
@@ -85,9 +84,9 @@ const meta = {
     children: 'This is an alert message.',
     severity: 'info',
     variant: 'filled',
-    showTopBorder: false,
-    showIcon: true,
-    centerText: false,
+    showicon: true,
+    centertext: false,
+    bordertop: false,
     elevation: 0,
   },
 } as Meta<StoryArgs>
@@ -104,22 +103,34 @@ export const Alert: Story = {
     onClose: false,
     action: false,
     elevation: 0,
+    variant: 'standard',
+    severity: 'info',
   },
   render: function AlertRender(args) {
-    const { action, actionButtonVariant, severity, onClose, elevation, ...otherProps } =
-      args
+    const {
+      action,
+      actionButtonVariant,
+      severity,
+      onClose,
+      elevation,
+      bordertop,
+      centertext,
+      showicon,
+      title,
+      children,
+      variant,
+      ...otherProps
+    } = args
 
-    // Handle close button (convert boolean to function)
     const handleClose = (event: React.SyntheticEvent<Element, Event>) => {
       console.log('Close clicked', event)
     }
 
-    // Create action button if action=true
     const actionButton = action ? (
       <Button
         size="large"
         color={severity}
-        variant={actionButtonVariant || 'text'}
+        variant={actionButtonVariant || 'contained'}
         onClick={() => console.log('Action clicked')}
       >
         Action
@@ -128,39 +139,48 @@ export const Alert: Story = {
 
     return (
       <AlertComponent
-        {...otherProps}
+        title={title}
+        variant={variant}
         elevation={elevation}
         severity={severity}
         onClose={onClose ? handleClose : undefined}
         action={actionButton}
         closeText="Close"
-      />
+        bordertop={bordertop}
+        centertext={centertext}
+        showicon={showicon}
+        {...otherProps}
+      >
+        {children}
+      </AlertComponent>
     )
   },
 }
 
-export const TopBorder: Story = {
-  name: 'Alert with Top Border',
+export const Border: Story = {
+  name: 'Top Border',
   args: {
-    title: 'Alert with Top Border',
-    children: 'This is an alert with a top border.',
-    showTopBorder: true,
+    title: 'Standard Alert with Top Border',
+    children: 'This is a standard info alert, bordertop true.',
+    variant: 'outlined',
+    severity: 'info',
     onClose: false,
-    centerText: true,
-    showIcon: false,
+    centertext: false,
+    showicon: false,
+    bordertop: true,
     elevation: 0,
-    variant: 'filled',
     action: false,
   },
   render: Alert.render,
 }
 
 export const AlertWithAction: Story = {
-  name: 'Alert with Action',
+  name: 'With Action',
   args: {
     title: 'Alert with Action',
     children: 'This is an alert with an action button.',
     action: true,
+    severity: 'info',
     actionButtonVariant: 'contained',
     onClose: false,
     elevation: 0,
@@ -171,11 +191,11 @@ export const AlertWithAction: Story = {
 // Alert in Snackbar demo
 export const SnackBarAlert: Story = {
   args: {
-    title: 'Snackbar Alert',
+    title: 'In a Snackbar',
     children: 'This alert appears in a Snackbar',
     severity: 'info',
     variant: 'filled',
-    showIcon: true,
+    showicon: true,
     action: false,
     actionButtonVariant: 'text',
     onClose: true,
@@ -298,7 +318,6 @@ export const SnackBarAlert: Story = {
 
     return (
       <Box sx={{ minHeight: 500, p: 2 }}>
-        <div onClick={(e) => e.stopPropagation()}>
           <Snackbar
             open={open}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -327,7 +346,6 @@ export const SnackBarAlert: Story = {
               data-testid="alert"
             />
           </Snackbar>
-        </div>
 
         <Button
           variant="contained"
@@ -339,7 +357,7 @@ export const SnackBarAlert: Story = {
         </Button>
 
         {open && (
-          <Typography color="text.secondary" variant="body3">
+          <Typography color="text.secondary" variant="caption">
             Auto-dismissing in {timeLeft}s
           </Typography>
         )}

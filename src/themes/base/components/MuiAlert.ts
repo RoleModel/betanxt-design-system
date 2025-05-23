@@ -1,5 +1,5 @@
-import type { AlertProps } from '@mui/material/Alert'
 import type { Theme, ThemeOptions } from '@mui/material/styles'
+import type { AlertProps } from '@mui/material/Alert'
 
 import { bnblue, orangered, persimmon, seagrass } from '../palette-tokens/brand-tokens'
 
@@ -16,7 +16,6 @@ const components: ThemeOptions['components'] = {
     styleOverrides: {
       root: {
         backgroundImage: 'none',
-
         variants: [
           ...(['error', 'warning', 'info', 'success'] as const).map((severity) => ({
             props: {
@@ -80,20 +79,6 @@ const components: ThemeOptions['components'] = {
               },
             }),
           })),
-          ...(['error', 'warning', 'info', 'success'] as const).map((severity) => ({
-            props: (props: AlertOwnerState) =>
-              (props.variant === 'standard' || props.variant === 'outlined') &&
-              props.severity === severity,
-            style: ({ theme }: { theme: Theme }) => ({
-              '& .MuiButton-contained': {
-                backgroundColor: theme.vars.palette[severity]?.main,
-                color: theme.vars.palette[severity]?.contrastText,
-                '&:hover': {
-                  backgroundColor: theme.vars.palette[severity]?.dark,
-                },
-              },
-            }),
-          })),
         ],
       },
       outlinedSuccess: ({ theme }: { theme: Theme }) => ({
@@ -106,6 +91,7 @@ const components: ThemeOptions['components'] = {
       }),
       outlinedError: ({ theme }) => ({
         '--mui-palette-Alert-errorColor': orangered[700],
+        '--mui-palette-Alert-errorIconColor': 'inherit',
         border: `1px solid ${theme.vars.palette.error.main}`,
         ...theme.applyStyles('dark', {
           '--mui-palette-Alert-errorColor': orangered[200],
@@ -114,6 +100,7 @@ const components: ThemeOptions['components'] = {
       outlinedWarning: ({ theme }: { theme: Theme }) => ({
         border: `1px solid ${theme.vars.palette.warning.main}`,
         '--mui-palette-Alert-warningColor': persimmon[700],
+        '--mui-palette-Alert-warningIconColor': 'inherit',
         ...theme.applyStyles('dark', {
           '--mui-palette-Alert-warningColor': persimmon[200],
         }),
@@ -121,6 +108,7 @@ const components: ThemeOptions['components'] = {
       outlinedInfo: ({ theme }: { theme: Theme }) => ({
         border: `1px solid ${theme.vars.palette.info.main}`,
         '--mui-palette-Alert-infoColor': bnblue[600],
+        '--mui-palette-Alert-infoIconColor': 'inherit',
         ...theme.applyStyles('dark', {
           '--mui-palette-Alert-infoColor': bnblue[200],
         }),

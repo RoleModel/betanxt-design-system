@@ -4,13 +4,12 @@
  * This patch fixes all MUI components in Storybook by setting proper displayName
  * for forwardRef components, solving the <forwardRef> issue in Storybook docs.
  */
-
 import * as Mui from '@mui/material'
 import * as MuiCharts from '@mui/x-charts'
 
 // Function to patch components from a package
-const patchComponents = (packageComponents: any, packageName: string) => {
-  const componentNames = Object.keys(packageComponents).filter(name => {
+const patchComponents = (packageComponents: any, _packageName: string) => {
+  const componentNames = Object.keys(packageComponents).filter((name) => {
     return name[0] === name[0].toUpperCase()
   })
 
@@ -26,7 +25,6 @@ const patchComponents = (packageComponents: any, packageName: string) => {
     }
   }
 
-  console.log(`✓ Patched ${patchedCount} components from ${packageName}`)
   return patchedCount
 }
 
@@ -35,8 +33,6 @@ const materialCount = patchComponents(Mui, '@mui/material')
 
 // Patch MUI X Charts components
 const chartsCount = patchComponents(MuiCharts, '@mui/x-charts')
-
-console.log(`✓ Total patched: ${materialCount + chartsCount} MUI components with displayName`)
 
 // Export something to satisfy module imports
 export default {}

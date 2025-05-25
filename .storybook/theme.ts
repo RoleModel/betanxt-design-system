@@ -10,9 +10,9 @@ export const light = create({
   colorSecondary: '#032f3f',
 
   // UI colors
-  appBg: 'rgb(247, 245, 240)',
-  appContentBg: 'rgb(253, 251, 245)',
-  appPreviewBg: 'rgb(253, 251, 245)',
+  appBg: '#f7f5f0',
+  appContentBg: '#fdfbf5',
+  appPreviewBg: '#fdfbf5',
   appBorderColor: 'rgba(31, 30, 28, 0.12)',
   appBorderRadius: 4,
 
@@ -21,12 +21,12 @@ export const light = create({
   textInverseColor: '#FFFFFF',
 
   buttonBg: '#032f3f',
-  buttonBorder: '#032f3f',
+  buttonBorder: '#053f5a',
 
   // Toolbar default and active colors
   barTextColor: '#ffffff',
   barSelectedColor: '#34c0f3',
-  barHoverColor: '#34c0f3',
+  barHoverColor: '#229fd3',
   barBg: '#021d27',
 
   // Form colors
@@ -37,7 +37,7 @@ export const light = create({
 
   // Typography
   fontBase:
-    'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
   fontCode: 'monospace',
 })
 
@@ -54,30 +54,30 @@ export const dark = create({
   appBg: '#021d27',
   appContentBg: '#011218',
   appPreviewBg: '#011218',
-  appBorderColor: 'rgba(243, 243, 243, 0.12)',
+  appBorderColor: 'rgba(2, 29, 39, 0.5)',
   appBorderRadius: 4,
 
   // Text colors
   textColor: '#FFFFFF',
-  textInverseColor: '#FFFFFF',
+  textInverseColor: '#000000',
 
-  buttonBg: '#34c0f3',
-  buttonBorder: '#34c0f3',
+  buttonBg: '#0d5a7d',
+  buttonBorder: '#0d5a7d',
 
   // Toolbar default and active colors
-  barTextColor: '#FFFFFF',
+  barTextColor: '#ffffff',
   barSelectedColor: '#34c0f3',
-  barHoverColor: '#34c0f3',
-  barBg: '#011218',
+  barHoverColor: '#229fd3',
+  barBg: '#021d27',
 
   // Form colors
-  inputBg: '#333333',
-  inputBorder: '#333333',
+  inputBg: 'rgba(0, 0, 0, 0.56)',
+  inputBorder: 'rgba(255, 255, 255, 0.25)',
   inputTextColor: '#FFFFFF',
   inputBorderRadius: 4,
 
   // Typography
   fontBase:
-    'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    'Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif',
   fontCode: 'monospace',
 })

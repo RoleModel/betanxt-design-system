@@ -6,18 +6,20 @@ const config: StorybookConfig = {
     disableWhatsNewNotifications: true,
   },
   stories: [
-    '../src/stories/Introduction.mdx',
     '../src/**/*.mdx',
+    '../src/**/**/*.mdx',
+    '../src/**/**/*.stories.@(js|jsx|mjs|ts|tsx)',
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-essentials',
+    '@storybook/addon-themes',
     '@storybook/addon-docs',
     '@storybook/addon-interactions',
     '@storybook/addon-designs',
     '@chromatic-com/storybook',
     '@storybook/addon-a11y',
-    '@storybook/addon-mdx-gfm',
+    './addons/mui-theme-toggle/register.tsx',
   ],
   framework: {
     name: '@storybook/react-vite',

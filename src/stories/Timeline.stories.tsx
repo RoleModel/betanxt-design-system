@@ -1,9 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-import type { Meta, StoryObj } from '@storybook/react'
-
 import TimeLine from '../components/Timeline'
-
 import type { MuiTimelineItemData, TimelineProps } from '../components/Timeline'
 
 const meta: Meta<TimelineProps> = {

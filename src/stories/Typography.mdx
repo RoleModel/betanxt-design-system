@@ -29,7 +29,7 @@ Use the `Typography` component whenever displaying text to ensure consistency ac
 
 - Use semantic variants (`h1`–`h6`, `body1`, `caption`, etc.) to reflect the document structure.
 - Avoid using raw `<h1>`–`<h6>` or `<p>` elements directly; always use the `Typography` component.
-- Pair with appropriate spacing (`gutterBottom`, `margin`, `padding`) using MUI props or system styles.
+- Pair with appropriate spacing (`component="div" gutterBottom`, `margin`, `padding`) using MUI props or system styles.
 
 ## Custom Variants
 
@@ -37,7 +37,7 @@ In addition to standard MUI variants, we've defined custom ones to suit applicat
 
 - `appTitle`: Used in global headers or application-level branding.
 - `pageTitle`: For top-level page titles.
-- `tableTitle`: For table headers or data section labels.
+- `tableTitle`: For table headings.
 - `body3`: For small body text.
 
 ## Examples
@@ -45,52 +45,52 @@ In addition to standard MUI variants, we've defined custom ones to suit applicat
 Below are all available variants displayed using the `Typography` component:
 
 <Unstyled>
-  <Typography variant="h1" gutterBottom>
+  <Typography variant="h1" component="div" gutterBottom>
     H1 - Heading 1
   </Typography>
-  <Typography variant="h2" gutterBottom>
+  <Typography variant="h2" component="div" gutterBottom>
     H2 - Heading 2
   </Typography>
-  <Typography variant="h3" gutterBottom>
+  <Typography variant="h3" component="div" gutterBottom>
     H3 - Heading 3
   </Typography>
-  <Typography variant="h4" gutterBottom>
+  <Typography variant="h4" component="div" gutterBottom>
     H4 - Heading 4
   </Typography>
-  <Typography variant="h5" gutterBottom>
+  <Typography variant="h5" component="div" gutterBottom>
     H5 - Heading 5
   </Typography>
-  <Typography variant="h6" gutterBottom>
+  <Typography variant="h6" component="div" gutterBottom>
     H6 - Heading 6
   </Typography>
-  <Typography variant="subtitle1" gutterBottom>
+  <Typography variant="subtitle1" component="div" gutterBottom>
     Subtitle 1
   </Typography>
-  <Typography variant="subtitle2" gutterBottom>
+  <Typography variant="subtitle2" component="div" gutterBottom>
     Subtitle 2
   </Typography>
-  <Typography variant="body1" gutterBottom>
+  <Typography variant="body1" component="div" gutterBottom>
     Body 1 - Primary text
   </Typography>
-  <Typography variant="body2" gutterBottom>
+  <Typography variant="body2" component="div" gutterBottom>
     Body 2 - Secondary text
   </Typography>
-  <Typography variant="body3" gutterBottom>
+  <Typography variant="body3" component="div" gutterBottom>
     Body 3 - Tertiary text
   </Typography>
-  <Typography variant="caption" gutterBottom>
+  <Typography variant="caption" component="div" gutterBottom>
     Caption - Small annotation text
   </Typography>
-  <Typography variant="overline" gutterBottom>
+  <Typography variant="overline" component="div" gutterBottom>
     Overline - All caps label
   </Typography>
-  <Typography variant="appTitle" gutterBottom>
-    App Title - Brand heading
+  <Typography variant="appTitle" component="div" gutterBottom>
+    App Title
   </Typography>
-  <Typography variant="pageTitle" gutterBottom>
-    Page Title - Top of screen title
+  <Typography variant="pageTitle" component="div" gutterBottom>
+    Page Title
   </Typography>
-  <Typography variant="tableTitle" gutterBottom>
-    Table Title - Label for data sections
+  <Typography variant="tableTitle" component="div" gutterBottom>
+    Table Title
   </Typography>
 </Unstyled>

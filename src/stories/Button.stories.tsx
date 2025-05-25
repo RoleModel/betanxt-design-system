@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
+import { FileDownloadOutlined } from '@mui/icons-material'
 import { Button as ButtonComponent } from '@mui/material'
-import  {FileDownloadOutlined} from '@mui/icons-material'
 
 const meta: Meta<typeof ButtonComponent> = {
   title: 'Components/Button',

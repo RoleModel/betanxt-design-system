@@ -14,6 +14,7 @@ interface StoryArgs extends Omit<CustomAlertProps, 'onClose'> {
 
 const meta = {
   title: 'Components/Alert',
+  description: 'Alerts are used to display important information to the user.',
   component: AlertComponent,
   parameters: {
     layout: 'centered',
@@ -29,8 +30,8 @@ const meta = {
   argTypes: {
     showicon: {
       control: 'boolean',
-      name: 'Show Icon',
-      description: 'Whether to show the icon',
+      name: 'showicon',
+      description: 'Custom property to show the icon',
     },
     elevation: {
       control: 'number',
@@ -53,30 +54,30 @@ const meta = {
     },
     centertext: {
       control: 'boolean',
-      name: 'Center Text',
-      description: 'Whether to center text',
+      name: 'centertext',
+      description: 'Custom property to center text',
     },
     severity: {
       control: 'select',
       options: ['error', 'warning', 'info', 'success'],
-      name: 'Severity',
+      name: 'severity',
       description: 'The severity of the alert',
     },
     variant: {
       control: 'select',
       options: ['standard', 'outlined', 'filled'],
-      name: 'Variant',
+      name: 'variant',
       description: 'The variant to use',
     },
     bordertop: {
       control: 'boolean',
-      name: 'Border Top',
-      description: 'Whether to show a top border',
+      name: 'bordertop',
+      description: 'Custom property to add a top border',
     },
     onClose: {
       control: 'boolean',
-      name: 'Show Close',
-      description: 'Show close icon',
+      name: 'onClose',
+      description: 'Show close button',
     },
   },
   args: {
@@ -96,7 +97,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Alert: Story = {
-  name: 'Default Alert',
+  name: 'Alert',
   args: {
     title: 'Alert Title',
     children: 'This is the alert message.',
@@ -318,34 +319,34 @@ export const SnackBarAlert: Story = {
 
     return (
       <Box sx={{ minHeight: 500, p: 2 }}>
-          <Snackbar
-            open={open}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            slots={{ transition: Slide }}
-            slotProps={{
-              transition: {
-                direction: 'left',
-                timeout: 300,
-                unmountOnExit: true,
-                onExited: () => {
-                  console.log('[Test Diagnostic] Slide transition onExited triggered.')
-                },
+        <Snackbar
+          open={open}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          slots={{ transition: Slide }}
+          slotProps={{
+            transition: {
+              direction: 'left',
+              timeout: 300,
+              unmountOnExit: true,
+              onExited: () => {
+                console.log('[Test Diagnostic] Slide transition onExited triggered.')
               },
-            }}
-            onClose={handleSnackbarClose}
-            autoHideDuration={60000}
-            disableWindowBlurListener={true}
-            data-testid="snackbar"
-          >
-            <AlertComponent
-              {...otherProps}
-              elevation={elevation}
-              severity={severity}
-              onClose={closeHandler}
-              action={actionButton}
-              data-testid="alert"
-            />
-          </Snackbar>
+            },
+          }}
+          onClose={handleSnackbarClose}
+          autoHideDuration={60000}
+          disableWindowBlurListener={true}
+          data-testid="snackbar"
+        >
+          <AlertComponent
+            {...otherProps}
+            elevation={elevation}
+            severity={severity}
+            onClose={closeHandler}
+            action={actionButton}
+            data-testid="alert"
+          />
+        </Snackbar>
 
         <Button
           variant="contained"

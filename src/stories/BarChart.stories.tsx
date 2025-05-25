@@ -1,7 +1,7 @@
+import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-import type { Meta, StoryObj } from '@storybook/react'
-import { BarChart as MuiBarChart, ChartsTooltip } from '@mui/x-charts'
+import { ChartsTooltip, BarChart as MuiBarChart } from '@mui/x-charts'
 
 import BarChart from '../components/BarChart'
 import type { BarChartProps } from '../components/BarChart'
@@ -109,10 +109,30 @@ function RenderBarChart(args: BarChartProps) {
   } = args
 
   const series = [
-    series1 && { dataKey: 'software', label: 'Software Revenue', color: 'var(--mui-palette-chartSeries-0-main)', valueFormatter },
-    series2 && { dataKey: 'hardware', label: 'Hardware Revenue', color: 'var(--mui-palette-chartSeries-1-main)', valueFormatter },
-    series3 && { dataKey: 'services', label: 'Services Revenue', color: 'var(--mui-palette-chartSeries-2-main)', valueFormatter },
-    series4 && { dataKey: 'cloud', label: 'Cloud Revenue', color: 'var(--mui-palette-chartSeries-3-main)', valueFormatter },
+    series1 && {
+      dataKey: 'software',
+      label: 'Software Revenue',
+      color: 'var(--mui-palette-chartSeries-0-main)',
+      valueFormatter,
+    },
+    series2 && {
+      dataKey: 'hardware',
+      label: 'Hardware Revenue',
+      color: 'var(--mui-palette-chartSeries-1-main)',
+      valueFormatter,
+    },
+    series3 && {
+      dataKey: 'services',
+      label: 'Services Revenue',
+      color: 'var(--mui-palette-chartSeries-2-main)',
+      valueFormatter,
+    },
+    series4 && {
+      dataKey: 'cloud',
+      label: 'Cloud Revenue',
+      color: 'var(--mui-palette-chartSeries-3-main)',
+      valueFormatter,
+    },
   ].filter(Boolean)
 
   const xAxisConfig = [

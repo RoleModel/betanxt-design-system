@@ -77,23 +77,39 @@ const TimeLine: React.FC<TimelineProps> = ({ items, position = 'left', title }) 
       >
         {items.map((item, index) => {
           // Determine the dot's appearance based on eventColor, isCurrent, or default to text.primary
-          let resolvedDotColorName: MuiTimelineItemData['eventColor'] | 'grey' = 'grey'; // Default to grey, which we'll map to text.primary
-          if (item.eventColor && item.eventColor !== 'default' && item.eventColor !== 'inherit') {
-            resolvedDotColorName = item.eventColor;
+          let resolvedDotColorName: MuiTimelineItemData['eventColor'] | 'grey' = 'grey' // Default to grey, which we'll map to text.primary
+          if (
+            item.eventColor &&
+            item.eventColor !== 'default' &&
+            item.eventColor !== 'inherit'
+          ) {
+            resolvedDotColorName = item.eventColor
           } else if (item.isCurrent) {
-            resolvedDotColorName = 'primary';
+            resolvedDotColorName = 'primary'
           }
 
-          let chipColor: ChipProps['color'] = 'default';
+          let chipColor: ChipProps['color'] = 'default'
           if (item.isCurrent) {
-            const eventChipColor = item.eventColor || 'default';
-            if (['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'].includes(eventChipColor)) {
-              chipColor = eventChipColor as ChipProps['color'];
+            const eventChipColor = item.eventColor || 'default'
+            if (
+              [
+                'default',
+                'primary',
+                'secondary',
+                'error',
+                'info',
+                'success',
+                'warning',
+              ].includes(eventChipColor)
+            ) {
+              chipColor = eventChipColor as ChipProps['color']
             }
           }
 
-          const determinedVariant = item.isCurrent ? 'outlined' : (item.dotVariant || 'filled');
-          let dotStyles: any = {}; // Using 'any' for SxProps<Theme>
+          const determinedVariant = item.isCurrent
+            ? 'outlined'
+            : item.dotVariant || 'filled'
+          let dotStyles: any = {} // Using 'any' for SxProps<Theme>
 
           if (item.isCurrent) {
             // Current items always get the special outline style
@@ -101,21 +117,24 @@ const TimeLine: React.FC<TimelineProps> = ({ items, position = 'left', title }) 
               outline: '2px solid',
               outlineOffset: '-6px',
               // resolvedDotColorName is 'primary' for current items due to your earlier change, or another semantic color if specified by eventColor
-              outlineColor: resolvedDotColorName === 'grey'
-                              ? 'text.primary'
-                              : `${resolvedDotColorName}.main`,
+              outlineColor:
+                resolvedDotColorName === 'grey'
+                  ? 'text.primary'
+                  : `${resolvedDotColorName}.main`,
               // Ensure the background is appropriate for an outlined current dot, often transparent or theme default for outlined
               // backgroundColor: 'transparent', // Optional: if color prop fills it unexpectedly
-            };
+            }
           } else if (determinedVariant === 'outlined') {
             // Non-current, outlined items
             dotStyles = {
               outlineColor: resolvedDotColorName === 'grey' ? 'text.primary' : undefined,
-            };
-          } else { // Non-current, filled items
+            }
+          } else {
+            // Non-current, filled items
             dotStyles = {
-              backgroundColor: resolvedDotColorName === 'grey' ? 'text.primary' : undefined,
-            };
+              backgroundColor:
+                resolvedDotColorName === 'grey' ? 'text.primary' : undefined,
+            }
           }
 
           return (
@@ -128,31 +147,34 @@ const TimeLine: React.FC<TimelineProps> = ({ items, position = 'left', title }) 
               <TimelineSeparator>
                 <TimelineDot
                   variant={determinedVariant}
-                  color={resolvedDotColorName !== 'grey' ? resolvedDotColorName : undefined}
+                  color={
+                    resolvedDotColorName !== 'grey' ? resolvedDotColorName : undefined
+                  }
                   sx={dotStyles}
                 />
-                {index < items.length - 1 && (() => {
-                  let connectorBgColor: string;
-                  const colorToUse = resolvedDotColorName;
+                {index < items.length - 1 &&
+                  (() => {
+                    let connectorBgColor: string
+                    const colorToUse = resolvedDotColorName
 
-                  if (colorToUse === 'grey') {
-                    // This handles:
-                    // 1. True default (text.primary)
-                    // 2. item.eventColor was 'default' (and not isCurrent)
-                    // 3. item.eventColor was 'inherit' (and not isCurrent)
-                    connectorBgColor = 'text.primary';
-                  } else {
-                    // colorToUse is 'warning', 'primary', 'secondary', 'error', 'info', or 'success'
-                    connectorBgColor = `${colorToUse}.main`;
-                  }
-                  return (
-                    <TimelineConnector
-                      sx={{
-                        bgcolor: connectorBgColor,
-                      }}
-                    />
-                  );
-                })()}
+                    if (colorToUse === 'grey') {
+                      // This handles:
+                      // 1. True default (text.primary)
+                      // 2. item.eventColor was 'default' (and not isCurrent)
+                      // 3. item.eventColor was 'inherit' (and not isCurrent)
+                      connectorBgColor = 'text.primary'
+                    } else {
+                      // colorToUse is 'warning', 'primary', 'secondary', 'error', 'info', or 'success'
+                      connectorBgColor = `${colorToUse}.main`
+                    }
+                    return (
+                      <TimelineConnector
+                        sx={{
+                          bgcolor: connectorBgColor,
+                        }}
+                      />
+                    )
+                  })()}
               </TimelineSeparator>
               <TimelineContent>
                 {!useOppositeContent && item.time && (

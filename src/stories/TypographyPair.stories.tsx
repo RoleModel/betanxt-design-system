@@ -173,7 +173,7 @@ const meta = {
     },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=14686-97372&t=nNrQpChNXPORG1Z5-4',
+      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=16545-5049&t=xDjojHY8OQPYiujl-11',
     },
     layout: 'centered',
   },

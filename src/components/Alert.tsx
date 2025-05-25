@@ -3,7 +3,8 @@ import React from 'react'
 import MuiAlert, { type AlertProps as MuiAlertProps } from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 
-export interface CustomAlertProps extends Omit<MuiAlertProps, 'variant' | 'title' | 'icon'> {
+export interface CustomAlertProps
+  extends Omit<MuiAlertProps, 'variant' | 'title' | 'icon'> {
   variant?: 'outlined' | 'filled' | 'standard'
   title?: React.ReactNode
   showicon?: boolean
@@ -45,10 +46,7 @@ export const Alert: React.FC<CustomAlertProps> = ({
   }
 
   return (
-    <MuiAlert
-      elevation={0}
-      {...allPropsForMuiAlert}
-    >
+    <MuiAlert elevation={0} {...allPropsForMuiAlert}>
       {title && <AlertTitle>{title}</AlertTitle>}
       {children}
     </MuiAlert>

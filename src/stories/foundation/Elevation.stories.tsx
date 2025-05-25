@@ -44,7 +44,7 @@ export const Elevation: Story = {
                   justifyContent: 'center',
                 }}
               >
-                <Typography variant="body1">Elevation {elevation}</Typography>
+                <Typography variant="body3">Elevation {elevation}</Typography>
               </Paper>
             </Grid>
           ))}

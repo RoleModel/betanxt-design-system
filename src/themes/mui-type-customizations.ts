@@ -198,20 +198,20 @@ declare module '@mui/material/Typography' {
 
 declare module '@mui/material/Alert' {
   interface AlertPropsVariantOverrides {
-    standard?: true;
-    filled?: true;
-    outlined?: true;
+    standard?: true
+    filled?: true
+    outlined?: true
   }
   interface AlertProps {
-    bordertop?: string | boolean;
-    centertext?: string | boolean;
-    showicon?: string | boolean;
-}
+    bordertop?: string | boolean
+    centertext?: string | boolean
+    showicon?: string | boolean
+  }
 
   interface AlertOwnProps {
-    bordertop?: string;
-    centertext?: string;
-    showicon?: string;
+    bordertop?: string
+    centertext?: string
+    showicon?: string
   }
 }
 

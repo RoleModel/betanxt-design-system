@@ -3,14 +3,6 @@ import type { AlertProps } from '@mui/material/Alert'
 
 import { bnblue, orangered, persimmon, seagrass } from '../palette-tokens/brand-tokens'
 
-interface AlertOwnerState {
-  variant?: AlertProps['variant']
-  severity?: AlertProps['severity']
-  bordertop?: string
-  centertext?: string
-  showicon?: string
-}
-
 const components: ThemeOptions['components'] = {
   MuiAlert: {
     styleOverrides: {
@@ -83,100 +75,63 @@ const components: ThemeOptions['components'] = {
         ],
       },
       outlinedSuccess: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-successColor': seagrass[700],
-        '--mui-palette-Alert-successIconColor': 'inherit',
+        color: seagrass[700],
         border: `1px solid ${theme.vars.palette.success.main}`,
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-successColor': seagrass[200],
+          color: seagrass[200],
         }),
       }),
       outlinedError: ({ theme }) => ({
-        '--mui-palette-Alert-errorColor': orangered[700],
-        '--mui-palette-Alert-errorIconColor': 'inherit',
+        color: orangered[700],
         border: `1px solid ${theme.vars.palette.error.main}`,
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-errorColor': orangered[200],
+          color: orangered[200],
         }),
       }),
       outlinedWarning: ({ theme }: { theme: Theme }) => ({
         border: `1px solid ${theme.vars.palette.warning.main}`,
-        '--mui-palette-Alert-warningColor': persimmon[700],
-        '--mui-palette-Alert-warningIconColor': 'inherit',
+        color: persimmon[700],
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-warningColor': persimmon[200],
+          color: persimmon[200],
         }),
       }),
       outlinedInfo: ({ theme }: { theme: Theme }) => ({
         border: `1px solid ${theme.vars.palette.info.main}`,
-        '--mui-palette-Alert-infoColor': bnblue[600],
-        '--mui-palette-Alert-infoIconColor': 'inherit',
+        color: bnblue[600],
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-infoColor': bnblue[200],
+          color: bnblue[200],
         }),
       }),
       standardSuccess: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-successStandardBg': seagrass[100],
-        '--mui-palette-Alert-successColor': seagrass[600],
+        backgroundColor: seagrass[100],
+        color: seagrass[600],
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-successStandardBg': seagrass[800],
-          '--mui-palette-Alert-successColor': seagrass[200],
+          backgroundColor: seagrass[800],
+          color: seagrass[200],
         }),
       }),
       standardError: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-errorStandardBg': orangered[100],
-        '--mui-palette-Alert-errorColor': orangered[700],
+        backgroundColor: orangered[100],
+        color: orangered[700],
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-errorStandardBg': orangered[900],
-          '--mui-palette-Alert-errorColor': orangered[200],
+          backgroundColor: orangered[900],
+          color: orangered[200],
         }),
       }),
       standardWarning: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-warningStandardBg': persimmon[100],
-        '--mui-palette-Alert-warningColor': persimmon[800],
+        backgroundColor: persimmon[100],
+        color: persimmon[800],
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-warningStandardBg': persimmon[800],
-          '--mui-palette-Alert-warningColor': persimmon[200],
+          backgroundColor: persimmon[800],
+          color: persimmon[200],
         }),
       }),
       standardInfo: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-infoStandardBg': bnblue[100],
-        '--mui-palette-Alert-infoColor': bnblue[600],
+        backgroundColor: bnblue[100],
+        color: bnblue[600],
         ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-infoStandardBg': bnblue[900],
-          '--mui-palette-Alert-infoColor': bnblue[200],
-        }),
-      }),
-      filledSuccess: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-successFilledBg': theme.vars.palette.success.main,
-        '--mui-palette-Alert-successFilledColor': theme.vars.palette.success.contrastText,
-        ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-successFilledBg': theme.vars.palette.success.dark,
-          '--mui-palette-Alert-successFilledColor': theme.vars.palette.common.white,
-        }),
-      }),
-      filledError: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-errorFilledBg': theme.vars.palette.error.main,
-        '--mui-palette-Alert-errorFilledColor': theme.vars.palette.error.contrastText,
-        ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-errorFilledBg': theme.vars.palette.error.dark,
-          '--mui-palette-Alert-errorFilledColor': theme.vars.palette.error.contrastText,
-        }),
-      }),
-      filledWarning: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-warningFilledBg': theme.vars.palette.warning.main,
-        '--mui-palette-Alert-warningFilledColor': theme.vars.palette.warning.contrastText,
-        ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-warningFilledBg': theme.vars.palette.warning.dark,
-          '--mui-palette-Alert-warningFilledColor':
-            theme.vars.palette.warning.contrastText,
-        }),
-      }),
-      filledInfo: ({ theme }: { theme: Theme }) => ({
-        '--mui-palette-Alert-infoFilledBg': theme.vars.palette.info.main,
-        '--mui-palette-Alert-infoFilledColor': theme.vars.palette.info.contrastText,
-        ...theme.applyStyles('dark', {
-          '--mui-palette-Alert-infoFilledBg': theme.vars.palette.info.dark,
-          '--mui-palette-Alert-infoFilledColor': theme.vars.palette.common.white,
+          backgroundColor: bnblue[900],
+          color: bnblue[200],
         }),
       }),
     },

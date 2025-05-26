@@ -50,10 +50,10 @@ export const basePaletteLight: PaletteOptions = {
     contrastText: '#ffffff',
   },
   warning: {
-    main: persimmon[600],
-    dark: persimmon[700],
+    main: persimmon[500],
+    dark: persimmon[800],
     light: persimmon[400],
-    contrastText: '#FFFFFF',
+    contrastText: '#000000',
   },
   info: {
     main: bnblue[500],

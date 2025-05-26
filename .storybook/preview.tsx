@@ -19,31 +19,31 @@ import { dark, light } from './theme'
 import './utils/patch-mui-display-name'
 
 
-// Custom hook to watch for MUI color scheme changes
-const useMuiColorScheme = () => {
-  const [colorScheme, setColorScheme] = useState(() => {
-    return document.documentElement.dataset.muiColorScheme || 'light'
+// Custom hook to watch for dark mode class changes
+const useDarkMode = () => {
+  const [isDark, setIsDark] = useState(() => {
+    return document.documentElement.classList.contains('dark')
   })
 
   useEffect(() => {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-mui-color-scheme') {
-          const newScheme = document.documentElement.dataset.muiColorScheme || 'light'
-          setColorScheme(newScheme)
+        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          const hasDarkClass = document.documentElement.classList.contains('dark')
+          setIsDark(hasDarkClass)
         }
       })
     })
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['data-mui-color-scheme']
+      attributeFilter: ['class']
     })
 
     return () => observer.disconnect()
   }, [])
 
-  return colorScheme
+  return isDark
 }
 
 const preview: Preview = {
@@ -64,14 +64,14 @@ const preview: Preview = {
   parameters: {
     docs: {
       container: ({ children, context }) => {
-        const muiColorScheme = useMuiColorScheme()
-        const themeMode = muiColorScheme === 'dark' ? 'dark' : 'light'
+        const isDarkMode = useDarkMode()
+        const themeMode = isDarkMode ? 'dark' : 'light'
 
         return (
           <ThemeProvider theme={betanxtTheme} defaultMode={themeMode}>
             <CssBaseline enableColorScheme />
             <MuiThemeModeToggle isPrimaryController={false} />
-            <DocsContainer context={context} theme={themeMode === 'dark' ? dark : light}>
+            <DocsContainer context={context} theme={isDarkMode ? dark : light}>
               {children}
             </DocsContainer>
           </ThemeProvider>

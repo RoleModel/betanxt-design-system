@@ -26,12 +26,12 @@
   }
 
   /* Typography adjustments for dark mode to prevent layout shifts */
-  [data-mui-color-scheme="dark"] h1,
-  [data-mui-color-scheme="dark"] h2,
-  [data-mui-color-scheme="dark"] h3,
-  [data-mui-color-scheme="dark"] h4,
-  [data-mui-color-scheme="dark"] h5,
-  [data-mui-color-scheme="dark"] h6 {
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
     letter-spacing: 0.2px !important;
     /* Force consistent text rendering */
     -webkit-font-smoothing: antialiased;
@@ -50,12 +50,12 @@
   }
 
   /* Specific fixes for dark mode heading links */
-  [data-mui-color-scheme="dark"] h1 a,
-  [data-mui-color-scheme="dark"] h2 a,
-  [data-mui-color-scheme="dark"] h3 a,
-  [data-mui-color-scheme="dark"] h4 a,
-  [data-mui-color-scheme="dark"] h5 a,
-  [data-mui-color-scheme="dark"] h6 a {
+  .dark h1 a,
+  .dark h2 a,
+  .dark h3 a,
+  .dark h4 a,
+  .dark h5 a,
+  .dark h6 a {
     line-height: inherit !important;
     margin-left: -24px !important;
     padding-left: 0 !important;
@@ -69,32 +69,32 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1 {
+  h1:not([class]) {
     font: var(--mui-font-h1);
     color: var(--mui-palette-text-primary) !important;
   }
 
-  h2 {
+  h2:not([class]) {
     font: var(--mui-font-h2);
     color: var(--mui-palette-text-primary) !important;
   }
 
-  h3 {
+  h3:not([class]) {
     font: var(--mui-font-h3);
     color: var(--mui-palette-text-primary) !important;
   }
 
-  h4 {
+  h4:not([class]) {
     font: var(--mui-font-h4);
     color: var(--mui-palette-text-primary) !important;
   }
 
-  h5 {
+  h5:not([class]) {
     font: var(--mui-font-h5);
     color: var(--mui-palette-text-primary) !important;
   }
 
-  h6 {
+  h6:not([class]) {
     font: var(--mui-font-h6);
     color: var(--mui-palette-text-primary) !important;
   }

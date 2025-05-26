@@ -24,17 +24,18 @@ export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
   // Only emit to manager when mode changes locally (not from manager)
   useEffect(() => {
     if (mode) {
-      // Always update the documentElement dataset
-      document.documentElement.dataset.muiColorScheme = mode
+      // Update the document class for dark mode
+      if (mode === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
 
       // Only emit if this wasn't triggered by the manager AND the mode actually changed
       if (!isExternalChangeRef.current && lastEmittedModeRef.current !== mode) {
         channel.emit('mui-theme-mode-changed', mode)
         lastEmittedModeRef.current = mode
       }
-    } else {
-      // If mode becomes undefined, remove the attribute
-      delete document.documentElement.dataset.muiColorScheme
     }
   }, [mode, channel, isPrimaryController])
 

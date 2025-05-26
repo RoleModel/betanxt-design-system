@@ -80,6 +80,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
+        method: 'none',
         includeNames: true,
         order: [
           'Guides',

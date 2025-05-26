@@ -155,7 +155,7 @@ export const basePaletteDark: PaletteOptions = {
     main: bnblue[300],
     dark: bnblue[500],
     light: bnblue[200],
-    contrastText: '#ffffff',
+    contrastText: '#000000',
   },
   text: {
     primary: '#f3f3f3',

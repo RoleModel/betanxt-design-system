@@ -74,7 +74,7 @@ const ColorSwatch = ({ colorDef, label }: ColorSwatchProps) => {
   }, [colorDef, actualMuiMode, theme.palette.mode]);
 
   return (
-    <Box sx={{ width: '20%', minWidth: 120}}>
+    <Box sx={{ width: '20%', minWidth: 180}}>
       <Paper variant="outlined" sx={{ p: 0.5, borderRadius: 2.5 }}>
         <Stack spacing={0}>
           <Box

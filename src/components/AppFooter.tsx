@@ -21,8 +21,8 @@ export function AppFooter({
       sx={{
         gridArea: 'footer',
         display: 'flex',
-        alignItems: 'center',
-        paddingInline: 2,
+        alignItems: {xs: 'flex-end', sm: 'center'},
+        padding: 2,
         backgroundColor: 'footer.background',
         justifyContent: 'space-between',
         flexWrap: 'nowrap',
@@ -30,26 +30,26 @@ export function AppFooter({
         minHeight: theme.layout?.footerHeight,
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Typography variant="body2" sx={{ color: 'inherit' }}>
-          2025 BetaNXT L.P.
+      <Box sx={{ display: 'flex', flexDirection: {xs: 'column-reverse', sm: 'row'}, alignItems: {xs: 'flex-start', sm: 'center'}, gap: {xs: 1, sm: 2} }}>
+        <Typography variant="body2" sx={{ color: 'inherit', whiteSpace: 'nowrap' }}>
+           &copy; 2025 BetaNXT Inc.
         </Typography>
         <Divider
           orientation="vertical"
           variant="fullWidth"
           flexItem
-          sx={{ backgroundColor: 'primary.contrastText' }}
+          sx={{ backgroundColor: 'common.white', display: {xs: 'none', sm: 'block'}}}
         />
         {additionalCopyright && (
           <>
-            <Typography variant="body2" sx={{ color: 'inherit' }}>
+            <Typography variant="body2" sx={{ color: 'inherit', whiteSpace: 'nowrap' }}>
               {additionalCopyright}
             </Typography>
             <Divider
               orientation="vertical"
               variant="fullWidth"
               flexItem
-              sx={{ backgroundColor: 'primary.contrastText' }}
+              sx={{ backgroundColor: 'common.white', display: {xs: 'none', sm: 'block'} }}
             />
           </>
         )}
@@ -58,7 +58,7 @@ export function AppFooter({
           underline="none"
           target="_blank"
           variant="body2"
-          sx={{ color: 'inherit' }}
+          sx={{ color: 'inherit', whiteSpace: 'nowrap' }}
         >
           Privacy Statement
         </Link>

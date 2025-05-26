@@ -6,7 +6,6 @@ const components: ThemeOptions['components'] = {
       root: ({ theme }) => ({
         color: theme.vars.palette.link,
         fontWeight: 500,
-        textDecoration: 'none',
       }),
     },
   },

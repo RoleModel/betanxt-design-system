@@ -8,7 +8,7 @@ import '@fontsource/roboto/700.css'
 import { DocsContainer } from '@storybook/blocks'
 import type { Preview } from '@storybook/react'
 import { useGlobals } from '@storybook/preview-api'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { CssBaseline, ThemeProvider } from '@mui/material'
 
@@ -18,14 +18,42 @@ import { MuiThemeModeToggle } from './addons/mui-theme-toggle/preview'
 import { dark, light } from './theme'
 import './utils/patch-mui-display-name'
 
+
+// Custom hook to watch for MUI color scheme changes
+const useMuiColorScheme = () => {
+  const [colorScheme, setColorScheme] = useState(() => {
+    return document.documentElement.dataset.muiColorScheme || 'light'
+  })
+
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-mui-color-scheme') {
+          const newScheme = document.documentElement.dataset.muiColorScheme || 'light'
+          setColorScheme(newScheme)
+        }
+      })
+    })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-mui-color-scheme']
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  return colorScheme
+}
+
 const preview: Preview = {
   decorators: [
     (Story) => {
       const [globals] = useGlobals();
-      const storybookUIThemeName = globals.theme;
+      const storybookUIThemeName = globals.theme || 'light';
 
       return (
-        <ThemeProvider theme={betanxtTheme} key={storybookUIThemeName}>
+        <ThemeProvider theme={betanxtTheme} defaultMode={storybookUIThemeName}>
           <CssBaseline enableColorScheme />
           <MuiThemeModeToggle isPrimaryController={true} />
           <Story />
@@ -36,13 +64,14 @@ const preview: Preview = {
   parameters: {
     docs: {
       container: ({ children, context }) => {
-        const isDark = document.documentElement.classList.contains('dark')
+        const muiColorScheme = useMuiColorScheme()
+        const themeMode = muiColorScheme === 'dark' ? 'dark' : 'light'
 
         return (
-          <ThemeProvider theme={betanxtTheme} key={isDark ? 'dark' : 'light'}>
+          <ThemeProvider theme={betanxtTheme} defaultMode={themeMode}>
             <CssBaseline enableColorScheme />
             <MuiThemeModeToggle isPrimaryController={false} />
-            <DocsContainer context={context} theme={isDark ? dark : light}>
+            <DocsContainer context={context} theme={themeMode === 'dark' ? dark : light}>
               {children}
             </DocsContainer>
           </ThemeProvider>
@@ -51,6 +80,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
+        includeNames: true,
         order: [
           'Guides',
           ['Introduction', 'Using the Theme'],

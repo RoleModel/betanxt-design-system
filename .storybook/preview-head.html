@@ -14,10 +14,59 @@
 
   html {
     font-family: var(--font-roboto);
+    /* Improve font rendering consistency across light/dark modes */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
+
   body {
     background-color: var(--mui-palette-background-default) !important;
     color: var(--mui-palette-text-primary) !important;
+  }
+
+  /* Typography adjustments for dark mode to prevent layout shifts */
+  [data-mui-color-scheme="dark"] h1,
+  [data-mui-color-scheme="dark"] h2,
+  [data-mui-color-scheme="dark"] h3,
+  [data-mui-color-scheme="dark"] h4,
+  [data-mui-color-scheme="dark"] h5,
+  [data-mui-color-scheme="dark"] h6 {
+    letter-spacing: 0.2px !important;
+    /* Force consistent text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Fix layout shifts for heading anchor links in docs */
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    line-height: inherit !important;
+    margin-left: -24px !important;
+    padding-left: 0 !important;
+    float: left !important;
+    display: inline !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Specific fixes for dark mode heading links */
+  [data-mui-color-scheme="dark"] h1 a,
+  [data-mui-color-scheme="dark"] h2 a,
+  [data-mui-color-scheme="dark"] h3 a,
+  [data-mui-color-scheme="dark"] h4 a,
+  [data-mui-color-scheme="dark"] h5 a,
+  [data-mui-color-scheme="dark"] h6 a {
+    line-height: inherit !important;
+    margin-left: -24px !important;
+    padding-left: 0 !important;
+    float: left !important;
+  }
+
+  /* Ensure all typography elements have consistent rendering */
+  h1, h2, h3, h4, h5, h6, p, span, div {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1 {

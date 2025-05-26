@@ -5,7 +5,13 @@ import { ChartsTooltip } from '@mui/x-charts'
 import type { LineChartProps } from '@mui/x-charts/LineChart'
 import { LineChart } from '@mui/x-charts/LineChart'
 
-// Define a type for the story arguments that includes our custom controls
+import ChartGradientFill from '../components/ChartGradientFill'
+import { useChartGradients } from '../components/useChartGradients'
+
+const LineChartForStorybook = (props: LineChartProps) => <LineChart {...props} />
+Object.defineProperty(LineChartForStorybook, 'name', { value: 'LineChart' })
+LineChartForStorybook.displayName = 'LineChart'
+
 interface LineChartStoryArgs extends LineChartProps {
   hideLegend?: boolean
   legendPositionVertical?: 'top' | 'middle' | 'bottom'
@@ -18,6 +24,7 @@ interface LineChartStoryArgs extends LineChartProps {
   color1?: string
   color2?: string
   color3?: string
+  useGradientFill?: boolean
 }
 
 const colorOptions = [
@@ -30,21 +37,31 @@ const colorOptions = [
   'var(--mui-palette-chartSeries-6-main)',
   'var(--mui-palette-chartSeries-7-main)',
   'var(--mui-palette-chartSeries-8-main)',
-  'var(--mui-palette-chartSeries-9-main)',
 ]
 
 const meta: Meta<LineChartStoryArgs> = {
   title: 'Components/Charts/LineChart',
-  component: LineChart,
+  component: LineChartForStorybook,
+  subcomponents: {
+    ChartGradientFill,
+  },
   parameters: {
-    component: LineChart,
+    component: LineChartForStorybook,
     layout: 'centered',
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=11768-89901&t=nNrQpChNXPORG1Z5-11', // Replace with actual Figma link if available
+      url: 'https://www.figma.com/design/w1pqRAs10H0goKjxJl6HES/MUI-v6.1.0?node-id=11768-89901&t=nNrQpChNXPORG1Z5-11',
     },
     controls: {
       expanded: true,
+    },
+    docs: {
+      description: {
+        component: `
+The **LineChart** component from MUI X-Charts with enhanced gradient fill capabilities.
+
+        `,
+      },
     },
   },
   argTypes: {
@@ -62,7 +79,6 @@ const meta: Meta<LineChartStoryArgs> = {
           'var(--mui-palette-chartSeries-6-main)': 'Series 6',
           'var(--mui-palette-chartSeries-7-main)': 'Series 7',
           'var(--mui-palette-chartSeries-8-main)': 'Series 8',
-          'var(--mui-palette-chartSeries-9-main)': 'Series 9',
         },
       },
       options: colorOptions,
@@ -84,7 +100,6 @@ const meta: Meta<LineChartStoryArgs> = {
           'var(--mui-palette-chartSeries-6-main)': 'Series 6',
           'var(--mui-palette-chartSeries-7-main)': 'Series 7',
           'var(--mui-palette-chartSeries-8-main)': 'Series 8',
-          'var(--mui-palette-chartSeries-9-main)': 'Series 9',
         },
       },
       options: colorOptions,
@@ -105,7 +120,6 @@ const meta: Meta<LineChartStoryArgs> = {
           'var(--mui-palette-chartSeries-6-main)': 'Series 6',
           'var(--mui-palette-chartSeries-7-main)': 'Series 7',
           'var(--mui-palette-chartSeries-8-main)': 'Series 8',
-          'var(--mui-palette-chartSeries-9-main)': 'Series 9',
         },
       },
       options: colorOptions,
@@ -164,6 +178,13 @@ const meta: Meta<LineChartStoryArgs> = {
       description: 'Toggle the visibility of the area fill under lines.',
       defaultValue: true,
     },
+    useGradientFill: {
+      control: 'boolean',
+      name: 'Use Gradient Fill',
+      description: 'Apply gradient fill to area plots using series colors.',
+      defaultValue: false,
+      if: { arg: 'showArea', truthy: true },
+    },
   },
 }
 
@@ -173,7 +194,7 @@ type Story = StoryObj<LineChartStoryArgs>
 
 const uData = [1500, 2300, 2800, 3100, 2600, 3000, 3900, 3600, 4200, 4800, 5300, 5100]
 const pData = [900, 1800, 2200, 2500, 3200, 2600, 3400, 4100, 3500, 4300, 4700, 5800]
-const fData = [400, 1200, 700, 2000, 4700, 2100, 2900, 3300, 3000, 3700, 4200, 4600]
+const fData = [2600, 2200, 700, 2000, 4700, 2100, 2900, 1600, 3000, 3700, 4200, 4600]
 const xLabels = [
   'Jan',
   'Feb',
@@ -189,8 +210,6 @@ const xLabels = [
   'Dec',
 ]
 
-LineChart.displayName = 'LineChart'
-
 export const DefaultLineChart: Story = {
   name: 'Line Chart',
   args: {
@@ -204,6 +223,7 @@ export const DefaultLineChart: Story = {
     showArea: true,
     gridHorizontal: false,
     gridVertical: false,
+    useGradientFill: false,
   },
   render: function RenderLineChart(storyArgs: LineChartStoryArgs) {
     const color1 = storyArgs.color1 || 'var(--mui-palette-chartSeries-0-main)'
@@ -219,8 +239,20 @@ export const DefaultLineChart: Story = {
       scaleType,
       gridHorizontal,
       gridVertical,
+      useGradientFill,
       ...restArgs
     } = storyArgs
+
+    // Use the reusable gradient hook
+    const { gradientSeries, gradientStyles } = useChartGradients({
+      enabled: Boolean(useGradientFill && showArea),
+      series: [
+        { id: 'series-1', color: color1, startOpacity: 1, endOpacity: 0 },
+        { id: 'series-2', color: color2, startOpacity: 1, endOpacity: 0 },
+        { id: 'series-3', color: color3, startOpacity: 1, endOpacity: 0 },
+      ],
+      chartType: 'line',
+    })
 
     const chartSeries = [
       {
@@ -231,6 +263,7 @@ export const DefaultLineChart: Story = {
         yAxisKey: 'one',
         color: color1,
         labelMarkType: 'circle',
+        id: 'series-1',
       },
       {
         data: fData,
@@ -240,6 +273,7 @@ export const DefaultLineChart: Story = {
         yAxisKey: 'two',
         color: color2,
         labelMarkType: 'circle',
+        id: 'series-2',
       },
       {
         data: uData,
@@ -249,6 +283,7 @@ export const DefaultLineChart: Story = {
         yAxisKey: 'three',
         color: color3,
         labelMarkType: 'circle',
+        id: 'series-3',
       },
     ]
 
@@ -282,8 +317,161 @@ export const DefaultLineChart: Story = {
         horizontal: gridHorizontal,
         vertical: gridVertical,
       },
+      sx: {
+        // '& .MuiAreaElement-root': {
+        //   filter: 'brightness(1)',
+        // },
+        ...gradientStyles,
+      },
     } as LineChartProps
 
-    return <LineChart {...chartProps} />
+    return (
+      <LineChartForStorybook {...chartProps}>
+        {gradientSeries.length > 0 && (
+          <ChartGradientFill series={gradientSeries} />
+        )}
+      </LineChartForStorybook>
+    )
+  },
+}
+
+export const GradientShowcase: Story = {
+  name: 'Gradient Fill',
+  args: {
+    width: 800,
+    height: 300,
+    showMark: false,
+    hideLegend: false,
+    scaleType: 'point',
+    legendPositionVertical: 'top',
+    showTooltip: true,
+    showArea: true,
+    gridHorizontal: false,
+    gridVertical: false,
+    useGradientFill: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+This story demonstrates the **ChartGradientFill** component capabilities:
+
+- **Configurable Opacity**: Adjust start and end opacity values
+- **Multiple Series**: Each series gets its own gradient with the selected color
+- **Real-time Updates**: Changes reflect immediately when you modify controls
+- **Color Coordination**: Gradients automatically use the series colors
+
+The ChartGradientFill component is reusable across different chart types (LineChart, BarChart, etc.) and provides a consistent gradient experience throughout your design system.
+        `,
+      },
+    },
+  },
+  render: function RenderGradientShowcase(storyArgs: LineChartStoryArgs) {
+    const color1 = storyArgs.color1 || 'var(--mui-palette-chartSeries-0-main)'
+    const color2 = storyArgs.color2 || 'var(--mui-palette-chartSeries-1-main)'
+    const color3 = storyArgs.color3 || 'var(--mui-palette-chartSeries-2-main)'
+
+    const {
+      showMark,
+      hideLegend,
+      legendPositionVertical,
+      showTooltip,
+      showArea,
+      scaleType,
+      gridHorizontal,
+      gridVertical,
+      useGradientFill,
+      ...restArgs
+    } = storyArgs
+
+    // Use the reusable gradient hook
+    const { gradientSeries, gradientStyles } = useChartGradients({
+      enabled: Boolean(useGradientFill && showArea),
+      series: [
+        { id: 'series-1', color: color1, startOpacity: 1, endOpacity: 0 },
+        { id: 'series-2', color: color2, startOpacity: 1, endOpacity: 0 },
+        { id: 'series-3', color: color3, startOpacity: 1, endOpacity: 0 },
+      ],
+      chartType: 'line',
+    })
+
+    const chartSeries = [
+      {
+        data: pData,
+        showMark,
+        label: 'S&P 500',
+        area: showArea,
+        yAxisKey: 'one',
+        color: color1,
+        labelMarkType: 'circle',
+        id: 'series-1',
+      },
+      {
+        data: fData,
+        showMark,
+        label: 'FTSE 100',
+        area: showArea,
+        yAxisKey: 'two',
+        color: color2,
+        labelMarkType: 'circle',
+        id: 'series-2',
+      },
+      {
+        data: uData,
+        showMark,
+        label: 'Dow Jones',
+        area: showArea,
+        yAxisKey: 'three',
+        color: color3,
+        labelMarkType: 'circle',
+        id: 'series-3',
+      },
+    ]
+
+    const xAxisConfig = [{ scaleType, data: xLabels }]
+    const yAxisConfig = [{ id: 'one' }, { id: 'two' }, { id: 'three' }]
+
+    const slotPropsConfig = {
+      legend: !hideLegend
+        ? {
+            position: {
+              vertical: legendPositionVertical,
+            },
+          }
+        : undefined,
+      tooltip: {
+        trigger: showTooltip ? 'axis' : 'none',
+      },
+    }
+
+    const chartProps = {
+      ...restArgs,
+      xAxis: xAxisConfig,
+      yAxis: yAxisConfig,
+      series: chartSeries,
+      hideLegend: hideLegend,
+      slots: {
+        tooltip: ChartsTooltip,
+      },
+      slotProps: slotPropsConfig,
+      grid: {
+        horizontal: gridHorizontal,
+        vertical: gridVertical,
+      },
+      sx: {
+        // '& .MuiAreaElement-root': {
+        //   filter: 'brightness(1)',
+        // },
+        ...gradientStyles,
+      },
+    } as LineChartProps
+
+    return (
+      <LineChartForStorybook {...chartProps}>
+        {gradientSeries.length > 0 && (
+          <ChartGradientFill series={gradientSeries} />
+        )}
+      </LineChartForStorybook>
+    )
   },
 }

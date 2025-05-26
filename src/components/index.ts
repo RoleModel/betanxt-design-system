@@ -3,7 +3,6 @@ export { default as ChartGradientFill } from './ChartGradientFill'
 export type {
   ChartGradientFillProps,
   SeriesGradient,
-  GradientStop
 } from './ChartGradientFill'
 
 export { useChartGradients } from './useChartGradients'

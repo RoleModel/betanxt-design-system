@@ -58,7 +58,7 @@ const meta: Meta<LineChartStoryArgs> = {
     docs: {
       description: {
         component: `
-The **LineChart** component from MUI X-Charts with enhanced gradient fill capabilities.
+The **LineChart** component from MUI X-Charts.
 
         `,
       },
@@ -192,9 +192,9 @@ export default meta
 
 type Story = StoryObj<LineChartStoryArgs>
 
-const uData = [1500, 2300, 2800, 3100, 2600, 3000, 3900, 3600, 4200, 4800, 5300, 5100]
-const pData = [900, 1800, 2200, 2500, 3200, 2600, 3400, 4100, 3500, 4300, 4700, 5800]
-const fData = [2600, 2200, 700, 2000, 4700, 2100, 2900, 1600, 3000, 3700, 4200, 4600]
+const uData = [800 , 1200, 1700, 2100, 1400, 2900, 3200, 4000, 5700, 4024, 5700, 4100]
+const pData = [1800, 2100, 1000, 2100, 3600, 3000, 3900, 3600, 4700, 3024, 5300, 5100]
+const fData = [500 , 1000, 2000, 3100, 2600, 3000, 2900, 3600, 3500, 4024, 2300, 4100]
 const xLabels = [
   'Jan',
   'Feb',
@@ -226,9 +226,9 @@ export const DefaultLineChart: Story = {
     useGradientFill: false,
   },
   render: function RenderLineChart(storyArgs: LineChartStoryArgs) {
-    const color1 = storyArgs.color1 || 'var(--mui-palette-chartSeries-0-main)'
-    const color2 = storyArgs.color2 || 'var(--mui-palette-chartSeries-1-main)'
-    const color3 = storyArgs.color3 || 'var(--mui-palette-chartSeries-2-main)'
+    const color1 = storyArgs.color1 || 'var(--mui-palette-chartSeries-2-main)'
+    const color2 = storyArgs.color2 || 'var(--mui-palette-chartSeries-0-main)'
+    const color3 = storyArgs.color3 || 'var(--mui-palette-chartSeries-1-main)'
 
     const {
       showMark,
@@ -244,14 +244,13 @@ export const DefaultLineChart: Story = {
     } = storyArgs
 
     // Use the reusable gradient hook
-    const { gradientSeries, gradientStyles } = useChartGradients({
+    const { gradientSeries } = useChartGradients({
       enabled: Boolean(useGradientFill && showArea),
       series: [
-        { id: 'series-1', color: color1, startOpacity: 1, endOpacity: 0 },
-        { id: 'series-2', color: color2, startOpacity: 1, endOpacity: 0 },
-        { id: 'series-3', color: color3, startOpacity: 1, endOpacity: 0 },
+        { id: 'series-1', color: color1 },
+        { id: 'series-2', color: color2 },
+        { id: 'series-3', color: color3 },
       ],
-      chartType: 'line',
     })
 
     const chartSeries = [
@@ -317,20 +316,16 @@ export const DefaultLineChart: Story = {
         horizontal: gridHorizontal,
         vertical: gridVertical,
       },
-      sx: {
-        // '& .MuiAreaElement-root': {
-        //   filter: 'brightness(1)',
-        // },
-        ...gradientStyles,
-      },
     } as LineChartProps
 
     return (
-      <LineChartForStorybook {...chartProps}>
-        {gradientSeries.length > 0 && (
-          <ChartGradientFill series={gradientSeries} />
-        )}
-      </LineChartForStorybook>
+      <div data-chart-id="default-line-chart">
+        <LineChartForStorybook {...chartProps}>
+          {useGradientFill && showArea && (
+            <ChartGradientFill series={gradientSeries} chartId="default-line-chart" />
+          )}
+        </LineChartForStorybook>
+      </div>
     )
   },
 }
@@ -356,12 +351,10 @@ export const GradientShowcase: Story = {
         story: `
 This story demonstrates the **ChartGradientFill** component capabilities:
 
-- **Configurable Opacity**: Adjust start and end opacity values
 - **Multiple Series**: Each series gets its own gradient with the selected color
-- **Real-time Updates**: Changes reflect immediately when you modify controls
 - **Color Coordination**: Gradients automatically use the series colors
 
-The ChartGradientFill component is reusable across different chart types (LineChart, BarChart, etc.) and provides a consistent gradient experience throughout your design system.
+The ChartGradientFill component is reusable across chart types (LineChart, BarChart, etc.).
         `,
       },
     },
@@ -385,14 +378,13 @@ The ChartGradientFill component is reusable across different chart types (LineCh
     } = storyArgs
 
     // Use the reusable gradient hook
-    const { gradientSeries, gradientStyles } = useChartGradients({
+    const { gradientSeries } = useChartGradients({
       enabled: Boolean(useGradientFill && showArea),
       series: [
-        { id: 'series-1', color: color1, startOpacity: 1, endOpacity: 0 },
-        { id: 'series-2', color: color2, startOpacity: 1, endOpacity: 0 },
-        { id: 'series-3', color: color3, startOpacity: 1, endOpacity: 0 },
+        { id: 'series-1', color: color1 },
+        { id: 'series-2', color: color2 },
+        { id: 'series-3', color: color3 },
       ],
-      chartType: 'line',
     })
 
     const chartSeries = [
@@ -458,20 +450,16 @@ The ChartGradientFill component is reusable across different chart types (LineCh
         horizontal: gridHorizontal,
         vertical: gridVertical,
       },
-      sx: {
-        // '& .MuiAreaElement-root': {
-        //   filter: 'brightness(1)',
-        // },
-        ...gradientStyles,
-      },
     } as LineChartProps
 
     return (
-      <LineChartForStorybook {...chartProps}>
-        {gradientSeries.length > 0 && (
-          <ChartGradientFill series={gradientSeries} />
-        )}
-      </LineChartForStorybook>
+      <div data-chart-id="gradient-showcase">
+        <LineChartForStorybook {...chartProps}>
+          {useGradientFill && showArea && (
+            <ChartGradientFill series={gradientSeries} chartId="gradient-showcase" />
+          )}
+        </LineChartForStorybook>
+      </div>
     )
   },
 }

@@ -1,102 +1,77 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDrawingArea } from '@mui/x-charts'
-
-export interface GradientStop {
-  offset: string | number
-  stopColor: string
-  stopOpacity: number
-}
 
 export interface SeriesGradient {
   id: string
   color: string
-  stops?: GradientStop[]
-  direction?: 'vertical' | 'horizontal'
   startOpacity?: number
   endOpacity?: number
 }
 
 export interface ChartGradientFillProps {
   series: SeriesGradient[]
-  defaultStartOpacity?: number
-  defaultEndOpacity?: number
-  defaultDirection?: 'vertical' | 'horizontal'
+  chartId?: string
 }
 
-const ChartGradientFill: React.FC<ChartGradientFillProps> = ({
-  series,
-  defaultStartOpacity = 1,
-  defaultEndOpacity = 0,
-  defaultDirection = 'vertical',
-}) => {
+const ChartGradientFill: React.FC<ChartGradientFillProps> = ({ series, chartId = 'chart' }) => {
   const { top, height, bottom, left, width } = useDrawingArea()
   const svgHeight = top + bottom + height
 
-  const getGradientCoordinates = (direction: 'vertical' | 'horizontal') => {
-    if (direction === 'horizontal') {
-      return {
-        x1: left,
-        y1: top + height / 2,
-        x2: left + width,
-        y2: top + height / 2,
-      }
+  useEffect(() => {
+    const styleId = `chart-gradient-style-${chartId}`
+
+
+    const cleanup = () => {
+
+      const tag = document.getElementById(styleId)
+      if (tag) tag.remove()
     }
-    // Default to vertical
-    return {
-      x1: left + width / 2,
-      y1: top,
-      x2: left + width / 2,
-      y2: svgHeight,
+
+    if (!series.length) {
+      cleanup()
+      return cleanup
     }
-  }
+
+    cleanup()
+
+    const styleTag = document.createElement('style')
+    styleTag.id = styleId
+    document.head.appendChild(styleTag)
+
+    styleTag.textContent = series
+      .map((s) => {
+        const seriesId = s.id.replace('gradient-', '')
+        return `[data-chart-id="${chartId}"] .MuiAreaElement-series-${seriesId} { 
+        opacity: .5 !important;
+        fill: url(#${s.id}) !important; }`
+      })
+      .join('\n')
+
+    return cleanup
+  }, [series, chartId])
+
+  if (!series.length) return null
 
   return (
     <defs>
-      {series.map((seriesGradient) => {
-        const direction = seriesGradient.direction || defaultDirection
-        const coordinates = getGradientCoordinates(direction)
-        const startOpacity = seriesGradient.startOpacity ?? defaultStartOpacity
-        const endOpacity = seriesGradient.endOpacity ?? defaultEndOpacity
-
-        // Use custom stops if provided, otherwise create default two-stop gradient
-        const stops = seriesGradient.stops || [
-          {
-            offset: '0%',
-            stopColor: seriesGradient.color,
-            stopOpacity: startOpacity,
-          },
-          {
-            offset: '100%',
-            stopColor: seriesGradient.color,
-            stopOpacity: endOpacity,
-          },
-        ]
-
+      {series.map((s) => {
         return (
           <linearGradient
-            key={seriesGradient.id}
-            id={seriesGradient.id}
-            x1={coordinates.x1}
-            y1={coordinates.y1}
-            x2={coordinates.x2}
-            y2={coordinates.y2}
+            key={s.id}
+            id={s.id}
+            x1={left + width / 2}
+            y1={top}
+            x2={left + width / 2}
+            y2={svgHeight / 1.2}
             gradientUnits="userSpaceOnUse"
           >
-            {stops.map((stop, index) => (
-              <stop
-                key={index}
-                offset={stop.offset}
-                stopColor={stop.stopColor}
-                stopOpacity={stop.stopOpacity}
-              />
-            ))}
+            <stop offset="0%" stopColor={s.color} stopOpacity="1" />
+            <stop offset="90%" stopColor={s.color} stopOpacity="0" />
           </linearGradient>
         )
       })}
     </defs>
   )
 }
-
-ChartGradientFill.displayName = 'ChartGradientFill'
 
 export default ChartGradientFill

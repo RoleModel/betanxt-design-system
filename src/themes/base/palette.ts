@@ -83,7 +83,7 @@ export const basePaletteLight: PaletteOptions = {
     tabIndicator: nxtBlue[700],
     hover: nxtBlue[500],
   },
-  appswitcher: {
+  appSwitcher: {
     background: micGrey[900],
     hover: nxtBlue[800],
     contrastText: '#FFFFFF',
@@ -215,7 +215,7 @@ export const basePaletteDark: PaletteOptions = {
     tabIndicator: nxtBlue[300],
     hover: nxtBlue[300],
   },
-  appswitcher: {
+  appSwitcher: {
     background: micGrey[900],
     hover: nxtBlue[800],
     contrastText: '#FFFFFF',

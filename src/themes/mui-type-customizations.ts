@@ -25,6 +25,11 @@ declare module '@mui/material/styles' {
       tabIndicator: string
       hover: string
     }
+    appSwitcher: {
+      background: string
+      hover: string
+      contrastText: string
+    }
     logoFill: string
     logoPoweredBy: string
     tableHeaderRow: {
@@ -95,7 +100,7 @@ declare module '@mui/material/styles' {
       tabIndicator?: string
       hover?: string
     }
-    appswitcher?: {
+    appSwitcher?: {
       background?: string
       hover?: string
       contrastText?: string

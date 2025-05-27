@@ -47,11 +47,7 @@ Both `baseTheme` and `betanxtTheme` support light and dark modes. There are mult
 
 ### 1. Using the default system preference
 
-<Source
-  language='jsx'
-  dark
-  format={true}
-  code={`
+```
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import betanxtTheme from "[path-to-themes]/betanxtTheme";
@@ -75,8 +71,7 @@ To set light or dark as the default mode, use the `defaultMode` prop:
   <CssBaseline enableColorScheme />
   {children}
 </ThemeProvider>
-`}
-/>
+```
 
 ### 3. Toggling between modes
 

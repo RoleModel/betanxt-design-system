@@ -29,7 +29,7 @@ interface FlatTypographyPairArgs {
 type CustomMeta = Meta<FlatTypographyPairArgs>
 
 const meta = {
-  title: 'Components/TypographyPair',
+  title: 'Custom Components/TypographyPair',
   component: TypographyPairComponent,
   argTypes: {
     direction: {

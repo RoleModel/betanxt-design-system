@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import StatCard from '../components/StatCard'
 
 const meta = {
-  title: 'Components/StatCard',
+  title: 'Custom Components/StatCard',
   parameters: {
     layout: 'centered',
     docs: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { AppFooter as AppFooterComponent } from '../components/AppFooter'
 
 const meta: Meta<typeof AppFooterComponent> = {
-  title: 'Components/AppFooter',
+  title: 'Custom Components/AppFooter',
   component: AppFooterComponent,
 }
 

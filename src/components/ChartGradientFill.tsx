@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useDrawingArea } from '@mui/x-charts'
 
 export interface SeriesGradient {
@@ -6,6 +6,33 @@ export interface SeriesGradient {
   color: string
   startOpacity?: number
   endOpacity?: number
+}
+
+export interface UseChartGradientsOptions {
+  enabled: boolean
+  series: Array<{
+    id: string
+    color: string
+  }>
+}
+
+export const useChartGradients = ({
+  enabled,
+  series,
+}: UseChartGradientsOptions) => {
+  const gradientSeries = useMemo<SeriesGradient[]>(() => {
+    if (!enabled) return []
+
+    return series.map((s) => ({
+      id: `gradient-${s.id}`,
+      color: s.color,
+    }))
+  }, [enabled, series])
+
+  return {
+    gradientSeries,
+    enabled,
+  }
 }
 
 export interface ChartGradientFillProps {
@@ -20,9 +47,7 @@ const ChartGradientFill: React.FC<ChartGradientFillProps> = ({ series, chartId =
   useEffect(() => {
     const styleId = `chart-gradient-style-${chartId}`
 
-
     const cleanup = () => {
-
       const tag = document.getElementById(styleId)
       if (tag) tag.remove()
     }
@@ -41,9 +66,10 @@ const ChartGradientFill: React.FC<ChartGradientFillProps> = ({ series, chartId =
     styleTag.textContent = series
       .map((s) => {
         const seriesId = s.id.replace('gradient-', '')
-        return `[data-chart-id="${chartId}"] .MuiAreaElement-series-${seriesId} { 
-        opacity: .5 !important;
-        fill: url(#${s.id}) !important; }`
+        return `[data-chart-id="${chartId}"] svg .MuiAreaElement-series-${seriesId} {
+          opacity: 1 !important;
+          fill: url(#${s.id}) !important;
+        }`
       })
       .join('\n')
 
@@ -62,10 +88,10 @@ const ChartGradientFill: React.FC<ChartGradientFillProps> = ({ series, chartId =
             x1={left + width / 2}
             y1={top}
             x2={left + width / 2}
-            y2={svgHeight / 1.2}
+            y2={svgHeight / 1.05  }
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0%" stopColor={s.color} stopOpacity="1" />
+            <stop offset="0%" stopColor={s.color} stopOpacity=".6" />
             <stop offset="90%" stopColor={s.color} stopOpacity="0" />
           </linearGradient>
         )

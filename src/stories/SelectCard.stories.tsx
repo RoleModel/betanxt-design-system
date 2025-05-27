@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Stack } from '@mui/material'
 
-import SelectCard from './SelectCard'
+import SelectCard from '../components/SelectCard'
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'
 
 const meta = {
+  title: 'Custom Components/SelectCard',
   component: SelectCard,
   parameters: {
     layout: 'centered',
@@ -36,7 +37,7 @@ export const Default: Story = {
     direction: 'row',
     selected: false,
     action: () => {},
-    icon: <AssignmentTurnedInOutlinedIcon sx={{ width: 24, height: 24, color: "#5c9a9f" }} />,
+    icon: <AssignmentTurnedInOutlinedIcon sx={{ color: 'secondary.main' }} />,
   },
 }
 
@@ -57,7 +58,7 @@ export const Interactive: Story = {
     direction: 'row',
     selected: false,
     action: () => {},
-    icon: <AssignmentTurnedInOutlinedIcon sx={{ width: 24, height: 24, color: "#5c9a9f" }} />,
+    icon: <AssignmentTurnedInOutlinedIcon sx={{ color: 'secondary.main' }} />,
   },
 }
 
@@ -91,6 +92,6 @@ export const MultipleCards: Story = {
     direction: 'row',
     selected: false,
     action: () => {},
-    icon: <AssignmentTurnedInOutlinedIcon sx={{ width: 24, height: 24, color: "#5c9a9f" }} />,
+    icon: <AssignmentTurnedInOutlinedIcon sx={{ color: 'secondary.main' }} />,
   },
 }

@@ -5,8 +5,7 @@ import { ChartsTooltip } from '@mui/x-charts'
 import type { LineChartProps } from '@mui/x-charts/LineChart'
 import { LineChart } from '@mui/x-charts/LineChart'
 
-import ChartGradientFill from '../components/ChartGradientFill'
-import { useChartGradients } from '../components/useChartGradients'
+import ChartGradientFill, { useChartGradients } from '../components/ChartGradientFill'
 
 const LineChartForStorybook = (props: LineChartProps) => <LineChart {...props} />
 Object.defineProperty(LineChartForStorybook, 'name', { value: 'LineChart' })
@@ -24,7 +23,6 @@ interface LineChartStoryArgs extends LineChartProps {
   color1?: string
   color2?: string
   color3?: string
-  useGradientFill?: boolean
 }
 
 const colorOptions = [
@@ -178,13 +176,6 @@ The **LineChart** component from MUI X-Charts.
       description: 'Toggle the visibility of the area fill under lines.',
       defaultValue: true,
     },
-    useGradientFill: {
-      control: 'boolean',
-      name: 'Use Gradient Fill',
-      description: 'Apply gradient fill to area plots using series colors.',
-      defaultValue: false,
-      if: { arg: 'showArea', truthy: true },
-    },
   },
 }
 
@@ -223,7 +214,6 @@ export const DefaultLineChart: Story = {
     showArea: true,
     gridHorizontal: false,
     gridVertical: false,
-    useGradientFill: false,
   },
   render: function RenderLineChart(storyArgs: LineChartStoryArgs) {
     const color1 = storyArgs.color1 || 'var(--mui-palette-chartSeries-2-main)'
@@ -239,19 +229,8 @@ export const DefaultLineChart: Story = {
       scaleType,
       gridHorizontal,
       gridVertical,
-      useGradientFill,
       ...restArgs
     } = storyArgs
-
-    // Use the reusable gradient hook
-    const { gradientSeries } = useChartGradients({
-      enabled: Boolean(useGradientFill && showArea),
-      series: [
-        { id: 'series-1', color: color1 },
-        { id: 'series-2', color: color2 },
-        { id: 'series-3', color: color3 },
-      ],
-    })
 
     const chartSeries = [
       {
@@ -320,18 +299,14 @@ export const DefaultLineChart: Story = {
 
     return (
       <div data-chart-id="default-line-chart">
-        <LineChartForStorybook {...chartProps}>
-          {useGradientFill && showArea && (
-            <ChartGradientFill series={gradientSeries} chartId="default-line-chart" />
-          )}
-        </LineChartForStorybook>
+        <LineChartForStorybook {...chartProps} />
       </div>
     )
   },
 }
 
 export const GradientShowcase: Story = {
-  name: 'Gradient Fill',
+  name: 'Line Chart with Gradients',
   args: {
     width: 800,
     height: 300,
@@ -343,7 +318,6 @@ export const GradientShowcase: Story = {
     showArea: true,
     gridHorizontal: false,
     gridVertical: false,
-    useGradientFill: true,
   },
   parameters: {
     docs: {
@@ -373,13 +347,12 @@ The ChartGradientFill component is reusable across chart types (LineChart, BarCh
       scaleType,
       gridHorizontal,
       gridVertical,
-      useGradientFill,
       ...restArgs
     } = storyArgs
 
-    // Use the reusable gradient hook
+    // Use the reusable gradient hook - always enabled for this story
     const { gradientSeries } = useChartGradients({
-      enabled: Boolean(useGradientFill && showArea),
+      enabled: Boolean(showArea),
       series: [
         { id: 'series-1', color: color1 },
         { id: 'series-2', color: color2 },
@@ -455,7 +428,7 @@ The ChartGradientFill component is reusable across chart types (LineChart, BarCh
     return (
       <div data-chart-id="gradient-showcase">
         <LineChartForStorybook {...chartProps}>
-          {useGradientFill && showArea && (
+          {showArea && (
             <ChartGradientFill series={gradientSeries} chartId="gradient-showcase" />
           )}
         </LineChartForStorybook>

@@ -1,5 +1,5 @@
-import type { Theme, ThemeOptions } from '@mui/material/styles'
 import type { AlertProps } from '@mui/material/Alert'
+import type { Theme, ThemeOptions } from '@mui/material/styles'
 
 import { bnblue, orangered, persimmon, seagrass } from '../palette-tokens/brand-tokens'
 

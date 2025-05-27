@@ -25,6 +25,11 @@ declare module '@mui/material/styles' {
       tabIndicator: string
       hover: string
     }
+    appSwitcher: {
+      background: string
+      hover: string
+      contrastText: string
+    }
     logoFill: string
     logoPoweredBy: string
     tableHeaderRow: {
@@ -95,7 +100,7 @@ declare module '@mui/material/styles' {
       tabIndicator?: string
       hover?: string
     }
-    appswitcher?: {
+    appSwitcher?: {
       background?: string
       hover?: string
       contrastText?: string
@@ -198,20 +203,20 @@ declare module '@mui/material/Typography' {
 
 declare module '@mui/material/Alert' {
   interface AlertPropsVariantOverrides {
-    standard?: true;
-    filled?: true;
-    outlined?: true;
+    standard?: true
+    filled?: true
+    outlined?: true
   }
   interface AlertProps {
-    bordertop?: string | boolean;
-    centertext?: string | boolean;
-    showicon?: string | boolean;
-}
+    bordertop?: string | boolean
+    centertext?: string | boolean
+    showicon?: string | boolean
+  }
 
   interface AlertOwnProps {
-    bordertop?: string;
-    centertext?: string;
-    showicon?: string;
+    bordertop?: string
+    centertext?: string
+    showicon?: string
   }
 }
 

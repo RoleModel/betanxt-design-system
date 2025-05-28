@@ -1,4 +1,4 @@
-import { Canvas, Meta, Source } from '@storybook/blocks'
+import { Canvas, Meta } from '@storybook/blocks'
 
 <Meta title="Guides/Using the Theme" />
 
@@ -8,11 +8,8 @@ The primary way to apply a theme is by using MUI's `ThemeProvider` to wrap your 
 
 **Import your chosen theme and MUI components:**
 
-<Source
-language='jsx'
-dark
-format={true}
-code={`// In your application's root component (e.g., App.tsx, main.tsx)
+```jsx
+// In your application's root component (e.g., App.tsx, main.tsx)
 "use client"; // Or remove if not using Next.js App Router specific features directly here
 
 import { ReactNode } from 'react'
@@ -26,14 +23,15 @@ import theme from "[path-to-themes]/baseTheme";
 
 // Your application's root component
 export default function App({ children }: { children: ReactNode }) {
-return (
-
-<ThemeProvider theme={theme}>
-  {/* CssBaseline applies baseline styles and enables native browser components in dark mode */}
-  <CssBaseline enableColorScheme />
-  {children}
-</ThemeProvider>
-); } `} />
+  return (
+    <ThemeProvider theme={theme}>
+      {/* CssBaseline applies baseline styles and enables native browser components in dark mode */}
+      <CssBaseline enableColorScheme />
+      {children}
+    </ThemeProvider>
+  )
+}
+```
 
 **Apply this setup at the root of your application.**
 How you do this depends on your framework (e.g., in `index.tsx` for Create React App, or a root layout for other setups).
@@ -48,26 +46,27 @@ Both `baseTheme` and `betanxtTheme` support light and dark modes. There are mult
 ### 1. Using the default system preference
 
 ```tsx
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import betanxtTheme from "[path-to-themes]/betanxtTheme";
+import betanxtTheme from '[path-to-themes]/betanxtTheme'
+
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 
 function App() {
-return (
-
-<ThemeProvider theme={betanxtTheme}>
-  <CssBaseline enableColorScheme />
-  {children}
-</ThemeProvider>
-); } `} />
+  return (
+    <ThemeProvider theme={betanxtTheme}>
+      <CssBaseline enableColorScheme />
+      {children}
+    </ThemeProvider>
+  )
+}
+```
 
 ### 2. Setting a specific default mode
 
 To set light or dark as the default mode, use the `defaultMode` prop:
 
-<Source
-  dark
-  code={`<ThemeProvider theme={betanxtTheme} defaultMode="dark">
+```tsx
+<ThemeProvider theme={betanxtTheme} defaultMode="dark">
   <CssBaseline enableColorScheme />
   {children}
 </ThemeProvider>
@@ -77,29 +76,30 @@ To set light or dark as the default mode, use the `defaultMode` prop:
 
 To provide users with the ability to switch between modes, use the `useColorScheme` hook:
 
-<Source dark code={`
-import { Button, CssBaseline, ThemeProvider } from '@mui/material';
-import { useColorScheme } from '@mui/material/styles';
+```jsx
+import { Button, CssBaseline, ThemeProvider } from '@mui/material'
+import { useColorScheme } from '@mui/material/styles'
 
 function ModeToggle() {
-const { mode, setMode } = useColorScheme();
+  const { mode, setMode } = useColorScheme()
 
-return (
-
-<Button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
-  {mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-</Button>
-); }
+  return (
+    <Button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+      {mode === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+    </Button>
+  )
+}
 
 function App() {
-return (
-
-<ThemeProvider theme={betanxtTheme}>
-  <CssBaseline enableColorScheme />
-  <ModeToggle />
-  {children}
-</ThemeProvider>
-); } `} />
+  return (
+    <ThemeProvider theme={betanxtTheme}>
+      <CssBaseline enableColorScheme />
+      <ModeToggle />
+      {children}
+    </ThemeProvider>
+  )
+}
+```
 
 For more detailed information on implementing dark mode, refer to the [MUI Dark Mode Documentation](https://mui.com/material-ui/customization/dark-mode/).
 
@@ -109,27 +109,28 @@ The recommended way to access theme values (like colors, spacing, typography) in
 
 **Example:**
 
-<Source dark code={`
+```jsx
 import Box from '@mui/material/Box'
 
 // Example of using theme.vars with the sx prop on an MUI Box component
-const MyStyledBox = () => (
-
-  <Box
-    sx={(theme) => ({
-      backgroundColor: theme.vars.palette.primary.main,
-      color: theme.vars.palette.primary.contrastText,
-      padding: theme.vars.spacing[2], // Accesses 'var(--mui-spacing-2)'
-      fontSize: theme.vars.typography.fontSize,
-      fontFamily: theme.vars.typography.fontFamily,
-      border: \`1px solid \${theme.vars.palette.divider}\`,
-      borderRadius: theme.vars.shape.borderRadius,
-      '&:hover': {
-        backgroundColor: theme.vars.palette.primary.dark,
-      },
-    })}
-  >
-    This Box is styled using theme.vars via the sx prop.
-  </Box>
-)
-`} />
+function MyStyledBox() {
+  return (
+    <Box
+      sx={(theme) => ({
+        backgroundColor: theme.vars.palette.primary.main,
+        color: theme.vars.palette.primary.contrastText,
+        padding: theme.vars.spacing[2], // Accesses 'var(--mui-spacing-2)'
+        fontSize: theme.vars.typography.fontSize,
+        fontFamily: theme.vars.typography.fontFamily,
+        border: `1px solid ${theme.vars.palette.divider}`,
+        borderRadius: theme.vars.shape.borderRadius,
+        '&:hover': {
+          backgroundColor: theme.vars.palette.primary.dark,
+        },
+      })}
+    >
+      This Box is styled using theme.vars via the sx prop.
+    </Box>
+  )
+}
+```

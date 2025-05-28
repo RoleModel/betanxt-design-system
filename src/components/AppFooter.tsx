@@ -1,7 +1,6 @@
 'use client'
 
 import { Box, Divider, Link, Typography } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
 
 import { BetaNXTLogo } from './betanxt-logo'
 
@@ -14,11 +13,10 @@ export function AppFooter({
   privacyPolicyLink?: string
   additionalCopyright?: string
 }) {
-  const theme = useTheme()
   return (
     <Box
       component="footer"
-      sx={{
+      sx={(theme) => ({
         gridArea: 'footer',
         display: 'flex',
         alignItems: { xs: 'flex-end', sm: 'center' },
@@ -28,7 +26,7 @@ export function AppFooter({
         flexWrap: 'nowrap',
         color: 'common.white',
         minHeight: theme.layout?.footerHeight,
-      }}
+      })}
     >
       <Box
         sx={{

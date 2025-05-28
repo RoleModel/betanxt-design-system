@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 
 import { ChartsTooltip, BarChart as MuiBarChart } from '@mui/x-charts'
 
-import BarChart from '../components/BarChart'
-import type { BarChartProps } from '../components/BarChart'
+import { BarChart, type BarChartProps } from '../components/BarChart'
 
 const dataset = [
   { software: 86, hardware: 57, services: 59, cloud: 91, month: 'January' },

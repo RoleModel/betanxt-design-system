@@ -1,5 +1,4 @@
-import { ChartsTooltip } from '@mui/x-charts'
-import { BarChart as MuiBarChart } from '@mui/x-charts/BarChart'
+import { ChartsTooltip, BarChart as MuiBarChart } from '@mui/x-charts'
 
 export interface BarChartProps {
   series1?: boolean
@@ -103,7 +102,7 @@ const dataset = [
 
 const valueFormatter = (value: number | null) => `$${value}M`
 
-export default function BarChart({
+export function BarChart({
   series1 = true,
   series2 = true,
   series3 = true,

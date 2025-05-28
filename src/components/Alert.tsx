@@ -1,21 +1,24 @@
-import React from 'react'
+import type { ReactNode } from 'react'
 
-import MuiAlert, { type AlertProps as MuiAlertProps } from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
+import {
+  AlertTitle,
+  Alert as MuiAlert,
+  type AlertProps as MuiAlertProps,
+} from '@mui/material'
 
 export interface CustomAlertProps
   extends Omit<MuiAlertProps, 'variant' | 'title' | 'icon'> {
   variant?: 'outlined' | 'filled' | 'standard'
-  title?: React.ReactNode
+  title?: ReactNode
   showicon?: boolean
   centertext?: boolean
-  action?: React.ReactNode
+  action?: ReactNode
   actionButtonVariant?: 'text' | 'contained' | 'outlined'
   bordertop?: boolean
   icon?: MuiAlertProps['icon']
 }
 
-export const Alert: React.FC<CustomAlertProps> = ({
+export function Alert({
   variant = 'standard',
   title,
   children,
@@ -26,7 +29,7 @@ export const Alert: React.FC<CustomAlertProps> = ({
   action,
   bordertop,
   ...otherProps
-}) => {
+}: CustomAlertProps) {
   const muiAlertIcon = showicon ? customIcon : false
 
   const allPropsForMuiAlert: any = {

@@ -29,7 +29,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }))
 
-export default function StatCard({
+export function StatCard({
   text,
   total,
   link,

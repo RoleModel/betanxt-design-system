@@ -11,7 +11,7 @@ type SelectCardProps = {
   direction?: 'row' | 'column'
 }
 
-function SelectCard({
+export function SelectCard({
   text,
   action,
   icon = (
@@ -100,5 +100,3 @@ function SelectCard({
     </Card>
   )
 }
-
-export default SelectCard

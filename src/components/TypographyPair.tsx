@@ -1,9 +1,6 @@
 import React from 'react'
 
-import type { StackProps } from '@mui/material'
-import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
-import type { TypographyProps } from '@mui/material/Typography'
+import { Stack, type StackProps, Typography, type TypographyProps } from '@mui/material'
 
 interface TypographyPairProps {
   primary: {
@@ -34,7 +31,7 @@ interface TypographyPairProps {
   variant?: TypographyProps['variant']
 }
 
-export const TypographyPair: React.FC<TypographyPairProps> = ({
+export function TypographyPair({
   primary,
   secondary,
   direction,
@@ -42,7 +39,7 @@ export const TypographyPair: React.FC<TypographyPairProps> = ({
   alignItems,
   justifyContent,
   sx,
-}) => {
+}: TypographyPairProps) {
   return (
     <Stack
       direction={direction}
@@ -78,5 +75,3 @@ export const TypographyPair: React.FC<TypographyPairProps> = ({
     </Stack>
   )
 }
-
-export default TypographyPair

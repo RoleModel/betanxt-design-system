@@ -1,18 +1,15 @@
-import React from 'react'
-
-import Timeline from '@mui/lab/Timeline'
-import TimelineConnector from '@mui/lab/TimelineConnector'
-import TimelineContent from '@mui/lab/TimelineContent'
-import TimelineDot from '@mui/lab/TimelineDot'
-import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem'
-import TimelineOppositeContent, {
-  timelineOppositeContentClasses,
-} from '@mui/lab/TimelineOppositeContent'
-import TimelineSeparator from '@mui/lab/TimelineSeparator'
-import Box from '@mui/material/Box'
-import Chip from '@mui/material/Chip'
-import type { ChipProps } from '@mui/material/Chip'
-import Typography from '@mui/material/Typography'
+import {
+  Timeline as MuiTimeLine,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+  TimelineItem,
+  TimelineOppositeContent,
+  TimelineSeparator,
+} from '@mui/lab'
+import { timelineItemClasses } from '@mui/lab/TimelineItem'
+import { timelineOppositeContentClasses } from '@mui/lab/TimelineOppositeContent'
+import { Box, Chip, type ChipProps, Typography } from '@mui/material'
 
 export interface MuiTimelineItemData {
   id: string
@@ -40,7 +37,7 @@ export interface TimelineProps {
   title?: string
 }
 
-const TimeLine: React.FC<TimelineProps> = ({ items, position = 'left', title }) => {
+export function Timeline({ items, position = 'left', title }: TimelineProps) {
   if (!items || items.length === 0) {
     return <Typography>No timeline items to display.</Typography>
   }
@@ -60,7 +57,7 @@ const TimeLine: React.FC<TimelineProps> = ({ items, position = 'left', title }) 
           {title}
         </Typography>
       )}
-      <Timeline
+      <MuiTimeLine
         position={position}
         sx={{
           m: 0,
@@ -208,9 +205,7 @@ const TimeLine: React.FC<TimelineProps> = ({ items, position = 'left', title }) 
             </TimelineItem>
           )
         })}
-      </Timeline>
+      </MuiTimeLine>
     </Box>
   )
 }
-
-export default TimeLine

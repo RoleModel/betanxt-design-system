@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import StatCard from '../components/StatCard'
+import { StatCard } from '../components/StatCard'
 
 const meta = {
   title: 'Custom Components/StatCard',

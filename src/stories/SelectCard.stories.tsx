@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'
 import { Stack } from '@mui/material'
 
-import SelectCard from '../components/SelectCard'
+import { SelectCard } from '../components/SelectCard'
 
 const meta = {
   title: 'Custom Components/SelectCard',

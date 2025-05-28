@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import React from 'react'
 
-import TimeLine from '../components/Timeline'
+import { Timeline } from '../components/Timeline'
 import type { MuiTimelineItemData, TimelineProps } from '../components/Timeline'
 
 const meta: Meta<TimelineProps> = {
   title: 'Components/Timeline',
-  component: TimeLine,
+  component: Timeline,
   parameters: {
     layout: 'centered',
     design: {
@@ -80,7 +79,7 @@ export const DefaultTimeline: Story = {
     position: 'right',
     title: 'Timeline of Events',
   },
-  render: (args) => <TimeLine {...args} />,
+  render: (args) => <Timeline {...args} />,
 }
 
 export const AlternateTimeline: Story = {
@@ -90,5 +89,5 @@ export const AlternateTimeline: Story = {
     position: 'alternate',
     title: 'Project Milestones (Alternate)',
   },
-  render: (args) => <TimeLine {...args} />,
+  render: (args) => <Timeline {...args} />,
 }

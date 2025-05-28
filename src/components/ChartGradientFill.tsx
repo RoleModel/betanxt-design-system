@@ -38,10 +38,7 @@ export interface ChartGradientFillProps {
   chartId?: string
 }
 
-const ChartGradientFill: React.FC<ChartGradientFillProps> = ({
-  series,
-  chartId = 'chart',
-}) => {
+function ChartGradientFill({ series, chartId = 'chart' }: ChartGradientFillProps) {
   const { top, height, bottom, left, width } = useDrawingArea()
   const svgHeight = top + bottom + height
 

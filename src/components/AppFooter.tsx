@@ -37,7 +37,7 @@ export function AppFooter({
         }}
       >
         <Typography variant="body2" sx={{ color: 'inherit', whiteSpace: 'nowrap' }}>
-          &copy; 2025 BetaNXT Inc.
+          &copy; {new Date().getFullYear()} BetaNXT Inc.
         </Typography>
         <Divider
           orientation="vertical"

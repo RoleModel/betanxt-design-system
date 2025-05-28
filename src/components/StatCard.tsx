@@ -1,6 +1,16 @@
 'use client'
 
-import { Box, Card, CardContent, Link as MUILink, Typography, Link, useMediaQuery, useTheme, styled } from '@mui/material'
+import {
+  Box,
+  Card,
+  CardContent,
+  Link,
+  Link as MUILink,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 
 type StatCardProps = {
   text: string
@@ -30,7 +40,8 @@ export default function StatCard({
   const isExtraSmallScreen = useMediaQuery('(max-width:600px)')
   const theme = useTheme()
   const createTransition = theme.transitions.create(['background-color'], {
-    duration: theme.transitions.duration.short, easing: 'ease-in-out',
+    duration: theme.transitions.duration.short,
+    easing: 'ease-in-out',
   })
 
   if (direction === 'column') {
@@ -115,7 +126,6 @@ export default function StatCard({
   }
 
   return (
-
     <Card
       variant="outlined"
       sx={{

@@ -6,8 +6,8 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import { DocsContainer } from '@storybook/blocks'
-import type { Preview } from '@storybook/react'
 import { useGlobals } from '@storybook/preview-api'
+import type { Preview } from '@storybook/react'
 import React, { useEffect, useState } from 'react'
 
 import { CssBaseline, ThemeProvider } from '@mui/material'
@@ -17,7 +17,6 @@ import '../src/themes/mui-type-customizations'
 import { MuiThemeModeToggle } from './addons/mui-theme-toggle/preview'
 import { dark, light } from './theme'
 import './utils/patch-mui-display-name'
-
 
 // Custom hook to watch for dark mode class changes
 const useDarkMode = () => {
@@ -37,7 +36,7 @@ const useDarkMode = () => {
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     })
 
     return () => observer.disconnect()
@@ -49,8 +48,8 @@ const useDarkMode = () => {
 const preview: Preview = {
   decorators: [
     (Story) => {
-      const [globals] = useGlobals();
-      const storybookUIThemeName = globals.theme || 'light';
+      const [globals] = useGlobals()
+      const storybookUIThemeName = globals.theme || 'light'
 
       return (
         <ThemeProvider theme={betanxtTheme} defaultMode={storybookUIThemeName}>

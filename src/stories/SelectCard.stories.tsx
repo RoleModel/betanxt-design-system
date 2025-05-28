@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React, { useState } from 'react'
+
+import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'
 import { Stack } from '@mui/material'
 
 import SelectCard from '../components/SelectCard'
-import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'
 
 const meta = {
   title: 'Custom Components/SelectCard',
@@ -12,7 +13,8 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A card that displays a title and icon with selectable state. When clicked, it applies a data-selected attribute and visual styling.',
+        component:
+          'A card that displays a title and icon with selectable state. When clicked, it applies a data-selected attribute and visual styling.',
       },
     },
   },
@@ -46,11 +48,7 @@ export const Interactive: Story = {
     const [selected, setSelected] = useState(false)
 
     return (
-      <SelectCard
-        {...args}
-        selected={selected}
-        action={() => setSelected(!selected)}
-      />
+      <SelectCard {...args} selected={selected} action={() => setSelected(!selected)} />
     )
   },
   args: {

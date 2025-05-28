@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react'
+
 import { useDrawingArea } from '@mui/x-charts'
 
 export interface SeriesGradient {
@@ -16,10 +17,7 @@ export interface UseChartGradientsOptions {
   }>
 }
 
-export const useChartGradients = ({
-  enabled,
-  series,
-}: UseChartGradientsOptions) => {
+export const useChartGradients = ({ enabled, series }: UseChartGradientsOptions) => {
   const gradientSeries = useMemo<SeriesGradient[]>(() => {
     if (!enabled) return []
 
@@ -40,7 +38,10 @@ export interface ChartGradientFillProps {
   chartId?: string
 }
 
-const ChartGradientFill: React.FC<ChartGradientFillProps> = ({ series, chartId = 'chart' }) => {
+const ChartGradientFill: React.FC<ChartGradientFillProps> = ({
+  series,
+  chartId = 'chart',
+}) => {
   const { top, height, bottom, left, width } = useDrawingArea()
   const svgHeight = top + bottom + height
 
@@ -88,7 +89,7 @@ const ChartGradientFill: React.FC<ChartGradientFillProps> = ({ series, chartId =
             x1={left + width / 2}
             y1={top}
             x2={left + width / 2}
-            y2={svgHeight / 1.05  }
+            y2={svgHeight / 1.05}
             gradientUnits="userSpaceOnUse"
           >
             <stop offset="0%" stopColor={s.color} stopOpacity=".6" />

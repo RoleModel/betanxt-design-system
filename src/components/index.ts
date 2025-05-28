@@ -1,9 +1,6 @@
 // Chart Gradient Components
 export { default as ChartGradientFill } from './ChartGradientFill'
-export type {
-  ChartGradientFillProps,
-  SeriesGradient,
-} from './ChartGradientFill'
+export type { ChartGradientFillProps, SeriesGradient } from './ChartGradientFill'
 
 // Other components
 export { Alert } from './Alert'

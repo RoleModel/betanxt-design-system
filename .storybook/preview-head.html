@@ -1,0 +1,223 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  :root {
+    --font-roboto: 'Roboto', sans-serif;
+    --font-roboto-condensed: 'Roboto Condensed', sans-serif;
+    --font-roboto-mono: 'Roboto Mono', monospace;
+  }
+
+  html {
+    font-family: var(--font-roboto);
+    /* Improve font rendering consistency across light/dark modes */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--mui-palette-background-default) !important;
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  /* Typography adjustments for dark mode to prevent layout shifts */
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    letter-spacing: 0.2px !important;
+    /* Force consistent text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Fix layout shifts for heading anchor links in docs */
+  h1 a,
+  h2 a,
+  h3 a,
+  h4 a,
+  h5 a,
+  h6 a {
+    line-height: inherit !important;
+    margin-left: -24px !important;
+    padding-left: 0 !important;
+    float: left !important;
+    display: inline !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Specific fixes for dark mode heading links */
+  .dark h1 a,
+  .dark h2 a,
+  .dark h3 a,
+  .dark h4 a,
+  .dark h5 a,
+  .dark h6 a {
+    line-height: inherit !important;
+    margin-left: -24px !important;
+    padding-left: 0 !important;
+    float: left !important;
+  }
+
+  /* Ensure all typography elements have consistent rendering */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1:not([class]) {
+    font: var(--mui-font-h1);
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  h2:not([class]) {
+    font: var(--mui-font-h2);
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  h3:not([class]) {
+    font: var(--mui-font-h3);
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  h4:not([class]) {
+    font: var(--mui-font-h4);
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  h5:not([class]) {
+    font: var(--mui-font-h5);
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  h6:not([class]) {
+    font: var(--mui-font-h6);
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  p:not([class]) {
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    padding-inline-start: 2rem;
+  }
+
+  li {
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  hr {
+    border-color: var(--mui-palette-divider) !important;
+  }
+
+  code {
+    color: var(--mui-palette-text-secondary) !important;
+    background-color: var(--mui-palette-background-paper) !important;
+    border: 1px solid var(--mui-palette-divider) !important;
+    font-family: var(--font-roboto-mono) !important;
+    font-weight: 700;
+  }
+
+  .docs-story > div:first-child {
+    padding: 24px;
+  }
+
+  .sbdocs-preview {
+    background: var(--mui-palette-background-paper);
+    border: 1px solid var(--mui-palette-divider) !important;
+    box-shadow: var(--mui-shadows-3) !important;
+  }
+
+  .docblock-argstable tbody {
+    filter: none !important;
+    box-shadow: var(--mui-shadows-3) !important;
+    border-radius: 0px !important;
+  }
+
+  .docblock-argstable * {
+    border-color: var(--mui-palette-divider) !important;
+  }
+
+  .docblock-argstable-head * {
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  .docblock-argstable tbody tr td {
+    background: var(--mui-palette-background-default) !important;
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  .docblock-argstable .css-7i1g8g {
+    background: var(--mui-palette-background-paper) !important;
+    color: var(--mui-palette-text-primary) !important;
+  }
+
+  .sbdocs.sbdocs-wrapper {
+    background: transparent !important;
+  }
+
+  .sb-docs.storybook-docs,
+  .sb-docs.sbdocs-wrapper {
+    background: transparent;
+    color: var(--mui-palette-text-primary);
+    padding: 3rem 20px;
+  }
+
+  .sbdocs.sbdocs-preview {
+    background: transparent;
+    color: var(--mui-palette-text-primary);
+  }
+
+  .dark .storybook-docs,
+  .dark .sbdocs-wrapper {
+    background: transparent;
+    color: var(--mui-palette-text-primary);
+  }
+
+  .docblock-source * {
+    font-family: var(--font-roboto-mono) !important;
+    font-weight: 700;
+  }
+
+  .dark .docblock-source {
+    background: var(--mui-palette-background-paper) !important;
+  }
+
+  .docs-story {
+    background: var(--mui-palette-background-default);
+  }
+
+  .sd-bar div {
+    background: none !important;
+  }
+
+  a:not([class^='Mui']) {
+    color: var(--mui-palette-link) !important;
+    text-decoration: underline !important;
+  }
+</style>

@@ -1,0 +1,27 @@
+import { Canvas, Meta, Source, Story, Unstyled } from '@storybook/blocks'
+
+import * as ElevationStories from './Elevation.stories'
+
+<Meta title="Elevation" of={ElevationStories} />
+
+# Elevation
+
+Material UI provides elevation levels from 0 to 24, on the `Paper` component and are represented by shadows of increasing intensity. Higher elevation values create more pronounced shadows, giving the impression that elements are raised further from the surface. Check out the [Mui Paper](https://mui.com/material-ui/react-paper/) documentation for more details.
+
+To change the elevation of a component composed of `Paper`, you can use the `elevation` prop to set the elevation level.
+
+<Source
+  language='jsx'
+  dark
+  format={true}
+  code={`
+import { Paper, Typography } from '@mui/material';
+
+<Paper elevation={1}>
+  <Typography>Elevation 1</Typography>
+</Paper>
+`} />
+
+<Canvas>
+  <Story of={ElevationStories.Elevation} />
+</Canvas>

@@ -1,0 +1,49 @@
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="192x192" />
+
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+  }
+
+  .sidebar-container .css-17fv6jh button {
+    path {
+      fill: #ffffff;
+      stroke-width: 1.25;
+      stroke: #ffffff;
+    }
+  }
+
+  #storybook-explorer-tree .sidebar-item {
+    transition:
+      background-color 250ms ease,
+      color 200ms ease;
+    margin-bottom: 4px;
+  }
+  #storybook-explorer-tree .sidebar-item svg {
+    transition: color 200ms ease;
+    color: inherit;
+  }
+
+  #storybook-explorer-tree .sidebar-item[data-nodetype='component'] svg {
+    color: #589d58 !important;
+  }
+
+  #storybook-explorer-tree .sidebar-item[data-nodetype='story'] svg {
+    color: #cc9600 !important;
+  }
+
+  #storybook-explorer-tree .sidebar-item[data-nodetype='document'] svg {
+    color: #a1a725 !important;
+  }
+
+  #storybook-explorer-tree .sidebar-item[data-selected='true'] svg {
+    color: inherit !important;
+  }
+  #storybook-explorer-tree .sidebar-item:hover svg {
+    color: inherit !important;
+  }
+  #storybook-testing-module {
+    transition: none !important;
+  }
+</style>

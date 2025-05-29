@@ -24,7 +24,30 @@ addons.setConfig({
   theme: initialTheme,
 })
 
-// Listen for theme changes
+// Listen for system preference changes
+if (globalWindow && globalWindow.matchMedia) {
+  const mediaQuery = globalWindow.matchMedia('(prefers-color-scheme: dark)')
+  const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+    const channel = addons.getChannel()
+    const newMode = e.matches ? 'dark' : 'light'
+    // Emit system preference change to preview
+    channel.emit('system-theme-changed', newMode)
+    // Update manager theme
+    addons.setConfig({
+      theme: newMode === 'dark' ? dark : light,
+    })
+  }
+
+  // Use addEventListener (supported in all modern browsers)
+  try {
+    mediaQuery.addEventListener('change', handleSystemThemeChange)
+  } catch (e) {
+    // Silently fail for very old browsers
+    console.warn('System theme detection not supported in this browser')
+  }
+}
+
+// Listen for theme changes from preview
 const channel = addons.getChannel()
 channel.on('mui-theme-mode-changed', (mode: string) => {
   const newTheme = mode === 'dark' ? dark : light

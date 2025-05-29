@@ -6,7 +6,6 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import { DocsContainer } from '@storybook/blocks'
-import { useGlobals } from '@storybook/preview-api'
 import type { Preview } from '@storybook/react'
 import React, { useEffect, useState } from 'react'
 
@@ -36,7 +35,7 @@ const useDarkMode = () => {
 
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class'],
+      attributeFilter: ['class']
     })
 
     return () => observer.disconnect()
@@ -48,11 +47,8 @@ const useDarkMode = () => {
 const preview: Preview = {
   decorators: [
     (Story) => {
-      const [globals] = useGlobals()
-      const storybookUIThemeName = globals.theme || 'light'
-
       return (
-        <ThemeProvider theme={betanxtTheme} defaultMode={storybookUIThemeName}>
+        <ThemeProvider theme={betanxtTheme} defaultMode="system">
           <CssBaseline enableColorScheme />
           <MuiThemeModeToggle isPrimaryController={true} />
           <Story />
@@ -62,12 +58,12 @@ const preview: Preview = {
   ],
   parameters: {
     docs: {
+      autodocs: 'tag',
       container: ({ children, context }) => {
         const isDarkMode = useDarkMode()
-        const themeMode = isDarkMode ? 'dark' : 'light'
 
         return (
-          <ThemeProvider theme={betanxtTheme} defaultMode={themeMode}>
+          <ThemeProvider theme={betanxtTheme} defaultMode="system">
             <CssBaseline enableColorScheme />
             <MuiThemeModeToggle isPrimaryController={false} />
             <DocsContainer context={context} theme={isDarkMode ? dark : light}>

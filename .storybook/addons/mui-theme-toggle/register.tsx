@@ -1,5 +1,5 @@
 import { IconButton } from '@storybook/components'
-import { MoonIcon, SunIcon } from '@storybook/icons'
+import { BrowserIcon, MoonIcon, SunIcon } from '@storybook/icons'
 import { addons, types } from '@storybook/manager-api'
 import React from 'react'
 
@@ -16,16 +16,27 @@ addons.register(ADDON_ID, (api) => {
     match: ({ viewMode }) => viewMode === 'story' || viewMode === 'docs',
     render: () => {
       // Local React state for the button's icon, representing the current MUI mode in preview
-      const [currentMuiMode, setCurrentMuiMode] = React.useState('light')
+      const [currentMuiMode, setCurrentMuiMode] = React.useState('system')
 
       React.useEffect(() => {
         const channel = addons.getChannel()
 
         const handleMuiThemeChange = (muiMode: string) => {
           setCurrentMuiMode(muiMode) // Update local state for icon
+
+          // Determine the actual theme for the manager UI
+          let actualTheme = light
+          if (muiMode === 'dark') {
+            actualTheme = dark
+          } else if (muiMode === 'system') {
+            // For system mode, check actual system preference
+            const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            actualTheme = isSystemDark ? dark : light
+          }
+
           // Update the Storybook Manager's theme
           addons.setConfig({
-            theme: muiMode === 'dark' ? dark : light,
+            theme: actualTheme,
           })
         }
 
@@ -40,7 +51,16 @@ addons.register(ADDON_ID, (api) => {
       }, []) // Empty dependency array: runs once on mount, cleans up on unmount
 
       const toggleStorybookThemeAndMuiMode = () => {
-        const newMode = currentMuiMode === 'light' ? 'dark' : 'light'
+        // Cycle through: light -> dark -> system -> light
+        let newMode = 'light'
+        if (currentMuiMode === 'light') {
+          newMode = 'dark'
+        } else if (currentMuiMode === 'dark') {
+          newMode = 'system'
+        } else {
+          newMode = 'light'
+        }
+
         const channel = addons.getChannel()
         // Tell the preview to toggle the MUI theme
         channel.emit('mui-theme-mode-toggle', newMode)
@@ -48,15 +68,28 @@ addons.register(ADDON_ID, (api) => {
         // to update the manager theme and icon state.
       }
 
+      const getIconAndTitle = () => {
+        if (currentMuiMode === 'system') {
+          return {
+            icon: <BrowserIcon />,
+            title: 'Switch to light mode (currently following system preferences)'
+          }
+        }
+        return {
+          icon: currentMuiMode === 'light' ? <MoonIcon /> : <SunIcon />,
+          title: currentMuiMode === 'light' ? 'Switch to dark mode' : 'Switch to system mode'
+        }
+      }
+
+      const { icon, title } = getIconAndTitle()
+
       return (
         <IconButton
           key={TOOL_ID}
-          title={
-            currentMuiMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
-          }
+          title={title}
           onClick={toggleStorybookThemeAndMuiMode}
         >
-          {currentMuiMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          {icon}
         </IconButton>
       )
     },

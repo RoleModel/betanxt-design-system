@@ -4,3 +4,4 @@ tsconfig.tsbuildinfo
 
 storybook-static
 build-storybook.log
+.npmrc

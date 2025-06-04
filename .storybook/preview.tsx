@@ -5,12 +5,11 @@ import '@fontsource/roboto-condensed/700.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
-import { DocsContainer } from '@storybook/blocks'
-import { useGlobals } from '@storybook/preview-api'
-import type { Preview } from '@storybook/react'
+import { DocsContainer } from '@storybook/addon-docs/blocks'
+import type { Preview } from '@storybook/react-vite'
 import React, { useEffect, useState } from 'react'
 
-import { CssBaseline, ThemeProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider, useColorScheme } from '@mui/material'
 
 import betanxtTheme from '../src/themes/betanxtTheme'
 import '../src/themes/mui-type-customizations'
@@ -18,41 +17,22 @@ import { MuiThemeModeToggle } from './addons/mui-theme-toggle/preview'
 import { dark, light } from './theme'
 import './utils/patch-mui-display-name'
 
-// Custom hook to watch for dark mode class changes
-const useDarkMode = () => {
-  const [isDark, setIsDark] = useState(() => {
-    return document.documentElement.classList.contains('dark')
-  })
+// Hook to get the effective MUI theme mode (properly handles system mode)
+const useMuiThemeMode = () => {
+  const { mode, systemMode } = useColorScheme()
 
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-          const hasDarkClass = document.documentElement.classList.contains('dark')
-          setIsDark(hasDarkClass)
-        }
-      })
-    })
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
-  return isDark
+  // Return the effective mode
+  if (mode === 'system') {
+    return systemMode === 'dark' ? 'dark' : 'light'
+  }
+  return mode === 'dark' ? 'dark' : 'light'
 }
 
 const preview: Preview = {
   decorators: [
     (Story) => {
-      const [globals] = useGlobals()
-      const storybookUIThemeName = globals.theme || 'light'
-
       return (
-        <ThemeProvider theme={betanxtTheme} defaultMode={storybookUIThemeName}>
+        <ThemeProvider theme={betanxtTheme} defaultMode="system">
           <CssBaseline enableColorScheme />
           <MuiThemeModeToggle isPrimaryController={true} />
           <Story />
@@ -60,27 +40,35 @@ const preview: Preview = {
       )
     },
   ],
+
   parameters: {
     docs: {
+      autodocs: 'tag',
       container: ({ children, context }) => {
-        const isDarkMode = useDarkMode()
-        const themeMode = isDarkMode ? 'dark' : 'light'
-
-        return (
-          <ThemeProvider theme={betanxtTheme} defaultMode={themeMode}>
-            <CssBaseline enableColorScheme />
-            <MuiThemeModeToggle isPrimaryController={false} />
-            <DocsContainer context={context} theme={isDarkMode ? dark : light}>
+        // This needs to be inside a ThemeProvider to use useColorScheme
+        const DocsWithTheme = () => {
+          const muiMode = useMuiThemeMode()
+          return (
+            <DocsContainer context={context} theme={muiMode === 'dark' ? dark : light}>
               {children}
             </DocsContainer>
+          )
+        }
+
+        return (
+          <ThemeProvider theme={betanxtTheme}>
+            <CssBaseline enableColorScheme />
+            <MuiThemeModeToggle isPrimaryController={false} />
+            <DocsWithTheme />
           </ThemeProvider>
         )
       },
     },
+
     options: {
       storySort: {
         method: 'none',
-        includeNames: true,
+        includeNames: false,
         order: [
           'Guides',
           ['Introduction', 'Using the Theme'],
@@ -89,6 +77,7 @@ const preview: Preview = {
         ],
       },
     },
+
     backgrounds: {
       disable: true,
       default: 'light',
@@ -97,13 +86,23 @@ const preview: Preview = {
         { name: 'dark', value: '#000000' },
       ],
     },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'error',
+    },
   },
+
+  tags: ['autodocs'],
 }
 
 export default preview

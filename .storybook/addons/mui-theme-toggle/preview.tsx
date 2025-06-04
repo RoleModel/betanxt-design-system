@@ -1,5 +1,5 @@
-import { addons } from '@storybook/preview-api'
 import React, { useEffect, useRef } from 'react'
+import { addons } from 'storybook/preview-api'
 
 import { useColorScheme } from '@mui/material/styles'
 
@@ -10,7 +10,7 @@ interface MuiThemeModeToggleProps {
 export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
   isPrimaryController = false,
 }) => {
-  const { mode, setMode } = useColorScheme()
+  const { mode, setMode, systemMode } = useColorScheme()
   const channel = addons.getChannel()
 
   const modeRef = useRef(mode)
@@ -21,11 +21,43 @@ export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
     modeRef.current = mode
   }, [mode])
 
+  // Initial sync with system preference on mount
+  useEffect(() => {
+    if (isPrimaryController) {
+      // Get initial mode, preferring system if available
+      const initialMode = mode || 'system'
+      if (initialMode !== mode) {
+        setMode(initialMode)
+      }
+      // Emit initial mode to manager
+      channel.emit('mui-theme-mode-changed', initialMode)
+      lastEmittedModeRef.current = initialMode
+    }
+  }, [isPrimaryController, channel]) // Only run on mount
+
+  // Handle system mode changes
+  useEffect(() => {
+    if (mode === 'system' && isPrimaryController) {
+      // When in system mode, emit the effective mode (systemMode) to manager
+      const effectiveMode = systemMode || 'light'
+      if (lastEmittedModeRef.current !== effectiveMode) {
+        channel.emit('mui-theme-mode-changed', effectiveMode)
+        lastEmittedModeRef.current = effectiveMode
+      }
+    }
+  }, [systemMode, mode, isPrimaryController, channel])
+
   // Only emit to manager when mode changes locally (not from manager)
   useEffect(() => {
     if (mode) {
+      // Determine the effective mode for document class
+      let effectiveMode = mode
+      if (mode === 'system') {
+        effectiveMode = systemMode || 'light'
+      }
+
       // Update the document class for dark mode
-      if (mode === 'dark') {
+      if (effectiveMode === 'dark') {
         document.documentElement.classList.add('dark')
       } else {
         document.documentElement.classList.remove('dark')
@@ -33,11 +65,12 @@ export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
 
       // Only emit if this wasn't triggered by the manager AND the mode actually changed
       if (!isExternalChangeRef.current && lastEmittedModeRef.current !== mode) {
+        // For system mode, emit the current mode, not the effective mode
         channel.emit('mui-theme-mode-changed', mode)
         lastEmittedModeRef.current = mode
       }
     }
-  }, [mode, channel, isPrimaryController])
+  }, [mode, systemMode, channel, isPrimaryController])
 
   // Effect for channel event subscriptions.
   useEffect(() => {
@@ -66,8 +99,21 @@ export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
       }
     }
 
+    const handleSystemThemeChange = (newSystemMode: string) => {
+      // Always update to reflect system changes when in system mode
+      if (mode === 'system') {
+        // Don't call setMode here as it would override the system mode
+        // Instead, let the systemMode effect handle it
+        if (isPrimaryController) {
+          channel.emit('mui-theme-mode-changed', newSystemMode)
+          lastEmittedModeRef.current = newSystemMode
+        }
+      }
+    }
+
     // All instances should listen to toggle events (for detached docs pages)
     channel.on('mui-theme-mode-toggle', handleToggle)
+    channel.on('system-theme-changed', handleSystemThemeChange)
 
     // Only primary controller listens to requests
     if (isPrimaryController) {
@@ -76,11 +122,12 @@ export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
 
     return () => {
       channel.off('mui-theme-mode-toggle', handleToggle)
+      channel.off('system-theme-changed', handleSystemThemeChange)
       if (isPrimaryController) {
         channel.off('mui-theme-mode-request', handleRequest)
       }
     }
-  }, [channel, setMode, isPrimaryController])
+  }, [channel, setMode, isPrimaryController, mode, systemMode])
 
   return null
 }

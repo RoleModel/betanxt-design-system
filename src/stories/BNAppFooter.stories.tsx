@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { AppFooter as AppFooterComponent } from '../components/AppFooter'
+import { BNAppFooter as BNAppFooterComponent } from '../components/BNAppFooter'
 
-const meta: Meta<typeof AppFooterComponent> = {
-  title: 'Custom Components/AppFooter',
-  component: AppFooterComponent,
+const meta: Meta<typeof BNAppFooterComponent> = {
+  title: 'Custom Components/BNAppFooter',
+  component: BNAppFooterComponent,
 }
 
 export default meta
 
-type Story = StoryObj<typeof AppFooterComponent>
+type Story = StoryObj<typeof BNAppFooterComponent>
 
-export const AppFooter: Story = {
+export const BNAppFooter: Story = {
   args: {
     logoEnabled: true,
     privacyPolicyLink: 'Privacy Statement',

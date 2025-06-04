@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo } from 'react'
+import{ useEffect, useMemo } from 'react'
 
 import { useDrawingArea } from '@mui/x-charts'
 
-export interface SeriesGradient {
+export interface BNSeriesGradient {
   id: string
   color: string
   startOpacity?: number
@@ -18,7 +18,7 @@ export interface UseChartGradientsOptions {
 }
 
 export const useChartGradients = ({ enabled, series }: UseChartGradientsOptions) => {
-  const gradientSeries = useMemo<SeriesGradient[]>(() => {
+  const gradientSeries = useMemo<BNSeriesGradient[]>(() => {
     if (!enabled) return []
 
     return series.map((s) => ({
@@ -33,12 +33,12 @@ export const useChartGradients = ({ enabled, series }: UseChartGradientsOptions)
   }
 }
 
-export interface ChartGradientFillProps {
-  series: SeriesGradient[]
+export interface BNChartGradientFillProps {
+  series: BNSeriesGradient[]
   chartId?: string
 }
 
-function ChartGradientFill({ series, chartId = 'chart' }: ChartGradientFillProps) {
+function BNChartGradientFill({ series, chartId = 'chart' }: BNChartGradientFillProps) {
   const { top, height, bottom, left, width } = useDrawingArea()
   const svgHeight = top + bottom + height
 
@@ -98,4 +98,4 @@ function ChartGradientFill({ series, chartId = 'chart' }: ChartGradientFillProps
   )
 }
 
-export default ChartGradientFill
+export default BNChartGradientFill

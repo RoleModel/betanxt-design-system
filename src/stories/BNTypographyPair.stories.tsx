@@ -3,7 +3,7 @@ import React from 'react'
 
 import type { TypographyProps } from '@mui/material/Typography'
 
-import { TypographyPair as TypographyPairComponent } from '../components/TypographyPair'
+import { BNTypographyPair as BNTypographyPairComponent } from '../components/BNTypographyPair'
 
 type TypographyVariant = NonNullable<TypographyProps['variant']>
 
@@ -12,13 +12,27 @@ interface FlatTypographyPairArgs {
   spacing?: number
   alignItems?: string
   justifyContent?: string
-
+  primary?: {
+    text: React.ReactNode
+    variant?: string
+    fontWeight?: string | number
+    color?: string
+    gutterBottom?: boolean
+    component?: string
+  }
   primaryText: React.ReactNode
   primaryVariant?: string
   primaryFontWeight?: string | number
   primaryColor?: string
   primaryGutterBottom?: boolean
-
+  secondary?: {
+    text: React.ReactNode
+    variant?: string
+    fontWeight?: string | number
+    color?: string
+    gutterBottom?: boolean
+    component?: string
+  }
   secondaryText?: React.ReactNode
   secondaryVariant?: string
   secondaryFontWeight?: string | number
@@ -29,8 +43,8 @@ interface FlatTypographyPairArgs {
 type CustomMeta = Meta<FlatTypographyPairArgs>
 
 const meta = {
-  title: 'Custom Components/TypographyPair',
-  component: TypographyPairComponent,
+  title: 'Custom Components/BNTypographyPair',
+  component: BNTypographyPairComponent,
   argTypes: {
     direction: {
       control: 'select',
@@ -282,7 +296,7 @@ export const TypographyPair: Story = {
   },
   render: (args: any) => {
     const props = createTypographyPairProps(args as FlatTypographyPairArgs)
-    return <TypographyPairComponent {...props} />
+    return <BNTypographyPairComponent {...props} />
   },
 }
 
@@ -293,7 +307,6 @@ export const PageTitle: Story = {
     spacing: 0.5,
     primaryText: 'Page Title',
     primaryVariant: 'pageTitle',
-    component: 'h1',
     primaryColor: 'text.primary',
     primaryGutterBottom: false,
     secondaryText:
@@ -305,6 +318,6 @@ export const PageTitle: Story = {
   },
   render: (args: any) => {
     const props = createTypographyPairProps(args as FlatTypographyPairArgs)
-    return <TypographyPairComponent {...props} />
+    return <BNTypographyPairComponent {...props} />
   },
 }

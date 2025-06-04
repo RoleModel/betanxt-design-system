@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { ChartsTooltip, BarChart as MuiBarChart } from '@mui/x-charts'

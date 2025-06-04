@@ -2,9 +2,9 @@
 
 import { Box, Divider, Link, Typography } from '@mui/material'
 
-import { BetaNXTLogo } from './betanxt-logo'
+import { BetaNXTLogo } from './BNLogo'
 
-export function AppFooter({
+export function BNAppFooter({
   logoEnabled = true,
   privacyPolicyLink = 'https://www.mediantinc.com/privacy-policy',
   additionalCopyright,

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Stack, type StackProps, Typography, type TypographyProps } from '@mui/material'
 
-interface TypographyPairProps {
+interface BNTypographyPairProps {
   primary: {
     text: React.ReactNode
     variant?: TypographyProps['variant']
@@ -31,7 +31,7 @@ interface TypographyPairProps {
   variant?: TypographyProps['variant']
 }
 
-export function TypographyPair({
+export function BNTypographyPair({
   primary,
   secondary,
   direction,
@@ -39,7 +39,7 @@ export function TypographyPair({
   alignItems,
   justifyContent,
   sx,
-}: TypographyPairProps) {
+}: BNTypographyPairProps) {
   return (
     <Stack
       direction={direction}

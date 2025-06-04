@@ -7,7 +7,6 @@ import {
   Link,
   Link as MUILink,
   Typography,
-  styled,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
@@ -21,15 +20,7 @@ type StatCardProps = {
   secondaryColor?: boolean
 }
 
-const StyledCard = styled(Card)(({ theme }) => ({
-  backgroundColor: 'white',
-  transition: theme.transitions.create(['background-color']),
-  '&:hover': {
-    backgroundColor: 'background.paper',
-  },
-}))
-
-export function StatCard({
+export function BNStatCard({
   text,
   total,
   link,

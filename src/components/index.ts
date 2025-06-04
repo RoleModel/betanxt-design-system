@@ -1,12 +1,11 @@
 // Chart Gradient Components
-export { default as ChartGradientFill } from './ChartGradientFill'
-export type { ChartGradientFillProps, SeriesGradient } from './ChartGradientFill'
+export { default as BNChartGradientFill } from './BNChartGradientFill'
+export type { BNChartGradientFillProps, BNSeriesGradient } from './BNChartGradientFill'
 
 // Other components
 export { Alert } from './Alert'
-export { AppFooter } from './AppFooter'
-export { BarChart } from './BarChart'
-export { SelectCard } from './SelectCard'
-export { StatCard } from './StatCard'
-export { Timeline } from './Timeline'
-export { TypographyPair } from './TypographyPair'
+export { BNAppFooter } from './BNAppFooter'
+export { BNStatCard } from './BNStatCard'
+export { BNSelectCard } from './BNSelectCard'
+export { BNTimeline } from './BNTimeline'
+export { BNTypographyPair } from './BNTypographyPair'

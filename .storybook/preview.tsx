@@ -65,7 +65,6 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-
         method: 'none',
         includeNames: false,
         order: [

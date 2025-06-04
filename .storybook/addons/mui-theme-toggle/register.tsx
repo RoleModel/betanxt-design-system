@@ -30,7 +30,9 @@ addons.register(ADDON_ID, (api) => {
             actualTheme = dark
           } else if (muiMode === 'system') {
             // For system mode, check actual system preference
-            const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            const isSystemDark =
+              window.matchMedia &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches
             actualTheme = isSystemDark ? dark : light
           }
 
@@ -72,23 +74,20 @@ addons.register(ADDON_ID, (api) => {
         if (currentMuiMode === 'system') {
           return {
             icon: <BrowserIcon />,
-            title: 'Switch to light mode (currently following system preferences)'
+            title: 'Switch to light mode (currently following system preferences)',
           }
         }
         return {
           icon: currentMuiMode === 'light' ? <MoonIcon /> : <SunIcon />,
-          title: currentMuiMode === 'light' ? 'Switch to dark mode' : 'Switch to system mode'
+          title:
+            currentMuiMode === 'light' ? 'Switch to dark mode' : 'Switch to system mode',
         }
       }
 
       const { icon, title } = getIconAndTitle()
 
       return (
-        <IconButton
-          key={TOOL_ID}
-          title={title}
-          onClick={toggleStorybookThemeAndMuiMode}
-        >
+        <IconButton key={TOOL_ID} title={title} onClick={toggleStorybookThemeAndMuiMode}>
           {icon}
         </IconButton>
       )

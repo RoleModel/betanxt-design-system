@@ -65,8 +65,9 @@ const preview: Preview = {
     },
     options: {
       storySort: {
+
         method: 'none',
-        includeNames: true,
+        includeNames: false,
         order: [
           'Guides',
           ['Introduction', 'Using the Theme'],

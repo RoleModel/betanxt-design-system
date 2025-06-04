@@ -271,10 +271,10 @@ export const DefaultLineChart: Story = {
     const slotPropsConfig = {
       legend: !hideLegend
         ? {
-          position: {
-            vertical: legendPositionVertical,
-          },
-        }
+            position: {
+              vertical: legendPositionVertical,
+            },
+          }
         : undefined,
       tooltip: {
         trigger: showTooltip ? 'axis' : 'none',
@@ -399,10 +399,10 @@ The ChartGradientFill component is reusable across chart types (LineChart, BarCh
     const slotPropsConfig = {
       legend: !hideLegend
         ? {
-          position: {
-            vertical: legendPositionVertical,
-          },
-        }
+            position: {
+              vertical: legendPositionVertical,
+            },
+          }
         : undefined,
       tooltip: {
         trigger: showTooltip ? 'axis' : 'none',

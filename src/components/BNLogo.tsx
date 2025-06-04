@@ -4,10 +4,13 @@ interface BetaNXTLogoProps {
   showPoweredBy?: boolean
   logoFill?: string
   height?: number
-  width?: number
 }
 
-export function BetaNXTLogo({ showPoweredBy = true, logoFill, height = 22, width = 156 }: BetaNXTLogoProps) {
+export function BetaNXTLogo({
+  showPoweredBy = true,
+  logoFill,
+  height = 22,
+}: BetaNXTLogoProps) {
   const theme = useTheme()
   const primaryColor = logoFill || theme.vars.palette.common.white
   const poweredBy = theme.vars.palette.logoPoweredBy

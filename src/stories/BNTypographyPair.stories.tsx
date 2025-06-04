@@ -266,12 +266,12 @@ const createBNTypographyPairProps = (args: FlatTypographyPairArgs) => {
     },
     secondary: secondaryText
       ? {
-        text: secondaryText,
-        variant: getSecondaryVariant(),
-        fontWeight: secondaryFontWeight,
-        color: secondaryColor,
-        gutterBottom: secondaryGutterBottom,
-      }
+          text: secondaryText,
+          variant: getSecondaryVariant(),
+          fontWeight: secondaryFontWeight,
+          color: secondaryColor,
+          gutterBottom: secondaryGutterBottom,
+        }
       : undefined,
   }
 }

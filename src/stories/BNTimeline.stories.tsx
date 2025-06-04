@@ -1,8 +1,8 @@
-import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 import { BNTimeline } from '../components/BNTimeline'
-import type { MuiTimelineItemData, BNTimelineProps } from '../components/BNTimeline'
+import type { BNTimelineProps, MuiTimelineItemData } from '../components/BNTimeline'
 
 const meta: Meta<BNTimelineProps> = {
   title: 'Components/Timeline',

@@ -30,9 +30,11 @@ if (globalWindow && globalWindow.matchMedia) {
   const handleSystemThemeChange = (e: MediaQueryListEvent) => {
     const channel = addons.getChannel()
     const newMode = e.matches ? 'dark' : 'light'
+
     // Emit system preference change to preview
     channel.emit('system-theme-changed', newMode)
-    // Update manager theme
+
+    // Update manager theme immediately
     addons.setConfig({
       theme: newMode === 'dark' ? dark : light,
     })
@@ -49,9 +51,27 @@ if (globalWindow && globalWindow.matchMedia) {
 
 // Listen for theme changes from preview
 const channel = addons.getChannel()
+
+// Track current mode to avoid unnecessary updates
+let currentMode: string | null = null
+
 channel.on('mui-theme-mode-changed', (mode: string) => {
-  const newTheme = mode === 'dark' ? dark : light
+  // Avoid unnecessary updates if mode hasn't changed
+  if (currentMode === mode) return
+
+  currentMode = mode
+
+  // For system mode, use current system preference
+  let effectiveMode = mode
+  if (mode === 'system') {
+    effectiveMode = getPreferredColorScheme()
+  }
+
+  const newTheme = effectiveMode === 'dark' ? dark : light
   addons.setConfig({
     theme: newTheme,
   })
 })
+
+// Request initial theme from preview on load
+channel.emit('mui-theme-mode-request')

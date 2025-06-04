@@ -198,7 +198,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 // Helper function to convert flat args to the component's expected structure
-const createTypographyPairProps = (args: FlatTypographyPairArgs) => {
+const createBNTypographyPairProps = (args: FlatTypographyPairArgs) => {
   const {
     primaryText,
     primaryVariant,
@@ -266,18 +266,18 @@ const createTypographyPairProps = (args: FlatTypographyPairArgs) => {
     },
     secondary: secondaryText
       ? {
-          text: secondaryText,
-          variant: getSecondaryVariant(),
-          fontWeight: secondaryFontWeight,
-          color: secondaryColor,
-          gutterBottom: secondaryGutterBottom,
-        }
+        text: secondaryText,
+        variant: getSecondaryVariant(),
+        fontWeight: secondaryFontWeight,
+        color: secondaryColor,
+        gutterBottom: secondaryGutterBottom,
+      }
       : undefined,
   }
 }
 
-export const TypographyPair: Story = {
-  name: 'TypographyPair',
+export const BNTypographyPair: Story = {
+  name: 'BNTypographyPair',
   args: {
     direction: 'column',
     spacing: 0,
@@ -295,7 +295,7 @@ export const TypographyPair: Story = {
     secondaryGutterBottom: false,
   },
   render: (args: any) => {
-    const props = createTypographyPairProps(args as FlatTypographyPairArgs)
+    const props = createBNTypographyPairProps(args as FlatTypographyPairArgs)
     return <BNTypographyPairComponent {...props} />
   },
 }
@@ -317,7 +317,7 @@ export const PageTitle: Story = {
     secondaryGutterBottom: true,
   },
   render: (args: any) => {
-    const props = createTypographyPairProps(args as FlatTypographyPairArgs)
+    const props = createBNTypographyPairProps(args as FlatTypographyPairArgs)
     return <BNTypographyPairComponent {...props} />
   },
 }

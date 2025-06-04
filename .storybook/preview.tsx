@@ -5,8 +5,8 @@ import '@fontsource/roboto-condensed/700.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
-import { DocsContainer } from '@storybook/blocks'
-import type { Preview } from '@storybook/react'
+import { DocsContainer } from '@storybook/addon-docs/blocks'
+import type { Preview } from '@storybook/react-vite'
 import React, { useEffect, useState } from 'react'
 
 import { CssBaseline, ThemeProvider, useColorScheme } from '@mui/material'
@@ -40,6 +40,7 @@ const preview: Preview = {
       )
     },
   ],
+
   parameters: {
     docs: {
       autodocs: 'tag',
@@ -90,6 +91,8 @@ const preview: Preview = {
       },
     },
   },
+
+  tags: ['autodocs'],
 }
 
 export default preview

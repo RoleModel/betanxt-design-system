@@ -1,5 +1,5 @@
-import { addons } from '@storybook/preview-api'
 import React, { useEffect, useRef } from 'react'
+import { addons } from 'storybook/preview-api'
 
 import { useColorScheme } from '@mui/material/styles'
 

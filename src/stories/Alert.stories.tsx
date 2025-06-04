@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { expect } from '@storybook/test'
-import { userEvent, waitFor, within } from '@storybook/test'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { expect } from 'storybook/test'
+import { userEvent, waitFor, within } from 'storybook/test'
 
 import { Box, Button, Slide, Snackbar, Typography } from '@mui/material'
 

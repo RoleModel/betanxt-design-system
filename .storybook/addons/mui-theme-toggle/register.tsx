@@ -1,7 +1,7 @@
-import { IconButton } from '@storybook/components'
 import { BrowserIcon, MoonIcon, SunIcon } from '@storybook/icons'
-import { addons, types } from '@storybook/manager-api'
 import React from 'react'
+import { IconButton } from 'storybook/internal/components'
+import { addons, types } from 'storybook/manager-api'
 
 import { dark, light } from '../../theme'
 

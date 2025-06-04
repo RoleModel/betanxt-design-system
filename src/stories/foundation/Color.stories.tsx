@@ -1,6 +1,6 @@
-import { addons } from '@storybook/preview-api'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import React, { useEffect, useMemo, useState } from 'react'
+import { addons } from 'storybook/preview-api'
 
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'

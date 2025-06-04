@@ -12,10 +12,8 @@ const config: StorybookConfig = {
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
-    '@storybook/addon-essentials',
     '@storybook/addon-themes',
     '@storybook/addon-docs',
-    '@storybook/addon-interactions',
     '@storybook/addon-designs',
     '@chromatic-com/storybook',
     '@storybook/addon-a11y',
@@ -41,7 +39,6 @@ const config: StorybookConfig = {
   },
   docs: {
     defaultName: 'Documentation',
-    autodocs: true,
   },
   viteFinal: async (viteConfig) => {
     const buildConfig = (viteConfig.build ??= {})
@@ -60,7 +57,7 @@ const config: StorybookConfig = {
     viteConfig.optimizeDeps = viteConfig.optimizeDeps || {}
     viteConfig.optimizeDeps.include = [
       ...(viteConfig.optimizeDeps.include || []),
-      '@storybook/blocks',
+      '@storybook/addon-docs/blocks',
       '@storybook/addon-docs',
     ]
 

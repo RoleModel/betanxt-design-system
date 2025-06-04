@@ -1,5 +1,5 @@
 import { global } from '@storybook/global'
-import { addons } from '@storybook/manager-api'
+import { addons } from 'storybook/manager-api'
 
 import { dark, light } from './theme'
 

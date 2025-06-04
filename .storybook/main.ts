@@ -18,6 +18,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-a11y',
     './addons/mui-theme-toggle/register.tsx',
+    '@storybook/addon-vitest',
   ],
   framework: {
     name: '@storybook/react-vite',

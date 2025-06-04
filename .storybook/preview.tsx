@@ -64,6 +64,7 @@ const preview: Preview = {
         )
       },
     },
+
     options: {
       storySort: {
         method: 'none',
@@ -76,6 +77,7 @@ const preview: Preview = {
         ],
       },
     },
+
     backgrounds: {
       disable: true,
       default: 'light',
@@ -84,11 +86,19 @@ const preview: Preview = {
         { name: 'dark', value: '#000000' },
       ],
     },
+
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'error',
     },
   },
 

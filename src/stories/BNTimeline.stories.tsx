@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
-import { Timeline } from '../components/Timeline'
-import type { MuiTimelineItemData, TimelineProps } from '../components/Timeline'
+import { BNTimeline } from '../components/BNTimeline'
+import type { BNTimelineProps, MuiTimelineItemData } from '../components/BNTimeline'
 
-const meta: Meta<TimelineProps> = {
+const meta: Meta<BNTimelineProps> = {
   title: 'Components/Timeline',
-  component: Timeline,
+  component: BNTimeline,
   parameters: {
     layout: 'centered',
     design: {
@@ -39,7 +40,7 @@ const meta: Meta<TimelineProps> = {
 
 export default meta
 
-type Story = StoryObj<TimelineProps>
+type Story = StoryObj<BNTimelineProps>
 
 const defaultItems: MuiTimelineItemData[] = [
   {
@@ -79,7 +80,7 @@ export const DefaultTimeline: Story = {
     position: 'right',
     title: 'Timeline of Events',
   },
-  render: (args) => <Timeline {...args} />,
+  render: (args) => <BNTimeline {...args} />,
 }
 
 export const AlternateTimeline: Story = {
@@ -89,5 +90,5 @@ export const AlternateTimeline: Story = {
     position: 'alternate',
     title: 'Project Milestones (Alternate)',
   },
-  render: (args) => <Timeline {...args} />,
+  render: (args) => <BNTimeline {...args} />,
 }

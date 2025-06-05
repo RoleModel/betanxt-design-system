@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { StatCard } from '../components/StatCard'
+import { BNStatCard } from '../components/BNStatCard'
 
 const meta = {
-  title: 'Custom Components/StatCard',
+  title: 'Custom Components/BNStatCard',
   parameters: {
     layout: 'centered',
     docs: {
@@ -21,8 +21,8 @@ const meta = {
       options: ['row', 'column'],
     },
   },
-  component: StatCard,
-} satisfies Meta<typeof StatCard>
+  component: BNStatCard,
+} satisfies Meta<typeof BNStatCard>
 
 export default meta
 
@@ -30,7 +30,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    text: 'StatCard Title',
+    text: 'BNStatCard Title',
     total: 50,
     link: 'link',
     direction: 'row',

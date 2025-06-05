@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import type { PaletteColorOptions, PaletteOptions } from '@mui/material/styles'
+import type { PaletteOptions } from '@mui/material/styles'
 
 import {
   bnblue,
@@ -88,7 +88,7 @@ export const basePaletteLight: PaletteOptions = {
     hover: nxtBlue[800],
     contrastText: '#FFFFFF',
   },
-  link: bnblue[500],
+  link: nxtBlue[500],
   tableCellRow: {
     fill: baseTheme.palette.common.white,
     zebraFill: neutral[200],

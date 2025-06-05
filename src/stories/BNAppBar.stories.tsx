@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import React from 'react'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
 
-import { BNAnimatedMenuIcon } from '../components/app-bar/BNAnimatedMenuIcon'
 import BNAppBar from '../components/app-bar/BNAppBar'
-import { BNAppBarDrawer } from '../components/app-bar/BNAppBarDrawer'
 
 const meta = {
   title: 'Custom Components/BNAppBar',
@@ -20,10 +17,6 @@ const meta = {
     },
   },
   component: BNAppBar,
-  subcomponents: {
-    BNAppBarDrawer: BNAppBarDrawer as any,
-    BNAnimatedMenuIcon: BNAnimatedMenuIcon as any,
-  },
 } satisfies Meta<typeof BNAppBar>
 
 export default meta
@@ -35,12 +28,14 @@ export const Primary: Story = {
     layout: 'fullscreen',
   },
   args: {
-    title: 'BNAppBar',
+    title: 'App Title',
     color: 'primary',
-    position: 'static',
     selectedTabValue: 'home',
-    avatarSrc: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-    avatarAlt: 'User Avatar',
+    avatar: {
+      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
+      alt: 'User Avatar',
+      children: 'US',
+    },
     tabs: [
       {
         label: 'Home',
@@ -70,13 +65,15 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    position: 'static',
     logoUrl: '/company-logo.svg',
     logoAlt: 'BetaNXT Logo',
     color: 'secondary',
     selectedTabValue: 'home',
-    avatarSrc: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-    avatarAlt: 'User Avatar',
+    avatar: {
+      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
+      alt: 'User Avatar',
+      children: 'US',
+    },
     tabs: [
       {
         label: 'Home',

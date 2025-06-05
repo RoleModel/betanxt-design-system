@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-  Avatar,
   Box,
   AppBar as MuiAppBar,
   Stack,
@@ -13,12 +12,11 @@ import {
   useTheme,
 } from '@mui/material'
 
-import { BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
+import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
 import { BNAppBarDrawer } from './BNAppBarDrawer'
 
 export interface BNAppBarProps {
   title?: string
-  position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
   color?: 'primary' | 'secondary'
   logoUrl?: string
   logoAlt?: string
@@ -29,16 +27,13 @@ export interface BNAppBarProps {
   }[]
   selectedTabValue?: string
   tabLinkComponent?: React.ElementType
-  avatarSrc?: string
-  avatarAlt?: string
-  avatarChildren?: React.ReactNode
+  avatar: AvatarProps
   menuItems: MenuItem[]
   'aria-label'?: string
 }
 
 export function BNAppBar({
   title,
-  position = 'fixed',
   logoUrl,
   logoAlt,
   color = 'primary',
@@ -46,9 +41,7 @@ export function BNAppBar({
   selectedTabValue,
   tabLinkComponent = 'a',
   menuItems,
-  avatarSrc,
-  avatarAlt,
-  avatarChildren,
+  avatar,
   'aria-label': ariaLabel,
 }: BNAppBarProps) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
@@ -60,9 +53,9 @@ export function BNAppBar({
   }
 
   return (
-        <MuiAppBar
+    <MuiAppBar
       color={color}
-      position={position}
+      position="static"
       role="banner"
       aria-label={ariaLabel || 'Main navigation'}
     >
@@ -80,19 +73,15 @@ export function BNAppBar({
               height={44}
               sx={{
                 display: 'block',
-                padding: '2px',
-                backgroundColor: 'white',
+                padding: 0.5,
+                backgroundColor: 'common.white',
                 borderRadius: 1,
               }}
             />
           )}
 
           {title && (
-            <Typography
-              variant="pageTitle"
-              component="h1"
-              aria-level={1}
-            >
+            <Typography variant="pageTitle" aria-level={1}>
               {title}
             </Typography>
           )}
@@ -120,9 +109,7 @@ export function BNAppBar({
           )}
           <BNAnimatedMenuIcon
             menuItems={menuItems}
-            avatarSrc={avatarSrc}
-            avatarAlt={avatarAlt}
-            avatarChildren={avatarChildren}
+            avatar={avatar}
             onDrawerToggle={handleDrawerToggle}
             drawerOpen={drawerOpen}
           />
@@ -144,7 +131,7 @@ export function BNAppBar({
           root: {
             id: 'navigation-drawer',
             'aria-label': 'Navigation drawer',
-          }
+          },
         }}
       />
     </MuiAppBar>

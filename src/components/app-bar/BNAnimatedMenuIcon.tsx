@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import { type MouseEvent, type ReactNode, useState } from 'react'
 
 import {
   Avatar,
@@ -42,17 +42,21 @@ const topbarClose = keyframes`
 
 export interface MenuItem {
   label: string
-  icon?: React.ReactNode
+  icon?: ReactNode
   onClick: () => void
+}
+
+export interface AvatarProps {
+  src: string
+  alt: string
+  children: ReactNode
 }
 
 export interface BNAnimatedMenuIconProps {
   menuItems: MenuItem[]
   onDrawerToggle?: () => void
   drawerOpen?: boolean
-  avatarSrc?: string
-  avatarAlt?: string
-  avatarChildren?: React.ReactNode
+  avatar: AvatarProps
   useAnimatedIconOnly?: boolean
   sx?: SxProps<Theme>
   className?: string
@@ -110,18 +114,16 @@ export const BNAnimatedMenuIcon = ({
   menuItems,
   onDrawerToggle,
   drawerOpen = false,
-  avatarSrc,
-  avatarAlt,
-  avatarChildren,
+  avatar,
   useAnimatedIconOnly = false,
   sx,
   className,
 }: BNAnimatedMenuIconProps) => {
-  const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
     if ((isMobile || useAnimatedIconOnly) && onDrawerToggle) {
       onDrawerToggle()
     } else {
@@ -185,11 +187,11 @@ export const BNAnimatedMenuIcon = ({
         className={className}
       >
         <Avatar
-          src={avatarSrc}
-          alt={avatarAlt}
+          src={avatar.src}
+          alt={avatar.alt}
           sx={{ width: 40, height: 40, backgroundColor: 'primary.main' }}
         >
-          {avatarChildren}
+          {avatar.children}
         </Avatar>
       </IconButton>
       <Menu

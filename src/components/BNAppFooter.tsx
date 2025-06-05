@@ -7,11 +7,14 @@ import { BetaNXTLogo } from './BNLogo'
 export function BNAppFooter({
   logoEnabled = true,
   privacyPolicyLink = 'https://www.mediantinc.com/privacy-policy',
-  additionalCopyright,
+  links = [],
 }: {
   logoEnabled?: boolean
   privacyPolicyLink?: string
-  additionalCopyright?: string
+  links?: {
+    label: string
+    href: string
+  }[]
 }) {
   return (
     <Box
@@ -23,16 +26,17 @@ export function BNAppFooter({
         padding: 2,
         backgroundColor: 'footer.background',
         justifyContent: 'space-between',
-        flexWrap: 'nowrap',
+        flexWrap: 'wrap',
         color: 'common.white',
         minHeight: theme.layout?.footerHeight,
+        gap: 2,
       })}
     >
       <Box
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column-reverse', sm: 'row' },
-          alignItems: { xs: 'flex-start', sm: 'center' },
+          alignItems: { xs: 'flex-start', sm: 'baseline' },
           gap: { xs: 1, sm: 2 },
         }}
       >
@@ -45,11 +49,19 @@ export function BNAppFooter({
           flexItem
           sx={{ backgroundColor: 'common.white', display: { xs: 'none', sm: 'block' } }}
         />
-        {additionalCopyright && (
+        {links && (
           <>
-            <Typography variant="body2" sx={{ color: 'inherit', whiteSpace: 'nowrap' }}>
-              {additionalCopyright}
-            </Typography>
+            {links.map((link) => (
+              <Link
+                href={link.href}
+                underline="none"
+                variant="body2"
+                key={link.label}
+                sx={{ color: 'inherit', whiteSpace: 'nowrap' }}
+              >
+                {link.label}
+              </Link>
+            ))}
             <Divider
               orientation="vertical"
               variant="fullWidth"
@@ -71,7 +83,9 @@ export function BNAppFooter({
           Privacy Statement
         </Link>
       </Box>
-      {logoEnabled && <BetaNXTLogo />}
+      {logoEnabled && (
+        <BetaNXTLogo height={24} href={'https://betanxt.com'} alt={'Go to BetaNXT.com'} />
+      )}
     </Box>
   )
 }

@@ -49,7 +49,7 @@ export function BetaNXTLogo({
   const shouldBeHidden = decorative && !isInteractive
 
   // Default alt text based on what's shown
-  const defaultAlt = showPoweredBy ? 'BetaNXT Logo - Powered by BetaNXT' : 'BetaNXT Logo'
+  const defaultAlt = showPoweredBy ? 'Powered by BetaNXT' : 'BetaNXT'
 
   const accessibleName = alt || (shouldBeHidden ? undefined : defaultAlt)
   const titleText = title || accessibleName
@@ -80,8 +80,6 @@ export function BetaNXTLogo({
     onKeyDown: isInteractive ? handleKeyDown : undefined,
     style: {
       cursor: isInteractive ? 'pointer' : undefined,
-      // Ensure good contrast in high contrast mode
-      filter: theme.palette.mode === 'dark' ? 'none' : undefined,
     },
     // Add focus outline for keyboard navigation
     sx: isInteractive
@@ -89,7 +87,7 @@ export function BetaNXTLogo({
           '&:focus': {
             outline: `2px solid ${theme.palette.primary.main}`,
             outlineOffset: '2px',
-            borderRadius: '2px',
+            borderRadius: 1,
           },
           '&:focus:not(:focus-visible)': {
             outline: 'none',
@@ -147,7 +145,9 @@ export function BetaNXTLogo({
         href={href}
         aria-label={accessibleName}
         style={{
-          display: 'inline-block',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           textDecoration: 'none',
           color: 'inherit',
         }}

@@ -49,28 +49,31 @@ export function BNAppFooter({
           flexItem
           sx={{ backgroundColor: 'common.white', display: { xs: 'none', sm: 'block' } }}
         />
-        {links && (
+        {links && links.length > 0 && (
           <>
             {links.map((link) => (
-              <Link
-                href={link.href}
-                underline="none"
-                variant="body2"
-                key={link.label}
-                sx={{ color: 'inherit', whiteSpace: 'nowrap' }}
-              >
-                {link.label}
-              </Link>
+              <>
+                <Link
+                  href={link.href}
+                  underline="none"
+                  variant="body2"
+                  key={link.label}
+                  sx={{ color: 'inherit', whiteSpace: 'nowrap' }}
+                >
+                  {link.label}
+                </Link>
+                <Divider
+                  key={`${link.label}-divider`}
+                  orientation="vertical"
+                  variant="fullWidth"
+                  flexItem
+                  sx={{
+                    backgroundColor: 'common.white',
+                    display: { xs: 'none', sm: 'block' },
+                  }}
+                />
+              </>
             ))}
-            <Divider
-              orientation="vertical"
-              variant="fullWidth"
-              flexItem
-              sx={{
-                backgroundColor: 'common.white',
-                display: { xs: 'none', sm: 'block' },
-              }}
-            />
           </>
         )}
         <Link

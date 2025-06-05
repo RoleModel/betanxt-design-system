@@ -1,15 +1,31 @@
+import React from 'react'
+
 import { useTheme } from '@mui/material/styles'
 
 interface BetaNXTLogoProps {
   showPoweredBy?: boolean
   logoFill?: string
   height?: number
+  alt?: string
+  title?: string
+  decorative?: boolean
+  onClick?: () => void
+  href?: string
+  tabIndex?: number
+  role?: string
 }
 
 export function BetaNXTLogo({
   showPoweredBy = true,
   logoFill,
   height = 22,
+  alt,
+  title,
+  decorative = false,
+  onClick,
+  href,
+  tabIndex,
+  role = 'img',
 }: BetaNXTLogoProps) {
   const theme = useTheme()
   const primaryColor = logoFill || theme.vars.palette.common.white
@@ -28,16 +44,63 @@ export function BetaNXTLogo({
   // Calculate scale to maintain aspect ratio
   const scale = height / originalHeight
 
-  return (
-    <svg
-      width={viewBoxWidth * scale}
-      height={height}
-      viewBox={`${viewBoxX} 0 ${viewBoxWidth} ${originalHeight}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-      focusable="false"
-    >
+  // Determine accessibility attributes
+  const isInteractive = Boolean(onClick || href)
+  const shouldBeHidden = decorative && !isInteractive
+
+  // Default alt text based on what's shown
+  const defaultAlt = showPoweredBy ? 'BetaNXT Logo - Powered by BetaNXT' : 'BetaNXT Logo'
+
+  const accessibleName = alt || (shouldBeHidden ? undefined : defaultAlt)
+  const titleText = title || accessibleName
+
+  // Handle keyboard events for interactive logos
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (isInteractive && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault()
+      if (onClick) {
+        onClick()
+      } else if (href) {
+        window.location.href = href
+      }
+    }
+  }
+
+  const svgProps = {
+    width: viewBoxWidth * scale,
+    height: height,
+    viewBox: `${viewBoxX} 0 ${viewBoxWidth} ${originalHeight}`,
+    fill: 'none',
+    xmlns: 'http://www.w3.org/2000/svg',
+    role: shouldBeHidden ? 'presentation' : role,
+    'aria-hidden': shouldBeHidden,
+    'aria-label': !shouldBeHidden ? accessibleName : undefined,
+    tabIndex: isInteractive ? (tabIndex ?? 0) : undefined,
+    onClick: onClick,
+    onKeyDown: isInteractive ? handleKeyDown : undefined,
+    style: {
+      cursor: isInteractive ? 'pointer' : undefined,
+      // Ensure good contrast in high contrast mode
+      filter: theme.palette.mode === 'dark' ? 'none' : undefined,
+    },
+    // Add focus outline for keyboard navigation
+    sx: isInteractive
+      ? {
+          '&:focus': {
+            outline: `2px solid ${theme.palette.primary.main}`,
+            outlineOffset: '2px',
+            borderRadius: '2px',
+          },
+          '&:focus:not(:focus-visible)': {
+            outline: 'none',
+          },
+        }
+      : undefined,
+  }
+
+  const logoContent = (
+    <svg {...svgProps}>
+      {titleText && !shouldBeHidden && <title>{titleText}</title>}
       {showPoweredBy && (
         <path
           className="powered-by"
@@ -76,4 +139,23 @@ export function BetaNXTLogo({
       />
     </svg>
   )
+
+  // If href is provided, wrap in anchor tag
+  if (href && !onClick) {
+    return (
+      <a
+        href={href}
+        aria-label={accessibleName}
+        style={{
+          display: 'inline-block',
+          textDecoration: 'none',
+          color: 'inherit',
+        }}
+      >
+        {logoContent}
+      </a>
+    )
+  }
+
+  return logoContent
 }

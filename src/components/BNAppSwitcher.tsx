@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Box, Button, Menu, MenuItem, Typography } from '@mui/material'
+
 import { Apps as AppsIcon } from '@mui/icons-material'
+import { Box, Button, Menu, MenuItem, Typography } from '@mui/material'
 
 export type App = {
   title: string
@@ -30,7 +31,8 @@ export function BNAppSwitcher({
     <Box
       sx={(theme) => ({
         px: 2,
-        backgroundColor: theme.vars?.palette?.appSwitcher?.background || theme.palette.primary.main,
+        backgroundColor:
+          theme.vars?.palette?.appSwitcher?.background || theme.palette.primary.main,
         minHeight: theme.layout?.appSwitcherHeight || 48,
         display: 'flex',
         justifyContent: 'space-between',

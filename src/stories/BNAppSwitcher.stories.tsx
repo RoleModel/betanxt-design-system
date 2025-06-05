@@ -1,16 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { BNAppSwitcher } from '../components/BNAppSwitcher';
+import { BNAppSwitcher } from '../components/BNAppSwitcher'
 
 const meta = {
   title: 'Custom Components/BNAppSwitcher',
 
   component: BNAppSwitcher,
-} satisfies Meta<typeof BNAppSwitcher>;
+} satisfies Meta<typeof BNAppSwitcher>
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   parameters: {
@@ -34,4 +34,4 @@ export const Default: Story = {
     currentAppTitle: 'MIC Ops',
     clientName: 'Client Name',
   },
-};
+}

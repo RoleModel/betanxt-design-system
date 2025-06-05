@@ -3,9 +3,16 @@ import React from 'react'
 import { expect } from 'storybook/test'
 import { userEvent, waitFor, within } from 'storybook/test'
 
-import { Box, Button, Slide, Snackbar, Typography, Alert as AlertComponent, AlertTitle, AlertProps } from '@mui/material'
-
-
+import {
+  Alert as AlertComponent,
+  AlertProps,
+  AlertTitle,
+  Box,
+  Button,
+  Slide,
+  Snackbar,
+  Typography,
+} from '@mui/material'
 
 interface StoryArgs extends Omit<AlertProps, 'onClose'> {
   onClose?: boolean | ((event: React.SyntheticEvent<Element, Event>) => void)
@@ -101,7 +108,7 @@ const meta = {
 
 export default meta
 
-type Story = StoryObj<    typeof meta>
+type Story = StoryObj<typeof meta>
 
 export const Alert: Story = {
   name: 'Alert',
@@ -314,8 +321,15 @@ export const SnackBarAlert: Story = {
     }
 
     // Extract props we need to handle specially
-    const { action, actionButtonVariant, severity, onClose, elevation, showIcon, ...otherProps } =
-      args
+    const {
+      action,
+      actionButtonVariant,
+      severity,
+      onClose,
+      elevation,
+      showIcon,
+      ...otherProps
+    } = args
 
     // Create action button if action=true
     const actionButton = action ? (

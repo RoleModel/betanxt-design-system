@@ -1,11 +1,11 @@
-import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
 
-import BNAppBar from '../components/app-bar/BNAppBar'
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
+import BNAppBar from '../components/app-bar/BNAppBar'
 
 const meta = {
   title: 'Custom Components/BNAppBar',
@@ -98,8 +98,6 @@ export const Secondary: Story = {
   },
 }
 
-
-
 export const WithAppSwitcher: Story = {
   args: {
     logoUrl: '/company-logo.svg',
@@ -130,6 +128,16 @@ export const WithAppSwitcher: Story = {
         icon: <LogoutIcon />,
       },
     ],
-    children: <BNAppSwitcher apps={[{title: 'MIC Ops', url: '#'}, {title: 'Client Communications', url: '#'}, {title: 'MIC Wealth Manager', url: '#'}]} currentAppTitle="MIC Ops" clientName="Client Name" />,
+    children: (
+      <BNAppSwitcher
+        apps={[
+          { title: 'MIC Ops', url: '#' },
+          { title: 'Client Communications', url: '#' },
+          { title: 'MIC Wealth Manager', url: '#' },
+        ]}
+        currentAppTitle="MIC Ops"
+        clientName="Client Name"
+      />
+    ),
   },
 }

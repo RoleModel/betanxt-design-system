@@ -1,7 +1,8 @@
-import { StopAltIcon, StopAltHollowIcon, MoonIcon, SunIcon } from '@storybook/icons'
+import { MoonIcon, StopAltHollowIcon, StopAltIcon, SunIcon } from '@storybook/icons'
 import React from 'react'
 import { IconButton } from 'storybook/internal/components'
 import { addons, types } from 'storybook/manager-api'
+
 import { dark, light } from '../../theme'
 
 const ADDON_ID = 'mui-theme-toggle'
@@ -32,18 +33,19 @@ addons.register(ADDON_ID, (api) => {
       }, [])
 
       const toggleLightDark = (event: React.SyntheticEvent): void => {
-        event.preventDefault();
-        event.stopPropagation();
+        event.preventDefault()
+        event.stopPropagation()
 
-        const newMode = currentMuiMode === 'light' ? 'dark' : 'light';
+        const newMode = currentMuiMode === 'light' ? 'dark' : 'light'
 
-        const channel = addons.getChannel();
-        channel.emit('mui-theme-mode-toggle', newMode);
+        const channel = addons.getChannel()
+        channel.emit('mui-theme-mode-toggle', newMode)
 
         addons.setConfig({ theme: newMode === 'dark' ? dark : light })
       }
 
-      const title = currentMuiMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
+      const title =
+        currentMuiMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
       const icon = currentMuiMode === 'light' ? <MoonIcon /> : <SunIcon />
 
       return (
@@ -53,50 +55,50 @@ addons.register(ADDON_ID, (api) => {
       )
     },
   }),
+    addons.add(SYSTEM_TOOL_ID, {
+      type: types.TOOL,
+      title: 'System theme toggle',
+      match: ({ viewMode }) => viewMode === 'story' || viewMode === 'docs',
+      render: () => {
+        const [isSystemMode, setIsSystemMode] = React.useState(false)
 
-  addons.add(SYSTEM_TOOL_ID, {
-    type: types.TOOL,
-    title: 'System theme toggle',
-    match: ({ viewMode }) => viewMode === 'story' || viewMode === 'docs',
-    render: () => {
-      const [isSystemMode, setIsSystemMode] = React.useState(false)
+        React.useEffect(() => {
+          const channel = addons.getChannel()
 
-      React.useEffect(() => {
-        const channel = addons.getChannel()
+          const handleMuiThemeChange = (muiMode: string) => {
+            setIsSystemMode(muiMode === 'system')
+          }
 
-        const handleMuiThemeChange = (muiMode: string) => {
-          setIsSystemMode(muiMode === 'system')
+          channel.on('mui-theme-mode-changed', handleMuiThemeChange)
+          channel.emit('mui-theme-mode-request')
+
+          return () => {
+            channel.off('mui-theme-mode-changed', handleMuiThemeChange)
+          }
+        }, [])
+
+        const toggleSystemMode = (event: React.SyntheticEvent): void => {
+          event.preventDefault()
+          event.stopPropagation()
+
+          const channel = addons.getChannel()
+          channel.emit('mui-theme-mode-toggle', 'system')
+
+          const isSystemDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+          addons.setConfig({ theme: isSystemDark ? dark : light })
         }
 
-        channel.on('mui-theme-mode-changed', handleMuiThemeChange)
-        channel.emit('mui-theme-mode-request')
-
-        return () => {
-          channel.off('mui-theme-mode-changed', handleMuiThemeChange)
-        }
-      }, [])
-
-      const toggleSystemMode = (event: React.SyntheticEvent): void => {
-        event.preventDefault()
-        event.stopPropagation()
-
-        const channel = addons.getChannel()
-        channel.emit('mui-theme-mode-toggle', 'system')
-
-        const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        addons.setConfig({ theme: isSystemDark ? dark : light })
-      }
-
-      return (
-        <IconButton
-          key={SYSTEM_TOOL_ID}
-          title="Use system theme"
-          active={isSystemMode}
-          onClick={toggleSystemMode}
-        >
-          {isSystemMode ? <StopAltIcon /> : <StopAltHollowIcon />}
-        </IconButton>
-      )
-    },
-  })
+        return (
+          <IconButton
+            key={SYSTEM_TOOL_ID}
+            title="Use system theme"
+            active={isSystemMode}
+            onClick={toggleSystemMode}
+          >
+            {isSystemMode ? <StopAltIcon /> : <StopAltHollowIcon />}
+          </IconButton>
+        )
+      },
+    })
 })

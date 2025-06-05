@@ -4,9 +4,11 @@ export type { BNChartGradientFillProps, BNSeriesGradient } from './BNChartGradie
 
 // App Bar Components
 export { BNAppBar } from './app-bar/BNAppBar'
+export { BNAppSwitcher } from './BNAppSwitcher'
 
 // Other components
 export { Alert } from './Alert'
+
 export { BNAppFooter } from './BNAppFooter'
 export { BNStatCard } from './BNStatCard'
 export { BNSelectCard } from './BNSelectCard'

@@ -17,7 +17,7 @@ export const BNAppFooter: Story = {
     privacyPolicyLink: 'Privacy Statement',
     links: [
       {
-        label: 'Additional Copyright',
+        label: 'Link',
         href: '#',
       },
     ],

@@ -30,6 +30,7 @@ export interface BNAppBarProps {
   avatar: AvatarProps
   menuItems: MenuItem[]
   'aria-label'?: string
+  children?: React.ReactNode
 }
 
 export function BNAppBar({
@@ -43,6 +44,7 @@ export function BNAppBar({
   menuItems,
   avatar,
   'aria-label': ariaLabel,
+  children,
 }: BNAppBarProps) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
   const theme = useTheme()
@@ -59,6 +61,7 @@ export function BNAppBar({
       role="banner"
       aria-label={ariaLabel || 'Main navigation'}
     >
+      {children}
       <Toolbar
         sx={{
           justifyContent: 'space-between',

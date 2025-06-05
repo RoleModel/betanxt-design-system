@@ -11,29 +11,35 @@ const components: ThemeOptions['components'] = {
         variants: [
           ...(['error', 'warning', 'info', 'success'] as const).map((severity) => ({
             props: {
-              bordertop: 'true',
+              borderTop: true,
               variant: 'filled' as AlertProps['variant'],
               severity,
             },
             style: ({ theme }: { theme: Theme }) => ({
               borderRadius: 8,
-              borderTop: `10px solid ${theme.palette.mode === 'dark' ? theme.vars.palette[severity]?.main : theme.vars.palette[severity]?.light}`,
+              borderTop: `10px solid ${theme.vars.palette[severity]?.light}`,
+              ...theme.applyStyles('dark', {
+                borderTop: `10px solid ${theme.vars.palette[severity]?.main}`,
+              }),
             }),
           })),
           ...(['error', 'warning', 'info', 'success'] as const).map((severity) => ({
             props: {
-              bordertop: 'true',
+              borderTop: true,
               variant: 'standard' as AlertProps['variant'],
               severity,
             },
             style: ({ theme }: { theme: Theme }) => ({
               borderRadius: 8,
-              borderTop: `10px solid ${theme.palette.mode === 'dark' ? theme.vars.palette[severity]?.dark : theme.vars.palette[severity]?.main}`,
+              borderTop: `10px solid ${theme.vars.palette[severity]?.main}`,
+              ...theme.applyStyles('dark', {
+                borderTop: `10px solid ${theme.vars.palette[severity]?.light}`,
+              }),
             }),
           })),
           ...(['error', 'warning', 'info', 'success'] as const).map((severity) => ({
             props: {
-              bordertop: 'true',
+              borderTop: true,
               variant: 'outlined' as AlertProps['variant'],
               severity,
             },
@@ -43,7 +49,7 @@ const components: ThemeOptions['components'] = {
             },
           })),
           {
-            props: { centertext: 'true' },
+            props: { centerText: true },
             style: {
               textAlign: 'center',
               '& .MuiAlert-message': {
@@ -53,7 +59,7 @@ const components: ThemeOptions['components'] = {
             },
           },
           {
-            props: { showicon: 'false' },
+            props: { showIcon: false },
             style: {
               '& .MuiAlert-icon': {
                 display: 'none !important',

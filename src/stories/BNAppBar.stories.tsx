@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
 
+import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import BNAppBar from '../components/app-bar/BNAppBar'
 
 const meta = {
@@ -93,5 +95,49 @@ export const Secondary: Story = {
         icon: <LogoutIcon />,
       },
     ],
+  },
+}
+
+export const WithAppSwitcher: Story = {
+  args: {
+    logoUrl: '/company-logo.svg',
+    logoAlt: 'BetaNXT Logo',
+    color: 'secondary',
+    selectedTabValue: 'home',
+    avatar: {
+      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
+      alt: 'User Avatar',
+      children: 'US',
+    },
+    tabs: [
+      {
+        label: 'Home',
+        value: 'home',
+        href: '/',
+      },
+      {
+        label: 'About',
+        value: 'about',
+        href: '/',
+      },
+    ],
+    menuItems: [
+      {
+        label: 'Logout',
+        onClick: () => {},
+        icon: <LogoutIcon />,
+      },
+    ],
+    children: (
+      <BNAppSwitcher
+        apps={[
+          { title: 'MIC Ops', url: '#' },
+          { title: 'Client Communications', url: '#' },
+          { title: 'MIC Wealth Manager', url: '#' },
+        ]}
+        currentAppTitle="MIC Ops"
+        clientName="Client Name"
+      />
+    ),
   },
 }

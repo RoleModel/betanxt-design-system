@@ -1,6 +1,6 @@
 {
   "name": "@rolemodel/betanxt-design-system",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "The BetaNXT design system for MUI.",
   "type": "module",
   "exports": {

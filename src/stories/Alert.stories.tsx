@@ -3,11 +3,18 @@ import React from 'react'
 import { expect } from 'storybook/test'
 import { userEvent, waitFor, within } from 'storybook/test'
 
-import { Box, Button, Slide, Snackbar, Typography } from '@mui/material'
+import {
+  Alert as AlertComponent,
+  AlertProps,
+  AlertTitle,
+  Box,
+  Button,
+  Slide,
+  Snackbar,
+  Typography,
+} from '@mui/material'
 
-import { Alert as AlertComponent, type CustomAlertProps } from '../components/Alert'
-
-interface StoryArgs extends Omit<CustomAlertProps, 'onClose'> {
+interface StoryArgs extends Omit<AlertProps, 'onClose'> {
   onClose?: boolean | ((event: React.SyntheticEvent<Element, Event>) => void)
   action?: boolean
 }
@@ -28,9 +35,16 @@ const meta = {
     },
   },
   argTypes: {
-    showicon: {
+    // Hide technical/internal props from controls
+    className: { table: { disable: true } },
+    style: { table: { disable: true } },
+    classes: { table: { disable: true } },
+    sx: { table: { disable: true } },
+    component: { table: { disable: true } },
+
+    showIcon: {
       control: 'boolean',
-      name: 'showicon',
+      name: 'Show Icon',
       description: 'Custom property to show the icon',
     },
     elevation: {
@@ -52,9 +66,9 @@ const meta = {
       description: 'Button variant when action is true',
       if: { arg: 'action', truthy: true },
     },
-    centertext: {
+    centerText: {
       control: 'boolean',
-      name: 'centertext',
+      name: 'Center Text',
       description: 'Custom property to center text',
     },
     severity: {
@@ -69,9 +83,9 @@ const meta = {
       name: 'variant',
       description: 'The variant to use',
     },
-    bordertop: {
+    borderTop: {
       control: 'boolean',
-      name: 'bordertop',
+      name: 'Border Top',
       description: 'Custom property to add a top border',
     },
     onClose: {
@@ -85,9 +99,9 @@ const meta = {
     children: 'This is an alert message.',
     severity: 'info',
     variant: 'filled',
-    showicon: true,
-    centertext: false,
-    bordertop: false,
+    showIcon: true,
+    centerText: false,
+    borderTop: false,
     elevation: 0,
   },
 } as Meta<StoryArgs>
@@ -105,6 +119,9 @@ export const Alert: Story = {
     action: false,
     elevation: 0,
     variant: 'standard',
+    borderTop: false,
+    centerText: false,
+    showIcon: false,
     severity: 'info',
   },
   render: function AlertRender(args) {
@@ -114,12 +131,13 @@ export const Alert: Story = {
       severity,
       onClose,
       elevation,
-      bordertop,
-      centertext,
-      showicon,
+      borderTop,
+      centerText,
+      showIcon,
       title,
       children,
       variant,
+      sx: incomingSx,
       ...otherProps
     } = args
 
@@ -140,18 +158,22 @@ export const Alert: Story = {
 
     return (
       <AlertComponent
-        title={title}
         variant={variant}
         elevation={elevation}
         severity={severity}
         onClose={onClose ? handleClose : undefined}
         action={actionButton}
         closeText="Close"
-        bordertop={bordertop}
-        centertext={centertext}
-        showicon={showicon}
+        // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
+        borderTop={borderTop}
+        // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
+        centerText={centerText}
+        // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
+        showIcon={showIcon}
+        sx={incomingSx}
         {...otherProps}
       >
+        <AlertTitle>{title}</AlertTitle>
         {children}
       </AlertComponent>
     )
@@ -162,13 +184,13 @@ export const Border: Story = {
   name: 'Top Border',
   args: {
     title: 'Standard Alert with Top Border',
-    children: 'This is a standard info alert, bordertop true.',
+    children: 'This is a standard info alert, borderTop true.',
     variant: 'outlined',
     severity: 'info',
     onClose: false,
-    centertext: false,
-    showicon: false,
-    bordertop: true,
+    centerText: false,
+    showIcon: false,
+    borderTop: true,
     elevation: 0,
     action: false,
   },
@@ -196,7 +218,7 @@ export const SnackBarAlert: Story = {
     children: 'This alert appears in a Snackbar',
     severity: 'info',
     variant: 'filled',
-    showicon: true,
+    showIcon: true,
     action: false,
     actionButtonVariant: 'text',
     onClose: true,
@@ -299,8 +321,15 @@ export const SnackBarAlert: Story = {
     }
 
     // Extract props we need to handle specially
-    const { action, actionButtonVariant, severity, onClose, elevation, ...otherProps } =
-      args
+    const {
+      action,
+      actionButtonVariant,
+      severity,
+      onClose,
+      elevation,
+      showIcon,
+      ...otherProps
+    } = args
 
     // Create action button if action=true
     const actionButton = action ? (
@@ -344,6 +373,8 @@ export const SnackBarAlert: Story = {
             severity={severity}
             onClose={closeHandler}
             action={actionButton}
+            // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
+            showIcon={showIcon}
             data-testid="alert"
           />
         </Snackbar>

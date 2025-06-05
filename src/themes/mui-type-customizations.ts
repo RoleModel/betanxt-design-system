@@ -208,15 +208,15 @@ declare module '@mui/material/Alert' {
     outlined?: true
   }
   interface AlertProps {
-    bordertop?: string | boolean
-    centertext?: string | boolean
-    showicon?: string | boolean
+    borderTop?: boolean
+    centerText?: boolean
+    showIcon?: boolean
   }
 
   interface AlertOwnProps {
-    bordertop?: string
-    centertext?: string
-    showicon?: string
+    borderTop?: boolean
+    centerText?: boolean
+    showIcon?: boolean
   }
 }
 

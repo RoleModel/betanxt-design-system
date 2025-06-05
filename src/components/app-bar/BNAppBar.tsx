@@ -81,7 +81,7 @@ export function BNAppBar({
           )}
 
           {title && (
-            <Typography variant="pageTitle" aria-level={1}>
+            <Typography variant="appTitle" aria-level={1}>
               {title}
             </Typography>
           )}

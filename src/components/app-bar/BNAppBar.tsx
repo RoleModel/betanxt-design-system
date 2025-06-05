@@ -1,0 +1,154 @@
+import React from 'react'
+
+import {
+  Avatar,
+  Box,
+  AppBar as MuiAppBar,
+  Stack,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
+
+import { BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
+import { BNAppBarDrawer } from './BNAppBarDrawer'
+
+export interface BNAppBarProps {
+  title?: string
+  position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
+  color?: 'primary' | 'secondary'
+  logoUrl?: string
+  logoAlt?: string
+  tabs?: {
+    label: string
+    value: string
+    href: string
+  }[]
+  selectedTabValue?: string
+  tabLinkComponent?: React.ElementType
+  avatarSrc?: string
+  avatarAlt?: string
+  avatarChildren?: React.ReactNode
+  menuItems: MenuItem[]
+  'aria-label'?: string
+}
+
+export function BNAppBar({
+  title,
+  position = 'fixed',
+  logoUrl,
+  logoAlt,
+  color = 'primary',
+  tabs,
+  selectedTabValue,
+  tabLinkComponent = 'a',
+  menuItems,
+  avatarSrc,
+  avatarAlt,
+  avatarChildren,
+  'aria-label': ariaLabel,
+}: BNAppBarProps) {
+  const [drawerOpen, setDrawerOpen] = React.useState(false)
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen)
+  }
+
+  return (
+        <MuiAppBar
+      color={color}
+      position={position}
+      role="banner"
+      aria-label={ariaLabel || 'Main navigation'}
+    >
+      <Toolbar
+        sx={{
+          justifyContent: 'space-between',
+        }}
+      >
+        <Stack direction="row" spacing={1} useFlexGap alignItems="center">
+          {logoUrl && (
+            <Box
+              component="img"
+              src={logoUrl}
+              alt={logoAlt || 'Company logo'}
+              height={44}
+              sx={{
+                display: 'block',
+                padding: '2px',
+                backgroundColor: 'white',
+                borderRadius: 1,
+              }}
+            />
+          )}
+
+          {title && (
+            <Typography
+              variant="pageTitle"
+              component="h1"
+              aria-level={1}
+            >
+              {title}
+            </Typography>
+          )}
+        </Stack>
+        <Stack direction="row" spacing={1} useFlexGap alignItems="center">
+          {tabs && isDesktop && (
+            <Tabs
+              component="nav"
+              value={selectedTabValue}
+              aria-label="Main navigation tabs"
+              role="navigation"
+            >
+              {tabs.map((tab) => (
+                <Tab
+                  LinkComponent={tabLinkComponent}
+                  href={tab.href}
+                  key={tab.value}
+                  label={tab.label}
+                  value={tab.value}
+                  aria-label={`Navigate to ${tab.label}`}
+                  tabIndex={0}
+                />
+              ))}
+            </Tabs>
+          )}
+          <BNAnimatedMenuIcon
+            menuItems={menuItems}
+            avatarSrc={avatarSrc}
+            avatarAlt={avatarAlt}
+            avatarChildren={avatarChildren}
+            onDrawerToggle={handleDrawerToggle}
+            drawerOpen={drawerOpen}
+          />
+        </Stack>
+      </Toolbar>
+      <BNAppBarDrawer
+        tabs={tabs}
+        menuItems={menuItems}
+        selectedTabValue={selectedTabValue}
+        onTabClick={() => {
+          setDrawerOpen(false)
+        }}
+        onMenuItemClick={() => {
+          setDrawerOpen(false)
+        }}
+        open={drawerOpen}
+        onClose={handleDrawerToggle}
+        slotProps={{
+          root: {
+            id: 'navigation-drawer',
+            'aria-label': 'Navigation drawer',
+          }
+        }}
+      />
+    </MuiAppBar>
+  )
+}
+
+export default BNAppBar

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
-import LogoutIcon from '@mui/icons-material/Logout'
-import PersonIcon from '@mui/icons-material/Person'
+import PersonIconOutlined from '@mui/icons-material/PersonOutline'
+import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import BNAppBar from '../components/app-bar/BNAppBar'
@@ -11,6 +11,9 @@ const meta = {
   title: 'Custom Components/BNAppBar',
   parameters: {
     layout: 'fullscreen',
+    controls: {
+      exclude: ['tabLinkComponent'],
+    },
   },
   argTypes: {
     color: {
@@ -52,14 +55,15 @@ export const Primary: Story = {
     ],
     menuItems: [
       {
-        label: 'Logout',
-        onClick: () => {},
-        icon: <LogoutIcon />,
+        label: 'Profile',
+        onClick: () => { },
+        divider: true,
+        icon: <PersonIconOutlined />,
       },
       {
-        label: 'Profile',
-        onClick: () => {},
-        icon: <PersonIcon />,
+        label: 'Logout',
+        onClick: () => { },
+        icon: <LogoutIconOutlined />,
       },
     ],
   },
@@ -91,8 +95,11 @@ export const Secondary: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
-        icon: <LogoutIcon />,
+        onClick: () => {
+          window.alert('Logout')
+        },
+        icon: <LogoutIconOutlined />,
+        dense: true,
       },
     ],
   },
@@ -124,8 +131,13 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
-        icon: <LogoutIcon />,
+        onClick: () => { },
+        icon: <LogoutIconOutlined />,
+      },
+      {
+        label: 'Profile',
+        onClick: () => { },
+        icon: <PersonIconOutlined />,
       },
     ],
     children: (

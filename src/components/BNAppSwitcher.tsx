@@ -14,8 +14,8 @@ export function BNAppSwitcher({
   clientName,
 }: {
   apps: App[]
-  currentAppTitle: string
-  clientName: React.ReactNode
+  currentAppTitle?: string
+  clientName?: React.ReactNode
 }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 

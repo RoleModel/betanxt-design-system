@@ -27,8 +27,8 @@ export interface BNAppBarProps {
   }[]
   selectedTabValue?: string
   tabLinkComponent?: React.ElementType
-  avatar: AvatarProps
-  menuItems: MenuItem[]
+  avatar?: AvatarProps
+  menuItems?: MenuItem[]
   'aria-label'?: string
   children?: React.ReactNode
 }
@@ -110,33 +110,39 @@ export function BNAppBar({
               ))}
             </Tabs>
           )}
-          <BNAnimatedMenuIcon
-            menuItems={menuItems}
-            avatar={avatar}
-            onDrawerToggle={handleDrawerToggle}
-            drawerOpen={drawerOpen}
-          />
+          {avatar && menuItems && (
+            <BNAnimatedMenuIcon
+              menuItems={menuItems}
+              avatar={avatar}
+              onDrawerToggle={handleDrawerToggle}
+              drawerOpen={drawerOpen}
+            />
+          )}
         </Stack>
       </Toolbar>
-      <BNAppBarDrawer
-        tabs={tabs}
-        menuItems={menuItems}
-        selectedTabValue={selectedTabValue}
-        onTabClick={() => {
-          setDrawerOpen(false)
-        }}
-        onMenuItemClick={() => {
-          setDrawerOpen(false)
-        }}
-        open={drawerOpen}
-        onClose={handleDrawerToggle}
-        slotProps={{
-          root: {
-            id: 'navigation-drawer',
-            'aria-label': 'Navigation drawer',
-          },
-        }}
-      />
+      {avatar && menuItems && (
+        <BNAppBarDrawer
+          tabs={tabs}
+          elevation={10}
+          menuItems={menuItems}
+          selectedTabValue={selectedTabValue}
+          hasAppSwitcher={!!children}
+          onTabClick={() => {
+            setDrawerOpen(false)
+          }}
+          onMenuItemClick={() => {
+            setDrawerOpen(false)
+          }}
+          open={drawerOpen}
+          onClose={handleDrawerToggle}
+          slotProps={{
+            root: {
+              id: 'navigation-drawer',
+              'aria-label': 'Navigation drawer',
+            },
+          }}
+        />
+      )}
     </MuiAppBar>
   )
 }

@@ -8,10 +8,11 @@ import {
   ListItemIcon,
   ListItemText,
   Menu,
-  MenuItem,
+  MenuItem as MuiMenuItem,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
+import type { MenuItemProps } from '@mui/material'
 import { type CSSObject, keyframes, styled } from '@mui/material/styles'
 import type { SxProps, Theme } from '@mui/material/styles'
 
@@ -40,16 +41,16 @@ const topbarClose = keyframes`
   100% { top: 9px; }
 `
 
-export interface MenuItem {
+export interface MenuItem extends Omit<MenuItemProps, 'onClick'> {
   label: string
   icon?: ReactNode
   onClick: () => void
 }
 
 export interface AvatarProps {
-  src: string
-  alt: string
-  children: ReactNode
+  src?: string
+  alt?: string
+  children?: ReactNode
 }
 
 export interface BNAnimatedMenuIconProps {
@@ -165,12 +166,15 @@ export const BNAnimatedMenuIcon = ({
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
-            {menuItems.map((item, index) => (
-              <MenuItem key={index} onClick={() => handleMenuItemClick(item)}>
-                {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                <ListItemText primary={item.label} />
-              </MenuItem>
-            ))}
+            {menuItems.map((item, index) => {
+              const { label, icon, onClick, ...menuItemProps } = item
+              return (
+                <MuiMenuItem key={index} onClick={() => handleMenuItemClick(item)} {...menuItemProps}>
+                  {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                  <ListItemText primary={label} />
+                </MuiMenuItem>
+              )
+            })}
           </Menu>
         )}
       </>
@@ -201,12 +205,15 @@ export const BNAnimatedMenuIcon = ({
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {menuItems.map((item, index) => (
-          <MenuItem key={index} onClick={() => handleMenuItemClick(item)}>
-            {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-            <ListItemText primary={item.label} />
-          </MenuItem>
-        ))}
+        {menuItems.map((item, index) => {
+          const { label, icon, onClick, ...menuItemProps } = item
+          return (
+            <MuiMenuItem key={index} onClick={() => handleMenuItemClick(item)} {...menuItemProps}>
+              {icon && <ListItemIcon>{icon}</ListItemIcon>}
+              <ListItemText primary={label} />
+            </MuiMenuItem>
+          )
+        })}
       </Menu>
     </>
   )

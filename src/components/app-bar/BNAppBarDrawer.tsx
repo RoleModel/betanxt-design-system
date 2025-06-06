@@ -59,6 +59,7 @@ export interface BNAppBarDrawerSlotProps {
 
 export interface BNAppBarDrawerProps {
   open: boolean
+  elevation?: number
   onClose: () => void
   anchor?: 'left' | 'right' | 'top' | 'bottom'
   width?: number
@@ -71,10 +72,12 @@ export interface BNAppBarDrawerProps {
   footer?: React.ReactNode
   slots?: BNAppBarDrawerSlots
   slotProps?: BNAppBarDrawerSlotProps
+  hasAppSwitcher?: boolean
 }
 
 export const BNAppBarDrawer = ({
   open,
+  elevation = 0,
   onClose,
   anchor = 'right',
   width = 280,
@@ -86,6 +89,7 @@ export const BNAppBarDrawer = ({
   footer,
   slots = {},
   slotProps = {},
+  hasAppSwitcher = false,
 }: BNAppBarDrawerProps) => {
   const {
     root: RootSlot = Drawer,
@@ -110,20 +114,27 @@ export const BNAppBarDrawer = ({
   return (
     <RootSlot
       anchor={anchor}
+      elevation={elevation}
       open={open}
       onClose={onClose}
       transitionDuration={350}
-      sx={(theme: Theme) => ({
-        '& .MuiDrawer-paper': {
-          width: width,
-          top: (theme as any).layout?.navbarHeight || 66,
-          height: `calc(100vh - ${(theme as any).layout?.navbarHeight || 66}px)`,
-        },
-        '& .MuiBackdrop-root.MuiModal-backdrop': {
-          backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        },
-        ...rootProps.sx,
-      })}
+      sx={(theme: Theme) => {
+        const navbarHeight = (theme as any).layout?.navbarHeight || 66
+        const appSwitcherHeight = hasAppSwitcher ? ((theme as any).layout?.appSwitcherHeight || 48) : 0
+        const totalTopOffset = navbarHeight + appSwitcherHeight
+
+        return {
+          '& .MuiDrawer-paper': {
+            width: width,
+            top: totalTopOffset,
+            height: `calc(100vh - ${totalTopOffset}px)`,
+          },
+          '& .MuiBackdrop-root.MuiModal-backdrop': {
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+          },
+          ...rootProps.sx,
+        }
+      }}
       {...rootProps}
     >
       <ContentSlot

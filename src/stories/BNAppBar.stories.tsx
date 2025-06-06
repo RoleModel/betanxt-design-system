@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
-import PersonIconOutlined from '@mui/icons-material/PersonOutline'
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
+import PersonIconOutlined from '@mui/icons-material/PersonOutline'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import BNAppBar from '../components/app-bar/BNAppBar'
@@ -56,13 +56,13 @@ export const Primary: Story = {
     menuItems: [
       {
         label: 'Profile',
-        onClick: () => { },
+        onClick: () => {},
         divider: true,
         icon: <PersonIconOutlined />,
       },
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -131,12 +131,12 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
       {
         label: 'Profile',
-        onClick: () => { },
+        onClick: () => {},
         icon: <PersonIconOutlined />,
       },
     ],

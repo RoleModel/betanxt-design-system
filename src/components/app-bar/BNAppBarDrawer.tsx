@@ -120,7 +120,9 @@ export const BNAppBarDrawer = ({
       transitionDuration={350}
       sx={(theme: Theme) => {
         const navbarHeight = (theme as any).layout?.navbarHeight || 66
-        const appSwitcherHeight = hasAppSwitcher ? ((theme as any).layout?.appSwitcherHeight || 48) : 0
+        const appSwitcherHeight = hasAppSwitcher
+          ? (theme as any).layout?.appSwitcherHeight || 48
+          : 0
         const totalTopOffset = navbarHeight + appSwitcherHeight
 
         return {

@@ -169,7 +169,11 @@ export const BNAnimatedMenuIcon = ({
             {menuItems.map((item, index) => {
               const { label, icon, onClick, ...menuItemProps } = item
               return (
-                <MuiMenuItem key={index} onClick={() => handleMenuItemClick(item)} {...menuItemProps}>
+                <MuiMenuItem
+                  key={index}
+                  onClick={() => handleMenuItemClick(item)}
+                  {...menuItemProps}
+                >
                   {icon && <ListItemIcon>{icon}</ListItemIcon>}
                   <ListItemText primary={label} />
                 </MuiMenuItem>
@@ -208,7 +212,11 @@ export const BNAnimatedMenuIcon = ({
         {menuItems.map((item, index) => {
           const { label, icon, onClick, ...menuItemProps } = item
           return (
-            <MuiMenuItem key={index} onClick={() => handleMenuItemClick(item)} {...menuItemProps}>
+            <MuiMenuItem
+              key={index}
+              onClick={() => handleMenuItemClick(item)}
+              {...menuItemProps}
+            >
               {icon && <ListItemIcon>{icon}</ListItemIcon>}
               <ListItemText primary={label} />
             </MuiMenuItem>

@@ -127,15 +127,6 @@ const meta: Meta<typeof BNFilterSearch> = {
       control: 'boolean',
       description: 'If true, the Autocomplete is free solo, meaning that the user input is not bound to provided options',
     },
-
-    // Event handlers as actions
-    onSearchChange: { action: 'searchChanged' },
-    onSubmitSearch: { action: 'searchSubmitted' },
-    onChange: { action: 'changed' },
-    onClose: { action: 'closed' },
-    onHighlightChange: { action: 'highlightChanged' },
-    onInputChange: { action: 'inputChanged' },
-    onOpen: { action: 'opened' },
   },
 }
 

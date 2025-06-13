@@ -97,24 +97,18 @@ const InternalSearchAutocomplete = <T extends { name: string } = { name: string 
         )
       }}
       inputValue={currentSearchValue}
-      onInputChange={(event, newInputValue, reason) => {
+      onInputChange={(_, newInputValue) => {
         if (onSearchChange) {
           onSearchChange(newInputValue)
-        } else {
-          internalSetSearchValue(newInputValue)
         }
-
-        if (autocompleteProps.onInputChange) {
-          autocompleteProps.onInputChange(event, newInputValue, reason)
-        }
+        internalSetSearchValue(newInputValue)
       }}
-      onChange={(event, newValue, reason, details) => {
+      value={currentSearchValue}
+      onChange={(_, newValue) => {
         if (typeof newValue === 'string') {
           internalSetSearchValue(newValue)
         } else if (newValue) {
-          internalSetSearchValue(
-            typeof newValue === 'string' ? newValue : (newValue['name'] ?? '')
-          )
+          internalSetSearchValue(newValue.name ?? '')
         } else {
           internalSetSearchValue('')
         }

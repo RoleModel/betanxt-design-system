@@ -16,6 +16,7 @@ export interface BNFilterSearchAutocompleteProps<
   onSubmit?: (value: string) => void
   renderOptionLink?: (option: T) => React.ReactNode
   textFieldProps?: React.ComponentProps<typeof TextField>
+  submitOnOptionClick?: boolean
 }
 export function getOptionLabelSafe<T extends { name: string }>(
   option: T | string | any
@@ -35,6 +36,7 @@ export const BNFilterSearchAutocomplete = <
   onSubmit,
   renderOptionLink,
   textFieldProps,
+  submitOnOptionClick = false,
   ...autocompleteProps
 }: BNFilterSearchAutocompleteProps<T>) => {
   return (
@@ -57,7 +59,8 @@ export const BNFilterSearchAutocomplete = <
       onChange={(_event, newValue) => {
         const newLabel = getOptionLabelSafe(newValue)
         onInputChange?.(newLabel)
-        if (onSubmit && newLabel) {
+
+        if (onSubmit && newLabel && (submitOnOptionClick || typeof newValue === 'string')) {
           onSubmit(newLabel)
         }
       }}

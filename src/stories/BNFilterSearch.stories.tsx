@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
+import { fn } from 'storybook/test'
 
 import { Box } from '@mui/material'
 
@@ -113,7 +114,7 @@ const meta = {
       },
     },
     onSubmit: {
-      action: 'submitted',
+      action: 'onSubmit',
       description:
         'Callback when search is submitted (triggered by Enter key press or option selection with mouse/keyboard)',
     },
@@ -125,6 +126,16 @@ const meta = {
     slots: {
       control: false,
       description: 'Custom slots for rendering different parts of the component',
+      table: {
+        disable: true,
+      },
+    },
+    slotProps: {
+      control: false,
+      description: 'Props for custom slots',
+      table: {
+        disable: true,
+      },
     },
     onOpen: {
       table: {
@@ -139,6 +150,9 @@ const meta = {
     renderOptionLink: {
       control: false,
       description: 'Custom render function for option links',
+      table: {
+        disable: true,
+      },
     },
   },
 } satisfies Meta<typeof BNFilterSearch>
@@ -152,7 +166,6 @@ export const Default: Story = {
       <BNFilterSearch
         {...args}
         options={args.options || dummyFinancialAccounts}
-        onSubmit={(value) => alert(`You searched for: "${value}"`)}
       />
     )
   },
@@ -180,7 +193,6 @@ export const ToggleDisabled: Story = {
       <BNFilterSearch
         {...args}
         options={filteredAccounts}
-        onSubmit={(value) => alert(`You searched for: "${value}"`)}
       >
         <BNFilterSelect
           options={accountFilterOptions}
@@ -236,17 +248,23 @@ export const WithLink: Story = {
         {...args}
         options={args.options || dummyFinancialAccounts}
         renderOptionLink={renderOptionLink}
-        onSubmit={(value) => {
-          const matchingOption = (args.options || dummyFinancialAccounts).find(
-            (option: any) => option.name.toLowerCase().includes(value.toLowerCase())
-          ) as any
-          if (matchingOption) {
-            alert(`You searched for: ${matchingOption.name} (${matchingOption.scope})`)
-          } else {
-            alert(`You searched for: "${value}" (no exact match found)`)
+      />
+    )
+  },
+}
+
+export const SubmitOnClick: Story = {
+  render: (args) => {
+    return (
+      <BNFilterSearch
+        {...args}
+        options={args.options || dummyFinancialAccounts}
+        slotProps={{
+          search: {
+            submitOnOptionClick: true,
           }
         }}
       />
     )
-  },
+  }
 }

@@ -1,15 +1,11 @@
 'use client'
 
 import React from 'react'
-import { Select, MenuItem } from '@mui/material'
-import type { SelectProps } from '@mui/material/Select'
-import type { Theme } from '@mui/material/styles'
 
+import { MenuItem, Select, type SelectProps } from '@mui/material'
 
 export interface FilterOption {
-
   value: string
-
   label: string
 }
 
@@ -33,11 +29,12 @@ const BNFilterSelect = React.forwardRef<HTMLDivElement, BNFilterSelectProps>(
         disableUnderline
         inputProps={{ 'aria-label': ariaLabel }}
         sx={{
+          minWidth: 110,
           '.MuiSelect-select': {
             fontSize: 14,
             paddingBottom: '0px',
             '&:focus-visible': {
-              boxShadow: (theme: Theme) => `0px 1px 0px 0px ${theme.palette.primary.main}`,
+              boxShadow: (theme) => `0px 1px 0px 0px ${theme.palette.primary.main}`,
             },
           },
           ...selectProps.sx,

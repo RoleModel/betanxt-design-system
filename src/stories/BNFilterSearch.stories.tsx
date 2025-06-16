@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
 
-import BNFilterSearch, { BNFilterSearchProps } from '../components/filter-search/BNFilterSearch'
+import { Box } from '@mui/material'
+
+import BNFilterSearch from '../components/filter-search/BNFilterSearch2'
 import BNFilterSelect from '../components/filter-search/BNFilterSelect'
 
 const dummyFinancialAccounts = [
@@ -64,258 +66,187 @@ const scopeFilterOptions = [
   { value: 'aa-09', label: 'AA-09' },
 ]
 
-type Story = StoryObj<typeof BNFilterSearch>
-
-const meta: Meta<typeof BNFilterSearch> = {
+const meta = {
   title: 'Custom Components/BNFilterSearch',
   component: BNFilterSearch,
   parameters: {
     layout: 'padded',
-    // Note: This component extends MUI Autocomplete and inherits all its props.
-    // Storybook's automatic prop extraction has limitations with complex generic types.
-    // All MUI Autocomplete props are available when using the component in code.
+    docs: {
+      description: {
+        component:
+          'A flexible search and filter component that primarily submits on Enter key press. Supports autocompletion, custom rendering, and toggle behavior.',
+      },
+    },
   },
   args: {
-    variant: 'expandable',
-    options: dummyFinancialAccounts,
     placeholder: 'Search',
-    id: 'bn-filter-search',
-    useSubmitSearch: false,
+    disableToggle: false,
+    options: dummyFinancialAccounts,
   },
   argTypes: {
-    // Component-specific props
-    variant: {
-      control: 'radio',
-      options: ['expandable', 'static'],
-      description: 'Component display variant - expandable with collapsible filters or static layout',
+    placeholder: {
+      control: 'text',
+      description: 'Placeholder text for the search input',
     },
-    useSubmitSearch: {
+    open: {
+      control: false, // Hide this from controls as it's redundant with disableToggle
+      description:
+        'Initial open state when not using disableToggle (component manages its state thereafter)',
+      table: {
+        disable: true,
+      },
+    },
+    disableToggle: {
       control: 'boolean',
-      description: 'Enable submit search functionality with search icon button',
+      description: 'Always keep search open without toggle button',
     },
-    children: {
+    options: {
       control: false,
-      description: 'Filter components to display inside the search container',
+      description: 'Array of options to search through',
+      table: {
+        disable: true,
+      },
+    },
+    onInputChange: {
+      table: {
+        disable: true,
+      },
+    },
+    onSubmit: {
+      action: 'submitted',
+      description:
+        'Callback when search is submitted (triggered by Enter key press or option selection with mouse/keyboard)',
+    },
+    onClose: {
+      table: {
+        disable: true,
+      },
+    },
+    slots: {
+      control: false,
+      description: 'Custom slots for rendering different parts of the component',
+    },
+    onOpen: {
+      table: {
+        disable: true,
+      },
+    },
+    inputValue: {
+      table: {
+        disable: true,
+      },
     },
     renderOptionLink: {
       control: false,
-      description: 'Custom render function for option links in the dropdown',
-    },
-
-    // Common MUI Autocomplete props for convenience
-    placeholder: {
-      control: 'text',
-      description: 'The placeholder text for the search input',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'If true, the component is disabled',
-    },
-    loading: {
-      control: 'boolean',
-      description: 'If true, the component is in a loading state',
-    },
-    autoHighlight: {
-      control: 'boolean',
-      description: 'If true, the first option is automatically highlighted',
-    },
-    clearOnEscape: {
-      control: 'boolean',
-      description: 'If true, clear all values when the user presses escape and the popup is closed',
-    },
-    freeSolo: {
-      control: 'boolean',
-      description: 'If true, the Autocomplete is free solo, meaning that the user input is not bound to provided options',
+      description: 'Custom render function for option links',
     },
   },
-}
+} satisfies Meta<typeof BNFilterSearch>
+type Story = StoryObj<typeof BNFilterSearch>
 
 export default meta
 
-export const ExpandableFilterWithOnClick: Story = {
+export const Default: Story = {
+  render: (args) => {
+    return (
+      <BNFilterSearch
+        {...args}
+        options={args.options || dummyFinancialAccounts}
+        onSubmit={(value) => alert(`You searched for: "${value}"`)}
+      />
+    )
+  },
+}
+
+export const ToggleDisabled: Story = {
+  name: 'Toggle Disabled',
   args: {
-    placeholder: 'Search...',
+    disableToggle: true,
   },
   render: (args) => {
     const [accountFilter, setAccountFilter] = React.useState('all')
-    const filteredAccounts = dummyFinancialAccounts.filter(
-      (account) => accountFilter === 'all' || account.type === accountFilter
-    )
-    // Demo function to render each option as a link
-    const renderOptionLink = (option: any) => {
-      return (
-        <li
-          onClick={() => {
-            // This is where you can add your action logic
-            alert(`Navigating to account: ${option.name}`)
-            // For example, you could use a router to navigate to a specific account page
-            // or perform any other action you need
-            // If using React Router, you might do something like:
-            // navigate(`/account/${option.scope}`)
-            // You could also trigger a navigation action here instead of using href
-            // For example: navigate(`/account/${option.scope}`)
-          }}
-        >
-          {option.name}
-        </li>
-      )
-    }
+    const [repFilter, setRepFilter] = React.useState('all')
+    const [scopeFilter, setScopeFilter] = React.useState('all')
+    const filteredAccounts = React.useMemo(() => {
+      return dummyFinancialAccounts.filter((account) => {
+        const accountMatch = accountFilter === 'all' || account.type === accountFilter
+        const repMatch = repFilter === 'all' || account.rep === repFilter
+        const scopeMatch = scopeFilter === 'all' || account.scope === scopeFilter
+        return accountMatch && repMatch && scopeMatch
+      })
+    }, [accountFilter, repFilter, scopeFilter])
+
     return (
       <BNFilterSearch
         {...args}
         options={filteredAccounts}
-        selectOnFocus
-        noOptionsText="No Accounts Match Your Filters"
-        id="bn-filter-search-with-single-filter"
+        onSubmit={(value) => alert(`You searched for: "${value}"`)}
+      >
+        <BNFilterSelect
+          options={accountFilterOptions}
+          value={accountFilter}
+          onChange={setAccountFilter}
+          aria-label="Account filter"
+        />
+        <BNFilterSelect
+          options={repFilterOptions}
+          value={repFilter}
+          onChange={setRepFilter}
+          aria-label="Rep filter"
+        />
+        <BNFilterSelect
+          options={scopeFilterOptions}
+          value={scopeFilter}
+          onChange={setScopeFilter}
+          aria-label="Scope filter"
+        />
+      </BNFilterSearch>
+    )
+  },
+}
+
+export const WithLink: Story = {
+  args: {
+    placeholder: 'Search accounts',
+  },
+  render: (args) => {
+    const renderOptionLink = (option: {
+      name: string
+      type?: string
+      rep?: string
+      scope?: string
+    }) => (
+      <Box
+        component="a"
+        href={`/details/${(option as any).scope || 'unknown'}`}
+        onClick={(e) => {
+          e.preventDefault()
+          alert(`Clicked option: ${option.name} (${(option as any).scope || 'unknown'})`)
+        }}
+        sx={{
+          textDecoration: 'none',
+          color: 'inherit',
+        }}
+      >
+        {option.name}
+      </Box>
+    )
+    return (
+      <BNFilterSearch
+        {...args}
+        options={args.options || dummyFinancialAccounts}
         renderOptionLink={renderOptionLink}
-        filterSelectedOptions
-      >
-        <BNFilterSelect
-          options={accountFilterOptions}
-          value={accountFilter}
-          onChange={setAccountFilter}
-          aria-label="Account filter"
-        />
-      </BNFilterSearch>
-    )
-  },
-}
-
-export const ExpandableWithMultipleFilters: Story = {
-  name: 'Expandable With Filters',
-  args: {},
-  render: (args) => {
-    const [accountFilter, setAccountFilter] = React.useState('all')
-    const [repFilter, setRepFilter] = React.useState('all')
-    const [scopeFilter, setScopeFilter] = React.useState('all')
-    const filteredAccounts = dummyFinancialAccounts.filter((account) => {
-      const accountMatch = accountFilter === 'all' || account.type === accountFilter
-      const repMatch = repFilter === 'all' || account.rep === repFilter
-      const scopeMatch = scopeFilter === 'all' || account.scope === scopeFilter
-      return accountMatch && repMatch && scopeMatch
-    })
-    return (
-      <BNFilterSearch
-        {...args}
-        options={filteredAccounts}
-        id="bn-filter-search-with-multiple-filters"
-      >
-        <BNFilterSelect
-          options={accountFilterOptions}
-          value={accountFilter}
-          onChange={setAccountFilter}
-          aria-label="Account filter"
-        />
-        <BNFilterSelect
-          options={repFilterOptions}
-          value={repFilter}
-          onChange={setRepFilter}
-          aria-label="Rep filter"
-        />
-        <BNFilterSelect
-          options={scopeFilterOptions}
-          value={scopeFilter}
-          onChange={setScopeFilter}
-          aria-label="Scope filter"
-        />
-      </BNFilterSearch>
-    )
-  },
-}
-
-export const ExpandableWithSubmitSearch: Story = {
-  name: 'Expandable With Submit Search',
-  args: {},
-  render: (args) => {
-    const [accountFilter, setAccountFilter] = React.useState('all')
-    const [repFilter, setRepFilter] = React.useState('all')
-    const [scopeFilter, setScopeFilter] = React.useState('all')
-    const filteredAccounts = dummyFinancialAccounts.filter((account) => {
-      const accountMatch = accountFilter === 'all' || account.type === accountFilter
-      const repMatch = repFilter === 'all' || account.rep === repFilter
-      const scopeMatch = scopeFilter === 'all' || account.scope === scopeFilter
-      return accountMatch && repMatch && scopeMatch
-    })
-    return (
-      <BNFilterSearch
-        {...args}
-        options={filteredAccounts}
-        id="bn-filter-search-with-multiple-filters"
-        useSubmitSearch
-        onSubmitSearch={(value) => alert(`You searched for: ${value}`)}
-      >
-        <BNFilterSelect
-          options={accountFilterOptions}
-          value={accountFilter}
-          onChange={setAccountFilter}
-          aria-label="Account filter"
-        />
-        <BNFilterSelect
-          options={repFilterOptions}
-          value={repFilter}
-          onChange={setRepFilter}
-          aria-label="Rep filter"
-        />
-        <BNFilterSelect
-          options={scopeFilterOptions}
-          value={scopeFilter}
-          onChange={setScopeFilter}
-          aria-label="Scope filter"
-        />
-      </BNFilterSearch>
-    )
-  },
-}
-
-export const Static: Story = {
-  args: {
-    autoHighlight: true,
-  },
-  render: (args) => {
-    const [accountFilter, setAccountFilter] = React.useState('all')
-    const filteredAccounts = dummyFinancialAccounts.filter((account) => {
-      const accountMatch = accountFilter === 'all' || account.type === accountFilter
-      return accountMatch
-    })
-    return (
-      <BNFilterSearch {...args} options={filteredAccounts} variant="static">
-        <BNFilterSelect
-          options={accountFilterOptions}
-          value={accountFilter}
-          onChange={setAccountFilter}
-          aria-label="Account filter"
-        />
-      </BNFilterSearch>
-    )
-  },
-}
-
-export const StaticWithSubmit: Story = {
-  args: {
-    autoHighlight: true,
-    placeholder: 'Search...',
-  },
-  render: (args) => {
-    const [accountFilter, setAccountFilter] = React.useState('all')
-    const filteredAccounts = dummyFinancialAccounts.filter((account) => {
-      const accountMatch = accountFilter === 'all' || account.type === accountFilter
-      return accountMatch
-    })
-    return (
-      <BNFilterSearch
-        {...args}
-        options={filteredAccounts}
-        variant="static"
-        useSubmitSearch
-        onSubmitSearch={(value) => alert(`You searched for: ${value}`)}
-      >
-        <BNFilterSelect
-          options={accountFilterOptions}
-          value={accountFilter}
-          onChange={setAccountFilter}
-          aria-label="Account filter"
-        />
-      </BNFilterSearch>
+        onSubmit={(value) => {
+          const matchingOption = (args.options || dummyFinancialAccounts).find(
+            (option: any) => option.name.toLowerCase().includes(value.toLowerCase())
+          ) as any
+          if (matchingOption) {
+            alert(`You searched for: ${matchingOption.name} (${matchingOption.scope})`)
+          } else {
+            alert(`You searched for: "${value}" (no exact match found)`)
+          }
+        }}
+      />
     )
   },
 }

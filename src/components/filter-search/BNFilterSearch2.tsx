@@ -171,16 +171,6 @@ export function BNFilterSearch({
     [controlledOnInputChange]
   )
 
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent) => {
-      if (event.key === 'Enter' && onSubmit && inputValue.trim()) {
-        event.preventDefault()
-        onSubmit(inputValue.trim())
-      }
-    },
-    [onSubmit, inputValue]
-  )
-
   const RootComponent = slots.root ?? RootStyled
   const SearchComponent = slots.search ?? BNFilterSearchAutocomplete
 
@@ -189,36 +179,18 @@ export function BNFilterSearch({
     className: clsx(classes.root, slotProps.root?.className),
   }
 
-  let searchSlotProps: Record<string, any> = { ...slotProps.search }
-
-  if (SearchComponent === BNFilterSearchAutocomplete) {
-    searchSlotProps = {
-      options,
-      placeholder,
-      renderOptionLink,
-      ...slotProps.search,
-      inputValue: inputValue,
-      onInputChange: handleInputChange,
-      onChange: (_event: React.SyntheticEvent, newValue: any) => {
-        let newLabel = ''
-
-        if (typeof newValue === 'string') {
-          newLabel = newValue
-        } else if (newValue) {
-          newLabel = newValue.name || String(newValue)
-        }
-
-        handleInputChange(newLabel)
-
-        if (onSubmit && newLabel) {
-          onSubmit(newLabel)
-        }
-      },
-      textFieldProps: {
-        onKeyDown: handleKeyDown,
-        ...slotProps.search?.textFieldProps,
-      },
-    }
+  // Always build searchSlotProps for the search component
+  const searchSlotProps: Record<string, any> = {
+    options,
+    placeholder,
+    renderOptionLink,
+    ...slotProps.search,
+    inputValue: inputValue,
+    onInputChange: handleInputChange,
+    onSubmit,
+    textFieldProps: {
+      ...slotProps.search?.textFieldProps,
+    },
   }
 
   return (

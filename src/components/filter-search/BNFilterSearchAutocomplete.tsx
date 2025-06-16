@@ -7,12 +7,13 @@ import { Autocomplete, type AutocompleteProps, TextField } from '@mui/material'
 export interface BNFilterSearchAutocompleteProps<
   T extends { name: string } = { name: string },
 > extends Omit<
-    AutocompleteProps<T | string, false, false, true>,
-    'renderInput' | 'onInputChange'
-  > {
+  AutocompleteProps<T | string, false, false, true>,
+  'renderInput' | 'onInputChange' | 'onSubmit'
+> {
   placeholder?: string
   inputValue?: string
   onInputChange?: (value: string) => void
+  onSubmit?: (value: string) => void
   renderOptionLink?: (option: T) => React.ReactNode
   textFieldProps?: React.ComponentProps<typeof TextField>
 }
@@ -31,6 +32,7 @@ export const BNFilterSearchAutocomplete = <
   placeholder = 'Search',
   inputValue = '',
   onInputChange,
+  onSubmit,
   renderOptionLink,
   textFieldProps,
   ...autocompleteProps
@@ -55,6 +57,9 @@ export const BNFilterSearchAutocomplete = <
       onChange={(_event, newValue) => {
         const newLabel = getOptionLabelSafe(newValue)
         onInputChange?.(newLabel)
+        if (onSubmit && newLabel) {
+          onSubmit(newLabel)
+        }
       }}
       getOptionLabel={getOptionLabelSafe}
       isOptionEqualToValue={(option, value) => {

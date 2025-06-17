@@ -33,7 +33,8 @@ export interface BNAppBarProps {
   tabs?: {
     label: string
     value: string
-    href: string
+    href?: string
+    to?: unknown
   }[]
   selectedTabValue?: string
   tabLinkComponent?: React.ElementType
@@ -102,12 +103,10 @@ export function BNAppBar({
               {tabs.map((tab) => (
                 <Tab
                   LinkComponent={tabLinkComponent}
-                  href={tab.href}
                   key={tab.value}
-                  label={tab.label}
-                  value={tab.value}
                   aria-label={`Navigate to ${tab.label}`}
                   tabIndex={0}
+                  {...tab}
                 />
               ))}
             </Tabs>

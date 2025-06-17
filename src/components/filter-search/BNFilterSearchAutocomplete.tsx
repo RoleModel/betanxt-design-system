@@ -36,9 +36,18 @@ export const BNFilterSearchAutocomplete = <
   onSubmit,
   renderOptionLink,
   textFieldProps,
-  submitOnOptionClick = false,
+  submitOnOptionClick = false, // default: do NOT submit on menu click
   ...autocompleteProps
 }: BNFilterSearchAutocompleteProps<T>) => {
+  // Handle Enter key for freeSolo submission
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && onSubmit && inputValue.trim()) {
+      event.preventDefault()
+      onSubmit(inputValue.trim())
+    }
+    textFieldProps?.onKeyDown?.(event)
+  }
+
   return (
     <Autocomplete
       {...autocompleteProps}
@@ -59,7 +68,6 @@ export const BNFilterSearchAutocomplete = <
       onChange={(_event, newValue) => {
         const newLabel = getOptionLabelSafe(newValue)
         onInputChange?.(newLabel)
-
         if (onSubmit && newLabel && (submitOnOptionClick || typeof newValue === 'string')) {
           onSubmit(newLabel)
         }
@@ -101,6 +109,7 @@ export const BNFilterSearchAutocomplete = <
             },
             ...textFieldProps?.sx,
           }}
+          onKeyDown={handleKeyDown}
           slotProps={{
             input: {
               ...params.InputProps,

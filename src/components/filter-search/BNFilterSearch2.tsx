@@ -17,7 +17,7 @@ import { styled } from '@mui/material/styles'
 import composeClasses from '@mui/utils/composeClasses'
 import generateUtilityClass from '@mui/utils/generateUtilityClass'
 
-import BNFilterSearchAutocomplete from './BNFilterSearchAutocomplete'
+import BNFilterSearchAutocomplete, { type BNFilterSearchAutocompleteProps } from './BNFilterSearchAutocomplete'
 
 // Styled components
 const RootStyled = styled('div', {
@@ -67,6 +67,7 @@ const IconWrapper = styled('div', {
   position: 'relative',
   display: 'inline-flex',
   flex: '0, 0, auto',
+  color: theme.vars.palette.action.active,
   alignItems: 'center',
   justifyContent: 'center',
   padding: theme.spacing(1),
@@ -105,11 +106,11 @@ function useFilterSearchState(initialOpen: boolean) {
   return { theme, isSmallScreen, searchOpen, filtersOpen, handleToggle, toggleFilters }
 }
 
-export interface BNFilterSearchProps<T extends { name: string } = { name: string }> {
+export interface BNFilterSearchProps<T extends { name: string } = { name: string }> 
+  extends Omit<BNFilterSearchAutocompleteProps<T>, 'inputValue' | 'onInputChange' | 'slots' | 'slotProps'> {
   children?: React.ReactNode
   open?: boolean
   disableToggle?: boolean
-  onSubmit?: (value: string) => void
   onOpen?: () => void
   onClose?: () => void
   slots?: {
@@ -120,14 +121,11 @@ export interface BNFilterSearchProps<T extends { name: string } = { name: string
   slotProps?: {
     root?: React.HTMLAttributes<HTMLDivElement>
     wrapperInner?: React.HTMLAttributes<HTMLDivElement>
-    search?: React.ComponentProps<any>
+    search?: BNFilterSearchAutocompleteProps<T>
   }
-  // Props for the BNFilterSearchAutocomplete
-  options?: readonly T[]
-  placeholder?: string
+  // Control props for input value
   inputValue?: string
   onInputChange?: (value: string) => void
-  renderOptionLink?: (option: T) => React.ReactNode
 }
 
 export function BNFilterSearch({
@@ -136,13 +134,18 @@ export function BNFilterSearch({
   onOpen,
   onClose,
   disableToggle = false,
-  onSubmit,
   slots = {},
   slotProps = {},
-  options = [],
-  placeholder = 'Search',
+  inputValue: controlledInputValue,
   onInputChange: controlledOnInputChange,
+  // Extract autocomplete-specific props
+  onSubmit,
+  options,
+  placeholder,
   renderOptionLink,
+  submitOnOptionClick,
+  textFieldProps,
+  ...autocompleteProps
 }: BNFilterSearchProps) {
   // Hooks & State
   const classes = useUtilityClasses()
@@ -181,16 +184,17 @@ export function BNFilterSearch({
 
   // Always build searchSlotProps for the search component
   const searchSlotProps: Record<string, any> = {
+    ...autocompleteProps, // Forward all other autocomplete props
     options,
     placeholder,
     renderOptionLink,
-    ...slotProps.search,
+    submitOnOptionClick,
+    textFieldProps,
     inputValue: inputValue,
     onInputChange: handleInputChange,
     onSubmit,
-    textFieldProps: {
-      ...slotProps.search?.textFieldProps,
-    },
+    // Forward autocomplete-specific props from slotProps.search
+    ...slotProps.search,
   }
 
   return (
@@ -198,7 +202,7 @@ export function BNFilterSearch({
       {showToggle && (
         <Tooltip
           title={searchOpen ? 'Close Search' : 'Open Search'}
-          placement="top"
+          placement="bottom"
           arrow
         >
           <IconButton
@@ -213,23 +217,11 @@ export function BNFilterSearch({
 
       {disableToggle && (
         <IconWrapper>
-          <SearchIcon
-            fontSize="small"
-            sx={(theme) => ({
-              color: (theme.vars || theme).palette.action.active,
-            })}
-          />
+          <SearchIcon fontSize="small" />
         </IconWrapper>
       )}
 
-      <Collapse orientation="horizontal" in={isSearchOpen} mountOnEnter unmountOnExit sx={{
-        root: {
-          width: '100% !important',
-        },
-        '& .MuiCollapse-entered': {
-          width: '100% !important',
-        },
-      }}>
+      <Collapse orientation="horizontal" in={isSearchOpen} mountOnEnter unmountOnExit>
         <WrapperInner
           {...slotProps.wrapperInner}
           className={clsx(classes.wrapperInner, slotProps.wrapperInner?.className)}

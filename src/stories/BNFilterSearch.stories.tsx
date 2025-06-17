@@ -4,7 +4,7 @@ import { fn } from 'storybook/test'
 
 import { Box } from '@mui/material'
 
-import BNFilterSearch from '../components/filter-search/BNFilterSearch2'
+import BNFilterSearch from '../components/filter-search/BNFilterSearch'
 import BNFilterSelect from '../components/filter-search/BNFilterSelect'
 
 const dummyFinancialAccounts = [
@@ -259,10 +259,9 @@ export const SubmitOnClick: Story = {
       <BNFilterSearch
         {...args}
         options={args.options || dummyFinancialAccounts}
-        slotProps={{
-          search: {
-            submitOnOptionClick: true,
-          }
+        submitOnOptionClick={true} // Enable submission on option click
+        onSubmit={(value) => {
+          alert(`Submitted search: ${value}`)
         }}
       />
     )

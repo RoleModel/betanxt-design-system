@@ -85,10 +85,12 @@ export function BNAppBar({
         <Stack direction="row" spacing={1} useFlexGap alignItems="center">
           {slots.logoComponent
             ? React.createElement(slots.logoComponent, slotProps.logoComponent)
-            : React.createElement(slots.logoImg ?? LogoImg, {
-                alt: 'Logo',
-                ...slotProps.logoImg,
-              })}
+            : slots.logoImg
+              ? React.createElement(slots.logoImg, {
+                  alt: 'Logo',
+                  ...slotProps.logoImg,
+                })
+              : null}
           {title && (
             <Typography variant="appTitle" aria-level={1}>
               {title}

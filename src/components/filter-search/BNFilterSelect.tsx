@@ -34,7 +34,7 @@ const BNFilterSelect = React.forwardRef<HTMLDivElement, BNFilterSelectProps>(
             fontSize: 14,
             paddingBottom: '0px',
             '&:focus-visible': {
-              boxShadow: (theme) => `0px 1px 0px 0px ${theme.palette.primary.main}`,
+              boxShadow: (theme) => `0px 1px 0px 0px ${theme.vars.palette.primary.main}`,
             },
           },
           ...selectProps.sx,

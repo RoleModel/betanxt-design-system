@@ -41,12 +41,12 @@ const RootStyled = styled('div', {
   transition: theme.transitions.create(['box-shadow'], {
     duration: theme.transitions.duration.short,
   }),
-  boxShadow: `0px 0px 0px 1px ${theme.vars.palette.divider}`,
+  border: `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`,
   '&:hover': {
-    boxShadow: `0px 0px 0px 1px rgba(${theme.vars.palette.primary.mainChannel} / 0.5)`,
+    borderColor: theme.vars.palette.text.primary,
   },
   '&:focus-within': {
-    boxShadow: `0px 0px 0px 1px ${theme.vars.palette.primary.main}`,
+    borderColor: theme.vars.palette.primary.main,
   },
 }))
 
@@ -222,7 +222,14 @@ export function BNFilterSearch({
         </IconWrapper>
       )}
 
-      <Collapse orientation="horizontal" in={isSearchOpen} mountOnEnter unmountOnExit>
+      <Collapse orientation="horizontal" in={isSearchOpen} mountOnEnter unmountOnExit sx={{
+        root: {
+          width: '100% !important',
+        },
+        '& .MuiCollapse-entered': {
+          width: '100% !important',
+        },
+      }}>
         <WrapperInner
           {...slotProps.wrapperInner}
           className={clsx(classes.wrapperInner, slotProps.wrapperInner?.className)}

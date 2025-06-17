@@ -3,12 +3,12 @@ import React from 'react'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 import PersonIconOutlined from '@mui/icons-material/PersonOutline'
-
-import { BNAppSwitcher } from '../components/BNAppSwitcher'
-import BNAppBar from '../components/app-bar/BNAppBar'
-import { BNLogo } from '../components/BNLogo'
 import Button from '@mui/material/Button'
 import { height } from '@mui/system'
+
+import { BNAppSwitcher } from '../components/BNAppSwitcher'
+import { BNLogo } from '../components/BNLogo'
+import BNAppBar from '../components/app-bar/BNAppBar'
 
 const meta = {
   title: 'Custom Components/BNAppBar',
@@ -59,13 +59,13 @@ export const Primary: Story = {
     menuItems: [
       {
         label: 'Profile',
-        onClick: () => { },
+        onClick: () => {},
         divider: true,
         icon: <PersonIconOutlined />,
       },
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -93,7 +93,7 @@ export const WithComponent: Story = {
         href: '/',
         alt: 'Go Home',
         title: 'Home',
-      }
+      },
     },
     tabs: [
       {
@@ -110,13 +110,13 @@ export const WithComponent: Story = {
     menuItems: [
       {
         label: 'Profile',
-        onClick: () => { },
+        onClick: () => {},
         divider: true,
         icon: <PersonIconOutlined />,
       },
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -185,12 +185,12 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
       {
         label: 'Profile',
-        onClick: () => { },
+        onClick: () => {},
         icon: <PersonIconOutlined />,
       },
     ],
@@ -207,5 +207,3 @@ export const WithAppSwitcher: Story = {
     ),
   },
 }
-
-

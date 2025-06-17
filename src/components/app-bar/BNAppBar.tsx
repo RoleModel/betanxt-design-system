@@ -7,9 +7,9 @@ import {
   Tabs,
   Toolbar,
   Typography,
+  styled,
   useMediaQuery,
   useTheme,
-  styled
 } from '@mui/material'
 
 import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
@@ -19,11 +19,12 @@ const LogoImg = styled('img')<{ src?: string }>(({ theme, src }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   height: 44,
-  ...(src && !src.endsWith('.svg') && {
-    backgroundColor: theme.vars.palette.common.white,
-    padding: theme.spacing(0.5),
-    borderRadius: 4,
-  }),
+  ...(src &&
+    !src.endsWith('.svg') && {
+      backgroundColor: theme.vars.palette.common.white,
+      padding: theme.spacing(0.5),
+      borderRadius: 4,
+    }),
 }))
 
 export interface BNAppBarProps {

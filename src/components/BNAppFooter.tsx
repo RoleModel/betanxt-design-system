@@ -87,7 +87,12 @@ export function BNAppFooter({
         </Link>
       </Box>
       {logoEnabled && (
-        <BNLogo showPoweredBy height={24} href={'https://betanxt.com'} alt={'Go to BetaNXT.com'} />
+        <BNLogo
+          showPoweredBy
+          height={24}
+          href={'https://betanxt.com'}
+          alt={'Go to BetaNXT.com'}
+        />
       )}
     </Box>
   )

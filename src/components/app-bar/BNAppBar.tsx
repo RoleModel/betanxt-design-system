@@ -1,13 +1,13 @@
 import React from 'react'
 
 import {
-  Box,
   AppBar as MuiAppBar,
   Stack,
   Tab,
   Tabs,
   Toolbar,
   Typography,
+  styled,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
@@ -15,15 +15,26 @@ import {
 import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
 import { BNAppBarDrawer } from './BNAppBarDrawer'
 
+const LogoImg = styled('img')<{ src?: string }>(({ theme, src }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  height: 44,
+  ...(src &&
+    !src.endsWith('.svg') && {
+      backgroundColor: theme.vars.palette.common.white,
+      padding: theme.spacing(0.5),
+      borderRadius: 4,
+    }),
+}))
+
 export interface BNAppBarProps {
   title?: string
   color?: 'primary' | 'secondary'
-  logoUrl?: string
-  logoAlt?: string
   tabs?: {
     label: string
     value: string
-    href: string
+    href?: string
+    to?: unknown
   }[]
   selectedTabValue?: string
   tabLinkComponent?: React.ElementType
@@ -31,12 +42,18 @@ export interface BNAppBarProps {
   menuItems?: MenuItem[]
   'aria-label'?: string
   children?: React.ReactNode
+  slots?: {
+    logoComponent?: React.ElementType
+    logoImg?: React.ElementType
+  }
+  slotProps?: {
+    logoComponent?: React.ComponentProps<any>
+    logoImg?: React.ImgHTMLAttributes<HTMLImageElement>
+  }
 }
 
 export function BNAppBar({
   title,
-  logoUrl,
-  logoAlt,
   color = 'primary',
   tabs,
   selectedTabValue,
@@ -45,6 +62,8 @@ export function BNAppBar({
   avatar,
   'aria-label': ariaLabel,
   children,
+  slots = {},
+  slotProps = {},
 }: BNAppBarProps) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
   const theme = useTheme()
@@ -62,27 +81,14 @@ export function BNAppBar({
       aria-label={ariaLabel || 'Main navigation'}
     >
       {children}
-      <Toolbar
-        sx={{
-          justifyContent: 'space-between',
-        }}
-      >
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Stack direction="row" spacing={1} useFlexGap alignItems="center">
-          {logoUrl && (
-            <Box
-              component="img"
-              src={logoUrl}
-              alt={logoAlt || 'Company logo'}
-              height={44}
-              sx={{
-                display: 'block',
-                padding: 0.5,
-                backgroundColor: 'common.white',
-                borderRadius: 1,
-              }}
-            />
-          )}
-
+          {slots.logoComponent
+            ? React.createElement(slots.logoComponent, slotProps.logoComponent)
+            : React.createElement(slots.logoImg ?? LogoImg, {
+                alt: 'Logo',
+                ...slotProps.logoImg,
+              })}
           {title && (
             <Typography variant="appTitle" aria-level={1}>
               {title}
@@ -100,12 +106,10 @@ export function BNAppBar({
               {tabs.map((tab) => (
                 <Tab
                   LinkComponent={tabLinkComponent}
-                  href={tab.href}
                   key={tab.value}
-                  label={tab.label}
-                  value={tab.value}
                   aria-label={`Navigate to ${tab.label}`}
                   tabIndex={0}
+                  {...tab}
                 />
               ))}
             </Tabs>

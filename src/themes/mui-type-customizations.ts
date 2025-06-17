@@ -251,3 +251,9 @@ declare module '@mui/material/ToggleButtonGroup' {
     variant?: 'tall'
   }
 }
+
+declare module '@mui/lab/TimelineOppositeContent' {
+  interface TimelineOppositeContentPropsVariantOverrides {
+    body3: true
+  }
+}

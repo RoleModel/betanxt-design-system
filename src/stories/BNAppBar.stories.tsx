@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import React from 'react'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 import PersonIconOutlined from '@mui/icons-material/PersonOutline'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
+import { BNLogo } from '../components/BNLogo'
 import BNAppBar from '../components/app-bar/BNAppBar'
 
 const meta = {
@@ -28,6 +28,25 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+const exampleAvatar = {
+  src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
+  alt: 'User Avatar',
+  children: 'US',
+}
+
+const exampleTabs = [
+  {
+    label: 'Home',
+    value: 'home',
+    href: '/',
+  },
+  {
+    label: 'About',
+    value: 'about',
+    href: '/',
+  },
+]
+
 export const Primary: Story = {
   parameters: {
     layout: 'fullscreen',
@@ -36,23 +55,8 @@ export const Primary: Story = {
     title: 'App Title',
     color: 'primary',
     selectedTabValue: 'home',
-    avatar: {
-      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-      alt: 'User Avatar',
-      children: 'US',
-    },
-    tabs: [
-      {
-        label: 'Home',
-        value: 'home',
-        href: '/',
-      },
-      {
-        label: 'About',
-        value: 'about',
-        href: '/',
-      },
-    ],
+    avatar: exampleAvatar,
+    tabs: exampleTabs,
     menuItems: [
       {
         label: 'Profile',
@@ -71,27 +75,16 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    logoUrl: '/company-logo.svg',
-    logoAlt: 'BetaNXT Logo',
     color: 'secondary',
     selectedTabValue: 'home',
-    avatar: {
-      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-      alt: 'User Avatar',
-      children: 'US',
+    avatar: exampleAvatar,
+    tabs: exampleTabs,
+    slotProps: {
+      logoImg: {
+        src: '/company-logo.svg',
+        alt: 'BetaNXT Logo',
+      },
     },
-    tabs: [
-      {
-        label: 'Home',
-        value: 'home',
-        href: '/',
-      },
-      {
-        label: 'About',
-        value: 'about',
-        href: '/',
-      },
-    ],
     menuItems: [
       {
         label: 'Logout',
@@ -105,29 +98,87 @@ export const Secondary: Story = {
   },
 }
 
-export const WithAppSwitcher: Story = {
+export const WithLogoComponent: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
   args: {
-    logoUrl: '/company-logo.svg',
-    logoAlt: 'BetaNXT Logo',
-    color: 'secondary',
+    color: 'primary',
     selectedTabValue: 'home',
-    avatar: {
-      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-      alt: 'User Avatar',
-      children: 'US',
+    avatar: exampleAvatar,
+    slots: {
+      logoComponent: BNLogo,
     },
-    tabs: [
-      {
-        label: 'Home',
-        value: 'home',
+    slotProps: {
+      logoComponent: {
+        height: 30,
         href: '/',
+        alt: 'Go Home',
+        title: 'Home',
+      },
+    },
+    tabs: exampleTabs,
+    menuItems: [
+      {
+        label: 'Profile',
+        onClick: () => {},
+        divider: true,
+        icon: <PersonIconOutlined />,
       },
       {
-        label: 'About',
-        value: 'about',
-        href: '/',
+        label: 'Logout',
+        onClick: () => {},
+        icon: <LogoutIconOutlined />,
       },
     ],
+  },
+}
+
+export const WithLogoImg: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    color: 'primary',
+    selectedTabValue: 'home',
+    avatar: exampleAvatar,
+    slotProps: {
+      logoImg: {
+        src: '/company-logo.svg',
+        height: 30,
+        alt: 'Go Home',
+        title: 'Home',
+      },
+    },
+    tabs: exampleTabs,
+    menuItems: [
+      {
+        label: 'Profile',
+        onClick: () => {},
+        divider: true,
+        icon: <PersonIconOutlined />,
+      },
+      {
+        label: 'Logout',
+        onClick: () => {},
+        icon: <LogoutIconOutlined />,
+      },
+    ],
+  },
+}
+
+export const WithAppSwitcher: Story = {
+  args: {
+    color: 'secondary',
+    selectedTabValue: 'home',
+    avatar: exampleAvatar,
+    tabs: exampleTabs,
+    slotProps: {
+      logoImg: {
+        src: '/company-logo.svg',
+        alt: 'BetaNXT Logo',
+      },
+    },
     menuItems: [
       {
         label: 'Logout',

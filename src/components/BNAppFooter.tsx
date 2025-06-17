@@ -2,11 +2,11 @@
 
 import { Box, Divider, Link, Typography } from '@mui/material'
 
-import { BetaNXTLogo } from './BNLogo'
+import { BNLogo } from './BNLogo'
 
 export function BNAppFooter({
   logoEnabled = true,
-  privacyPolicyLink = 'https://www.mediantinc.com/privacy-policy',
+  privacyPolicyLink = 'https://betanxt.com/privacy-policy',
   links = [],
 }: {
   logoEnabled?: boolean
@@ -87,7 +87,12 @@ export function BNAppFooter({
         </Link>
       </Box>
       {logoEnabled && (
-        <BetaNXTLogo height={24} href={'https://betanxt.com'} alt={'Go to BetaNXT.com'} />
+        <BNLogo
+          showPoweredBy
+          height={24}
+          href={'https://betanxt.com'}
+          alt={'Go to BetaNXT.com'}
+        />
       )}
     </Box>
   )

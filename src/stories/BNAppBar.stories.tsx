@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import React from 'react'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 import PersonIconOutlined from '@mui/icons-material/PersonOutline'
-import Button from '@mui/material/Button'
-import { height } from '@mui/system'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
@@ -31,6 +28,25 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
+const exampleAvatar = {
+  src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
+  alt: 'User Avatar',
+  children: 'US',
+}
+
+const exampleTabs = [
+  {
+    label: 'Home',
+    value: 'home',
+    href: '/',
+  },
+  {
+    label: 'About',
+    value: 'about',
+    href: '/',
+  },
+]
+
 export const Primary: Story = {
   parameters: {
     layout: 'fullscreen',
@@ -39,23 +55,8 @@ export const Primary: Story = {
     title: 'App Title',
     color: 'primary',
     selectedTabValue: 'home',
-    avatar: {
-      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-      alt: 'User Avatar',
-      children: 'US',
-    },
-    tabs: [
-      {
-        label: 'Home',
-        value: 'home',
-        href: '/',
-      },
-      {
-        label: 'About',
-        value: 'about',
-        href: '/',
-      },
-    ],
+    avatar: exampleAvatar,
+    tabs: exampleTabs,
     menuItems: [
       {
         label: 'Profile',
@@ -79,11 +80,7 @@ export const WithComponent: Story = {
   args: {
     color: 'primary',
     selectedTabValue: 'home',
-    avatar: {
-      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-      alt: 'User Avatar',
-      children: 'US',
-    },
+    avatar: exampleAvatar,
     slots: {
       logoComponent: BNLogo,
     },
@@ -95,18 +92,7 @@ export const WithComponent: Story = {
         title: 'Home',
       },
     },
-    tabs: [
-      {
-        label: 'Home',
-        value: 'home',
-        href: '/',
-      },
-      {
-        label: 'About',
-        value: 'about',
-        href: '/',
-      },
-    ],
+    tabs: exampleTabs,
     menuItems: [
       {
         label: 'Profile',
@@ -129,23 +115,8 @@ export const Secondary: Story = {
     logoAlt: 'BetaNXT Logo',
     color: 'secondary',
     selectedTabValue: 'home',
-    avatar: {
-      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-      alt: 'User Avatar',
-      children: 'US',
-    },
-    tabs: [
-      {
-        label: 'Home',
-        value: 'home',
-        href: '/',
-      },
-      {
-        label: 'About',
-        value: 'about',
-        href: '/',
-      },
-    ],
+    avatar: exampleAvatar,
+    tabs: exampleTabs,
     menuItems: [
       {
         label: 'Logout',
@@ -165,23 +136,8 @@ export const WithAppSwitcher: Story = {
     logoAlt: 'BetaNXT Logo',
     color: 'secondary',
     selectedTabValue: 'home',
-    avatar: {
-      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
-      alt: 'User Avatar',
-      children: 'US',
-    },
-    tabs: [
-      {
-        label: 'Home',
-        value: 'home',
-        href: '/',
-      },
-      {
-        label: 'About',
-        value: 'about',
-        href: '/',
-      },
-    ],
+    avatar: exampleAvatar,
+    tabs: exampleTabs,
     menuItems: [
       {
         label: 'Logout',

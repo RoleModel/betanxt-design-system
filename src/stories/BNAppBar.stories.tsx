@@ -75,12 +75,16 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    logoUrl: '/company-logo.svg',
-    logoAlt: 'BetaNXT Logo',
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     tabs: exampleTabs,
+    slotProps: {
+      logoImg: {
+        src: '/company-logo.svg',
+        alt: 'BetaNXT Logo',
+      },
+    },
     menuItems: [
       {
         label: 'Logout',
@@ -130,14 +134,51 @@ export const WithLogoComponent: Story = {
   },
 }
 
+export const WithLogoImg: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    color: 'primary',
+    selectedTabValue: 'home',
+    avatar: exampleAvatar,
+    slotProps: {
+      logoImg: {
+        src: '/company-logo.svg',
+        height: 30,
+        alt: 'Go Home',
+        title: 'Home',
+      },
+    },
+    tabs: exampleTabs,
+    menuItems: [
+      {
+        label: 'Profile',
+        onClick: () => {},
+        divider: true,
+        icon: <PersonIconOutlined />,
+      },
+      {
+        label: 'Logout',
+        onClick: () => {},
+        icon: <LogoutIconOutlined />,
+      },
+    ],
+  },
+}
+
 export const WithAppSwitcher: Story = {
   args: {
-    logoUrl: '/company-logo.svg',
-    logoAlt: 'BetaNXT Logo',
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     tabs: exampleTabs,
+    slotProps: {
+      logoImg: {
+        src: '/company-logo.svg',
+        alt: 'BetaNXT Logo',
+      },
+    },
     menuItems: [
       {
         label: 'Logout',

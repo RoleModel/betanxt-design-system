@@ -30,8 +30,6 @@ const LogoImg = styled('img')<{ src?: string }>(({ theme, src }) => ({
 export interface BNAppBarProps {
   title?: string
   color?: 'primary' | 'secondary'
-  logoUrl?: string
-  logoAlt?: string
   tabs?: {
     label: string
     value: string
@@ -55,8 +53,6 @@ export interface BNAppBarProps {
 
 export function BNAppBar({
   title,
-  logoUrl,
-  logoAlt,
   color = 'primary',
   tabs,
   selectedTabValue,
@@ -76,9 +72,6 @@ export function BNAppBar({
     setDrawerOpen(!drawerOpen)
   }
 
-  const LogoComponent = slots.logoComponent
-  const LogoImgComponent = slots.logoImg ?? LogoImg
-
   return (
     <MuiAppBar
       color={color}
@@ -87,22 +80,11 @@ export function BNAppBar({
       aria-label={ariaLabel || 'Main navigation'}
     >
       {children}
-      <Toolbar
-        sx={{
-          justifyContent: 'space-between',
-        }}
-      >
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Stack direction="row" spacing={1} useFlexGap alignItems="center">
-          {LogoComponent ? (
-            <LogoComponent {...slotProps.logoComponent} />
-          ) : logoUrl ? (
-            <LogoImgComponent
-              {...slotProps.logoImg}
-              src={logoUrl}
-              alt={logoAlt || 'Logo'}
-            />
-          ) : null}
-
+          {slots.logoComponent
+            ? React.createElement(slots.logoComponent, slotProps.logoComponent)
+            : React.createElement(slots.logoImg ?? LogoImg, slotProps.logoImg)}
           {title && (
             <Typography variant="appTitle" aria-level={1}>
               {title}

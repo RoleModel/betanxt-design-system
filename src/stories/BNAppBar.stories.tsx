@@ -73,7 +73,28 @@ export const Primary: Story = {
   },
 }
 
-export const WithComponent: Story = {
+export const Secondary: Story = {
+  args: {
+    logoUrl: '/company-logo.svg',
+    logoAlt: 'BetaNXT Logo',
+    color: 'secondary',
+    selectedTabValue: 'home',
+    avatar: exampleAvatar,
+    tabs: exampleTabs,
+    menuItems: [
+      {
+        label: 'Logout',
+        onClick: () => {
+          window.alert('Logout')
+        },
+        icon: <LogoutIconOutlined />,
+        dense: true,
+      },
+    ],
+  },
+}
+
+export const WithLogoComponent: Story = {
   parameters: {
     layout: 'fullscreen',
   },
@@ -104,27 +125,6 @@ export const WithComponent: Story = {
         label: 'Logout',
         onClick: () => {},
         icon: <LogoutIconOutlined />,
-      },
-    ],
-  },
-}
-
-export const Secondary: Story = {
-  args: {
-    logoUrl: '/company-logo.svg',
-    logoAlt: 'BetaNXT Logo',
-    color: 'secondary',
-    selectedTabValue: 'home',
-    avatar: exampleAvatar,
-    tabs: exampleTabs,
-    menuItems: [
-      {
-        label: 'Logout',
-        onClick: () => {
-          window.alert('Logout')
-        },
-        icon: <LogoutIconOutlined />,
-        dense: true,
       },
     ],
   },

@@ -17,7 +17,9 @@ import { styled } from '@mui/material/styles'
 import composeClasses from '@mui/utils/composeClasses'
 import generateUtilityClass from '@mui/utils/generateUtilityClass'
 
-import BNFilterSearchAutocomplete, { type BNFilterSearchAutocompleteProps } from './BNFilterSearchAutocomplete'
+import BNFilterSearchAutocomplete, {
+  type BNFilterSearchAutocompleteProps,
+} from './BNFilterSearchAutocomplete'
 
 // Styled components
 const RootStyled = styled('div', {
@@ -106,8 +108,11 @@ function useFilterSearchState(initialOpen: boolean) {
   return { theme, isSmallScreen, searchOpen, filtersOpen, handleToggle, toggleFilters }
 }
 
-export interface BNFilterSearchProps<T extends { name: string } = { name: string }> 
-  extends Omit<BNFilterSearchAutocompleteProps<T>, 'inputValue' | 'onInputChange' | 'slots' | 'slotProps'> {
+export interface BNFilterSearchProps<T extends { name: string } = { name: string }>
+  extends Omit<
+    BNFilterSearchAutocompleteProps<T>,
+    'inputValue' | 'onInputChange' | 'slots' | 'slotProps'
+  > {
   children?: React.ReactNode
   open?: boolean
   disableToggle?: boolean

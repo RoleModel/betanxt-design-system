@@ -18,48 +18,44 @@ BNFilterSearch is a flexible search and filter component with toggleing behavior
 
 ### Usage
 
-<Source
-  dark
-  language="tsx"
-  code={`// Example: Filtering UI with search and select
+```jsx
+// Example: Filtering UI with search and select
 import { useState } from 'react'
+
 import { BNFilterSearch } from '../components/filter-search/BNFilterSearch'
 import { BNFilterSelect } from '../components/filter-search/BNFilterSelect'
 
 const users = [
-{ name: 'Alice', role: 'admin' },
-{ name: 'Bob', role: 'user' },
-{ name: 'Charlie', role: 'user' },
-{ name: 'Diana', role: 'admin' },
+  { name: 'Alice', role: 'admin' },
+  { name: 'Bob', role: 'user' },
+  { name: 'Charlie', role: 'user' },
+  { name: 'Diana', role: 'admin' },
 ]
-const roles = [
-{ name: 'All' },
-{ name: 'admin' },
-{ name: 'user' },
-]
+const roles = [{ name: 'All' }, { name: 'admin' }, { name: 'user' }]
 
 function Example() {
-const [query, setQuery] = useState('')
-const [role, setRole] = useState('All')
-return (
-
-<BNFilterSearch
-  options={users}
-  inputValue={query}
-  onInputChange={setQuery}
-  onSubmit={setQuery}
-  placeholder="Search users..."
->
-  {/* Selects are inserted as children */}
-  <BNFilterSelect
-    options={roles}
-    value={role}
-    onChange={setRole}
-    aria-label="Role filter"
-  />
-  {/* AutoCompelte inlcuded by default */}
-</BNFilterSearch>
-) } `} />
+  const [query, setQuery] = useState('')
+  const [role, setRole] = useState('All')
+  return (
+    <BNFilterSearch
+      options={users}
+      inputValue={query}
+      onInputChange={setQuery}
+      onSubmit={setQuery}
+      placeholder="Search users..."
+    >
+      {/* Selects are inserted as children */}
+      <BNFilterSelect
+        options={roles}
+        value={role}
+        onChange={setRole}
+        aria-label="Role filter"
+      />
+      {/* AutoCompelte inlcuded by default */}
+    </BNFilterSearch>
+  )
+}
+```
 
 **Toggle Behavior**:
 
@@ -76,10 +72,8 @@ return (
 
 To pass any props of the MUI Autocomplete component, use `slotProps` of the `search` slot in the BNFitlerSearch component.
 
-<Source
-  dark
-  language="tsx"
-  code={`<BNFilterSearch
+```jsx
+<BNFilterSearch
   options={options}
   slotProps={{
     search: {
@@ -88,9 +82,9 @@ To pass any props of the MUI Autocomplete component, use `slotProps` of the `sea
       disablePortal: true,
       // ...other props
     },
-  }}>
-  '`}
+  }}
 />
+```
 
 ## Toggleable Search (Default)
 

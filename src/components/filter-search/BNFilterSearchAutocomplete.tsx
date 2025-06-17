@@ -7,9 +7,9 @@ import { Autocomplete, type AutocompleteProps, TextField } from '@mui/material'
 export interface BNFilterSearchAutocompleteProps<
   T extends { name: string } = { name: string },
 > extends Omit<
-  AutocompleteProps<T | string, false, false, true>,
-  'renderInput' | 'onInputChange' | 'onSubmit'
-> {
+    AutocompleteProps<T | string, false, false, true>,
+    'renderInput' | 'onInputChange' | 'onSubmit'
+  > {
   placeholder?: string
   inputValue?: string
   onInputChange?: (value: string) => void
@@ -68,7 +68,11 @@ export const BNFilterSearchAutocomplete = <
       onChange={(_event, newValue) => {
         const newLabel = getOptionLabelSafe(newValue)
         onInputChange?.(newLabel)
-        if (onSubmit && newLabel && (submitOnOptionClick || typeof newValue === 'string')) {
+        if (
+          onSubmit &&
+          newLabel &&
+          (submitOnOptionClick || typeof newValue === 'string')
+        ) {
           onSubmit(newLabel)
         }
       }}

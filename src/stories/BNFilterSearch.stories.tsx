@@ -162,12 +162,7 @@ export default meta
 
 export const Default: Story = {
   render: (args) => {
-    return (
-      <BNFilterSearch
-        {...args}
-        options={args.options || dummyFinancialAccounts}
-      />
-    )
+    return <BNFilterSearch {...args} options={args.options || dummyFinancialAccounts} />
   },
 }
 
@@ -190,10 +185,7 @@ export const ToggleDisabled: Story = {
     }, [accountFilter, repFilter, scopeFilter])
 
     return (
-      <BNFilterSearch
-        {...args}
-        options={filteredAccounts}
-      >
+      <BNFilterSearch {...args} options={filteredAccounts}>
         <BNFilterSelect
           options={accountFilterOptions}
           value={accountFilter}
@@ -265,5 +257,5 @@ export const SubmitOnClick: Story = {
         }}
       />
     )
-  }
+  },
 }

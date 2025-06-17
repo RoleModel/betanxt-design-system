@@ -6,6 +6,9 @@ import PersonIconOutlined from '@mui/icons-material/PersonOutline'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import BNAppBar from '../components/app-bar/BNAppBar'
+import { BNLogo } from '../components/BNLogo'
+import Button from '@mui/material/Button'
+import { height } from '@mui/system'
 
 const meta = {
   title: 'Custom Components/BNAppBar',
@@ -56,13 +59,64 @@ export const Primary: Story = {
     menuItems: [
       {
         label: 'Profile',
-        onClick: () => {},
+        onClick: () => { },
         divider: true,
         icon: <PersonIconOutlined />,
       },
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
+        icon: <LogoutIconOutlined />,
+      },
+    ],
+  },
+}
+
+export const WithComponent: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    color: 'primary',
+    selectedTabValue: 'home',
+    avatar: {
+      src: 'https://untitledui.com/images/avatars/transparent/loki-bright',
+      alt: 'User Avatar',
+      children: 'US',
+    },
+    slots: {
+      logoComponent: BNLogo,
+    },
+    slotProps: {
+      logoComponent: {
+        height: 30,
+        href: '/',
+        alt: 'Go Home',
+        title: 'Home',
+      }
+    },
+    tabs: [
+      {
+        label: 'Home',
+        value: 'home',
+        href: '/',
+      },
+      {
+        label: 'About',
+        value: 'about',
+        href: '/',
+      },
+    ],
+    menuItems: [
+      {
+        label: 'Profile',
+        onClick: () => { },
+        divider: true,
+        icon: <PersonIconOutlined />,
+      },
+      {
+        label: 'Logout',
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -131,12 +185,12 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
       {
         label: 'Profile',
-        onClick: () => {},
+        onClick: () => { },
         icon: <PersonIconOutlined />,
       },
     ],
@@ -153,3 +207,5 @@ export const WithAppSwitcher: Story = {
     ),
   },
 }
+
+

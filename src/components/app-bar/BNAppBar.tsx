@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-  Box,
   AppBar as MuiAppBar,
   Stack,
   Tab,
@@ -10,10 +9,22 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  styled
 } from '@mui/material'
 
 import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
 import { BNAppBarDrawer } from './BNAppBarDrawer'
+
+const LogoImg = styled('img')<{ src?: string }>(({ theme, src }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  height: 44,
+  ...(src && !src.endsWith('.svg') && {
+    backgroundColor: theme.vars.palette.common.white,
+    padding: theme.spacing(0.5),
+    borderRadius: 4,
+  }),
+}))
 
 export interface BNAppBarProps {
   title?: string
@@ -31,6 +42,14 @@ export interface BNAppBarProps {
   menuItems?: MenuItem[]
   'aria-label'?: string
   children?: React.ReactNode
+  slots?: {
+    logoComponent?: React.ElementType
+    logoImg?: React.ElementType
+  }
+  slotProps?: {
+    logoComponent?: React.ComponentProps<any>
+    logoImg?: React.ImgHTMLAttributes<HTMLImageElement>
+  }
 }
 
 export function BNAppBar({
@@ -45,6 +64,8 @@ export function BNAppBar({
   avatar,
   'aria-label': ariaLabel,
   children,
+  slots = {},
+  slotProps = {},
 }: BNAppBarProps) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
   const theme = useTheme()
@@ -53,6 +74,9 @@ export function BNAppBar({
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen)
   }
+
+  const LogoComponent = slots.logoComponent
+  const LogoImgComponent = slots.logoImg ?? LogoImg
 
   return (
     <MuiAppBar
@@ -68,20 +92,15 @@ export function BNAppBar({
         }}
       >
         <Stack direction="row" spacing={1} useFlexGap alignItems="center">
-          {logoUrl && (
-            <Box
-              component="img"
+          {LogoComponent ? (
+            <LogoComponent {...slotProps.logoComponent} />
+          ) : logoUrl ? (
+            <LogoImgComponent
+              {...slotProps.logoImg}
               src={logoUrl}
-              alt={logoAlt || 'Company logo'}
-              height={44}
-              sx={{
-                display: 'block',
-                padding: 0.5,
-                backgroundColor: 'common.white',
-                borderRadius: 1,
-              }}
+              alt={logoAlt || 'Logo'}
             />
-          )}
+          ) : null}
 
           {title && (
             <Typography variant="appTitle" aria-level={1}>

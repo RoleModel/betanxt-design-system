@@ -165,7 +165,7 @@ export const BNAnimatedMenuIcon = ({
           >
             {menuItems.map((item, index) => {
               const { label, icon, onClick, ...menuItemProps } = item
-              const menuItemElement = (
+              return (
                 <MuiMenuItem
                   key={index}
                   LinkComponent={LinkComponent}
@@ -176,7 +176,6 @@ export const BNAnimatedMenuIcon = ({
                   <ListItemText primary={label} />
                 </MuiMenuItem>
               )
-              return menuItemElement
             })}
           </Menu>
         )}
@@ -205,7 +204,7 @@ export const BNAnimatedMenuIcon = ({
       >
         {menuItems.map((item, index) => {
           const { label, icon, onClick, ...menuItemProps } = item
-          const menuItemElement = (
+          return (
             <MuiMenuItem
               key={index}
               LinkComponent={LinkComponent}
@@ -216,7 +215,6 @@ export const BNAnimatedMenuIcon = ({
               <ListItemText primary={label} />
             </MuiMenuItem>
           )
-          return menuItemElement
         })}
       </Menu>
     </>

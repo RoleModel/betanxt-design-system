@@ -79,10 +79,14 @@ export const Secondary: Story = {
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     tabs: exampleTabs,
+    slots: {
+      logoComponent: BNLogo,
+    },
     slotProps: {
-      logoImg: {
-        src: '/company-logo.svg',
-        alt: 'BetaNXT Logo',
+      logoComponent: {
+        logoFill: 'var(--mui-palette-logoFill)',
+        height: 32,
+        href: '/',
       },
     },
     menuItems: [
@@ -142,10 +146,13 @@ export const WithLogoImg: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    slots: {
+      logoImg: 'img',
+    },
     slotProps: {
       logoImg: {
-        src: '/company-logo.svg',
-        height: 30,
+        src: '/company-logo.png',
+        height: 44,
         alt: 'Go Home',
         title: 'Home',
       },
@@ -173,10 +180,14 @@ export const WithAppSwitcher: Story = {
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     tabs: exampleTabs,
+    slots: {
+      logoImg: 'img',
+    },
     slotProps: {
       logoImg: {
         src: '/company-logo.svg',
         alt: 'BetaNXT Logo',
+        crossOrigin: 'anonymous',
       },
     },
     menuItems: [

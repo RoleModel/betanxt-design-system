@@ -7,7 +7,6 @@ import {
   Tabs,
   Toolbar,
   Typography,
-  styled,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
@@ -15,17 +14,17 @@ import {
 import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
 import { BNAppBarDrawer } from './BNAppBarDrawer'
 
-const LogoImg = styled('img')<{ src?: string }>(({ theme, src }) => ({
+const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({
   display: 'inline-flex',
   alignItems: 'center',
   height: 44,
   ...(src &&
-    !src.endsWith('.svg') && {
+    !src?.endsWith('.svg') && {
       backgroundColor: theme.vars.palette.common.white,
       padding: theme.spacing(0.5),
       borderRadius: 4,
     }),
-}))
+})
 
 export interface BNAppBarProps {
   title?: string
@@ -88,6 +87,7 @@ export function BNAppBar({
             : slots.logoImg
               ? React.createElement(slots.logoImg, {
                   alt: 'Logo',
+                  style: getLogoImgStyles(theme, slotProps.logoImg?.src),
                   ...slotProps.logoImg,
                 })
               : null}

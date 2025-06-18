@@ -132,7 +132,6 @@ export function BNAppBar({
       {avatar && menuItems && (
         <BNAppBarDrawer
           tabs={tabs}
-          elevation={10}
           menuItems={menuItems}
           selectedTabValue={selectedTabValue}
           hasAppSwitcher={!!children}
@@ -146,12 +145,6 @@ export function BNAppBar({
           }}
           open={drawerOpen}
           onClose={handleDrawerToggle}
-          slotProps={{
-            root: {
-              id: 'navigation-drawer',
-              'aria-label': 'Navigation drawer',
-            },
-          }}
         />
       )}
     </MuiAppBar>

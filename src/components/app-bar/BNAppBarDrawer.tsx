@@ -4,19 +4,12 @@ import {
   Box,
   Divider,
   Drawer,
+  type DrawerProps,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-} from '@mui/material'
-import type {
-  BoxProps,
-  DrawerProps,
-  ListItemButtonProps,
-  ListItemProps,
-  ListProps,
-  Theme,
 } from '@mui/material'
 
 export interface BNAppBarDrawerTab {
@@ -36,27 +29,8 @@ export interface BNAppBarDrawerMenuItem {
   to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
-export interface BNAppBarDrawerSlots {
-  root?: React.ElementType
-  header?: React.ElementType
-  content?: React.ElementType
-  section?: React.ElementType
-  list?: React.ElementType
-  listItem?: React.ElementType
-  listItemButton?: React.ElementType
-  divider?: React.ElementType
-}
-
 export interface BNAppBarDrawerSlotProps {
   root?: Partial<DrawerProps>
-  header?: Partial<BoxProps>
-  content?: Partial<BoxProps>
-  section?: Partial<BoxProps>
-  sectionTitle?: Partial<BoxProps>
-  list?: Partial<ListProps>
-  listItem?: Partial<ListItemProps>
-  listItemButton?: Partial<ListItemButtonProps>
-  divider?: any
 }
 
 export interface BNAppBarDrawerProps {
@@ -74,7 +48,6 @@ export interface BNAppBarDrawerProps {
   tabLinkComponent?: React.ElementType
   header?: React.ReactNode
   footer?: React.ReactNode
-  slots?: BNAppBarDrawerSlots
   slotProps?: BNAppBarDrawerSlotProps
   hasAppSwitcher?: boolean
 }
@@ -93,41 +66,22 @@ export const BNAppBarDrawer = ({
   menuItemLinkComponent,
   tabLinkComponent,
   footer,
-  slots = {},
   slotProps = {},
   hasAppSwitcher = false,
 }: BNAppBarDrawerProps) => {
-  const {
-    root: RootSlot = Drawer,
-    content: ContentSlot = Box,
-    section: SectionSlot = Box,
-    list: ListSlot = List,
-    listItem: ListItemSlot = ListItem,
-    listItemButton: ListItemButtonSlot = ListItemButton,
-    divider: DividerSlot = Divider,
-  } = slots
-
-  const {
-    root: rootProps = {},
-    content: contentProps = {},
-    section: sectionProps = {},
-    list: listProps = {},
-    listItem: listItemProps = {},
-    listItemButton: listItemButtonProps = {},
-    divider: dividerProps = {},
-  } = slotProps
+  const { root: rootProps = {} } = slotProps
 
   return (
-    <RootSlot
+    <Drawer
       anchor={anchor}
       elevation={elevation}
       open={open}
       onClose={onClose}
       transitionDuration={350}
-      sx={(theme: Theme) => {
-        const navbarHeight = (theme as any).layout?.navbarHeight || 66
+      sx={(theme) => {
+        const navbarHeight = theme.layout?.navbarHeight || 66
         const appSwitcherHeight = hasAppSwitcher
-          ? (theme as any).layout?.appSwitcherHeight || 48
+          ? theme.layout?.appSwitcherHeight || 48
           : 0
         const totalTopOffset = navbarHeight + appSwitcherHeight
 
@@ -140,28 +94,25 @@ export const BNAppBarDrawer = ({
           '& .MuiBackdrop-root.MuiModal-backdrop': {
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
           },
-          ...rootProps.sx,
         }
       }}
       {...rootProps}
     >
-      <ContentSlot
+      <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          ...contentProps.sx,
         }}
-        {...contentProps}
       >
         {/* Navigation Tabs Section */}
         <Box sx={{ flex: 1, overflow: 'auto' }}>
           {tabs.length > 0 && (
-            <SectionSlot {...sectionProps}>
-              <ListSlot {...listProps}>
+            <Box>
+              <List>
                 {tabs.map((tab) => (
-                  <ListItemSlot key={tab.value} disablePadding {...listItemProps}>
-                    <ListItemButtonSlot
+                  <ListItem key={tab.value} disablePadding>
+                    <ListItemButton
                       selected={tab.selected || selectedTabValue === tab.value}
                       disabled={tab.disabled}
                       onClick={() => {
@@ -174,25 +125,23 @@ export const BNAppBarDrawer = ({
                       role="button"
                       aria-label={`Navigate to ${tab.label}`}
                       tabIndex={0}
-                      {...listItemButtonProps}
                     >
                       <ListItemText primary={tab.label} />
-                    </ListItemButtonSlot>
-                  </ListItemSlot>
+                    </ListItemButton>
+                  </ListItem>
                 ))}
-              </ListSlot>
-
-              {menuItems.length > 0 && <DividerSlot sx={{ my: 1 }} {...dividerProps} />}
-            </SectionSlot>
+              </List>
+              {menuItems.length > 0 && <Divider sx={{ my: 1 }} />}
+            </Box>
           )}
 
           {/* Account Menu Section */}
           {menuItems.length > 0 && (
-            <SectionSlot {...sectionProps}>
-              <ListSlot {...listProps}>
+            <Box>
+              <List>
                 {menuItems.map((item, index) => (
-                  <ListItemSlot key={index} disablePadding {...listItemProps}>
-                    <ListItemButtonSlot
+                  <ListItem key={index} disablePadding>
+                    <ListItemButton
                       disabled={item.disabled}
                       onClick={() => {
                         item.onClick?.()
@@ -204,15 +153,14 @@ export const BNAppBarDrawer = ({
                       role="button"
                       aria-label={item.label}
                       tabIndex={0}
-                      {...listItemButtonProps}
                     >
                       {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
                       <ListItemText primary={item.label} />
-                    </ListItemButtonSlot>
-                  </ListItemSlot>
+                    </ListItemButton>
+                  </ListItem>
                 ))}
-              </ListSlot>
-            </SectionSlot>
+              </List>
+            </Box>
           )}
         </Box>
 
@@ -220,8 +168,8 @@ export const BNAppBarDrawer = ({
         {footer && (
           <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>{footer}</Box>
         )}
-      </ContentSlot>
-    </RootSlot>
+      </Box>
+    </Drawer>
   )
 }
 

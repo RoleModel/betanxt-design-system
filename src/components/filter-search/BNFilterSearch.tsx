@@ -50,9 +50,9 @@ const RootStyled = styled('div', {
   '&:focus-within': {
     borderColor: theme.vars.palette.primary.main,
   },
-  'a': {
+  a: {
     textDecoration: 'none',
-    color: 'inherit'
+    color: 'inherit',
   },
 }))
 

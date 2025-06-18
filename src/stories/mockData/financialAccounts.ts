@@ -1,6 +1,6 @@
 /**
  * Mock data for BNFilterSearch stories
- * 
+ *
  * This file contains comprehensive mock financial account data and filter options
  * to demonstrate BNFilterSearch functionality in Storybook stories.
  */
@@ -26,7 +26,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'individual',
     balance: 450000,
     lastActivity: '2024-12-15',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'corporate',
     balance: 2500000,
     lastActivity: '2024-12-14',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'individual',
     balance: 125000,
     lastActivity: '2024-12-13',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 4,
@@ -56,7 +56,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'business',
     balance: 75000,
     lastActivity: '2024-12-12',
-    status: 'pending'
+    status: 'pending',
   },
   {
     id: 5,
@@ -66,7 +66,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'trust',
     balance: 800000,
     lastActivity: '2024-12-11',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 6,
@@ -76,7 +76,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'corporate',
     balance: 5000000,
     lastActivity: '2024-12-10',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 7,
@@ -86,7 +86,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'individual',
     balance: 50000,
     lastActivity: '2024-12-09',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 8,
@@ -96,7 +96,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'corporate',
     balance: 3200000,
     lastActivity: '2024-12-08',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 9,
@@ -106,7 +106,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'individual',
     balance: 180000,
     lastActivity: '2024-12-07',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 10,
@@ -116,7 +116,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'institutional',
     balance: 1500000,
     lastActivity: '2024-12-06',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 11,
@@ -126,7 +126,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'corporate',
     balance: 4500000,
     lastActivity: '2024-12-05',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 12,
@@ -136,7 +136,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'individual',
     balance: 35000,
     lastActivity: '2024-12-04',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 13,
@@ -146,7 +146,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'trust',
     balance: 650000,
     lastActivity: '2024-12-03',
-    status: 'inactive'
+    status: 'inactive',
   },
   {
     id: 14,
@@ -156,7 +156,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'institutional',
     balance: 8500000,
     lastActivity: '2024-12-02',
-    status: 'active'
+    status: 'active',
   },
   {
     id: 15,
@@ -166,7 +166,7 @@ export const financialAccounts: MockFinancialAccount[] = [
     scope: 'business',
     balance: 95000,
     lastActivity: '2024-12-01',
-    status: 'pending'
+    status: 'pending',
   },
 ]
 
@@ -239,11 +239,12 @@ export const simulateAsyncSearch = (
         return
       }
 
-      const filtered = financialAccounts.filter(account =>
-        account.name.toLowerCase().includes(query.toLowerCase()) ||
-        account.type.toLowerCase().includes(query.toLowerCase()) ||
-        account.rep.toLowerCase().includes(query.toLowerCase()) ||
-        account.scope.toLowerCase().includes(query.toLowerCase())
+      const filtered = financialAccounts.filter(
+        (account) =>
+          account.name.toLowerCase().includes(query.toLowerCase()) ||
+          account.type.toLowerCase().includes(query.toLowerCase()) ||
+          account.rep.toLowerCase().includes(query.toLowerCase()) ||
+          account.scope.toLowerCase().includes(query.toLowerCase())
       )
       resolve(filtered)
     }, delay)

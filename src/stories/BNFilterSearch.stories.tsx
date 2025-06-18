@@ -6,14 +6,14 @@ import { Box } from '@mui/material'
 import BNFilterSearch from '../components/filter-search/BNFilterSearch'
 import BNFilterSelect from '../components/filter-search/BNFilterSelect'
 import {
-  financialAccounts,
+  type MockFinancialAccount,
   accountFilterOptions,
-  repFilterOptions,
-  scopeFilterOptions,
+  financialAccounts,
   formatCurrency,
   formatDate,
+  repFilterOptions,
+  scopeFilterOptions,
   simulateAsyncSearch,
-  type MockFinancialAccount,
 } from './mockData/financialAccounts'
 
 const meta = {
@@ -158,14 +158,18 @@ export const WithLink: Story = {
     placeholder: 'Search accounts',
   },
   render: (args) => {
-    const renderOptionLink = (option: { name: string } & Partial<MockFinancialAccount>) => (
+    const renderOptionLink = (
+      option: { name: string } & Partial<MockFinancialAccount>
+    ) => (
       <Box
         component="a"
         href={`/details/${option.scope}/${option.id}`}
         onClick={(e) => {
           e.preventDefault()
           const balance = option.balance ? ` - ${formatCurrency(option.balance)}` : ''
-          const lastActivity = option.lastActivity ? ` - Last activity: ${formatDate(option.lastActivity)}` : ''
+          const lastActivity = option.lastActivity
+            ? ` - Last activity: ${formatDate(option.lastActivity)}`
+            : ''
           alert(`Clicked: ${option.name} (${option.scope})${balance}${lastActivity}`)
         }}
       >
@@ -240,30 +244,59 @@ export const AdvancedInteraction: Story = {
             search: {
               options: financialAccounts,
               loading: isSearching,
-            }
+            },
           }}
         />
 
         {searchResults.length > 0 && (
-          <Box sx={{ mt: 2, p: 2, bgcolor: 'var(--mui-palette-background-paper', borderRadius: 1 }}>
-            <Box sx={{ fontWeight: 'bold', mb: 1 }}>Search Results ({searchResults.length}):</Box>
-            {searchResults.map(account => (
+          <Box
+            sx={{
+              mt: 2,
+              p: 2,
+              bgcolor: 'var(--mui-palette-background-paper',
+              borderRadius: 1,
+            }}
+          >
+            <Box sx={{ fontWeight: 'bold', mb: 1 }}>
+              Search Results ({searchResults.length}):
+            </Box>
+            {searchResults.map((account) => (
               <Box key={account.id} sx={{ mb: 1, p: 1, borderRadius: 0.5 }}>
                 <Box sx={{ fontWeight: 'medium' }}>{account.name}</Box>
-                <Box sx={{ fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <span>{account.type} • {account.rep}</span>
+                <Box
+                  sx={{
+                    fontSize: '0.875rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                  }}
+                >
+                  <span>
+                    {account.type} • {account.rep}
+                  </span>
                   {account.balance && <span>• {formatCurrency(account.balance)}</span>}
                   {account.status && (
-                    <Box component="span" sx={{
-                      px: 1,
-                      py: 0.25,
-                      borderRadius: 0.5,
-                      fontSize: '0.75rem',
-                      bgcolor: account.status === 'active' ? 'success.light' :
-                        account.status === 'pending' ? 'warning.light' : 'grey.300',
-                      color: account.status === 'active' ? 'success.dark' :
-                        account.status === 'pending' ? 'warning.dark' : 'grey.700'
-                    }}>
+                    <Box
+                      component="span"
+                      sx={{
+                        px: 1,
+                        py: 0.25,
+                        borderRadius: 0.5,
+                        fontSize: '0.75rem',
+                        bgcolor:
+                          account.status === 'active'
+                            ? 'success.light'
+                            : account.status === 'pending'
+                              ? 'warning.light'
+                              : 'grey.300',
+                        color:
+                          account.status === 'active'
+                            ? 'success.dark'
+                            : account.status === 'pending'
+                              ? 'warning.dark'
+                              : 'grey.700',
+                      }}
+                    >
                       {account.status}
                     </Box>
                   )}

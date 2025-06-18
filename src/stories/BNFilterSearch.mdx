@@ -12,7 +12,7 @@ import * as BNFilterSearchStories from './BNFilterSearch.stories'
 <Meta of={BNFilterSearchStories} />
 <Title>BNFilterSearch</Title>
 
-BNFilterSearch is a flexible search and filter component with toggleing behavior, autocomplete support. It allows users to search through a list of items with an intuitive interface and can include filters to filer the search results.
+BNFilterSearch is a flexible search and filter component with toggling behavior, autocomplete support. It allows users to search through a list of items with an intuitive interface and can include filters to filter the search results.
 
 ---
 
@@ -51,7 +51,7 @@ function Example() {
         onChange={setRole}
         aria-label="Role filter"
       />
-      {/* AutoCompelte inlcuded by default */}
+      {/* Autocomplete included by default */}
     </BNFilterSearch>
   )
 }
@@ -70,7 +70,7 @@ function Example() {
 
 **Autocomplete Props**
 
-To pass any props of the MUI Autocomplete component, use `slotProps` of the `search` slot in the BNFitlerSearch component.
+To pass any props of the MUI Autocomplete component, use `slotProps` of the `search` slot in the BNFilterSearch component.
 
 ```jsx
 <BNFilterSearch
@@ -106,15 +106,27 @@ To keep the search interface always visible without a toggle button, set `disabl
 
 ## Submission Methods
 
-There are three ways users can submit their search:
+There are several ways users can submit their search:
 
-### 1. Enter Key (Primary Method)
+### 1. Enter Key
 
 The primary submission method - when `onSubmit` is provided, users can press Enter to submit their search. This behavior is available in all BNFilterSearch instances with an `onSubmit` handler.
 
-### 2. Option Selection
+### 2. Option Selection (Optional)
 
-Selecting an option from the dropdown (either by mouse click or keyboard) will automatically submit the search using the `onSubmit` callback. This provides a quick way for users to search without needing to press Enter after selecting.
+By default, selecting an option from the dropdown updates the input value but does not automatically submit. To enable automatic submission when selecting options, set the `submitOnOptionClick` prop to `true` via `slotProps`:
+
+```jsx
+<BNFilterSearch
+  options={options}
+  onSubmit={handleSubmit}
+  slotProps={{
+    search: {
+      submitOnOptionClick: true,
+    },
+  }}
+/>
+```
 
 ### 3. Clickable Options with Custom Behavior
 
@@ -125,8 +137,6 @@ Use `renderOptionLink` to make dropdown options clickable for direct navigation 
 </Canvas>
 
 ---
-
-# SubComponents
 
 ### BNFilterSelect Component
 

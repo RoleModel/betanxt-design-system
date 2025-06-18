@@ -40,7 +40,7 @@ const RootStyled = styled('div', {
   overflowX: 'auto',
   scrollbarWidth: 'thin',
   scrollbarGutter: 'stable',
-  transition: theme.transitions.create(['box-shadow'], {
+  transition: theme.transitions.create(['border-color'], {
     duration: theme.transitions.duration.short,
   }),
   border: `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`,
@@ -49,6 +49,10 @@ const RootStyled = styled('div', {
   },
   '&:focus-within': {
     borderColor: theme.vars.palette.primary.main,
+  },
+  'a': {
+    textDecoration: 'none',
+    color: 'inherit'
   },
 }))
 
@@ -207,6 +211,7 @@ export function BNFilterSearch({
       {showToggle && (
         <Tooltip
           title={searchOpen ? 'Close Search' : 'Open Search'}
+          disableHoverListener
           placement="bottom"
           arrow
         >

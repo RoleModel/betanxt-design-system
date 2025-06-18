@@ -1,71 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { fn } from 'storybook/test'
 
 import { Box } from '@mui/material'
 
 import BNFilterSearch from '../components/filter-search/BNFilterSearch'
 import BNFilterSelect from '../components/filter-search/BNFilterSelect'
-
-const dummyFinancialAccounts = [
-  { name: 'Johnson Family Trust', type: 'trust', rep: 'advisor1', scope: 'aa-01' },
-  { name: 'Miller Family Trust', type: 'trust', rep: 'advisor2', scope: 'aa-02' },
-  { name: 'Caterpillar Inc. 401k', type: 'corporate', rep: 'advisor3', scope: 'aa-03' },
-  { name: 'Dell Corporation 401k', type: 'corporate', rep: 'advisor4', scope: 'aa-04' },
-  {
-    name: 'Microsoft Corporation 401k',
-    type: 'corporate',
-    rep: 'advisor1',
-    scope: 'aa-05',
-  },
-  { name: 'Sarah & John Joint Account', type: 'joint', rep: 'advisor2', scope: 'aa-06' },
-  { name: 'Apple Inc. Pension Fund', type: 'corporate', rep: 'advisor3', scope: 'aa-07' },
-  { name: 'Smith Investment Trust', type: 'trust', rep: 'advisor4', scope: 'aa-08' },
-  { name: 'Global Growth Fund', type: 'corporate', rep: 'advisor2', scope: 'aa-01' },
-  { name: 'Williams Family Trust', type: 'trust', rep: 'advisor3', scope: 'aa-02' },
-  { name: 'Brown Joint Account', type: 'joint', rep: 'advisor4', scope: 'aa-03' },
-  { name: 'Johnson IRA', type: 'retirement', rep: 'advisor1', scope: 'aa-04' },
-  { name: 'Tech Innovators 401k', type: 'corporate', rep: 'advisor2', scope: 'aa-05' },
-  { name: 'Legacy Trust', type: 'trust', rep: 'advisor3', scope: 'aa-06' },
-  { name: 'Future Fund', type: 'retirement', rep: 'advisor4', scope: 'aa-07' },
-  { name: 'Equity Partners Joint', type: 'joint', rep: 'advisor1', scope: 'aa-08' },
-  { name: 'College Fund', type: 'individual', rep: 'advisor2', scope: 'aa-09' },
-  { name: 'Blue Chip Trust', type: 'trust', rep: 'advisor1', scope: 'aa-09' },
-  { name: 'Vanguard Corporate', type: 'corporate', rep: 'advisor3', scope: 'aa-02' },
-  {
-    name: 'Personal Wealth Individual',
-    type: 'individual',
-    rep: 'advisor2',
-    scope: 'aa-03',
-  },
-]
-
-const accountFilterOptions = [
-  { value: 'all', label: 'All Accounts' },
-  { value: 'individual', label: 'Individual' },
-  { value: 'joint', label: 'Joint' },
-  { value: 'retirement', label: 'Retirement' },
-  { value: 'trust', label: 'Trust' },
-]
-const repFilterOptions = [
-  { value: 'all', label: 'All Reps' },
-  { value: 'advisor1', label: 'Smith, J.' },
-  { value: 'advisor2', label: 'Johnson, M.' },
-  { value: 'advisor3', label: 'Williams, S.' },
-  { value: 'advisor4', label: 'Brown, K.' },
-]
-const scopeFilterOptions = [
-  { value: 'all', label: 'All Scopes' },
-  { value: 'aa-01', label: 'AA-01' },
-  { value: 'aa-02', label: 'AA-02' },
-  { value: 'aa-03', label: 'AA-03' },
-  { value: 'aa-04', label: 'AA-04' },
-  { value: 'aa-05', label: 'AA-05' },
-  { value: 'aa-06', label: 'AA-06' },
-  { value: 'aa-07', label: 'AA-07' },
-  { value: 'aa-08', label: 'AA-08' },
-  { value: 'aa-09', label: 'AA-09' },
-]
+import {
+  financialAccounts,
+  accountFilterOptions,
+  repFilterOptions,
+  scopeFilterOptions,
+  formatCurrency,
+  formatDate,
+  simulateAsyncSearch,
+  type MockFinancialAccount,
+} from './mockData/financialAccounts'
 
 const meta = {
   title: 'Custom Components/BNFilterSearch',
@@ -82,7 +31,7 @@ const meta = {
   args: {
     placeholder: 'Search',
     disableToggle: false,
-    options: dummyFinancialAccounts,
+    options: financialAccounts,
   },
   argTypes: {
     placeholder: {
@@ -115,10 +64,12 @@ const meta = {
     },
     onSubmit: {
       action: 'onSubmit',
-      description:
-        'Callback when search is submitted (triggered by Enter key press or option selection with mouse/keyboard)',
+      table: {
+        disable: true,
+      },
     },
     onClose: {
+      action: 'onClose',
       table: {
         disable: true,
       },
@@ -138,6 +89,7 @@ const meta = {
       },
     },
     onOpen: {
+      action: 'onOpen',
       table: {
         disable: true,
       },
@@ -162,7 +114,7 @@ export default meta
 
 export const Default: Story = {
   render: (args) => {
-    return <BNFilterSearch {...args} options={args.options || dummyFinancialAccounts} />
+    return <BNFilterSearch {...args} options={args.options || financialAccounts} />
   },
 }
 
@@ -174,15 +126,13 @@ export const ToggleDisabled: Story = {
   render: (args) => {
     const [accountFilter, setAccountFilter] = React.useState('all')
     const [repFilter, setRepFilter] = React.useState('all')
-    const [scopeFilter, setScopeFilter] = React.useState('all')
     const filteredAccounts = React.useMemo(() => {
-      return dummyFinancialAccounts.filter((account) => {
+      return financialAccounts.filter((account) => {
         const accountMatch = accountFilter === 'all' || account.type === accountFilter
         const repMatch = repFilter === 'all' || account.rep === repFilter
-        const scopeMatch = scopeFilter === 'all' || account.scope === scopeFilter
-        return accountMatch && repMatch && scopeMatch
+        return accountMatch && repMatch
       })
-    }, [accountFilter, repFilter, scopeFilter])
+    }, [accountFilter, repFilter])
 
     return (
       <BNFilterSearch {...args} options={filteredAccounts}>
@@ -198,12 +148,6 @@ export const ToggleDisabled: Story = {
           onChange={setRepFilter}
           aria-label="Rep filter"
         />
-        <BNFilterSelect
-          options={scopeFilterOptions}
-          value={scopeFilter}
-          onChange={setScopeFilter}
-          aria-label="Scope filter"
-        />
       </BNFilterSearch>
     )
   },
@@ -214,22 +158,15 @@ export const WithLink: Story = {
     placeholder: 'Search accounts',
   },
   render: (args) => {
-    const renderOptionLink = (option: {
-      name: string
-      type?: string
-      rep?: string
-      scope?: string
-    }) => (
+    const renderOptionLink = (option: { name: string } & Partial<MockFinancialAccount>) => (
       <Box
         component="a"
-        href={`/details/${(option as any).scope || 'unknown'}`}
+        href={`/details/${option.scope}/${option.id}`}
         onClick={(e) => {
           e.preventDefault()
-          alert(`Clicked option: ${option.name} (${(option as any).scope || 'unknown'})`)
-        }}
-        sx={{
-          textDecoration: 'none',
-          color: 'inherit',
+          const balance = option.balance ? ` - ${formatCurrency(option.balance)}` : ''
+          const lastActivity = option.lastActivity ? ` - Last activity: ${formatDate(option.lastActivity)}` : ''
+          alert(`Clicked: ${option.name} (${option.scope})${balance}${lastActivity}`)
         }}
       >
         {option.name}
@@ -238,7 +175,7 @@ export const WithLink: Story = {
     return (
       <BNFilterSearch
         {...args}
-        options={args.options || dummyFinancialAccounts}
+        options={args.options || financialAccounts}
         renderOptionLink={renderOptionLink}
       />
     )
@@ -250,12 +187,97 @@ export const SubmitOnClick: Story = {
     return (
       <BNFilterSearch
         {...args}
-        options={args.options || dummyFinancialAccounts}
+        options={args.options || financialAccounts}
         submitOnOptionClick={true} // Enable submission on option click
         onSubmit={(value) => {
           alert(`Submitted search: ${value}`)
         }}
+        slotProps={{
+          search: {
+            options: args.options || financialAccounts,
+            textFieldProps: {
+              sx: {
+                backgroundColor: 'red',
+              },
+            },
+          },
+        }}
       />
+    )
+  },
+}
+
+export const AdvancedInteraction: Story = {
+  name: 'Advanced Interaction Demo',
+  render: (args) => {
+    const [searchResults, setSearchResults] = React.useState<MockFinancialAccount[]>([])
+    const [isSearching, setIsSearching] = React.useState(false)
+
+    const handleSubmit = async (value: string) => {
+      setIsSearching(true)
+      try {
+        const results = await simulateAsyncSearch(value, 800)
+        setSearchResults(results)
+        console.log(`Search completed for: "${value}" - ${results.length} results found`)
+      } catch (error) {
+        console.error('Search failed:', error)
+        setSearchResults([])
+      } finally {
+        setIsSearching(false)
+      }
+    }
+
+    return (
+      <Box>
+        <BNFilterSearch
+          {...args}
+          placeholder="Search accounts (simulates async search)"
+          options={financialAccounts}
+          onSubmit={handleSubmit}
+          disabled={isSearching}
+          submitOnOptionClick={true}
+          slotProps={{
+            search: {
+              options: financialAccounts,
+              loading: isSearching,
+            }
+          }}
+        />
+
+        {searchResults.length > 0 && (
+          <Box sx={{ mt: 2, p: 2, bgcolor: 'var(--mui-palette-background-paper', borderRadius: 1 }}>
+            <Box sx={{ fontWeight: 'bold', mb: 1 }}>Search Results ({searchResults.length}):</Box>
+            {searchResults.map(account => (
+              <Box key={account.id} sx={{ mb: 1, p: 1, borderRadius: 0.5 }}>
+                <Box sx={{ fontWeight: 'medium' }}>{account.name}</Box>
+                <Box sx={{ fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <span>{account.type} • {account.rep}</span>
+                  {account.balance && <span>• {formatCurrency(account.balance)}</span>}
+                  {account.status && (
+                    <Box component="span" sx={{
+                      px: 1,
+                      py: 0.25,
+                      borderRadius: 0.5,
+                      fontSize: '0.75rem',
+                      bgcolor: account.status === 'active' ? 'success.light' :
+                        account.status === 'pending' ? 'warning.light' : 'grey.300',
+                      color: account.status === 'active' ? 'success.dark' :
+                        account.status === 'pending' ? 'warning.dark' : 'grey.700'
+                    }}>
+                      {account.status}
+                    </Box>
+                  )}
+                </Box>
+                {account.lastActivity && (
+                  <Box sx={{ fontSize: '0.75rem', mt: 0.25 }}>
+                    Last activity: {formatDate(account.lastActivity)}
+                  </Box>
+                )}
+              </Box>
+            ))}
+          </Box>
+        )}
+      </Box>
     )
   },
 }

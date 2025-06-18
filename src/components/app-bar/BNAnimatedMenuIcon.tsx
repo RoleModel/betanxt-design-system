@@ -45,7 +45,7 @@ export interface MenuItem extends Omit<MenuItemProps, 'onClick'> {
   label: string
   icon?: ReactNode
   onClick?: () => void
-  to?: unknown
+  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
 export interface AvatarProps {

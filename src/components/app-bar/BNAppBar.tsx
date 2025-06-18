@@ -33,7 +33,7 @@ export interface BNAppBarProps {
     label: string
     value: string
     href?: string
-    to?: unknown
+    to?: string | { pathname: string; search?: string; hash?: string; state?: any }
   }[]
   selectedTabValue?: string
   tabLinkComponent?: React.ElementType
@@ -137,6 +137,7 @@ export function BNAppBar({
           selectedTabValue={selectedTabValue}
           hasAppSwitcher={!!children}
           menuItemLinkComponent={menuItemLinkComponent}
+          tabLinkComponent={tabLinkComponent}
           onTabClick={() => {
             setDrawerOpen(false)
           }}

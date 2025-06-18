@@ -25,6 +25,7 @@ export interface BNAppBarDrawerTab {
   disabled?: boolean
   selected?: boolean
   onClick?: () => void
+  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
 export interface BNAppBarDrawerMenuItem {
@@ -32,7 +33,7 @@ export interface BNAppBarDrawerMenuItem {
   icon?: React.ReactNode
   disabled?: boolean
   onClick?: () => void
-  to?: unknown
+  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
 export interface BNAppBarDrawerSlots {
@@ -70,6 +71,7 @@ export interface BNAppBarDrawerProps {
   onTabClick?: (value: string | number) => void
   onMenuItemClick?: (label: string) => void
   menuItemLinkComponent?: React.ElementType
+  tabLinkComponent?: React.ElementType
   header?: React.ReactNode
   footer?: React.ReactNode
   slots?: BNAppBarDrawerSlots
@@ -89,6 +91,7 @@ export const BNAppBarDrawer = ({
   onTabClick,
   onMenuItemClick,
   menuItemLinkComponent,
+  tabLinkComponent,
   footer,
   slots = {},
   slotProps = {},
@@ -165,6 +168,9 @@ export const BNAppBarDrawer = ({
                         tab.onClick?.()
                         onTabClick?.(tab.value)
                       }}
+                      {...(tab.to && tabLinkComponent
+                        ? { component: tabLinkComponent, to: tab.to }
+                        : {})}
                       role="button"
                       aria-label={`Navigate to ${tab.label}`}
                       tabIndex={0}

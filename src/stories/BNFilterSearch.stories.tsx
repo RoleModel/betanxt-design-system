@@ -13,7 +13,6 @@ import {
   formatCurrency,
   formatDate,
   repFilterOptions,
-  scopeFilterOptions,
   simulateAsyncSearch,
 } from './mockData/financialAccounts'
 

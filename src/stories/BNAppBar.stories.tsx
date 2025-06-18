@@ -38,14 +38,12 @@ const exampleTabs = [
   {
     label: 'Home',
     value: 'home',
-    href: '/',
     to: '/',
   },
   {
     label: 'About',
     value: 'about',
-    href: '/',
-    to: '/',
+    to: '/about',
   },
 ]
 

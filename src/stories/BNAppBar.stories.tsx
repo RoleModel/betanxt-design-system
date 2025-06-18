@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import { reactRouterParameters, withRouter } from 'storybook-addon-remix-react-router'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
-
-import { withRouter, reactRouterParameters } from 'storybook-addon-remix-react-router'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
@@ -80,7 +79,7 @@ export const Primary: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -141,14 +140,12 @@ export const WithLogoComponent: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
   },
 }
-
-
 
 export const WithLogoImg: Story = {
   parameters: {
@@ -174,7 +171,7 @@ export const WithLogoImg: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -201,7 +198,7 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],

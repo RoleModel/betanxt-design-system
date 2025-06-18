@@ -192,7 +192,9 @@ export const BNAppBarDrawer = ({
                         item.onClick?.()
                         onMenuItemClick?.(item.label)
                       }}
-                      {...(item.to && menuItemLinkComponent ? { component: menuItemLinkComponent, to: item.to } : {})}
+                      {...(item.to && menuItemLinkComponent
+                        ? { component: menuItemLinkComponent, to: item.to }
+                        : {})}
                       role="button"
                       aria-label={item.label}
                       tabIndex={0}

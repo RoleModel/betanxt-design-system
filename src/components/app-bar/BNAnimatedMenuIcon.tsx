@@ -175,7 +175,9 @@ export const BNAnimatedMenuIcon = ({
                 <MuiMenuItem
                   key={index}
                   onClick={() => handleMenuItemClick(item)}
-                  {...(to && menuItemLinkComponent ? { component: menuItemLinkComponent, to } : {})}
+                  {...(to && menuItemLinkComponent
+                    ? { component: menuItemLinkComponent, to }
+                    : {})}
                   {...menuItemProps}
                 >
                   {icon && <ListItemIcon>{icon}</ListItemIcon>}
@@ -220,7 +222,9 @@ export const BNAnimatedMenuIcon = ({
             <MuiMenuItem
               key={index}
               onClick={() => handleMenuItemClick(item)}
-              {...(to && menuItemLinkComponent ? { component: menuItemLinkComponent, to } : {})}
+              {...(to && menuItemLinkComponent
+                ? { component: menuItemLinkComponent, to }
+                : {})}
               {...menuItemProps}
             >
               {icon && <ListItemIcon>{icon}</ListItemIcon>}

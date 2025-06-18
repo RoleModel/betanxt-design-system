@@ -19,7 +19,7 @@ const config: StorybookConfig = {
     '@storybook/addon-a11y',
     './addons/mui-theme-toggle/register.tsx',
     '@storybook/addon-vitest',
-    'storybook-addon-remix-react-router'
+    'storybook-addon-remix-react-router',
   ],
   framework: {
     name: '@storybook/react-vite',

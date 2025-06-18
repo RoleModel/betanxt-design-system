@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
+import { reactRouterParameters, withRouter } from 'storybook-addon-remix-react-router'
 
 import { Box } from '@mui/material'
-
-import { withRouter, reactRouterParameters } from 'storybook-addon-remix-react-router'
 
 import BNFilterSearch from '../components/filter-search/BNFilterSearch'
 import BNFilterSelect from '../components/filter-search/BNFilterSelect'
@@ -345,10 +344,10 @@ export const WithReactRouter: Story = {
     const [searchQuery, setSearchQuery] = React.useState('')
 
     const filteredAccounts = React.useMemo(() => {
-      return financialAccounts.filter(account => {
+      return financialAccounts.filter((account) => {
         const matchesType = accountType === 'all' || account.type === accountType
-        const matchesSearch = !searchQuery ||
-          account.name.toLowerCase().includes(searchQuery.toLowerCase())
+        const matchesSearch =
+          !searchQuery || account.name.toLowerCase().includes(searchQuery.toLowerCase())
         return matchesType && matchesSearch
       })
     }, [accountType, searchQuery])

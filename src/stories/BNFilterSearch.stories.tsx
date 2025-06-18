@@ -88,12 +88,6 @@ const meta = {
         disable: true,
       },
     },
-    onOpen: {
-      action: 'onOpen',
-      table: {
-        disable: true,
-      },
-    },
     inputValue: {
       table: {
         disable: true,
@@ -194,16 +188,6 @@ export const SubmitOnClick: Story = {
         submitOnOptionClick={true} // Enable submission on option click
         onSubmit={(value) => {
           alert(`Submitted search: ${value}`)
-        }}
-        slotProps={{
-          search: {
-            options: args.options || financialAccounts,
-            textFieldProps: {
-              sx: {
-                backgroundColor: 'red',
-              },
-            },
-          },
         }}
       />
     )

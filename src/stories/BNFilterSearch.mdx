@@ -1,0 +1,150 @@
+import {
+  Canvas,
+  Controls,
+  Meta,
+  Source,
+  Story,
+  Title,
+} from '@storybook/addon-docs/blocks'
+
+import * as BNFilterSearchStories from './BNFilterSearch.stories'
+
+<Meta of={BNFilterSearchStories} />
+<Title>BNFilterSearch</Title>
+
+BNFilterSearch is a flexible search and filter component with toggling behavior, autocomplete support. It allows users to search through a list of items with an intuitive interface and can include filters to filter the search results.
+
+---
+
+### Usage
+
+```jsx
+// Example: Filtering UI with search and select
+import { useState } from 'react'
+
+import { BNFilterSearch } from '../components/filter-search/BNFilterSearch'
+import { BNFilterSelect } from '../components/filter-search/BNFilterSelect'
+
+const users = [
+  { name: 'Alice', role: 'admin' },
+  { name: 'Bob', role: 'user' },
+  { name: 'Charlie', role: 'user' },
+  { name: 'Diana', role: 'admin' },
+]
+const roles = [{ name: 'All' }, { name: 'admin' }, { name: 'user' }]
+
+function Example() {
+  const [query, setQuery] = useState('')
+  const [role, setRole] = useState('All')
+  return (
+    <BNFilterSearch
+      options={users}
+      inputValue={query}
+      onInputChange={setQuery}
+      onSubmit={setQuery}
+      placeholder="Search users..."
+    >
+      {/* Selects are inserted as children */}
+      <BNFilterSelect
+        options={roles}
+        value={role}
+        onChange={setRole}
+        aria-label="Role filter"
+      />
+      {/* Autocomplete included by default */}
+    </BNFilterSearch>
+  )
+}
+```
+
+**Toggle Behavior**:
+
+- **Default**: Search has a toggle button - click to open/close the search input
+- **Always Open**: Use `disableToggle` to keep search always visible with no toggle button
+
+**Search Submission**:
+
+- **Enter Key (Default)**: The primary submission method - when `onSubmit` is provided, users can submit by pressing Enter
+- **Option Selection**: Selecting an option from the dropdown will also automatically submit the search
+- **Option Link**: Use `renderOptionLink` to make dropdown options clickable with custom behavior
+
+**Autocomplete Props**
+
+To pass any props of the MUI Autocomplete component, use `slotProps` of the `search` slot in the BNFilterSearch component.
+
+```jsx
+<BNFilterSearch
+  options={options}
+  slotProps={{
+    search: {
+      // MUI Autocomplete props
+      freeSolo: true,
+      disablePortal: true,
+      // ...other props
+    },
+  }}
+/>
+```
+
+## Toggleable Search (Default)
+
+By default, BNFilterSearch includes a toggle button that allows users to open and close the search interface. Click the search icon to expand the search input.
+
+<Canvas of={BNFilterSearchStories.Default}>
+  <Story />
+</Canvas>
+
+<Controls of={BNFilterSearchStories.Default} />
+
+## Always Open Search
+
+To keep the search interface always visible without a toggle button, set `disableToggle`. This creates a persistent search experience where the input is always available.
+
+<Canvas of={BNFilterSearchStories.ToggleDisabled}>
+  <Story />
+</Canvas>
+
+## Submission Methods
+
+There are several ways users can submit their search:
+
+### 1. Enter Key
+
+The primary submission method - when `onSubmit` is provided, users can press Enter to submit their search. This behavior is available in all BNFilterSearch instances with an `onSubmit` handler.
+
+### 2. Option Selection (Optional)
+
+By default, selecting an option from the dropdown updates the input value but does not automatically submit. To enable automatic submission when selecting options, set the `submitOnOptionClick` prop to `true` via `slotProps`:
+
+```jsx
+<BNFilterSearch
+  options={options}
+  onSubmit={handleSubmit}
+  slotProps={{
+    search: {
+      submitOnOptionClick: true,
+    },
+  }}
+/>
+```
+
+### 3. Clickable Options with Custom Behavior
+
+Use `renderOptionLink` to make dropdown options clickable for direct navigation with custom behavior.
+
+<Canvas of={BNFilterSearchStories.WithLink}>
+  <Story />
+</Canvas>
+
+---
+
+### BNFilterSelect Component
+
+The `BNFilterSelect` component is a specialized dropdown filter designed to work seamlessly with `BNFilterSearch`. It provides:
+
+- Accessible keyboard navigation and ARIA attributes
+- Support for single and multi-select modes
+
+### BNFilterSearchAutocomplete
+
+`BNFilterSearchAutocomplete` is our custom implementation wrapping MUI's Autocomplete component, including the necessary props for the `BNFilterSearch` component.

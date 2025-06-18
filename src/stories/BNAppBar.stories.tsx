@@ -1,18 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
-import PersonIconOutlined from '@mui/icons-material/PersonOutline'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
 import BNAppBar from '../components/app-bar/BNAppBar'
+import { MockLinkComponent } from './utils/MockLinkComponent'
 
 const meta = {
   title: 'Custom Components/BNAppBar',
   parameters: {
     layout: 'fullscreen',
     controls: {
-      exclude: ['tabLinkComponent'],
+      exclude: ['LinkComponent'],
     },
   },
   argTypes: {
@@ -38,12 +38,12 @@ const exampleTabs = [
   {
     label: 'Home',
     value: 'home',
-    href: '/',
+    to: '/',
   },
   {
     label: 'About',
     value: 'about',
-    href: '/',
+    to: '/about',
   },
 ]
 
@@ -56,14 +56,9 @@ export const Primary: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     menuItems: [
-      {
-        label: 'Profile',
-        onClick: () => {},
-        divider: true,
-        icon: <PersonIconOutlined />,
-      },
       {
         label: 'Logout',
         onClick: () => {},
@@ -78,6 +73,7 @@ export const Secondary: Story = {
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     slots: {
       logoComponent: BNLogo,
@@ -110,12 +106,13 @@ export const WithLogoComponent: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
     slots: {
       logoComponent: BNLogo,
     },
     slotProps: {
       logoComponent: {
-        height: 30,
+        height: 32,
         href: '/',
         alt: 'Go Home',
         title: 'Home',
@@ -123,12 +120,6 @@ export const WithLogoComponent: Story = {
     },
     tabs: exampleTabs,
     menuItems: [
-      {
-        label: 'Profile',
-        onClick: () => {},
-        divider: true,
-        icon: <PersonIconOutlined />,
-      },
       {
         label: 'Logout',
         onClick: () => {},
@@ -146,6 +137,7 @@ export const WithLogoImg: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
     slots: {
       logoImg: 'img',
     },
@@ -160,12 +152,6 @@ export const WithLogoImg: Story = {
     tabs: exampleTabs,
     menuItems: [
       {
-        label: 'Profile',
-        onClick: () => {},
-        divider: true,
-        icon: <PersonIconOutlined />,
-      },
-      {
         label: 'Logout',
         onClick: () => {},
         icon: <LogoutIconOutlined />,
@@ -179,6 +165,7 @@ export const WithAppSwitcher: Story = {
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     slots: {
       logoImg: 'img',
@@ -196,11 +183,6 @@ export const WithAppSwitcher: Story = {
         onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
-      {
-        label: 'Profile',
-        onClick: () => {},
-        icon: <PersonIconOutlined />,
-      },
     ],
     children: (
       <BNAppSwitcher
@@ -213,5 +195,71 @@ export const WithAppSwitcher: Story = {
         clientName="Client Name"
       />
     ),
+  },
+}
+
+/**
+ * This story demonstrates React Router integration using the Link component.
+ */
+export const WithLinkComponent: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    color: 'primary',
+    selectedTabValue: 'profile',
+    avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
+    tabs: [
+      {
+        label: 'Dashboard',
+        value: 'dashboard',
+        to: '/dashboard',
+      },
+      {
+        label: 'Profile',
+        value: 'profile',
+        to: '/profile',
+      },
+      {
+        label: 'Settings',
+        value: 'settings',
+        to: '/settings',
+      },
+    ],
+    menuItems: [
+      {
+        label: 'Edit Profile',
+        to: '/profile/edit',
+      },
+      {
+        label: 'Account Settings',
+        to: '/settings/account',
+      },
+      {
+        label: 'Privacy Settings',
+        to: '/settings/privacy',
+        divider: true,
+      },
+      {
+        label: 'Sign Out',
+        onClick: () => {
+          console.log('Sign out clicked')
+          alert('Signing out...')
+        },
+        icon: <LogoutIconOutlined />,
+      },
+    ],
+    slots: {
+      logoComponent: BNLogo,
+    },
+    slotProps: {
+      logoComponent: {
+        height: 32,
+        href: '/',
+        alt: 'Go Home',
+        title: 'Home',
+      },
+    },
   },
 }

@@ -14,7 +14,6 @@ import {
 } from '@mui/material'
 import type { MenuItemProps } from '@mui/material'
 import { type CSSObject, keyframes, styled } from '@mui/material/styles'
-import type { SxProps, Theme } from '@mui/material/styles'
 
 // Define Keyframes
 const bottombarOpen = keyframes`
@@ -44,7 +43,9 @@ const topbarClose = keyframes`
 export interface MenuItem extends Omit<MenuItemProps, 'onClick'> {
   label: string
   icon?: ReactNode
-  onClick: () => void
+  onClick?: () => void
+  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
+  href?: string
 }
 
 export interface AvatarProps {
@@ -59,8 +60,7 @@ export interface BNAnimatedMenuIconProps {
   drawerOpen?: boolean
   avatar: AvatarProps
   useAnimatedIconOnly?: boolean
-  sx?: SxProps<Theme>
-  className?: string
+  LinkComponent?: React.ElementType
 }
 
 const StyledMenuIcon = styled('button', {
@@ -117,8 +117,7 @@ export const BNAnimatedMenuIcon = ({
   drawerOpen = false,
   avatar,
   useAnimatedIconOnly = false,
-  sx,
-  className,
+  LinkComponent,
 }: BNAnimatedMenuIconProps) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null)
   const theme = useTheme()
@@ -137,7 +136,7 @@ export const BNAnimatedMenuIcon = ({
   }
 
   const handleMenuItemClick = (item: MenuItem) => {
-    item.onClick()
+    item.onClick?.()
     handleMenuClose()
   }
 
@@ -148,8 +147,6 @@ export const BNAnimatedMenuIcon = ({
         <StyledMenuIcon
           open={drawerOpen}
           onClick={handleMenuClick}
-          sx={sx}
-          className={className}
           aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={drawerOpen}
           type="button"
@@ -171,6 +168,7 @@ export const BNAnimatedMenuIcon = ({
               return (
                 <MuiMenuItem
                   key={index}
+                  LinkComponent={LinkComponent}
                   onClick={() => handleMenuItemClick(item)}
                   {...menuItemProps}
                 >
@@ -188,12 +186,7 @@ export const BNAnimatedMenuIcon = ({
   // Default desktop behavior with avatar
   return (
     <>
-      <IconButton
-        color="inherit"
-        onClick={handleMenuClick}
-        sx={{ position: 'relative', ...sx }}
-        className={className}
-      >
+      <IconButton color="inherit" onClick={handleMenuClick} sx={{ position: 'relative' }}>
         <Avatar
           src={avatar.src}
           alt={avatar.alt}
@@ -214,6 +207,7 @@ export const BNAnimatedMenuIcon = ({
           return (
             <MuiMenuItem
               key={index}
+              LinkComponent={LinkComponent}
               onClick={() => handleMenuItemClick(item)}
               {...menuItemProps}
             >

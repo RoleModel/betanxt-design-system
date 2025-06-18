@@ -10,14 +10,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material'
-import type {
-  BoxProps,
-  DrawerProps,
-  ListItemButtonProps,
-  ListItemProps,
-  ListProps,
-  Theme,
-} from '@mui/material'
 
 export interface BNAppBarDrawerTab {
   label: string
@@ -25,6 +17,7 @@ export interface BNAppBarDrawerTab {
   disabled?: boolean
   selected?: boolean
   onClick?: () => void
+  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
 export interface BNAppBarDrawerMenuItem {
@@ -32,184 +25,123 @@ export interface BNAppBarDrawerMenuItem {
   icon?: React.ReactNode
   disabled?: boolean
   onClick?: () => void
-}
-
-export interface BNAppBarDrawerSlots {
-  root?: React.ElementType
-  header?: React.ElementType
-  content?: React.ElementType
-  section?: React.ElementType
-  list?: React.ElementType
-  listItem?: React.ElementType
-  listItemButton?: React.ElementType
-  divider?: React.ElementType
-}
-
-export interface BNAppBarDrawerSlotProps {
-  root?: Partial<DrawerProps>
-  header?: Partial<BoxProps>
-  content?: Partial<BoxProps>
-  section?: Partial<BoxProps>
-  sectionTitle?: Partial<BoxProps>
-  list?: Partial<ListProps>
-  listItem?: Partial<ListItemProps>
-  listItemButton?: Partial<ListItemButtonProps>
-  divider?: any
+  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
 export interface BNAppBarDrawerProps {
   open: boolean
-  elevation?: number
   onClose: () => void
-  anchor?: 'left' | 'right' | 'top' | 'bottom'
-  width?: number
   tabs?: BNAppBarDrawerTab[]
   menuItems?: BNAppBarDrawerMenuItem[]
   selectedTabValue?: string | number
   onTabClick?: (value: string | number) => void
   onMenuItemClick?: (label: string) => void
-  header?: React.ReactNode
-  footer?: React.ReactNode
-  slots?: BNAppBarDrawerSlots
-  slotProps?: BNAppBarDrawerSlotProps
+  LinkComponent?: React.ElementType
   hasAppSwitcher?: boolean
 }
 
 export const BNAppBarDrawer = ({
   open,
-  elevation = 0,
   onClose,
-  anchor = 'right',
-  width = 280,
   tabs = [],
   menuItems = [],
   selectedTabValue,
   onTabClick,
   onMenuItemClick,
-  footer,
-  slots = {},
-  slotProps = {},
+  LinkComponent,
   hasAppSwitcher = false,
 }: BNAppBarDrawerProps) => {
-  const {
-    root: RootSlot = Drawer,
-    content: ContentSlot = Box,
-    section: SectionSlot = Box,
-    list: ListSlot = List,
-    listItem: ListItemSlot = ListItem,
-    listItemButton: ListItemButtonSlot = ListItemButton,
-    divider: DividerSlot = Divider,
-  } = slots
-
-  const {
-    root: rootProps = {},
-    content: contentProps = {},
-    section: sectionProps = {},
-    list: listProps = {},
-    listItem: listItemProps = {},
-    listItemButton: listItemButtonProps = {},
-    divider: dividerProps = {},
-  } = slotProps
-
   return (
-    <RootSlot
-      anchor={anchor}
-      elevation={elevation}
+    <Drawer
+      anchor="right"
+      elevation={10}
       open={open}
       onClose={onClose}
       transitionDuration={350}
-      sx={(theme: Theme) => {
-        const navbarHeight = (theme as any).layout?.navbarHeight || 66
+      id="navigation-drawer"
+      aria-label="Navigation drawer"
+      sx={(theme) => {
+        const navbarHeight = theme.layout?.navbarHeight || 66
         const appSwitcherHeight = hasAppSwitcher
-          ? (theme as any).layout?.appSwitcherHeight || 48
+          ? theme.layout?.appSwitcherHeight || 48
           : 0
         const totalTopOffset = navbarHeight + appSwitcherHeight
 
         return {
           '& .MuiDrawer-paper': {
-            width: width,
+            width: 280,
             top: totalTopOffset,
             height: `calc(100vh - ${totalTopOffset}px)`,
           },
           '& .MuiBackdrop-root.MuiModal-backdrop': {
             backgroundColor: 'rgba(0, 0, 0, 0.1)',
           },
-          ...rootProps.sx,
         }
       }}
-      {...rootProps}
     >
-      <ContentSlot
+      <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           height: '100%',
-          ...contentProps.sx,
+          flex: 1,
+          overflow: 'auto',
         }}
-        {...contentProps}
       >
         {/* Navigation Tabs Section */}
-        <Box sx={{ flex: 1, overflow: 'auto' }}>
-          {tabs.length > 0 && (
-            <SectionSlot {...sectionProps}>
-              <ListSlot {...listProps}>
-                {tabs.map((tab) => (
-                  <ListItemSlot key={tab.value} disablePadding {...listItemProps}>
-                    <ListItemButtonSlot
-                      selected={tab.selected || selectedTabValue === tab.value}
-                      disabled={tab.disabled}
-                      onClick={() => {
-                        tab.onClick?.()
-                        onTabClick?.(tab.value)
-                      }}
-                      role="button"
-                      aria-label={`Navigate to ${tab.label}`}
-                      tabIndex={0}
-                      {...listItemButtonProps}
-                    >
-                      <ListItemText primary={tab.label} />
-                    </ListItemButtonSlot>
-                  </ListItemSlot>
-                ))}
-              </ListSlot>
-
-              {menuItems.length > 0 && <DividerSlot sx={{ my: 1 }} {...dividerProps} />}
-            </SectionSlot>
-          )}
-
-          {/* Account Menu Section */}
-          {menuItems.length > 0 && (
-            <SectionSlot {...sectionProps}>
-              <ListSlot {...listProps}>
-                {menuItems.map((item, index) => (
-                  <ListItemSlot key={index} disablePadding {...listItemProps}>
-                    <ListItemButtonSlot
-                      disabled={item.disabled}
-                      onClick={() => {
-                        item.onClick?.()
-                        onMenuItemClick?.(item.label)
-                      }}
-                      role="button"
-                      aria-label={item.label}
-                      tabIndex={0}
-                      {...listItemButtonProps}
-                    >
-                      {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                      <ListItemText primary={item.label} />
-                    </ListItemButtonSlot>
-                  </ListItemSlot>
-                ))}
-              </ListSlot>
-            </SectionSlot>
-          )}
-        </Box>
-
-        {/* Footer */}
-        {footer && (
-          <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>{footer}</Box>
+        {tabs.length > 0 && (
+          <>
+            <List>
+              {tabs.map((tab) => (
+                <ListItem key={tab.value} disablePadding>
+                  <ListItemButton
+                    selected={tab.selected || selectedTabValue === tab.value}
+                    disabled={tab.disabled}
+                    LinkComponent={LinkComponent}
+                    onClick={() => {
+                      tab.onClick?.()
+                      onTabClick?.(tab.value)
+                    }}
+                    role="button"
+                    aria-label={`Navigate to ${tab.label}`}
+                    tabIndex={0}
+                    {...tab}
+                  >
+                    <ListItemText primary={tab.label} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+            {menuItems.length > 0 && <Divider sx={{ my: 1 }} />}
+          </>
         )}
-      </ContentSlot>
-    </RootSlot>
+
+        {/* Account Menu Section */}
+        {menuItems.length > 0 && (
+          <List>
+            {menuItems.map((item, index) => (
+              <ListItem key={index} disablePadding>
+                <ListItemButton
+                  LinkComponent={LinkComponent}
+                  disabled={item.disabled}
+                  onClick={() => {
+                    item.onClick?.()
+                    onMenuItemClick?.(item.label)
+                  }}
+                  role="button"
+                  aria-label={item.label}
+                  tabIndex={0}
+                  {...item}
+                >
+                  {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+                  <ListItemText primary={item.label} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        )}
+      </Box>
+    </Drawer>
   )
 }
 

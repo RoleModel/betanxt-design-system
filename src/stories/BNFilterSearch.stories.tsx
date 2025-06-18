@@ -12,9 +12,9 @@ import {
   formatCurrency,
   formatDate,
   repFilterOptions,
-  scopeFilterOptions,
   simulateAsyncSearch,
 } from './mockData/financialAccounts'
+import { MockLinkComponent } from './utils/MockLinkComponent'
 
 const meta = {
   title: 'Custom Components/BNFilterSearch',
@@ -161,9 +161,8 @@ export const WithLink: Story = {
     const renderOptionLink = (
       option: { name: string } & Partial<MockFinancialAccount>
     ) => (
-      <Box
-        component="a"
-        href={`/details/${option.scope}/${option.id}`}
+      <MockLinkComponent
+        to={`/details/${option.scope}/${option.id}`}
         onClick={(e) => {
           e.preventDefault()
           const balance = option.balance ? ` - ${formatCurrency(option.balance)}` : ''
@@ -174,7 +173,7 @@ export const WithLink: Story = {
         }}
       >
         {option.name}
-      </Box>
+      </MockLinkComponent>
     )
     return (
       <BNFilterSearch
@@ -311,6 +310,54 @@ export const AdvancedInteraction: Story = {
           </Box>
         )}
       </Box>
+    )
+  },
+}
+
+export const WithReactRouter: Story = {
+  name: 'With React Router',
+  render: (args) => {
+    const [accountType, setAccountType] = React.useState('all')
+    const [searchQuery, setSearchQuery] = React.useState('')
+
+    const filteredAccounts = React.useMemo(() => {
+      return financialAccounts.filter((account) => {
+        const matchesType = accountType === 'all' || account.type === accountType
+        const matchesSearch =
+          !searchQuery || account.name.toLowerCase().includes(searchQuery.toLowerCase())
+        return matchesType && matchesSearch
+      })
+    }, [accountType, searchQuery])
+
+    const handleSubmit = (value: string) => {
+      setSearchQuery(value)
+      const url = `/search?type=${accountType}&q=${encodeURIComponent(value)}`
+      console.log('Navigating to:', url)
+      window.history.pushState({}, '', url)
+    }
+
+    const handleTypeChange = (value: string) => {
+      setAccountType(value)
+      const url = `/search?type=${value}&q=${encodeURIComponent(searchQuery)}`
+      console.log('Navigating to:', url)
+      window.history.pushState({}, '', url)
+    }
+
+    return (
+      <BNFilterSearch
+        {...args}
+        placeholder="Search accounts..."
+        options={filteredAccounts}
+        inputValue={searchQuery}
+        onSubmit={handleSubmit}
+      >
+        <BNFilterSelect
+          options={accountFilterOptions}
+          value={accountType}
+          onChange={handleTypeChange}
+          aria-label="Account type filter"
+        />
+      </BNFilterSearch>
     )
   },
 }

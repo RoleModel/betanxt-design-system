@@ -26,18 +26,20 @@ const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({
     }),
 })
 
+type BNAppBarLink = {
+  label: string
+  value: string
+  disabled?: boolean
+  href?: string
+  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
+}
+
 export interface BNAppBarProps {
   title?: string
   color?: 'primary' | 'secondary'
-  tabs?: {
-    label: string
-    value: string
-    href?: string
-    to?: string | { pathname: string; search?: string; hash?: string; state?: any }
-  }[]
+  tabs?: BNAppBarLink[]
   selectedTabValue?: string
-  tabLinkComponent?: React.ElementType
-  menuItemLinkComponent?: React.ElementType
+  LinkComponent?: React.ElementType
   avatar?: AvatarProps
   menuItems?: MenuItem[]
   'aria-label'?: string
@@ -57,8 +59,7 @@ export function BNAppBar({
   color = 'primary',
   tabs,
   selectedTabValue,
-  tabLinkComponent = 'a',
-  menuItemLinkComponent,
+  LinkComponent = 'a',
   menuItems,
   avatar,
   'aria-label': ariaLabel,
@@ -109,7 +110,7 @@ export function BNAppBar({
             >
               {tabs.map((tab) => (
                 <Tab
-                  LinkComponent={tabLinkComponent}
+                  LinkComponent={LinkComponent}
                   key={tab.value}
                   aria-label={`Navigate to ${tab.label}`}
                   tabIndex={0}
@@ -124,7 +125,7 @@ export function BNAppBar({
               avatar={avatar}
               onDrawerToggle={handleDrawerToggle}
               drawerOpen={drawerOpen}
-              menuItemLinkComponent={menuItemLinkComponent}
+              LinkComponent={LinkComponent}
             />
           )}
         </Stack>
@@ -135,8 +136,7 @@ export function BNAppBar({
           menuItems={menuItems}
           selectedTabValue={selectedTabValue}
           hasAppSwitcher={!!children}
-          menuItemLinkComponent={menuItemLinkComponent}
-          tabLinkComponent={tabLinkComponent}
+          LinkComponent={LinkComponent}
           onTabClick={() => {
             setDrawerOpen(false)
           }}

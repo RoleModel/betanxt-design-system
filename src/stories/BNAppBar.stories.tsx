@@ -12,7 +12,7 @@ const meta = {
   parameters: {
     layout: 'fullscreen',
     controls: {
-      exclude: ['tabLinkComponent'],
+      exclude: ['LinkComponent'],
     },
   },
   argTypes: {
@@ -72,7 +72,7 @@ export const Primary: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
-    tabLinkComponent: MockLinkComponent,
+    LinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     menuItems: [
       {
@@ -89,7 +89,7 @@ export const Secondary: Story = {
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
-    tabLinkComponent: MockLinkComponent,
+    LinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     slots: {
       logoComponent: BNLogo,
@@ -122,7 +122,7 @@ export const WithLogoComponent: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
-    tabLinkComponent: MockLinkComponent,
+    LinkComponent: MockLinkComponent,
     slots: {
       logoComponent: BNLogo,
     },
@@ -153,7 +153,7 @@ export const WithLogoImg: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
-    tabLinkComponent: MockLinkComponent,
+    LinkComponent: MockLinkComponent,
     slots: {
       logoImg: 'img',
     },
@@ -181,7 +181,7 @@ export const WithAppSwitcher: Story = {
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
-    tabLinkComponent: MockLinkComponent,
+    LinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     slots: {
       logoImg: 'img',
@@ -230,8 +230,7 @@ export const WithReactRouterLinkComponent: Story = {
     color: 'primary',
     selectedTabValue: 'profile',
     avatar: exampleAvatar,
-    tabLinkComponent: MockLinkComponent,
-    menuItemLinkComponent: MockLinkComponent,
+    LinkComponent: MockLinkComponent,
     tabs: [
       {
         label: 'Dashboard',

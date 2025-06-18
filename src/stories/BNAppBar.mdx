@@ -42,15 +42,15 @@ Must pass `img` to the `slots` prop. And pass image attributes to the `slotProps
 
 ### Tabs Navigation
 
-- Use the `tabLinkComponent` prop to specify your router's Link component
+- Use the `LinkComponent` prop to specify your router's Link component
 - Add `to` props to tab objects for navigation paths
-- **Important**: On mobile devices, tabs are converted to menu items in the drawer, so the `tabLinkComponent` is essential for proper navigation on all screen sizes
+- **Important**: On mobile devices, tabs are converted to menu items in the drawer, so the `LinkComponent` is essential for proper navigation on all screen sizes
 
 ```tsx
 import { Link } from 'react-router-dom'
 
 ;<BNAppBar
-  tabLinkComponent={Link}
+  LinkComponent={Link}
   tabs={[
     {
       label: 'Dashboard',
@@ -68,7 +68,7 @@ import { Link } from 'react-router-dom'
 
 ### Menu Items Navigation
 
-- Use the `menuItemLinkComponent` prop to specify your router's Link component
+- Use the `LinkComponent` prop to specify your router's Link component
 - Add `to` props to menu item objects for navigation paths
 - Menu items without `to` props will act as action buttons using `onClick`
 
@@ -94,7 +94,7 @@ const menuItems = [
 ]
 
 <BNAppBar
-  menuItemLinkComponent={Link}
+  LinkComponent={Link}
   menuItems={menuItems}
 />
 ```

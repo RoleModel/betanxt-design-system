@@ -60,7 +60,7 @@ export interface BNAnimatedMenuIconProps {
   drawerOpen?: boolean
   avatar: AvatarProps
   useAnimatedIconOnly?: boolean
-  menuItemLinkComponent?: React.ElementType
+  LinkComponent?: React.ElementType
   sx?: SxProps<Theme>
   className?: string
 }
@@ -119,7 +119,7 @@ export const BNAnimatedMenuIcon = ({
   drawerOpen = false,
   avatar,
   useAnimatedIconOnly = false,
-  menuItemLinkComponent,
+  LinkComponent,
   sx,
   className,
 }: BNAnimatedMenuIconProps) => {
@@ -170,14 +170,12 @@ export const BNAnimatedMenuIcon = ({
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             {menuItems.map((item, index) => {
-              const { label, icon, onClick, to, ...menuItemProps } = item
+              const { label, icon, onClick, ...menuItemProps } = item
               const menuItemElement = (
                 <MuiMenuItem
                   key={index}
+                  LinkComponent={LinkComponent}
                   onClick={() => handleMenuItemClick(item)}
-                  {...(to && menuItemLinkComponent
-                    ? { component: menuItemLinkComponent, to }
-                    : {})}
                   {...menuItemProps}
                 >
                   {icon && <ListItemIcon>{icon}</ListItemIcon>}
@@ -217,14 +215,12 @@ export const BNAnimatedMenuIcon = ({
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {menuItems.map((item, index) => {
-          const { label, icon, onClick, to, ...menuItemProps } = item
+          const { label, icon, onClick, ...menuItemProps } = item
           const menuItemElement = (
             <MuiMenuItem
               key={index}
+              LinkComponent={LinkComponent}
               onClick={() => handleMenuItemClick(item)}
-              {...(to && menuItemLinkComponent
-                ? { component: menuItemLinkComponent, to }
-                : {})}
               {...menuItemProps}
             >
               {icon && <ListItemIcon>{icon}</ListItemIcon>}

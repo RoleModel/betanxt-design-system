@@ -36,8 +36,7 @@ export interface BNAppBarDrawerProps {
   selectedTabValue?: string | number
   onTabClick?: (value: string | number) => void
   onMenuItemClick?: (label: string) => void
-  menuItemLinkComponent?: React.ElementType
-  tabLinkComponent?: React.ElementType
+  LinkComponent?: React.ElementType
   hasAppSwitcher?: boolean
 }
 
@@ -49,8 +48,7 @@ export const BNAppBarDrawer = ({
   selectedTabValue,
   onTabClick,
   onMenuItemClick,
-  menuItemLinkComponent,
-  tabLinkComponent,
+  LinkComponent,
   hasAppSwitcher = false,
 }: BNAppBarDrawerProps) => {
   return (
@@ -99,16 +97,15 @@ export const BNAppBarDrawer = ({
                   <ListItemButton
                     selected={tab.selected || selectedTabValue === tab.value}
                     disabled={tab.disabled}
+                    LinkComponent={LinkComponent}
                     onClick={() => {
                       tab.onClick?.()
                       onTabClick?.(tab.value)
                     }}
-                    {...(tab.to && tabLinkComponent
-                      ? { component: tabLinkComponent, to: tab.to }
-                      : {})}
                     role="button"
                     aria-label={`Navigate to ${tab.label}`}
                     tabIndex={0}
+                    {...tab}
                   >
                     <ListItemText primary={tab.label} />
                   </ListItemButton>
@@ -125,17 +122,16 @@ export const BNAppBarDrawer = ({
             {menuItems.map((item, index) => (
               <ListItem key={index} disablePadding>
                 <ListItemButton
+                  LinkComponent={LinkComponent}
                   disabled={item.disabled}
                   onClick={() => {
                     item.onClick?.()
                     onMenuItemClick?.(item.label)
                   }}
-                  {...(item.to && menuItemLinkComponent
-                    ? { component: menuItemLinkComponent, to: item.to }
-                    : {})}
                   role="button"
                   aria-label={item.label}
                   tabIndex={0}
+                  {...item}
                 >
                   {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
                   <ListItemText primary={item.label} />

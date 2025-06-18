@@ -44,7 +44,8 @@ const topbarClose = keyframes`
 export interface MenuItem extends Omit<MenuItemProps, 'onClick'> {
   label: string
   icon?: ReactNode
-  onClick: () => void
+  onClick?: () => void
+  to?: unknown
 }
 
 export interface AvatarProps {
@@ -59,6 +60,7 @@ export interface BNAnimatedMenuIconProps {
   drawerOpen?: boolean
   avatar: AvatarProps
   useAnimatedIconOnly?: boolean
+  menuItemLinkComponent?: React.ElementType
   sx?: SxProps<Theme>
   className?: string
 }
@@ -117,6 +119,7 @@ export const BNAnimatedMenuIcon = ({
   drawerOpen = false,
   avatar,
   useAnimatedIconOnly = false,
+  menuItemLinkComponent,
   sx,
   className,
 }: BNAnimatedMenuIconProps) => {
@@ -137,7 +140,7 @@ export const BNAnimatedMenuIcon = ({
   }
 
   const handleMenuItemClick = (item: MenuItem) => {
-    item.onClick()
+    item.onClick?.()
     handleMenuClose()
   }
 
@@ -167,17 +170,19 @@ export const BNAnimatedMenuIcon = ({
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           >
             {menuItems.map((item, index) => {
-              const { label, icon, onClick, ...menuItemProps } = item
-              return (
+              const { label, icon, onClick, to, ...menuItemProps } = item
+              const menuItemElement = (
                 <MuiMenuItem
                   key={index}
                   onClick={() => handleMenuItemClick(item)}
+                  {...(to && menuItemLinkComponent ? { component: menuItemLinkComponent, to } : {})}
                   {...menuItemProps}
                 >
                   {icon && <ListItemIcon>{icon}</ListItemIcon>}
                   <ListItemText primary={label} />
                 </MuiMenuItem>
               )
+              return menuItemElement
             })}
           </Menu>
         )}
@@ -210,17 +215,19 @@ export const BNAnimatedMenuIcon = ({
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         {menuItems.map((item, index) => {
-          const { label, icon, onClick, ...menuItemProps } = item
-          return (
+          const { label, icon, onClick, to, ...menuItemProps } = item
+          const menuItemElement = (
             <MuiMenuItem
               key={index}
               onClick={() => handleMenuItemClick(item)}
+              {...(to && menuItemLinkComponent ? { component: menuItemLinkComponent, to } : {})}
               {...menuItemProps}
             >
               {icon && <ListItemIcon>{icon}</ListItemIcon>}
               <ListItemText primary={label} />
             </MuiMenuItem>
           )
+          return menuItemElement
         })}
       </Menu>
     </>

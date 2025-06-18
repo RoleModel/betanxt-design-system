@@ -37,6 +37,7 @@ export interface BNAppBarProps {
   }[]
   selectedTabValue?: string
   tabLinkComponent?: React.ElementType
+  menuItemLinkComponent?: React.ElementType
   avatar?: AvatarProps
   menuItems?: MenuItem[]
   'aria-label'?: string
@@ -57,6 +58,7 @@ export function BNAppBar({
   tabs,
   selectedTabValue,
   tabLinkComponent = 'a',
+  menuItemLinkComponent,
   menuItems,
   avatar,
   'aria-label': ariaLabel,
@@ -122,6 +124,7 @@ export function BNAppBar({
               avatar={avatar}
               onDrawerToggle={handleDrawerToggle}
               drawerOpen={drawerOpen}
+              menuItemLinkComponent={menuItemLinkComponent}
             />
           )}
         </Stack>
@@ -133,6 +136,7 @@ export function BNAppBar({
           menuItems={menuItems}
           selectedTabValue={selectedTabValue}
           hasAppSwitcher={!!children}
+          menuItemLinkComponent={menuItemLinkComponent}
           onTabClick={() => {
             setDrawerOpen(false)
           }}

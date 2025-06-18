@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
-import PersonIconOutlined from '@mui/icons-material/PersonOutline'
+
+import { withRouter, reactRouterParameters } from 'storybook-addon-remix-react-router'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
@@ -39,13 +40,31 @@ const exampleTabs = [
     label: 'Home',
     value: 'home',
     href: '/',
+    to: '/',
   },
   {
     label: 'About',
     value: 'about',
     href: '/',
+    to: '/',
   },
 ]
+
+// Mock Link component for React Router demonstration
+const MockLinkComponent = ({ to, children, ...props }: any) => (
+  <a
+    {...props}
+    href={to}
+    onClick={(e) => {
+      e.preventDefault()
+      console.log('Navigate to:', to)
+      // In Storybook with the addon, this would actually navigate
+      window.history.pushState({}, '', to)
+    }}
+  >
+    {children}
+  </a>
+)
 
 export const Primary: Story = {
   parameters: {
@@ -56,17 +75,12 @@ export const Primary: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    tabLinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     menuItems: [
       {
-        label: 'Profile',
-        onClick: () => {},
-        divider: true,
-        icon: <PersonIconOutlined />,
-      },
-      {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -78,6 +92,7 @@ export const Secondary: Story = {
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    tabLinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     slots: {
       logoComponent: BNLogo,
@@ -110,12 +125,13 @@ export const WithLogoComponent: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    tabLinkComponent: MockLinkComponent,
     slots: {
       logoComponent: BNLogo,
     },
     slotProps: {
       logoComponent: {
-        height: 30,
+        height: 32,
         href: '/',
         alt: 'Go Home',
         title: 'Home',
@@ -124,19 +140,15 @@ export const WithLogoComponent: Story = {
     tabs: exampleTabs,
     menuItems: [
       {
-        label: 'Profile',
-        onClick: () => {},
-        divider: true,
-        icon: <PersonIconOutlined />,
-      },
-      {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
   },
 }
+
+
 
 export const WithLogoImg: Story = {
   parameters: {
@@ -146,6 +158,7 @@ export const WithLogoImg: Story = {
     color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    tabLinkComponent: MockLinkComponent,
     slots: {
       logoImg: 'img',
     },
@@ -160,14 +173,8 @@ export const WithLogoImg: Story = {
     tabs: exampleTabs,
     menuItems: [
       {
-        label: 'Profile',
-        onClick: () => {},
-        divider: true,
-        icon: <PersonIconOutlined />,
-      },
-      {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -179,6 +186,7 @@ export const WithAppSwitcher: Story = {
     color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
+    tabLinkComponent: MockLinkComponent,
     tabs: exampleTabs,
     slots: {
       logoImg: 'img',
@@ -193,13 +201,8 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
-      },
-      {
-        label: 'Profile',
-        onClick: () => {},
-        icon: <PersonIconOutlined />,
       },
     ],
     children: (
@@ -213,5 +216,77 @@ export const WithAppSwitcher: Story = {
         clientName="Client Name"
       />
     ),
+  },
+}
+
+/**
+ * This story demonstrates React Router integration using the Link component.
+ * The storybook-addon-remix-react-router provides the React Router context.
+ */
+export const WithReactRouterLinkComponent: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    reactRouter: reactRouterParameters({
+      routing: { path: '/profile' },
+    }),
+  },
+  decorators: [withRouter],
+  args: {
+    color: 'primary',
+    selectedTabValue: 'profile',
+    avatar: exampleAvatar,
+    tabLinkComponent: MockLinkComponent,
+    menuItemLinkComponent: MockLinkComponent,
+    tabs: [
+      {
+        label: 'Dashboard',
+        value: 'dashboard',
+        to: '/dashboard',
+      },
+      {
+        label: 'Profile',
+        value: 'profile',
+        to: '/profile',
+      },
+      {
+        label: 'Settings',
+        value: 'settings',
+        to: '/settings',
+      },
+    ],
+    menuItems: [
+      {
+        label: 'Edit Profile',
+        to: '/profile/edit',
+      },
+      {
+        label: 'Account Settings',
+        to: '/settings/account',
+      },
+      {
+        label: 'Privacy Settings',
+        to: '/settings/privacy',
+        divider: true,
+      },
+      {
+        label: 'Sign Out',
+        onClick: () => {
+          console.log('Sign out clicked')
+          alert('Signing out...')
+        },
+        icon: <LogoutIconOutlined />,
+      },
+    ],
+    slots: {
+      logoComponent: BNLogo,
+    },
+    slotProps: {
+      logoComponent: {
+        height: 32,
+        href: '/',
+        alt: 'Go Home',
+        title: 'Home',
+      },
+    },
   },
 }

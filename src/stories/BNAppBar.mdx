@@ -1,0 +1,108 @@
+import { Canvas, Controls, Meta, Stories, Story } from '@storybook/addon-docs/blocks'
+
+import meta, * as BNAppBarStories from './BNAppBar.stories'
+
+<Meta of={meta} />
+
+# BNAppBar
+
+The `BNAppBar` component provides a responsive application header with navigation tabs, user menu, and logo support. It seamlessly integrates with React Router for navigation.
+
+## Features
+
+- **Responsive Design**: Automatically adapts between desktop and mobile layouts. On mobile, tabs are converted to menu items in a drawer for better UX
+- **Logo Support**: Flexible logo rendering with slots for components or images
+- **Navigation Tabs**: Full React Router integration with custom Link components that work on both desktop and mobile
+- **User Menu**: Avatar-based dropdown menu with navigation and action support
+- **App Switcher Integration**: Support for application switcher components
+
+<Canvas of={BNAppBarStories.Primary} />
+
+<Controls of={BNAppBarStories.Primary} />
+
+## Logo Configuration
+
+The `BNAppBar` supports two different logo rendering approaches through the slot system:
+
+### Using `logoComponent` Slot
+
+Use this for React components like `BNLogo`:
+
+<Canvas of={BNAppBarStories.WithLogoComponent} />
+
+### Using `logoImg` Slot
+
+Must pass `img` to the `slots` prop. And pass image attributes to the `slotProps` prop.
+
+**Note**: Non-SVG images automatically get a white background, padding, and border-radius applied.
+
+<Canvas of={BNAppBarStories.WithLogoImg} />
+
+## React Router Integration
+
+### Tabs Navigation
+
+- Use the `tabLinkComponent` prop to specify your router's Link component
+- Add `to` props to tab objects for navigation paths
+- **Important**: On mobile devices, tabs are converted to menu items in the drawer, so the `tabLinkComponent` is essential for proper navigation on all screen sizes
+
+```tsx
+import { Link } from 'react-router-dom'
+
+;<BNAppBar
+  tabLinkComponent={Link}
+  tabs={[
+    {
+      label: 'Dashboard',
+      value: 'dashboard',
+      to: '/dashboard',
+    },
+    {
+      label: 'Analytics',
+      value: 'analytics',
+      to: '/analytics',
+    },
+  ]}
+/>
+```
+
+### Menu Items Navigation
+
+- Use the `menuItemLinkComponent` prop to specify your router's Link component
+- Add `to` props to menu item objects for navigation paths
+- Menu items without `to` props will act as action buttons using `onClick`
+
+```tsx
+import { Link } from 'react-router'
+
+const menuItems = [
+  {
+    label: 'Profile',
+    to: '/profile',
+    icon: <PersonIcon />,
+  },
+  {
+    label: 'Settings',
+    to: '/settings',
+    icon: <SettingsIcon />,
+  },
+  {
+    label: 'Logout',
+    onClick: () => handleLogout(),
+    icon: <LogoutIcon />,
+  },
+]
+
+<BNAppBar
+  menuItemLinkComponent={Link}
+  menuItems={menuItems}
+/>
+```
+
+<Canvas of={BNAppBarStories.WithReactRouterLinkComponent} />
+
+## App Switcher
+
+Include `<BNAppSwitcher>` in the children prop to integrate the application switcher into the app bar.
+
+<Canvas of={BNAppBarStories.WithAppSwitcher} />

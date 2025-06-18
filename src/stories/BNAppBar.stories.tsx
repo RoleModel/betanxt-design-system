@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { reactRouterParameters, withRouter } from 'storybook-addon-remix-react-router'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
 import BNAppBar from '../components/app-bar/BNAppBar'
+import { MockLinkComponent } from './utils/MockLinkComponent'
 
 const meta = {
   title: 'Custom Components/BNAppBar',
@@ -46,22 +46,6 @@ const exampleTabs = [
     to: '/about',
   },
 ]
-
-// Mock Link component for React Router demonstration
-const MockLinkComponent = ({ to, children, ...props }: any) => (
-  <a
-    {...props}
-    href={to}
-    onClick={(e) => {
-      e.preventDefault()
-      console.log('Navigate to:', to)
-      // In Storybook with the addon, this would actually navigate
-      window.history.pushState({}, '', to)
-    }}
-  >
-    {children}
-  </a>
-)
 
 export const Primary: Story = {
   parameters: {
@@ -216,16 +200,11 @@ export const WithAppSwitcher: Story = {
 
 /**
  * This story demonstrates React Router integration using the Link component.
- * The storybook-addon-remix-react-router provides the React Router context.
  */
-export const WithReactRouterLinkComponent: Story = {
+export const WithLinkComponent: Story = {
   parameters: {
     layout: 'fullscreen',
-    reactRouter: reactRouterParameters({
-      routing: { path: '/profile' },
-    }),
   },
-  decorators: [withRouter],
   args: {
     color: 'primary',
     selectedTabValue: 'profile',

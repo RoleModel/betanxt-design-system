@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import React from 'react'
-import { reactRouterParameters, withRouter } from 'storybook-addon-remix-react-router'
 
 import { Box } from '@mui/material'
 
@@ -15,22 +14,7 @@ import {
   repFilterOptions,
   simulateAsyncSearch,
 } from './mockData/financialAccounts'
-
-// Mock Link component for React Router demonstration
-const MockLinkComponent = ({ to, children, ...props }: any) => (
-  <a
-    {...props}
-    href={to}
-    onClick={(e) => {
-      e.preventDefault()
-      console.log('Navigate to:', to)
-      // In Storybook with the addon, this would actually navigate
-      window.history.pushState({}, '', to)
-    }}
-  >
-    {children}
-  </a>
-)
+import { MockLinkComponent } from './utils/MockLinkComponent'
 
 const meta = {
   title: 'Custom Components/BNFilterSearch',
@@ -332,12 +316,6 @@ export const AdvancedInteraction: Story = {
 
 export const WithReactRouter: Story = {
   name: 'With React Router',
-  parameters: {
-    reactRouter: reactRouterParameters({
-      routing: { path: '/search' },
-    }),
-  },
-  decorators: [withRouter],
   render: (args) => {
     const [accountType, setAccountType] = React.useState('all')
     const [searchQuery, setSearchQuery] = React.useState('')

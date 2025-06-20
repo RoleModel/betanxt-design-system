@@ -11,7 +11,7 @@ const components: ThemeOptions['components'] = {
         '& > a': {
           textDecoration: 'none',
           color: 'inherit',
-        }
+        },
       },
     },
   },

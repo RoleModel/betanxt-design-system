@@ -1,6 +1,7 @@
-import React from "react";
-import { type Meta, type StoryObj } from "@storybook/react";
-import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { type Meta, type StoryObj } from '@storybook/react'
+import React from 'react'
+
+import { ToggleButton, ToggleButtonGroup } from '@mui/material'
 
 const meta: Meta<typeof ToggleButtonGroup> = {
   title: 'Components/ToggleButtonGroup',
@@ -38,19 +39,14 @@ type Story = StoryObj<typeof ToggleButtonGroup>
 
 export const ToggleButtonGroupComponent: Story = {
   render: (args) => {
-    const [view, setView] = React.useState('list');
+    const [view, setView] = React.useState('list')
 
     const handleChange = (_event: React.MouseEvent<HTMLElement>, nextView: string) => {
-      setView(nextView);
-    };
+      setView(nextView)
+    }
 
     return (
-      <ToggleButtonGroup
-        {...args}
-        value={view}
-        exclusive
-        onChange={handleChange}
-      >
+      <ToggleButtonGroup {...args} value={view} exclusive onChange={handleChange}>
         <ToggleButton value="left" aria-label="left aligned">
           Left
         </ToggleButton>
@@ -61,6 +57,6 @@ export const ToggleButtonGroupComponent: Story = {
           Right
         </ToggleButton>
       </ToggleButtonGroup>
-    );
+    )
   },
 }

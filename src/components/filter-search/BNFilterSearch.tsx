@@ -38,8 +38,6 @@ const RootStyled = styled('div', {
   backgroundColor: (theme.vars || theme).palette.inputOutlinedEnabledFill,
   maxWidth: '100%',
   overflowX: 'auto',
-  scrollbarWidth: 'thin',
-  scrollbarGutter: 'stable',
   transition: theme.transitions.create(['border-color'], {
     duration: theme.transitions.duration.short,
   }),
@@ -48,11 +46,8 @@ const RootStyled = styled('div', {
     borderColor: theme.vars.palette.text.primary,
   },
   '&:focus-within': {
-    borderColor: theme.vars.palette.primary.main,
-  },
-  a: {
-    textDecoration: 'none',
-    color: 'inherit',
+    outline: `2px solid ${theme.vars.palette.text.primary}`,
+    outlineOffset: -2,
   },
 }))
 

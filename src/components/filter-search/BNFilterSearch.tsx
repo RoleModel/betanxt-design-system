@@ -46,7 +46,7 @@ const RootStyled = styled('div', {
     borderColor: theme.vars.palette.text.primary,
   },
   '&:focus-within': {
-    outline: `2px solid ${theme.vars.palette.text.primary}`,
+    outline: `2px solid ${theme.vars.palette.primary.main}`,
     outlineOffset: -2,
   },
 }))

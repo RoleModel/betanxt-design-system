@@ -8,7 +8,7 @@ const components: ThemeOptions['components'] = {
         color: theme.vars.palette.primary.main,
         '&.Mui-selected': {
           backgroundColor: theme.vars.palette.primary.main,
-          color: theme.palette.common.white,
+          color: theme.vars.palette.primary.contrastText,
         },
       }),
     },
@@ -35,7 +35,7 @@ const components: ThemeOptions['components'] = {
           color: theme.vars.palette.primary.dark,
         },
         '&.MuiToggleButton-sizeLarge': {
-          padding: '0.45rem',
+          padding: '0.5rem',
         },
         variants: [
           {

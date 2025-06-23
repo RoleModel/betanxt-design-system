@@ -16,20 +16,42 @@ jobs:
         with:
           node-version-file: '.node-version'
 
-      - name: Clean install with native dependencies
+      - name: Configure npm for native dependencies
         run: |
-          npm ci
-          # Install platform-specific rollup binary
+          # Create .npmrc file with appropriate settings
+          echo "legacy-peer-deps=true" > .npmrc
+          echo "node-linker=hoisted" >> .npmrc
+
+          # Delete any existing lockfile to ensure clean resolution
+          rm -f package-lock.json
+
+      - name: Install dependencies with platform binaries
+        run: |
+          # Fresh install with forced resolution
+          npm install --force
+
+          # Explicitly install platform-specific binaries
           npm install --no-save @rollup/rollup-linux-x64-gnu
-          # Install SWC platform-specific bindings
           npm install --no-save @swc/core-linux-x64-gnu
+
+          # Verify installation
+          ls -la node_modules/@rollup/rollup-linux-x64-gnu || echo "Rollup binary not installed"
+          ls -la node_modules/@swc/core-linux-x64-gnu || echo "SWC binary not installed"
+
           # Force rebuild of native modules
           npm rebuild
 
-      - name: Run Chromatic
+      - name: Pre-build Storybook
+        run: |
+          # Create a temporary build directory
+          mkdir -p storybook-static
+
+          # Build Storybook directly with increased memory limit
+          NODE_OPTIONS="--max-old-space-size=4096" npx storybook build --output-dir=./storybook-static
+
+      - name: Run Chromatic with pre-built Storybook
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          # Add these options to help with debugging
-          debug: true
+          storybookBuildDir: ./storybook-static
           skip: ${{ github.actor == 'dependabot[bot]' }}

@@ -16,14 +16,20 @@ jobs:
         with:
           node-version-file: '.node-version'
 
-      - name: Clean install
-        run: npm ci
-
-      # Add this step to fix the rollup dependency issue
-      - name: Install platform-specific dependencies
-        run: npm install --no-save @rollup/rollup-linux-x64-gnu
+      - name: Clean install with native dependencies
+        run: |
+          npm ci
+          # Install platform-specific rollup binary
+          npm install --no-save @rollup/rollup-linux-x64-gnu
+          # Install SWC platform-specific bindings
+          npm install --no-save @swc/core-linux-x64-gnu
+          # Force rebuild of native modules
+          npm rebuild
 
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # Add these options to help with debugging
+          debug: true
+          skip: ${{ github.actor == 'dependabot[bot]' }}

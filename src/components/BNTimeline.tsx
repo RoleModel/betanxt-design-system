@@ -31,13 +31,13 @@ export interface MuiTimelineItemData {
   titlePosition?: 'left' | 'right' | 'center'
 }
 
-export interface TimelineProps {
+export interface BNTimelineProps {
   items: MuiTimelineItemData[]
   position?: 'left' | 'right' | 'alternate' | 'alternate-reverse'
   title?: string
 }
 
-export function Timeline({ items, position = 'left', title }: TimelineProps) {
+export function BNTimeline({ items, position = 'left', title }: BNTimelineProps) {
   if (!items || items.length === 0) {
     return <Typography>No timeline items to display.</Typography>
   }

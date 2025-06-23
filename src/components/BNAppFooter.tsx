@@ -2,16 +2,19 @@
 
 import { Box, Divider, Link, Typography } from '@mui/material'
 
-import { BetaNXTLogo } from './betanxt-logo'
+import { BNLogo } from './BNLogo'
 
-export function AppFooter({
+export function BNAppFooter({
   logoEnabled = true,
-  privacyPolicyLink = 'https://www.mediantinc.com/privacy-policy',
-  additionalCopyright,
+  privacyPolicyLink = 'https://betanxt.com/privacy-policy',
+  links = [],
 }: {
   logoEnabled?: boolean
   privacyPolicyLink?: string
-  additionalCopyright?: string
+  links?: {
+    label: string
+    href: string
+  }[]
 }) {
   return (
     <Box
@@ -23,16 +26,17 @@ export function AppFooter({
         padding: 2,
         backgroundColor: 'footer.background',
         justifyContent: 'space-between',
-        flexWrap: 'nowrap',
+        flexWrap: 'wrap',
         color: 'common.white',
         minHeight: theme.layout?.footerHeight,
+        gap: 2,
       })}
     >
       <Box
         sx={{
           display: 'flex',
           flexDirection: { xs: 'column-reverse', sm: 'row' },
-          alignItems: { xs: 'flex-start', sm: 'center' },
+          alignItems: { xs: 'flex-start', sm: 'baseline' },
           gap: { xs: 1, sm: 2 },
         }}
       >
@@ -45,20 +49,31 @@ export function AppFooter({
           flexItem
           sx={{ backgroundColor: 'common.white', display: { xs: 'none', sm: 'block' } }}
         />
-        {additionalCopyright && (
+        {links && links.length > 0 && (
           <>
-            <Typography variant="body2" sx={{ color: 'inherit', whiteSpace: 'nowrap' }}>
-              {additionalCopyright}
-            </Typography>
-            <Divider
-              orientation="vertical"
-              variant="fullWidth"
-              flexItem
-              sx={{
-                backgroundColor: 'common.white',
-                display: { xs: 'none', sm: 'block' },
-              }}
-            />
+            {links.map((link) => (
+              <>
+                <Link
+                  href={link.href}
+                  underline="none"
+                  variant="body2"
+                  key={link.label}
+                  sx={{ color: 'inherit', whiteSpace: 'nowrap' }}
+                >
+                  {link.label}
+                </Link>
+                <Divider
+                  key={`${link.label}-divider`}
+                  orientation="vertical"
+                  variant="fullWidth"
+                  flexItem
+                  sx={{
+                    backgroundColor: 'common.white',
+                    display: { xs: 'none', sm: 'block' },
+                  }}
+                />
+              </>
+            ))}
           </>
         )}
         <Link
@@ -71,7 +86,14 @@ export function AppFooter({
           Privacy Statement
         </Link>
       </Box>
-      {logoEnabled && <BetaNXTLogo />}
+      {logoEnabled && (
+        <BNLogo
+          showPoweredBy
+          height={24}
+          href={'https://betanxt.com'}
+          alt={'Go to BetaNXT.com'}
+        />
+      )}
     </Box>
   )
 }

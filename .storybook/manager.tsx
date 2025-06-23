@@ -1,5 +1,5 @@
 import { global } from '@storybook/global'
-import { addons } from '@storybook/manager-api'
+import { addons } from 'storybook/manager-api'
 
 import { dark, light } from './theme'
 
@@ -16,19 +16,56 @@ export const getPreferredColorScheme = () => {
   return 'light'
 }
 
-// Set theme immediately at module load time to prevent flash
 const initialTheme = getPreferredColorScheme() === 'dark' ? dark : light
 
-// Configure addons immediately
 addons.setConfig({
   theme: initialTheme,
 })
 
-// Listen for theme changes
-const channel = addons.getChannel()
-channel.on('mui-theme-mode-changed', (mode: string) => {
-  const newTheme = mode === 'dark' ? dark : light
-  addons.setConfig({
-    theme: newTheme,
+if (globalWindow && globalWindow.matchMedia) {
+  const mediaQuery = globalWindow.matchMedia('(prefers-color-scheme: dark)')
+  const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+    const channel = addons.getChannel()
+    const newMode = e.matches ? 'dark' : 'light'
+
+    channel.emit('system-theme-changed', newMode)
+
+    addons.setConfig({
+      theme: newMode === 'dark' ? dark : light,
+    })
+  }
+
+  try {
+    mediaQuery.addEventListener('change', handleSystemThemeChange)
+  } catch (e) {}
+}
+
+let currentMode: string | null = null
+
+const setupListeners = () => {
+  const channel = addons.getChannel()
+
+  channel.on('mui-theme-mode-changed', (mode: string) => {
+    if (currentMode === mode) return
+
+    currentMode = mode
+
+    const newTheme = mode === 'dark' ? dark : light
+    addons.setConfig({
+      theme: newTheme,
+    })
   })
-})
+
+  channel.on('mui-theme-mode-toggle', (mode: string) => {
+    let effectiveMode = mode
+    if (mode === 'system') {
+      effectiveMode = getPreferredColorScheme()
+    }
+    const newTheme = effectiveMode === 'dark' ? dark : light
+    addons.setConfig({ theme: newTheme })
+  })
+
+  channel.emit('mui-theme-mode-request')
+}
+
+setupListeners()

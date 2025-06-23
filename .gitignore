@@ -7,3 +7,6 @@ build-storybook.log
 .npmrc
 .node-version
 
+
+.DS_Store
+

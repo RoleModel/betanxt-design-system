@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import React, { useState } from 'react'
 
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'
 import { Stack } from '@mui/material'
 
-import { SelectCard } from '../components/SelectCard'
+import { BNSelectCard } from '../components/BNSelectCard'
 
 const meta = {
-  title: 'Custom Components/SelectCard',
-  component: SelectCard,
+  title: 'Custom Components/BNSelectCard',
+  component: BNSelectCard,
   parameters: {
     layout: 'centered',
     docs: {
@@ -27,7 +27,7 @@ const meta = {
       control: 'boolean',
     },
   },
-} satisfies Meta<typeof SelectCard>
+} satisfies Meta<typeof BNSelectCard>
 
 export default meta
 
@@ -48,7 +48,7 @@ export const Interactive: Story = {
     const [selected, setSelected] = useState(false)
 
     return (
-      <SelectCard {...args} selected={selected} action={() => setSelected(!selected)} />
+      <BNSelectCard {...args} selected={selected} action={() => setSelected(!selected)} />
     )
   },
   args: {
@@ -73,7 +73,7 @@ export const MultipleCards: Story = {
     return (
       <Stack spacing={2} direction={'row'}>
         {cards.map((card) => (
-          <SelectCard
+          <BNSelectCard
             key={card.id}
             text={card.text}
             direction={args.direction}

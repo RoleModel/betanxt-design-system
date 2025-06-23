@@ -3,7 +3,7 @@ import React from 'react'
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'
 import { Card, CardActionArea, Stack, Typography, useTheme } from '@mui/material'
 
-type SelectCardProps = {
+type BNSelectCardProps = {
   text: string
   action: () => void
   selected: boolean
@@ -11,7 +11,7 @@ type SelectCardProps = {
   direction?: 'row' | 'column'
 }
 
-export function SelectCard({
+export function BNSelectCard({
   text,
   action,
   icon = (
@@ -21,7 +21,7 @@ export function SelectCard({
   ),
   direction = 'row',
   selected = false,
-}: SelectCardProps) {
+}: BNSelectCardProps) {
   const theme = useTheme()
 
   if (direction === 'row') {

@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
 import { ChartsTooltip } from '@mui/x-charts'
 import type { LineChartProps } from '@mui/x-charts/LineChart'
 import { LineChart } from '@mui/x-charts/LineChart'
 
-import ChartGradientFill, { useChartGradients } from '../components/ChartGradientFill'
+import BNChartGradientFill, { useChartGradients } from '../components/BNChartGradientFill'
 
 const LineChartForStorybook = (props: LineChartProps) => <LineChart {...props} />
 Object.defineProperty(LineChartForStorybook, 'name', { value: 'LineChart' })
@@ -41,7 +41,7 @@ const meta: Meta<LineChartStoryArgs> = {
   title: 'Components/Charts/LineChart',
   component: LineChartForStorybook,
   subcomponents: {
-    ChartGradientFill,
+    BNChartGradientFill: BNChartGradientFill as React.ComponentType<any>,
   },
   parameters: {
     component: LineChartForStorybook,
@@ -429,7 +429,7 @@ The ChartGradientFill component is reusable across chart types (LineChart, BarCh
       <div data-chart-id="gradient-showcase">
         <LineChartForStorybook {...chartProps}>
           {showArea && (
-            <ChartGradientFill series={gradientSeries} chartId="gradient-showcase" />
+            <BNChartGradientFill series={gradientSeries} chartId="gradient-showcase" />
           )}
         </LineChartForStorybook>
       </div>

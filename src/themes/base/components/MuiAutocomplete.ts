@@ -8,6 +8,10 @@ const components: ThemeOptions['components'] = {
       }),
       option: {
         fontSize: '0.875rem',
+        '& > a': {
+          textDecoration: 'none',
+          color: 'inherit',
+        },
       },
     },
   },

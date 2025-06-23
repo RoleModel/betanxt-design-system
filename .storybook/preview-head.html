@@ -220,4 +220,17 @@
     color: var(--mui-palette-link) !important;
     text-decoration: underline !important;
   }
+
+  .table-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+
+    table {
+      width: 100%;
+      tr:nth-of-type(2n){
+        background-color: rgba(var(--mui-palette-dividerChannel) / 0.025 );
+      }
+    }
+  }
 </style>

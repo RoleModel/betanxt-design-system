@@ -19,7 +19,11 @@ jobs:
       - name: Clean install
         run: npm ci
 
+      # Add this step to fix the rollup dependency issue
+      - name: Install platform-specific dependencies
+        run: npm install --no-save @rollup/rollup-linux-x64-gnu
+
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN || vars.CHROMATIC_PROJECT_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

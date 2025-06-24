@@ -60,6 +60,9 @@ const config: StorybookConfig = {
       ...(viteConfig.optimizeDeps.include || []),
       '@storybook/addon-docs/blocks',
       '@storybook/addon-docs',
+      '@emotion/react',
+      '@emotion/styled',
+      '@emotion/cache',
     ]
 
     // Fix for JSX in JS files - no specific loader needed in most cases

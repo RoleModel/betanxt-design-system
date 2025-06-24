@@ -5,4 +5,8 @@ tsconfig.tsbuildinfo
 storybook-static
 build-storybook.log
 .npmrc
+.node-version
+
+
 .DS_Store
+

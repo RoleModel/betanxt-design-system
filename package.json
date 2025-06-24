@@ -48,7 +48,7 @@
     "@storybook/addon-docs": "^9.0.12",
     "@storybook/addon-themes": "^9.0.12",
     "@storybook/addon-vitest": "^9.0.12",
-    "@storybook/react-vite": "^9.0.12",
+    "@storybook/react-vite": "^9.0.13",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@vitejs/plugin-react": "^4.4.1",
     "@vitejs/plugin-react-swc": "^3.9.0",
@@ -88,6 +88,7 @@
     }
   },
   "dependencies": {
+    "@emotion/cache": "^11.14.0",
     "@fontsource/material-icons": "^5.2.5",
     "@fontsource/roboto": "^5.2.5",
     "@fontsource/roboto-condensed": "^5.2.5",

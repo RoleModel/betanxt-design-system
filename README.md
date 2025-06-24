@@ -9,7 +9,6 @@ This package is published to GitHub Packages registry. The publishing process is
 There are two ways to publish a new version:
 
 1. **Create a GitHub Release**:
-
    - Go to the repository's Releases page on GitHub
    - Click "Create a new release"
    - Enter a tag version (e.g., v1.0.0)

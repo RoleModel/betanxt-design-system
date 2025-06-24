@@ -93,11 +93,22 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getBNFilterSearchUtilityClass, {})
 }
 
-function useFilterSearchState(initialOpen: boolean) {
+function useFilterSearchState(
+  initialOpen: boolean,
+  controlledOpen?: boolean,
+  disableToggle?: boolean
+) {
   const theme = useTheme()
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const [searchOpen, setSearchOpen] = useState(initialOpen)
   const [filtersOpen, setFiltersOpen] = useState(false)
+
+  // Sync internal state with controlled prop
+  React.useEffect(() => {
+    if (!disableToggle && typeof controlledOpen === 'boolean') {
+      setSearchOpen(controlledOpen)
+    }
+  }, [controlledOpen, disableToggle])
 
   const handleToggle = useCallback(() => {
     setSearchOpen((prev) => !prev)
@@ -154,7 +165,7 @@ export function BNFilterSearch({
   // Hooks & State
   const classes = useUtilityClasses()
   const { isSmallScreen, searchOpen, filtersOpen, handleToggle, toggleFilters } =
-    useFilterSearchState(disableToggle ? true : open)
+    useFilterSearchState(disableToggle ? true : open, open, disableToggle)
   const [inputValue, setInputValue] = useState('')
 
   const isSearchOpen = disableToggle ? true : searchOpen

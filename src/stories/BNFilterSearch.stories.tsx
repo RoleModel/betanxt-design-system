@@ -345,3 +345,24 @@ export const WithReactRouter: Story = {
     )
   },
 }
+
+export const ClosesOnSubmit = () => {
+  const [open, setOpen] = React.useState(true)
+
+  // Use the same financialAccounts array as other stories
+  // (Assumes financialAccounts is already defined at the top of the file)
+  const handleSubmit = (value: string) => {
+    setOpen(false)
+  }
+
+  return (
+    <BNFilterSearch
+      open={open}
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      onSubmit={handleSubmit}
+      options={financialAccounts}
+      submitOnOptionClick={true}
+    />
+  )
+}

@@ -1,0 +1,418 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Guides/Decisions" />
+
+# Decisions
+
+We made thoughtful decisions to ensure our designs are visually appealing, intuitive, and accessible. By considering user needs, aesthetic principles, and technical constraints, we created solutions that enhance the overall user experience and meet our project goals.
+
+## Table of Contents
+
+<dl>
+  <dt>
+    <a href="#Naming-Conventions">Naming Conventions</a>
+  </dt>
+  <dt>
+    <a href="#Page-Design-Status">Page Design Status</a>
+  </dt>
+  <dt>
+    <a href="#Sign-Off-Ready">Sign Off Ready</a>
+  </dt>
+  <dt>
+    <a href="#Manage-Component-Approval">How to manage component approval in Figma</a>
+  </dt>
+  <dt>
+    <a href="#Changes-To-Designed-And-Live-Pages">Changes to designed and live pages</a>
+  </dt>
+  <dt>
+    <a href="#Buttons">Buttons</a>
+  </dt>
+  <dd>
+    <a href="#Primary-Buttons">Primary Buttons</a>
+  </dd>
+  <dd>
+    <a href="#Secondary-Buttons">Secondary Buttons</a>
+  </dd>
+  <dd>
+    <a href="#Buttons-Client-Mode">Client mode</a>
+  </dd>
+  <dt>
+    <a href="#Charts">Charts</a>
+  </dt>
+  <dt>
+    <a href="#Top-Navigation-Bar">Top Navigation Bar</a>
+  </dt>
+  <dt>
+    <a href="#Design-Screen-Sizes">Design Screen Sizes</a>
+  </dt>
+  <dt>
+    <a href="#Font-Family">Font Family</a>
+  </dt>
+  <dt>
+    <a href="#Theming">Theming</a>
+  </dt>
+  <dd>
+    <a href="#Theming-Light-Mode">Light Mode</a>
+  </dd>
+  <dd>
+    <a href="#Theming-Dark-Mode">Dark Mode</a>
+  </dd>
+  <dd>
+    <a href="#Theming-Client-Light-Mode">Client Light Mode</a>
+  </dd>
+  <dd>
+    <a href="#Theming-Client-Dark-Mode">Client Dark Mode</a>
+  </dd>
+  <dt>
+    <a href="#Client-Logo-In-Masthead">Client Logo in the Masthead</a>
+  </dt>
+  <dd>
+    <a href="#Client-Logo-In-Masthead-Light-Mode">Light Mode</a>
+  </dd>
+  <dd>
+    <a href="#Client-Logo-In-Masthead-Dark-Mode">Dark Mode</a>
+  </dd>
+  <dt>
+    <a href="#Color-Locations">Color Locations</a>
+  </dt>
+  <dd>MIC Shareholder</dd>
+  <dd>
+    <a href="#MIC-Shareholder-Primary">Primary</a>
+  </dd>
+  <dd>
+    <a href="#MIC-Shareholder-Secondary">Secondary</a>
+  </dd>
+  <dd>
+    <a href="#MIC-Shareholder-Tertiary">Tertiary</a>
+  </dd>
+  <dd>MIC Wealth Manager</dd>
+  <dd>
+    <a href="#MIC-Wealth-Manager-Primary">Primary</a>
+  </dd>
+  <dd>
+    <a href="#MIC-Wealth-Manager-Secondary">Secondary</a>
+  </dd>
+  <dd>
+    <a href="#MIC-Wealth-Manager-Tertiary">Tertiary</a>
+  </dd>
+  <dt>
+    <a href="#AG-Grid">AG Grid</a>
+  </dt>
+  <dt>
+    <a href="#Alert-Custom-Component">Alert Custom Component</a>
+  </dt>
+</dl>
+
+## Naming Conventions <a name="Naming-Conventions"></a>
+
+File names should be kept as short as possible but should be date, name, version.
+Examples:
+
+- 250212-Wealth-Manager-v01.fig
+- 260522-Wealth-Manager-v02.fig
+
+## Page Design Status <a name="Page-Design-Status"></a>
+
+Chips to be used above right-hand corner of sections
+
+## Sign Off Ready <a name="Sign-Off-Ready"></a>
+
+A component in Figma is considered "signed off" and ready to publish to other designers when it has been reviewed and approved by the relevant stakeholders, usually including designers, developers, and product managers, and is considered to be in a stable state with consistent functionality and visual appearance, with any necessary documentation readily available.
+
+Key indicators that a component is ready to publish:
+
+<table>
+  <tr>
+    <td>Step</td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td>Design Review Process</td>
+    <td>
+      The component has gone through a formal design review process where feedback is
+      gathered and addressed
+    </td>
+  </tr>
+  <tr>
+    <td>Documentation</td>
+    <td>
+      Detailed documentation is created explaining the component&#39;s usage,
+      accessibility considerations, and any specific design guidelines
+    </td>
+  </tr>
+  <tr>
+    <td>Version Control</td>
+    <td>
+      The component is marked as &quot;ready for dev&quot; or a similar status within your
+      design system, indicating it&#39;s finalized and ready for implementation
+    </td>
+  </tr>
+  <tr>
+    <td>Team Alignment</td>
+    <td>
+      There is clear communication across the design team that the component is ready for
+      use in live projects
+    </td>
+  </tr>
+</table>
+
+## How to manage component approval in Figma <a name="Manage-Component-Approval"></a>
+
+<table>
+  <tr>
+    <td>Feature</td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td>Design System Library</td>
+    <td>
+      Organize components within a dedicated Figma library and publish only
+      &quot;ready&quot; components
+    </td>
+  </tr>
+  <tr>
+    <td>Component Status Tags</td>
+    <td>
+      Use labels or tags to indicate the current state of components (e.g., &quot;In
+      Progress&quot;, &quot;Review&quot;, &quot;Approved&quot;).
+    </td>
+  </tr>
+  <tr>
+    <td>Branching Feature</td>
+    <td>
+      Utilize Figma&#39;s branching feature to create separate development branches for
+      components under refinement, publishing only from the &quot;master&quot; branch.
+    </td>
+  </tr>
+  <tr>
+    <td>Feedback Mechanisms</td>
+    <td>
+      Leverage Figma&#39;s commenting and annotation features to provide feedback during
+      the review process.
+    </td>
+  </tr>
+</table>
+
+## Changes to designed and live pages <a name="Changes-To-Designed-And-Live-Pages"></a>
+
+- Once we ship or have major changes, all changes should be branched, even adding a button or text
+- Snowflakes stay in CDS Project called BetaNXT Snowflakes
+- If a UI pattern is used more than three times, turn it into a reusable UI component.
+- If a UI component is used in 3 or more projects/teams, put it in your design system.
+
+## Buttons <a name="Buttons"> </a>
+
+- Different buttons have different use cases.
+- Border radius 4px
+
+### Primary Buttons <a name="Primary-Buttons"></a>
+
+- Primary button is designed for a user to perform the most important task on the page, the “Done” button to show that you have completed the task in this case
+
+### Secondary Buttons <a name="Secondary-Buttons"></a>
+
+- Secondary buttons are usually the alternative to the primary action. Use secondary buttons for less important actions or for multiple actions that have equal importance.
+- It is paired with a primary button. The secondary button serves as the negative action of the pair, such as “Delete,” "Cancel" or “Remove”.
+  Examples:
+
+### Client Mode <a name="Buttons-Client-Mode"></a>
+
+- Button on card will always be set to Primary Dark Mode. The Card is always in dark mode.
+  - Decision made on 5/5/2025
+- Example MIC Shareholder Dashboard:
+
+## Charts <a name="Charts"></a>
+
+### Donut Charts
+
+- Data starts at 12 o’ clock
+
+## Top Navigation Bar <a name="Top-Navigation-Bar"></a>
+
+Top level navigation should always link back to main page of that heading
+
+- decision made on 5/5/2025
+
+## Design Screen Sizes <a name="Design-Screen-Sizes"></a>
+
+We will develop our designs based on two size options to meet our requirements.
+
+- iPad 1366 x 1024
+- Mobile 430 x 932
+
+## Font Family <a name="Font-Family"></a>
+
+We have selected the following font family for our design.
+
+- Roboto
+
+## Theming <a name="Theming"></a>
+
+Our system supports four different color configurations.
+
+### Light Mode <a name="Theming-Light-Mode"></a>
+
+<img src="./light-mode.png" alt=" light mode image" width="350" height="auto" />
+
+### Dark Mode <a name="Theming-Dark-Mode"></a>
+
+<img src="./dark-mode.png" alt=" dark mode image" width="350" height="auto" />
+
+### Client Light Mode <a name="Theming-Client-Light-Mode"></a>
+
+<img
+  src="./client-light-mode.png"
+  alt=" client light mode image"
+  width="350"
+  height="auto"
+/>
+
+### Client Dark Mode <a name="Theming-Client-Dark-Mode"></a>
+
+<img
+  src="./client-dark-mode.png"
+  alt=" client dark mode image"
+  width="350"
+  height="auto"
+/>
+
+## Client Logo in the Masthead <a name="Client-Logo-In-Masthead"></a>
+
+<img
+  src="./client-logo-in-masthead.png"
+  alt=" clinet logo in masthead image"
+  width="350"
+  height="auto"
+/>
+
+### Light Mode <a name="Client-Logo-In-Masthead-Light-Mode"></a>
+
+- No modification to the logo
+
+### Dark More <a name="Client-Logo-In-Masthead-Dark-Mode"></a>
+
+- 4px padding around the logo
+- 2px border radius
+- White fill
+
+## Color Locations <a name="Color-Locations"></a>
+
+### MIC Shareholder
+
+#### Primary <a name="MIC-Shareholder-Primary"></a>
+
+<img
+  src="./mic-shareholder-primary-image-1.png"
+  alt=" primary image 1"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-shareholder-primary-image-2.png"
+  alt=" primary image 2"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-shareholder-primary-image-3.png"
+  alt=" primary image 3"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-shareholder-primary-image-4.png"
+  alt=" primary image 4"
+  width="350"
+  height="auto"
+/>
+
+#### Secondary <a name="MIC-Shareholder-Secondary"></a>
+
+<img
+  src="./mic-shareholder-secondary-image-1.png"
+  alt=" secondary image 1"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-shareholder-secondary-image-2.png"
+  alt=" secondary image 2"
+  width="350"
+  height="auto"
+/>
+
+#### Tertiary <a name="MIC-Shareholder-Tertiary"></a>
+
+<img
+  src="./mic-shareholder-tertiary-image-1.png"
+  alt=" tertiary image 1"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-shareholder-tertiary-image-2.png"
+  alt=" tertiary image 2"
+  width="350"
+  height="auto"
+/>
+
+### MIC Wealth Manager
+
+#### Primary <a name="MIC-Wealth-Manager-Primary"></a>
+
+<img
+  src="./mic-wealth-manager-primary-image-1.png"
+  alt=" Mic Wealth manager primary image 1"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-wealth-manager-primary-image-2.png"
+  alt=" Mic Wealth manager primary image 2"
+  width="350"
+  height="auto"
+/>
+
+#### Secondary <a name="MIC-Wealth-Manager-Secondary"></a>
+
+<img
+  src="./mic-wealth-manager-secondary-image-1.png"
+  alt=" Mic Wealth manager secondary image 1"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-wealth-manager-secondary-image-2.png"
+  alt=" Mic Wealth manager secondary image 2"
+  width="350"
+  height="auto"
+/>
+<img
+  src="./mic-wealth-manager-secondary-image-3.png"
+  alt=" Mic Wealth manager secondary image 3"
+  width="350"
+  height="auto"
+/>
+
+#### Tertiary <a name="MIC-Wealth-Manager-Tertiary"></a>
+
+<img
+  src="./mic-wealth-manager-tertiary-image-1.png"
+  alt=" Mic Wealth manager tertiary image 1"
+  width="350"
+  height="auto"
+/>
+
+## AG Grid <a name="AG-Grid"></a>
+
+- Developers are using it so we must make it work for us
+  - Decision made at CDS Meeting 5/14/2025
+  - This component must be upgraded manually
+
+## Alert Custom Component <a name="Alert-Custom-Component"></a>
+
+- Corner radius 8px
+
+### Use Case
+
+- This is to be used when a alert needs to be show

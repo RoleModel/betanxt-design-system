@@ -10,7 +10,7 @@ const TOOL_ID = `${ADDON_ID}/tool`
 const SYSTEM_TOOL_ID = `${ADDON_ID}/system-tool`
 
 addons.register(ADDON_ID, (api) => {
-  addons.add(TOOL_ID, {
+  ;(addons.add(TOOL_ID, {
     type: types.TOOL,
     title: 'Light/Dark theme toggle',
     match: ({ viewMode }) => viewMode === 'story' || viewMode === 'docs',
@@ -100,5 +100,5 @@ addons.register(ADDON_ID, (api) => {
           </IconButton>
         )
       },
-    })
+    }))
 })

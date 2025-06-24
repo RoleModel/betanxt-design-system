@@ -186,7 +186,12 @@ export const BNAnimatedMenuIcon = ({
   // Default desktop behavior with avatar
   return (
     <>
-      <IconButton color="inherit" onClick={handleMenuClick} sx={{ position: 'relative' }}>
+      <IconButton
+        aria-label="Open Menu"
+        color="inherit"
+        onClick={handleMenuClick}
+        sx={{ position: 'relative' }}
+      >
         <Avatar
           src={avatar.src}
           alt={avatar.alt}

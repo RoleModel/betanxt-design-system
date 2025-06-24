@@ -356,7 +356,6 @@ export const ClosesOnSubmit = () => {
   }
 
   return (
-
     <BNFilterSearch
       open={open}
       onClose={() => setOpen(false)}

@@ -93,7 +93,11 @@ const useUtilityClasses = () => {
   return composeClasses(slots, getBNFilterSearchUtilityClass, {})
 }
 
-function useFilterSearchState(initialOpen: boolean, controlledOpen?: boolean, disableToggle?: boolean) {
+function useFilterSearchState(
+  initialOpen: boolean,
+  controlledOpen?: boolean,
+  disableToggle?: boolean
+) {
   const theme = useTheme()
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'))
   const [searchOpen, setSearchOpen] = useState(initialOpen)

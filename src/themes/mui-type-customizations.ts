@@ -59,8 +59,6 @@ declare module '@mui/material/styles' {
     values: {
       negative: string
       positive: string
-      positiveOnDark: string
-      negativeOnDark: string
     }
     footer: {
       background: string

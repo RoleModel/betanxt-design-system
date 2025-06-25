@@ -88,7 +88,7 @@ export const basePaletteLight: PaletteOptions = {
     hover: nxtBlue[800],
     contrastText: '#FFFFFF',
   },
-  link: nxtBlue[500],
+  link: nxtBlue[600],
   tableCellRow: {
     fill: baseTheme.palette.common.white,
     zebraFill: neutral[200],
@@ -128,10 +128,8 @@ export const basePaletteLight: PaletteOptions = {
     paper: '#f3f3f3',
   },
   values: {
-    negative: '#db0d0f',
-    positive: '#237b14',
-    positiveOnDark: '#41bf36',
-    negativeOnDark: '#fb6769',
+    negative: orangered[600],
+    positive: seagrass[600],
   },
   ...chartsLight,
 }
@@ -250,10 +248,8 @@ export const basePaletteDark: PaletteOptions = {
     paper: '#171717',
   },
   values: {
-    negative: '#fb6769',
-    positive: '#41bf36',
-    positiveOnDark: '#41bf36',
-    negativeOnDark: '#fb6769',
+    negative: orangered[400],
+    positive: seagrass[400],
   },
   ...chartsDark,
 }

@@ -79,7 +79,6 @@ export function BNAppBar({
     <MuiAppBar
       color={color}
       position="static"
-      role="banner"
       aria-label={ariaLabel || 'Main navigation'}
     >
       {children}

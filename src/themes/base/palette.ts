@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material'
-import { grey, orange } from '@mui/material/colors'
+import { grey } from '@mui/material/colors'
 import type { PaletteOptions } from '@mui/material/styles'
 
 import {

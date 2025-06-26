@@ -12,7 +12,7 @@ export const betanxtPaletteLight: PaletteOptions = {
     light: nxtBlue[600],
   },
   secondary: {
-    contrastText: '#000000',
+    contrastText: '#FFFFFF',
     main: bnteal[500],
     dark: bnteal[600],
     light: bnteal[400],

@@ -105,7 +105,6 @@ export function BNAppBar({
               component="nav"
               value={selectedTabValue}
               aria-label="Main navigation tabs"
-              role="navigation"
             >
               {tabs.map((tab) => (
                 <Tab

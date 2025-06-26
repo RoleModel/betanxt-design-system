@@ -59,10 +59,10 @@ export const betanxtPaletteDark: PaletteOptions = {
     primary: '#f3f3f3',
   },
   secondary: {
-    contrastText: '#000000',
     main: bnteal[400],
     dark: bnteal[500],
     light: bnteal[300],
+    contrastText: '#000000',
   },
   neutral: {
     main: neutral[700],

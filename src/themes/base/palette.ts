@@ -144,10 +144,10 @@ export const basePaletteDark: PaletteOptions = {
     contrastText: '#000000',
   },
   secondary: {
-    main: bnteal[500],
-    dark: bnteal[700],
+    main: bnteal[400],
+    dark: bnteal[500],
     light: bnteal[300],
-    contrastText: '#ffffff',
+    contrastText: '#000000',
   },
   tertiary: {
     main: bnblue[600],

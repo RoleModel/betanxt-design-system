@@ -86,11 +86,6 @@ const components: ThemeOptions['components'] = {
         '& .MuiDataGrid-cell--editing': {
           backgroundColor: theme.vars.palette.dataGridDefaultFill,
         },
-        '& .MuiDataGrid-cell': {
-          [`&:focus`]: {
-            outline: 'none',
-          },
-        },
       }),
     },
   },

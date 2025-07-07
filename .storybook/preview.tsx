@@ -59,7 +59,7 @@ const preview: Preview = {
 
         return (
           <ThemeProvider theme={betanxtTheme}>
-            <GlobalStyles styles="@layer  base, mui, components, theme, sx, utilities;" />
+            <GlobalStyles styles="@layer base, mui, components, theme, sx, utilities;" />
             <CssBaseline enableColorScheme />
             <MuiThemeModeToggle isPrimaryController={false} />
             <DocsWithTheme />

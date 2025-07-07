@@ -9,8 +9,7 @@ import { DocsContainer } from '@storybook/addon-docs/blocks'
 import type { Preview } from '@storybook/react-vite'
 import React from 'react'
 
-import { CssBaseline, ThemeProvider, useColorScheme } from '@mui/material'
-import GlobalStyles from '@mui/material/GlobalStyles'
+import { CssBaseline, GlobalStyles, ThemeProvider, useColorScheme } from '@mui/material'
 
 import betanxtTheme from '../src/themes/betanxtTheme'
 import '../src/themes/mui-type-customizations'

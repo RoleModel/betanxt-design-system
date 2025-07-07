@@ -9,7 +9,7 @@ import { DocsContainer } from '@storybook/addon-docs/blocks'
 import type { Preview } from '@storybook/react-vite'
 import React from 'react'
 
-import { CssBaseline, GlobalStyles, ThemeProvider, useColorScheme } from '@mui/material'
+import { CssBaseline, ThemeProvider, useColorScheme } from '@mui/material'
 
 import betanxtTheme from '../src/themes/betanxtTheme'
 import '../src/themes/mui-type-customizations'
@@ -33,7 +33,6 @@ const preview: Preview = {
     (Story) => {
       return (
         <ThemeProvider theme={betanxtTheme} defaultMode="system">
-          <GlobalStyles styles="@layer base, mui, components, theme, sx, utilities;" />
           <CssBaseline enableColorScheme />
           <MuiThemeModeToggle isPrimaryController={true} />
           <Story />
@@ -58,7 +57,6 @@ const preview: Preview = {
 
         return (
           <ThemeProvider theme={betanxtTheme}>
-            <GlobalStyles styles="@layer base, mui, components, theme, sx, utilities;" />
             <CssBaseline enableColorScheme />
             <MuiThemeModeToggle isPrimaryController={false} />
             <DocsWithTheme />

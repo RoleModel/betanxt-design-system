@@ -14,7 +14,7 @@ type Story = StoryObj<typeof BNAppFooterComponent>
 export const BNAppFooter: Story = {
   args: {
     logoEnabled: true,
-    privacyPolicyLink: 'Privacy Statement',
+    privacyPolicyLink: 'https://www.betanxt.com/privacy-policy',
     links: [
       {
         label: 'Link',

@@ -7,7 +7,7 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import { DocsContainer } from '@storybook/addon-docs/blocks'
 import type { Preview } from '@storybook/react-vite'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { CssBaseline, ThemeProvider, useColorScheme } from '@mui/material'
 
@@ -17,14 +17,22 @@ import { MuiThemeModeToggle } from './addons/mui-theme-toggle/preview'
 import { dark, light } from './theme'
 import './utils/patch-mui-display-name'
 
-// Hook to get the effective MUI theme mode (properly handles system mode)
-const useMuiThemeMode = () => {
-  const { mode, systemMode } = useColorScheme()
-
-  // Return the effective mode
-  if (mode === 'system') {
-    return systemMode === 'dark' ? 'dark' : 'light'
+// Get stored theme preference for initial mode
+const getStoredMode = (): 'light' | 'dark' => {
+  try {
+    const stored = localStorage.getItem('mui-mode')
+    const mode = stored === 'dark' ? 'dark' : 'light'
+    return mode
+  } catch (error) {
+    return 'light' // fallback if localStorage unavailable
   }
+}
+
+// Hook to get the effective MUI theme mode (light/dark only, no system)
+const useMuiThemeMode = () => {
+  const { mode } = useColorScheme()
+
+  // Return light or dark, no system mode
   return mode === 'dark' ? 'dark' : 'light'
 }
 
@@ -32,7 +40,7 @@ const preview: Preview = {
   decorators: [
     (Story) => {
       return (
-        <ThemeProvider theme={betanxtTheme} defaultMode="system">
+        <ThemeProvider theme={betanxtTheme} defaultMode={getStoredMode()}>
           <CssBaseline enableColorScheme />
           <MuiThemeModeToggle isPrimaryController={true} />
           <Story />
@@ -56,9 +64,9 @@ const preview: Preview = {
         }
 
         return (
-          <ThemeProvider theme={betanxtTheme}>
+          <ThemeProvider theme={betanxtTheme} defaultMode={getStoredMode()}>
             <CssBaseline enableColorScheme />
-            <MuiThemeModeToggle isPrimaryController={false} />
+            <MuiThemeModeToggle isPrimaryController={true} />
             <DocsWithTheme />
           </ThemeProvider>
         )

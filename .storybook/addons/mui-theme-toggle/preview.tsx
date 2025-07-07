@@ -10,11 +10,11 @@ interface MuiThemeModeToggleProps {
 export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
   isPrimaryController = false,
 }) => {
-  const { mode, setMode, systemMode } = useColorScheme()
+  const { mode, setMode } = useColorScheme()
   const channel = addons.getChannel()
 
   useEffect(() => {
-    const handleToggle = (newModeFromChannel: 'light' | 'dark' | 'system') => {
+    const handleToggle = (newModeFromChannel: 'light' | 'dark') => {
       setMode(newModeFromChannel)
     }
     channel.on('mui-theme-mode-toggle', handleToggle)
@@ -24,23 +24,23 @@ export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
   }, [channel, setMode])
 
   useEffect(() => {
-    if (!mode) return
-
-    let effectiveMode: 'light' | 'dark' = mode as 'light' | 'dark'
-    if (mode === 'system') {
-      effectiveMode = systemMode === 'dark' ? 'dark' : 'light'
+    if (!mode) {
+      return
     }
 
+    // Only emit light or dark, no system mode
+    const effectiveMode = mode === 'dark' ? 'dark' : 'light'
     channel.emit('mui-theme-mode-changed', effectiveMode)
-  }, [mode, systemMode, channel])
+  }, [mode, channel])
 
   useEffect(() => {
     const handleRequest = () => {
-      if (!mode) return
-      let effectiveMode: 'light' | 'dark' = mode as 'light' | 'dark'
-      if (mode === 'system') {
-        effectiveMode = systemMode === 'dark' ? 'dark' : 'light'
+      if (!mode) {
+        return
       }
+
+      // Only emit light or dark, no system mode
+      const effectiveMode = mode === 'dark' ? 'dark' : 'light'
       channel.emit('mui-theme-mode-changed', effectiveMode)
     }
 
@@ -53,7 +53,7 @@ export const MuiThemeModeToggle: React.FC<MuiThemeModeToggleProps> = ({
         channel.off('mui-theme-mode-request', handleRequest)
       }
     }
-  }, [isPrimaryController, channel, mode, systemMode])
+  }, [isPrimaryController, channel, mode])
 
   return null
 }

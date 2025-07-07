@@ -230,7 +230,7 @@ export const AdvancedInteraction: Story = {
               options: searchResults,
               loading: isSearching,
               freeSolo: false,
-              noOptionsText: showNoOptions ? "No accounts found" : undefined,
+              noOptionsText: showNoOptions ? 'No accounts found' : undefined,
             },
           }}
         />
@@ -358,27 +358,27 @@ export const NoOptionsText: Story = {
     // Filter options based on input - this simulates real-time filtering
     const filteredOptions = React.useMemo(() => {
       if (!inputValue.trim()) return financialAccounts.slice(0, 5) // Show few options initially
-      return financialAccounts.filter(account =>
+      return financialAccounts.filter((account) =>
         account.name.toLowerCase().includes(inputValue.toLowerCase())
       )
     }, [inputValue])
 
     return (
-        <BNFilterSearch
-          {...args}
-          placeholder="Type 'zzz' to see no results"
-          options={filteredOptions} // Use filtered options
-          disableToggle={true}
-          inputValue={inputValue}
-          onInputChange={setInputValue}
-          slotProps={{
-            search: {
-              freeSolo: false,
-              open: true, // Force open to test noOptionsText
-              noOptionsText: "No results found - try a different search term",
-            } as any, // Type assertion needed since we're only providing partial props
-          }}
-        />
+      <BNFilterSearch
+        {...args}
+        placeholder="Type 'zzz' to see no results"
+        options={filteredOptions} // Use filtered options
+        disableToggle={true}
+        inputValue={inputValue}
+        onInputChange={setInputValue}
+        slotProps={{
+          search: {
+            freeSolo: false,
+            open: true, // Force open to test noOptionsText
+            noOptionsText: 'No results found - try a different search term',
+          } as any, // Type assertion needed since we're only providing partial props
+        }}
+      />
     )
   },
 }

@@ -7,9 +7,10 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import { DocsContainer } from '@storybook/addon-docs/blocks'
 import type { Preview } from '@storybook/react-vite'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { CssBaseline, ThemeProvider, useColorScheme } from '@mui/material'
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 import betanxtTheme from '../src/themes/betanxtTheme'
 import '../src/themes/mui-type-customizations'
@@ -33,6 +34,7 @@ const preview: Preview = {
     (Story) => {
       return (
         <ThemeProvider theme={betanxtTheme} defaultMode="system">
+          <GlobalStyles styles="@layer  base, mui, components, theme, sx, utilities;" />
           <CssBaseline enableColorScheme />
           <MuiThemeModeToggle isPrimaryController={true} />
           <Story />
@@ -57,6 +59,7 @@ const preview: Preview = {
 
         return (
           <ThemeProvider theme={betanxtTheme}>
+            <GlobalStyles styles="@layer  base, mui, components, theme, sx, utilities;" />
             <CssBaseline enableColorScheme />
             <MuiThemeModeToggle isPrimaryController={false} />
             <DocsWithTheme />

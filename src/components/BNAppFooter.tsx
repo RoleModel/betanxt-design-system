@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { Box, Divider, Link, Typography } from '@mui/material'
 
 import { BNLogo } from './BNLogo'
@@ -52,18 +53,16 @@ export function BNAppFooter({
         {links && links.length > 0 && (
           <>
             {links.map((link) => (
-              <>
+              <React.Fragment key={link.label}>
                 <Link
                   href={link.href}
                   underline="none"
                   variant="body2"
-                  key={link.label}
                   sx={{ color: 'inherit', whiteSpace: 'nowrap' }}
                 >
                   {link.label}
                 </Link>
                 <Divider
-                  key={`${link.label}-divider`}
                   orientation="vertical"
                   variant="fullWidth"
                   flexItem
@@ -72,7 +71,7 @@ export function BNAppFooter({
                     display: { xs: 'none', sm: 'block' },
                   }}
                 />
-              </>
+              </React.Fragment>
             ))}
           </>
         )}

@@ -34,7 +34,7 @@ const preview: Preview = {
     (Story) => {
       return (
         <ThemeProvider theme={betanxtTheme} defaultMode="system">
-          <GlobalStyles styles="@layer  base, mui, components, theme, sx, utilities;" />
+          <GlobalStyles styles="@layer base, mui, components, theme, sx, utilities;" />
           <CssBaseline enableColorScheme />
           <MuiThemeModeToggle isPrimaryController={true} />
           <Story />

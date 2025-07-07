@@ -7,9 +7,9 @@ import { Autocomplete, type AutocompleteProps, TextField } from '@mui/material'
 export interface BNFilterSearchAutocompleteProps<
   T extends { name: string } = { name: string },
 > extends Omit<
-    AutocompleteProps<T | string, false, false, true>,
-    'renderInput' | 'onInputChange' | 'onSubmit'
-  > {
+  AutocompleteProps<T | string, false, false, boolean>,
+  'renderInput' | 'onInputChange' | 'onSubmit'
+> {
   placeholder?: string
   inputValue?: string
   onInputChange?: (value: string) => void
@@ -50,18 +50,11 @@ export const BNFilterSearchAutocomplete = <
 
   return (
     <Autocomplete
-      {...autocompleteProps}
       id="bn-filter-search"
       freeSolo
       includeInputInList
       clearOnEscape
-      filterOptions={(options, { inputValue }) => {
-        if (!inputValue) return []
-        return options.filter((option) => {
-          const label = getOptionLabelSafe(option)
-          return label.toLowerCase().includes(inputValue.toLowerCase())
-        })
-      }}
+      {...autocompleteProps}
       options={options}
       inputValue={inputValue}
       onInputChange={(_event, newInputValue) => onInputChange?.(newInputValue)}
@@ -97,6 +90,14 @@ export const BNFilterSearchAutocomplete = <
       }}
       sx={{
         minWidth: 200,
+      }}
+      slotProps={{
+        paper: {
+          sx: {
+            fontSize: 14,
+          },
+        },
+        ...autocompleteProps.slotProps,
       }}
       renderInput={(params) => (
         <TextField

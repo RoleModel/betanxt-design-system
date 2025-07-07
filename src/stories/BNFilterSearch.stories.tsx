@@ -214,19 +214,23 @@ export const AdvancedInteraction: Story = {
       }
     }
 
+    // Show noOptionsText when searchResults is empty and not loading
+    const showNoOptions = !isSearching && searchResults.length === 0
     return (
       <Box>
         <BNFilterSearch
           {...args}
-          placeholder="Search accounts (simulates async search)"
-          options={financialAccounts}
+          placeholder="Search accounts"
+          options={searchResults}
           onSubmit={handleSubmit}
           disabled={isSearching}
           submitOnOptionClick={true}
           slotProps={{
             search: {
-              options: financialAccounts,
+              options: searchResults,
               loading: isSearching,
+              freeSolo: false,
+              noOptionsText: showNoOptions ? "No accounts found" : undefined,
             },
           }}
         />
@@ -342,6 +346,39 @@ export const WithReactRouter: Story = {
           aria-label="Account type filter"
         />
       </BNFilterSearch>
+    )
+  },
+}
+
+export const NoOptionsText: Story = {
+  name: 'No Options Text Demo',
+  render: (args) => {
+    const [inputValue, setInputValue] = React.useState('')
+
+    // Filter options based on input - this simulates real-time filtering
+    const filteredOptions = React.useMemo(() => {
+      if (!inputValue.trim()) return financialAccounts.slice(0, 5) // Show few options initially
+      return financialAccounts.filter(account =>
+        account.name.toLowerCase().includes(inputValue.toLowerCase())
+      )
+    }, [inputValue])
+
+    return (
+        <BNFilterSearch
+          {...args}
+          placeholder="Type 'zzz' to see no results"
+          options={filteredOptions} // Use filtered options
+          disableToggle={true}
+          inputValue={inputValue}
+          onInputChange={setInputValue}
+          slotProps={{
+            search: {
+              freeSolo: false,
+              open: true, // Force open to test noOptionsText
+              noOptionsText: "No results found - try a different search term",
+            } as any, // Type assertion needed since we're only providing partial props
+          }}
+        />
     )
   },
 }

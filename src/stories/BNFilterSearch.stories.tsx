@@ -374,8 +374,8 @@ export const NoOptionsText: Story = {
         slotProps={{
           search: {
             freeSolo: false,
-            open: true, // Force open to test noOptionsText
-            noOptionsText: 'No results found - try a different search term',
+            autoHighlight: true,
+            noOptionsText: 'No results found',
           } as any, // Type assertion needed since we're only providing partial props
         }}
       />

@@ -1,6 +1,6 @@
 {
   "name": "@rolemodel/betanxt-design-system",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "description": "The BetaNXT design system for MUI.",
   "type": "module",
   "exports": {
@@ -13,7 +13,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp -r src/assets dist/assets",
     "build:watch": "tsc --watch",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check .",

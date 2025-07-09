@@ -375,7 +375,7 @@ export const NoOptionsText: Story = {
           search: {
             freeSolo: false,
             autoHighlight: true,
-            noOptionsText: 'No results found',
+            noOptionsText: 'We didn’t find any results',
           } as any, // Type assertion needed since we're only providing partial props
         }}
       />

@@ -1,6 +1,6 @@
 import { SvgIcon, type SvgIconProps } from '@mui/material'
 
-export function ElectronicConsentLeftAligned(props: SvgIconProps) {
+export function ElectronicConsentLeftAlignedIcon(props: SvgIconProps) {
   return (
     <SvgIcon
       xmlns="http://www.w3.org/2000/svg"

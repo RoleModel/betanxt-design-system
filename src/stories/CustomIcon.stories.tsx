@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import React from 'react'
 
 import { Box, Grid, Typography } from '@mui/material'
 
@@ -13,7 +12,7 @@ import {
   ColumnResizeIcon,
   CsvIcon,
   DocIcon,
-  ElectronicConsentLeftAligned,
+  ElectronicConsentLeftAlignedIcon,
   HtmlIcon,
   IconForFileType,
   NavAccountsIcon,
@@ -86,8 +85,8 @@ export const AllIcons: Story = {
           component: <BarChartStacked100Icon sx={{ fontSize: 24 }} />,
         },
         {
-          name: 'ElectronicConsentLeftAligned',
-          component: <ElectronicConsentLeftAligned sx={{ fontSize: 24 }} />,
+          name: 'ElectronicConsentLeftAlignedIcon',
+          component: <ElectronicConsentLeftAlignedIcon sx={{ fontSize: 24 }} />,
         },
         { name: 'NoDataIcon', component: <NoDataIcon sx={{ fontSize: 100 }} /> },
         { name: 'CheckmarkIcon', component: <CheckmarkIcon sx={{ fontSize: 60 }} /> },

@@ -1,27 +1,28 @@
-import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
+
 import { Box, Grid, Typography } from '@mui/material'
 
 import {
-  NoDataIcon,
-  CheckmarkIcon,
-  XlsIcon,
-  XlsxIcon,
-  HtmlIcon,
-  PdfIcon,
-  DocIcon,
-  TxtIcon,
-  CsvIcon,
   AttachNewIcon,
   AttachedFileIcon,
-  NavAccountsIcon,
-  ColumnResizeIcon,
-  ElectronicConsentLeftAligned,
-  VerticalBarChartIcon,
   BarChartNoStackingIcon,
-  BarChartStackedIcon,
   BarChartStacked100Icon,
+  BarChartStackedIcon,
+  CheckmarkIcon,
+  ColumnResizeIcon,
+  CsvIcon,
+  DocIcon,
+  ElectronicConsentLeftAligned,
+  HtmlIcon,
   IconForFileType,
+  NavAccountsIcon,
+  NoDataIcon,
+  PdfIcon,
+  TxtIcon,
+  VerticalBarChartIcon,
+  XlsIcon,
+  XlsxIcon,
 } from '../components/icons'
 
 const meta = {
@@ -59,16 +60,37 @@ export const AllIcons: Story = {
         { name: 'TxtIcon', component: <TxtIcon sx={{ fontSize: 24 }} /> },
         { name: 'CsvIcon', component: <CsvIcon sx={{ fontSize: 24 }} /> },
         { name: 'AttachNewIcon', component: <AttachNewIcon sx={{ fontSize: 24 }} /> },
-        { name: 'AttachedFileIcon', component: <AttachedFileIcon sx={{ fontSize: 24 }} /> },
+        {
+          name: 'AttachedFileIcon',
+          component: <AttachedFileIcon sx={{ fontSize: 24 }} />,
+        },
         { name: 'NavAccountsIcon', component: <NavAccountsIcon sx={{ fontSize: 24 }} /> },
-        { name: 'ColumnResizeIcon', component: <ColumnResizeIcon sx={{ fontSize: 24 }} /> },
-        { name: 'VerticalBarChartIcon', component: <VerticalBarChartIcon sx={{ fontSize: 24 }} /> },
-        { name: 'BarChartNoStackingIcon', component: <BarChartNoStackingIcon sx={{ fontSize: 24 }} /> },
-        { name: 'BarChartStackedIcon', component: <BarChartStackedIcon sx={{ fontSize: 24 }} /> },
-        { name: 'BarChartStacked100Icon', component: <BarChartStacked100Icon sx={{ fontSize: 24 }} /> },
-        { name: 'ElectronicConsentLeftAligned', component: <ElectronicConsentLeftAligned sx={{ fontSize: 24 }} /> },
+        {
+          name: 'ColumnResizeIcon',
+          component: <ColumnResizeIcon sx={{ fontSize: 24 }} />,
+        },
+        {
+          name: 'VerticalBarChartIcon',
+          component: <VerticalBarChartIcon sx={{ fontSize: 24 }} />,
+        },
+        {
+          name: 'BarChartNoStackingIcon',
+          component: <BarChartNoStackingIcon sx={{ fontSize: 24 }} />,
+        },
+        {
+          name: 'BarChartStackedIcon',
+          component: <BarChartStackedIcon sx={{ fontSize: 24 }} />,
+        },
+        {
+          name: 'BarChartStacked100Icon',
+          component: <BarChartStacked100Icon sx={{ fontSize: 24 }} />,
+        },
+        {
+          name: 'ElectronicConsentLeftAligned',
+          component: <ElectronicConsentLeftAligned sx={{ fontSize: 24 }} />,
+        },
         { name: 'NoDataIcon', component: <NoDataIcon sx={{ fontSize: 100 }} /> },
-        { name: 'CheckmarkIcon', component: <CheckmarkIcon sx={{ fontSize: 60 }} /> }
+        { name: 'CheckmarkIcon', component: <CheckmarkIcon sx={{ fontSize: 60 }} /> },
       ].map(({ name, component }) => (
         <Grid size={{ xs: 6, sm: 4, md: 3 }} key={name}>
           <Box
@@ -81,11 +103,14 @@ export const AllIcons: Story = {
               border: 1,
               borderColor: 'divider',
               borderRadius: 1,
-              color: 'action.active'
+              color: 'action.active',
             }}
           >
             {component}
-            <Typography variant="caption" sx={{ textAlign: 'center', fontSize: '0.75rem' }}>
+            <Typography
+              variant="caption"
+              sx={{ textAlign: 'center', fontSize: '0.75rem' }}
+            >
               {name}
             </Typography>
           </Box>
@@ -104,21 +129,22 @@ export const IconForFileTypeDemo: IconForFileTypeStory = {
           Selected File Type:
         </Typography>
         <Typography variant="body2" gutterBottom>
-          IconForFileType is a wrapper component that displays the appropriate icon for a given file type.
+          IconForFileType is a wrapper component that displays the appropriate icon for a
+          given file type.
         </Typography>
         <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 1,
-                p: 2,
-                border: 1,
-                borderColor: 'divider',
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 1,
+            p: 2,
+            border: 1,
+            borderColor: 'divider',
             borderRadius: 1,
-                color: 'action.active'
-              }}
-            >
+            color: 'action.active',
+          }}
+        >
           <IconForFileType fileType={args.fileType} />
           <Typography variant="caption">{args.fileType}</Typography>
         </Box>
@@ -140,7 +166,7 @@ export const IconForFileTypeDemo: IconForFileTypeStory = {
                 border: 1,
                 borderColor: 'divider',
                 borderRadius: 1,
-                color: 'action.active'
+                color: 'action.active',
               }}
             >
               <IconForFileType fileType={fileType as any} />

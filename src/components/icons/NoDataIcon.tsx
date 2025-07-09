@@ -42,13 +42,7 @@ function NoDataIcon(props: SvgIconProps) {
     >
       <g fill="none" fillRule="evenodd">
         <g transform="translate(24 31.67)">
-          <ellipse
-            className="shadow"
-            cx="67.797"
-            cy="106.89"
-            rx="67.797"
-            ry="12.668"
-          />
+          <ellipse className="shadow" cx="67.797" cy="106.89" rx="67.797" ry="12.668" />
           <path
             className="empty-img-1"
             d="M122.034 69.674L98.109 40.229c-1.148-1.386-2.826-2.225-4.593-2.225h-51.44c-1.766 0-3.444.839-4.592 2.225L13.56 69.674v15.383h108.475V69.674z"

@@ -1,7 +1,6 @@
 import { neutral } from '@rolemodel/betanxt-design-system/themes/base/palette-tokens/brand-tokens'
 
-import { SvgIcon } from '@mui/material'
-import type { SvgIconProps } from '@mui/material'
+import { SvgIcon, type SvgIconProps } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 const StyledNoDataIcon = styled(NoDataIcon)(({ theme }) => [

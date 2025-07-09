@@ -1,7 +1,6 @@
-import { neutral } from '@rolemodel/betanxt-design-system/themes/base/palette-tokens/brand-tokens'
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
 
-import { SvgIcon, styled } from '@mui/material'
-import type { SvgIconProps } from '@mui/material'
+import { neutral } from '../../themes/base/palette-tokens/brand-tokens'
 
 const StyledCheckmarkIcon = styled(CheckmarkIcon)(({ theme }) => [
   {

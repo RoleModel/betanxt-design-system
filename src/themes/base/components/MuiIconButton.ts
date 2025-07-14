@@ -8,19 +8,19 @@ const components: ThemeOptions['components'] = {
           {
             props: { size: 'small' },
             style: {
-              padding: 2,
+              padding: 4,
             },
           },
           {
             props: { size: 'medium' },
             style: {
-              padding: 4,
+              padding: 6,
             },
           },
           {
             props: { size: 'large' },
             style: {
-              padding: 6,
+              padding: 8,
             },
           },
         ],

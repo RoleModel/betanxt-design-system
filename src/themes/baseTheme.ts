@@ -13,7 +13,7 @@ const baseThemeOptions = {
   cssVariables: {
     colorSchemeSelector: 'class',
   },
-  modularCssLayers: true,
+  modularCssLayers: '@layer global, base, mui, components, theme, sx, utilities;',
   colorSchemes: {
     light: {
       palette: basePaletteLight,

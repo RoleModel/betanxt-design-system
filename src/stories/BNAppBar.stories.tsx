@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 

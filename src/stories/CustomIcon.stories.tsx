@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import React from 'react'
 
 import { Box, Grid, Typography } from '@mui/material'
 
@@ -45,7 +46,6 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 type IconForFileTypeStory = StoryObj<typeof IconForFileType>
-
 export const AllIcons: Story = {
   name: 'All Icons',
   render: () => (

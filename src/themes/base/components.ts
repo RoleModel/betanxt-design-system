@@ -11,6 +11,7 @@ import MuiCssBaseline from './components/MuiCssBaseline'
 import MuiDataGrid from './components/MuiDataGrid'
 import MuiDialog from './components/MuiDialog'
 import MuiForm from './components/MuiForm'
+import MuiIconButton from './components/MuiIconButton'
 import MuiInput from './components/MuiInput'
 import MuiLink from './components/MuiLink'
 import MuiList from './components/MuiList'
@@ -35,6 +36,7 @@ export const components: ThemeOptions['components'] = {
   ...MuiDataGrid,
   ...MuiDialog,
   ...MuiForm,
+  ...MuiIconButton,
   ...MuiInput,
   ...MuiLink,
   ...MuiList,

@@ -69,10 +69,9 @@ const StyledSubText = styled('text')(({ theme }) => ({
   fill: theme.vars?.palette.text.secondary,
   textAnchor: 'middle',
   dominantBaseline: 'hanging',
-  fontSize: '100%',
+  fontSize: '110%',
   lineHeight: 1,
-  fontWeight: 500,
-  textTransform: 'uppercase',
+  fontWeight: 400,
 }))
 
 export default meta
@@ -101,7 +100,7 @@ function RenderPieChart(args: PieChartProps) {
         <StyledText x={cx} y={cy - 5}>
           {formattedValue}
         </StyledText>
-        <StyledSubText x={cx} y={cy + 15}>
+        <StyledSubText x={cx} y={cy + 20}>
           {subtitle}
         </StyledSubText>
       </g>
@@ -137,6 +136,7 @@ function RenderPieChart(args: PieChartProps) {
       innerRadius: '76%',
       outerRadius: '100%',
       showCenterLabel: true,
+      paddingAngle: 1,
       highlightScope: {
         highlight: 'item',
         fade: 'global',

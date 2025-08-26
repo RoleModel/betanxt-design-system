@@ -1,0 +1,119 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledTeamCircle2Icon = styled(TeamCircle2Icon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function TeamCircle2Icon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`TeamCircle2Icon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M30 42.98C32.7614 42.98 35 40.7414 35 37.98C35 35.2186 32.7614 32.98 30 32.98C27.2386 32.98 25 35.2186 25 37.98C25 40.7414 27.2386 42.98 30 42.98Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M44 36.98C46.7614 36.98 49 34.7414 49 31.98C49 29.2186 46.7614 26.98 44 26.98C41.2386 26.98 39 29.2186 39 31.98C39 34.7414 41.2386 36.98 44 36.98Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41 54.98V49.86C41 48.14 39.9 46.6099 38.26 46.0599L35 44.97L30 49.97L25 44.97L21.73 46.0599C20.1 46.6099 19 48.13 19 49.86V54.98"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M55 48.98V43.86C55 42.14 53.9 40.6099 52.26 40.0599L49 38.97L44 43.97L39 38.97"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M23 50.98V54.98"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M37 50.98V54.98"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M51 44.98V48.98"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 44.98V48.98"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16 36.98C18.7614 36.98 21 34.7414 21 31.98C21 29.2186 18.7614 26.98 16 26.98C13.2386 26.98 11 29.2186 11 31.98C11 34.7414 13.2386 36.98 16 36.98Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5 48.98V43.86C5 42.14 6.09998 40.6099 7.72998 40.0599L11 38.97L16 43.97L21 38.97"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 28.98C33.3137 28.98 36 26.2937 36 22.98C36 19.6663 33.3137 16.98 30 16.98C26.6863 16.98 24 19.6663 24 22.98C24 26.2937 26.6863 28.98 30 28.98Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 22.98V20.9901C12 20.5001 12.4 20.1 13.12 20.1H15.18C15.6 20.1 15.94 19.81 16.04 19.41C16.38 18.07 16.92 16.81 17.6 15.65C17.81 15.29 17.77 14.84 17.48 14.55L15.86 12.9301C15.51 12.5801 15.51 12.02 15.86 11.67L18.67 8.86005C19.02 8.51005 19.58 8.51003 20.1 9.03003L21.56 10.4901C21.85 10.7801 22.3 10.82 22.66 10.61C23.82 9.92005 25.08 9.39005 26.42 9.05005C26.82 8.95005 27.11 8.60005 27.11 8.18005V5.89001C27.11 5.40001 27.51 5 28 5H31.97C32.46 5 32.86 5.40006 32.86 6.12006V8.18005C32.86 8.60005 33.15 8.94004 33.55 9.04004C34.89 9.38004 36.15 9.92004 37.31 10.6C37.67 10.81 38.12 10.77 38.41 10.48L40.03 8.86005C40.38 8.51005 40.94 8.51005 41.29 8.86005L44.1 11.67C44.45 12.02 44.45 12.58 43.93 13.1L42.47 14.56C42.18 14.85 42.14 15.3 42.35 15.66C43.04 16.82 43.57 18.08 43.91 19.42C44.01 19.82 44.36 20.11 44.78 20.11H47.07C47.56 20.11 47.96 20.51 47.96 21V22.9901"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function TeamCircle2IconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledTeamCircle2Icon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

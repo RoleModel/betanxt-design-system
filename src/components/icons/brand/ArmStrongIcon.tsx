@@ -1,0 +1,82 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledArmStrongIcon = styled(ArmStrongIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function ArmStrongIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`ArmStrongIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M42.46 30.02C38.48 30.02 35.94 32.04 33.87 35.11L37.31 37.45C34.64 35.52 32.45 33.86 29.41 33.86C23.85 33.86 18.5 38 18.5 38C18.5 38 24.57 33.6899 24.57 29.5399C24.57 25.3899 22.65 22.04 22.65 17.89C22.65 17.89 31.76 20.92 32.87 18.85C33.67 17.37 35.24 13.6099 33.83 11.6699C32.49 9.80992 28.07 8 23.93 8C16.9 8 7 31.3 7 41.51C7 51.72 25.21 53 41.5 53C47.57 53 53 47.86 53 41.51C53 35.16 47.97 30.02 42.46 30.02Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M33.8103 16.7001C33.8103 16.7001 29.3803 15.8901 28.0803 14.8301C27.7703 14.5801 27.6204 14.2801 27.6304 13.9601C27.6604 13.1101 28.7803 12.31 28.8003 12.3H28.8103C28.8103 12.3 27.6803 13.1201 27.6503 13.9601C27.6403 14.2801 27.7903 14.5701 28.0903 14.8101C29.3903 15.8701 33.7703 16.6701 33.8103 16.6801V16.7001Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M43.1003 9.73999H38.0303V9.76001H43.1003V9.73999Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M47.8899 14.53H40.0898V14.5499H47.8899V14.53Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M45.0199 19.3098H38.6299V19.3298H45.0199V19.3098Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function ArmStrongIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledArmStrongIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

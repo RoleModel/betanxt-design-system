@@ -17,3 +17,6 @@ export { VerticalBarChartIcon } from './VerticalBarChartIcon'
 export { BarChartNoStackingIcon } from './BarChartNoStackingIcon'
 export { BarChartStackedIcon } from './BarChartStackedIcon'
 export { BarChartStacked100Icon } from './BarChartStacked100Icon'
+
+// Brand Icons
+export * from './brand'

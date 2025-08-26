@@ -1,0 +1,120 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledTimerStopwatchIcon = styled(TimerStopwatchIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function TimerStopwatchIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`TimerStopwatchIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M36 39C37.6569 39 39 37.6569 39 36C39 34.3431 37.6569 33 36 33C34.3431 33 33 34.3431 33 36C33 37.6569 34.3431 39 36 39Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M46.6002 25.3899L38.1201 33.8799"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M33 9V15.24" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M39 15.2V9" strokeWidth="2" strokeLinejoin="round" />
+      <path
+        d="M52.7996 23.44L56.0896 20.1499C56.4796 19.7599 56.4796 19.1299 56.0896 18.7399L53.2596 15.9099C52.8696 15.5199 52.2396 15.5199 51.8496 15.9099L48.5596 19.2C50.1696 20.4 51.5996 21.83 52.7996 23.44Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19.1997 23.44L15.9097 20.1499C15.5197 19.7599 15.5197 19.1299 15.9097 18.7399L18.7396 15.9099C19.1296 15.5199 19.7597 15.5199 20.1497 15.9099L23.4397 19.2C21.8297 20.4 20.3997 21.83 19.1997 23.44Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M42 9H30C28.9 9 28 8.1 28 7V6C28 4.34 29.34 3 31 3H41C42.66 3 44 4.34 44 6V7C44 8.1 43.1 9 42 9Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M36 51.0001C44.28 51.0001 51 44.2801 51 36.0001C51 34.0701 50.62 32.23 49.96 30.53"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16 55C23.1797 55 29 49.1797 29 42C29 34.8203 23.1797 29 16 29C8.8203 29 3 34.8203 3 42C3 49.1797 8.8203 55 16 55Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19 38H15C13.9 38 13 38.9 13 40C13 41.1 13.9 42 15 42H17C18.1 42 19 42.9 19 44C19 45.1 18.1 46 17 46H13"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16 35V38"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16 46V49"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M26.9903 54.96C29.7203 56.26 32.7703 57 36.0003 57C47.6003 57 57.0003 47.6 57.0003 36C57.0003 24.4 47.6003 15 36.0003 15C28.3903 15 21.7403 19.07 18.0703 25.14"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function TimerStopwatchIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledTimerStopwatchIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

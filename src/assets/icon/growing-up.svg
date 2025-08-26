@@ -1,0 +1,11 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+    :root {
+      color-scheme: light dark;
+      --stroke-color: light-dark(black, white);
+    }
+</style>
+<path d="M30.4904 6L24.4404 13.54H27.2004V44L21.1504 54H39.8404L33.7904 44V13.54H36.5404L30.4904 6Z" stroke="#34C0F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M43.5998 14L37.5498 21.54H40.3098V44L46.3598 54H56.9798L46.8998 44V21.54H49.6598L43.5998 14Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.38 14L11.33 21.54H14.09V44L4 54H14.63L20.68 44V21.54H23.43L17.38 14Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

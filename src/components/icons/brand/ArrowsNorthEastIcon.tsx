@@ -1,0 +1,88 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledArrowsNorthEastIcon = styled(ArrowsNorthEastIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function ArrowsNorthEastIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`ArrowsNorthEastIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M23.6199 45.91L23.5499 45.85L46.5699 22.7999L51.2399 27.47L51.9099 8.09998L32.5599 8.77002L37.2199 13.4399L14.1999 36.49L14.1299 36.42L37.0899 13.4399L32.3399 8.67993H32.4399L51.9999 8V8.05994L51.3299 27.6899L51.2499 27.62L46.5699 22.9399L23.6199 45.91Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M51.5597 33.6401L41.7797 34.0001L44.2997 36.5201L33.2197 47.6001L37.6097 52.0001L48.6897 40.9102L51.1997 43.4301L51.5597 33.6401Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M27.34 9.3999L17.57 9.75989L20.08 12.2699L9 23.3599L13.4 27.7599L24.47 16.6699L26.98 19.1898L27.34 9.3999Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.4001 41.25L10.3301 41.1799L12.2301 39.28L12.3001 39.34L10.4001 41.25Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.43988 47.9102L9.37988 47.8501L19.8399 37.3701L19.9099 37.4401L9.43988 47.9102Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M17.0602 46.0099L16.9902 45.9398L20.7903 42.1299L20.8603 42.1998L17.0602 46.0099Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function ArrowsNorthEastIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledArrowsNorthEastIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

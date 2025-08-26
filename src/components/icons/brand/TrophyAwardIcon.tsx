@@ -1,0 +1,80 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledTrophyAwardIcon = styled(TrophyAwardIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function TrophyAwardIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`TrophyAwardIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M26.7955 40V42C26.7955 46.42 23.9355 50 20.3955 50C19.2955 50 18.3955 50.9 18.3955 52C18.3955 53.1 19.2955 54 20.3955 54H39.5955C40.6955 54 41.5955 53.1 41.5955 52C41.5955 50.9 40.6955 50 39.5955 50C36.0655 50 33.1955 46.42 33.1955 42V40H26.7955Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M52.9848 8H46.9948V10C46.9948 16.62 45.7748 22.74 43.7148 27.7C43.9148 27.7 44.1148 27.69 44.3148 27.63C49.9848 25.96 54.3648 18.89 54.9848 10.15C55.0648 9.00002 54.1448 8.01001 52.9848 8.01001V8Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.9948 8H7.00485C5.84485 8 4.92485 8.98001 5.00485 10.14C5.62485 18.89 10.0048 25.95 15.6748 27.62C15.8748 27.68 16.0748 27.6999 16.2748 27.6899C14.2148 22.7299 12.9948 16.61 12.9948 9.98999V7.98999V8Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M46.9951 10C46.9951 26.57 39.3851 40 29.9951 40C20.6051 40 12.9951 26.57 12.9951 10V8C12.9951 6.9 13.8951 6 14.9951 6H44.9951C46.0951 6 46.9951 6.9 46.9951 8V10Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M29.4554 25.6301L27.5455 26.6301C26.6955 27.0801 25.6955 26.3601 25.8555 25.4001L26.2155 23.2801C26.2755 22.9001 26.1554 22.5201 25.8854 22.2501L24.3454 20.7501C23.6554 20.0801 24.0354 18.9101 24.9954 18.7701L27.1254 18.4601C27.5054 18.4101 27.8355 18.17 28.0055 17.82L28.9554 15.8901C29.3854 15.0301 30.6155 15.0301 31.0355 15.8901L31.9854 17.82C32.1554 18.16 32.4855 18.4001 32.8655 18.4601L34.9955 18.7701C35.9455 18.9101 36.3254 20.0801 35.6354 20.7501L34.0954 22.2501C33.8254 22.5201 33.6954 22.9001 33.7654 23.2801L34.1254 25.4001C34.2854 26.3501 33.2955 27.0701 32.4355 26.6301L30.5254 25.6301C30.1854 25.4501 29.7854 25.4501 29.4454 25.6301H29.4554Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function TrophyAwardIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledTrophyAwardIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

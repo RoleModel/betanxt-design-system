@@ -1,0 +1,80 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledPersonDeskIcon = styled(PersonDeskIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function PersonDeskIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`PersonDeskIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M30 19C33.866 19 37 15.866 37 12C37 8.13401 33.866 5 30 5C26.134 5 23 8.13401 23 12C23 15.866 26.134 19 30 19Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M43 33V26.5C43 24.53 41.73 22.78 39.87 22.16L36 21L30 27L24 21L20.13 22.16C18.26 22.78 17 24.53 17 26.5V33"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path d="M43 43V55" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M17 55V43" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M44 18C44.5523 18 45 17.5523 45 17C45 16.4477 44.5523 16 44 16C43.4477 16 43 16.4477 43 17C43 17.5523 43.4477 18 44 18Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M47.0002 33V20.83C47.0002 20.3 46.7902 19.79 46.4102 19.42L44.7002 17.71"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M48 33H12C11.4477 33 11 33.4477 11 34V42C11 42.5523 11.4477 43 12 43H48C48.5523 43 49 42.5523 49 42V34C49 33.4477 48.5523 33 48 33Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path d="M22 28V33" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M38 28V33" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </SvgIcon>
+  )
+}
+
+export default function PersonDeskIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledPersonDeskIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

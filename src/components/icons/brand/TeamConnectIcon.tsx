@@ -1,0 +1,139 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledTeamConnectIcon = styled(TeamConnectIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function TeamConnectIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`TeamConnectIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M40.3699 7.25C37.2099 5.81 33.6999 5 29.9999 5C26.2999 5 22.7899 5.81 19.6299 7.25"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M45 49.99C50.31 46 53.98 39.93 54.81 33"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5.19043 32.99C6.02043 39.93 9.69043 45.99 15.0004 49.98"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 42.99C32.7614 42.99 35 40.7514 35 37.99C35 35.2286 32.7614 32.99 30 32.99C27.2386 32.99 25 35.2286 25 37.99C25 40.7514 27.2386 42.99 30 42.99Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41 54.99V49.87C41 48.15 39.9 46.6199 38.26 46.0699L35 44.98L30 49.98L25 44.98L21.73 46.0699C20.1 46.6199 19 48.14 19 49.87V54.99H41Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M23 50.99V54.99"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M37 50.99V54.99"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M48 16.99C50.7614 16.99 53 14.7514 53 11.99C53 9.22857 50.7614 6.98999 48 6.98999C45.2386 6.98999 43 9.22857 43 11.99C43 14.7514 45.2386 16.99 48 16.99Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M59 28.99V23.87C59 22.15 57.9 20.6199 56.26 20.0699L53 18.98L48 23.98L43 18.98L39.73 20.0699C38.1 20.6199 37 22.14 37 23.87V28.99H59Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41 24.99V28.99"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M55 24.99V28.99"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 16.99C14.7614 16.99 17 14.7514 17 11.99C17 9.22857 14.7614 6.98999 12 6.98999C9.23858 6.98999 7 9.22857 7 11.99C7 14.7514 9.23858 16.99 12 16.99Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M23 28.99V23.87C23 22.15 21.9 20.6199 20.26 20.0699L17 18.98L12 23.98L7 18.98L3.72998 20.0699C2.09998 20.6199 1 22.14 1 23.87V28.99H23Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5 24.99V28.99"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19 24.99V28.99"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function TeamConnectIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledTeamConnectIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

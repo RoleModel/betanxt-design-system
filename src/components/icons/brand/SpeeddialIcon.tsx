@@ -1,0 +1,92 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledSpeeddialIcon = styled(SpeeddialIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function SpeeddialIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`SpeeddialIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M30.02 10H30V14.97H30.02V10Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M17.28 20.21L13.75 16.7L13.76 16.6799L17.3 20.1899L17.28 20.21Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.0195 32.8298H7.01953V32.8499H12.0195V32.8298Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M53 32.8298H48V32.8499H53V32.8298Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M46.26 49.0001L42.73 45.4901H42.74L45.55 48.2701C45.74 48.4601 45.99 48.56 46.26 48.56H46.28C46.55 48.56 46.79 48.4401 46.97 48.2501C49.13 45.9001 50.75 43.19 51.77 40.19C52.84 37.06 53.21 33.78 52.86 30.43C52.59 27.84 51.88 25.33 50.73 22.97C49.62 20.67 48.13 18.5901 46.31 16.7701C44.49 14.9501 42.41 13.45 40.11 12.33C37.75 11.17 35.23 10.4401 32.62 10.1601C29.26 9.79011 25.96 10.1301 22.81 11.1601C19.79 12.1501 17.06 13.72 14.68 15.84C12.3 17.96 10.41 20.5001 9.09 23.3801C7.72 26.3601 7.02002 29.55 7.02002 32.85C7.02002 38.57 9.16001 44.0501 13.04 48.2601C13.22 48.4501 13.46 48.56 13.73 48.57H13.75C14.01 48.57 14.27 48.4601 14.46 48.2801L17.27 45.4901H17.28L13.75 49.0201H13.74L14.32 48.43C14.15 48.54 13.95 48.6 13.75 48.6H13.73C13.46 48.6 13.21 48.48 13.03 48.29C9.14 44.07 7 38.5901 7 32.8601C7 29.5501 7.70001 26.3601 9.07001 23.3801C10.4 20.5001 12.28 17.96 14.66 15.83C17.04 13.71 19.78 12.1401 22.8 11.1501C25.95 10.1201 29.26 9.7801 32.62 10.1501C35.23 10.4401 37.75 11.17 40.12 12.33C42.42 13.46 44.51 14.9501 46.33 16.7701C48.15 18.5901 49.64 20.6801 50.75 22.9801C51.9 25.3401 52.61 27.85 52.88 30.45C53.23 33.8 52.86 37.09 51.79 40.22C50.76 43.22 49.15 45.9301 46.98 48.2801C46.8 48.4801 46.55 48.59 46.28 48.59H46.26C46.06 48.59 45.86 48.53 45.69 48.42L46.27 49.0001H46.26Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M42.7395 20.21L42.7295 20.1899L46.2595 16.6799L46.2795 16.7L42.7395 20.21Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M32.8395 35.6501C31.2795 37.2001 28.7495 37.2001 27.1895 35.6501C25.6295 34.1001 25.6295 31.5801 27.1895 30.0301C28.2595 28.9601 33.1996 26.7101 36.1796 25.4101C37.0096 25.0401 37.8595 25.8901 37.4895 26.7201C36.1795 29.6901 33.9095 34.5901 32.8395 35.6601V35.6501Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function SpeeddialIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledSpeeddialIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

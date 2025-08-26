@@ -1,0 +1,117 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledNetworkShareIcon = styled(NetworkShareIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function NetworkShareIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`NetworkShareIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M34 38C38.9706 38 43 33.9706 43 29C43 24.0294 38.9706 20 34 20C29.0294 20 25 24.0294 25 29C25 33.9706 29.0294 38 34 38Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M34 34C36.7614 34 39 31.7614 39 29C39 26.2386 36.7614 24 34 24C31.2386 24 29 26.2386 29 29C29 31.7614 31.2386 34 34 34Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M21 50C23.2091 50 25 48.2091 25 46C25 43.7909 23.2091 42 21 42C18.7909 42 17 43.7909 17 46C17 48.2091 18.7909 50 21 50Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M47 13C49.2091 13 51 11.2091 51 9C51 6.79086 49.2091 5 47 5C44.7909 5 43 6.79086 43 9C43 11.2091 44.7909 13 47 13Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 33C11.2091 33 13 31.2091 13 29C13 26.7909 11.2091 25 9 25C6.79086 25 5 26.7909 5 29C5 31.2091 6.79086 33 9 33Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M19 18C21.2091 18 23 16.2091 23 14C23 11.7909 21.2091 10 19 10C16.7909 10 15 11.7909 15 14C15 16.2091 16.7909 18 19 18Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M50 55C52.7614 55 55 52.7614 55 50C55 47.2386 52.7614 45 50 45C47.2386 45 45 47.2386 45 50C45 52.7614 47.2386 55 50 55Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M21.6396 16.99L24.4696 20.1799"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41.0801 18.1101L44.8201 12.3501"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M25 29H13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M23.3398 42.77L25.9298 39.1799"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M46.9801 46.0402L41.8701 39.3301"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function NetworkShareIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledNetworkShareIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

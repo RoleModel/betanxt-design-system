@@ -1,0 +1,166 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledDocumentStackIcon = styled(DocumentStackIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function DocumentStackIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`DocumentStackIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <mask
+        id="mask0_15567_2050"
+        style={{ maskType: 'luminance' }}
+        maskUnits="userSpaceOnUse"
+        x="5"
+        y="6"
+        width="39"
+        height="48"
+      >
+        <path
+          d="M9.99036 5.99994C7.78036 5.99994 5.99036 7.78994 5.99036 9.99994V49.9999C5.99036 52.2099 7.78036 53.9999 9.99036 53.9999H39.9704C42.1804 53.9999 43.9704 52.2099 43.9704 49.9999C37.9004 49.9999 32.9804 45.0799 32.9804 38.9999C32.9804 32.9199 37.9004 27.9999 43.9704 27.9999V15.9999H33.9804V5.99994H10.0004H9.99036Z"
+          fill="white"
+        />
+      </mask>
+      <g mask="url(#mask0_15567_2050)">
+        <mask
+          id="mask1_15567_2050"
+          style={{ maskType: 'luminance' }}
+          maskUnits="userSpaceOnUse"
+          x="5"
+          y="5"
+          width="51"
+          height="50"
+        >
+          <path d="M56 5H5V55H56V5Z" fill="white" />
+        </mask>
+        <g mask="url(#mask1_15567_2050)">
+          <path
+            d="M33.98 6H10C7.79 6 6 7.79 6 10V50C6 52.21 7.79 54 10 54H39.98C42.19 54 43.98 52.21 43.98 50V16H33.99V6H33.98Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M35.97 21.95H13.99V22.05H35.97V21.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M35.97 27.95H13.99V28.05H35.97V27.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M35.97 33.95H13.99V34.05H35.97V33.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M27.98 39.95H13.99V40.05H27.98V39.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      </g>
+      <mask
+        id="mask2_15567_2050"
+        style={{ maskType: 'luminance' }}
+        maskUnits="userSpaceOnUse"
+        x="5"
+        y="5"
+        width="51"
+        height="50"
+      >
+        <path d="M56 5H5V55H56V5Z" fill="white" />
+      </mask>
+      <g mask="url(#mask2_15567_2050)">
+        <path
+          d="M32.9803 38.9999C32.9803 32.9199 37.9003 27.9999 43.9703 27.9999V15.9999H33.9803V5.99994H10.0003C7.79031 5.99994 6.00031 7.78994 6.00031 9.99994V49.9999C6.00031 52.2099 7.79031 53.9999 10.0003 53.9999H39.9803C42.1903 53.9999 43.9803 52.2099 43.9803 49.9999C37.9103 49.9999 32.9903 45.0799 32.9903 38.9999H32.9803Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M33.9803 5.99994V15.9999H43.9703L33.9803 5.99994Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M43.9703 49.9999C50.0399 49.9999 54.9603 45.0751 54.9603 38.9999C54.9603 32.9248 50.0399 27.9999 43.9703 27.9999C37.9007 27.9999 32.9803 32.9248 32.9803 38.9999C32.9803 45.0751 37.9007 49.9999 43.9703 49.9999Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M51.7709 46.7529L51.7002 46.8235L54.9164 50.042L54.9871 49.9713L51.7709 46.7529Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M44.0203 34.9999H43.9203V42.9999H44.0203V34.9999Z"
+          stroke="#34C0F3"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M40.0203 38.9999H39.9203V42.9999H40.0203V38.9999Z"
+          stroke="#34C0F3"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M48.0203 36.9999H47.9203V42.9999H48.0203V36.9999Z"
+          stroke="#34C0F3"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </SvgIcon>
+  )
+}
+
+export default function DocumentStackIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledDocumentStackIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

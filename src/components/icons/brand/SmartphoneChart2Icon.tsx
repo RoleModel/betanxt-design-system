@@ -1,0 +1,142 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledSmartphoneChart2Icon = styled(SmartphoneChart2Icon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function SmartphoneChart2Icon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`SmartphoneChart2Icon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M14.04 51C14.04 53.2 15.84 55 18.03 55H41.97C44.16 55 45.9601 53.2 45.9601 51V46H14.04V51Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41.97 5H18.03C15.84 5 14.04 6.8 14.04 9V14H45.9601V9C45.9601 6.8 44.16 5 41.97 5Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M45.9601 14H14.04V46H45.9601V14Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M32.6795 9.54993H27.3195C27.3195 9.54993 27.2695 9.52994 27.2695 9.49994C27.2695 9.46994 27.2895 9.44995 27.3195 9.44995H32.6795C32.6795 9.44995 32.7295 9.46994 32.7295 9.49994C32.7295 9.52994 32.7095 9.54993 32.6795 9.54993Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M31 50.5C31 51.05 30.55 51.5 30 51.5C29.45 51.5 29 51.05 29 50.5C29 49.95 29.45 49.5 30 49.5C30.55 49.5 31 49.95 31 50.5Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30.0502 24H29.9502V38H30.0502V24Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M25.0599 30H24.96V38H25.0599V30Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M20.0697 28H19.9697V38H20.0697V28Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.0805 28H14.9805V38H15.0805V28Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.1 32H10V38H10.1V32Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M40.0199 26H39.9199V38H40.0199V26Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M45.0102 26H44.9102V38H45.0102V26Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M50.0004 30H49.9004V38H50.0004V30Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M35.0404 22H34.9404V38H35.0404V22Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function SmartphoneChart2IconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledSmartphoneChart2Icon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

@@ -1,0 +1,146 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledFileSearchIcon = styled(FileSearchIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function FileSearchIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`FileSearchIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <mask
+        id="mask0_15567_3155"
+        style={{ maskType: 'luminance' }}
+        maskUnits="userSpaceOnUse"
+        x="3"
+        y="6"
+        width="38"
+        height="48"
+      >
+        <path
+          d="M7.00012 6C4.79012 6 3.00012 7.79 3.00012 10V50C3.00012 52.21 4.79012 54 7.00012 54H36.9801C39.1901 54 40.9801 52.21 40.9801 50C34.9101 50 29.9901 45.08 29.9901 39C29.9901 32.92 34.9101 28 40.9801 28V16H30.9901V6H7.01013H7.00012Z"
+          fill="white"
+        />
+      </mask>
+      <g mask="url(#mask0_15567_3155)">
+        <mask
+          id="mask1_15567_3155"
+          style={{ maskType: 'luminance' }}
+          maskUnits="userSpaceOnUse"
+          x="2"
+          y="5"
+          width="51"
+          height="50"
+        >
+          <path d="M53 5H2V55H53V5Z" fill="white" />
+        </mask>
+        <g mask="url(#mask1_15567_3155)">
+          <path
+            d="M30.98 6H7C4.79 6 3 7.79 3 10V50C3 52.21 4.79 54 7 54H36.98C39.19 54 40.98 52.21 40.98 50V16H30.99V6H30.98Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M32.97 21.95H10.99V22.05H32.97V21.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M32.97 27.95H10.99V28.05H32.97V27.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M32.97 33.95H10.99V34.05H32.97V33.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M24.98 39.95H10.99V40.05H24.98V39.95Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      </g>
+      <mask
+        id="mask2_15567_3155"
+        style={{ maskType: 'luminance' }}
+        maskUnits="userSpaceOnUse"
+        x="2"
+        y="5"
+        width="57"
+        height="50"
+      >
+        <path d="M59 5H2V55H59V5Z" fill="white" />
+      </mask>
+      <g mask="url(#mask2_15567_3155)">
+        <path
+          d="M29.98 39C29.98 32.92 34.9 28 40.97 28V16H30.98V6H7C4.79 6 3 7.79 3 10V50C3 52.21 4.79 54 7 54H36.98C39.19 54 40.98 52.21 40.98 50C34.91 50 29.99 45.08 29.99 39H29.98Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M30.9805 6V16H40.9705L30.9805 6Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M40.9705 50C47.0401 50 51.9605 45.0751 51.9605 39C51.9605 32.9249 47.0401 28 40.9705 28C34.9008 28 29.9805 32.9249 29.9805 39C29.9805 45.0751 34.9008 50 40.9705 50Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M36.0195 39.48L42.3695 44.93L56.7895 30"
+          stroke="#34C0F3"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </SvgIcon>
+  )
+}
+
+export default function FileSearchIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledFileSearchIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

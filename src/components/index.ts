@@ -22,3 +22,13 @@ export { default as BNFilterSearchAutocomplete } from './filter-search/BNFilterS
 export type { BNFilterSearchAutocompleteProps } from './filter-search/BNFilterSearchAutocomplete'
 export { default as BNFilterSearch } from './filter-search/BNFilterSearch'
 export type { BNFilterSearchProps } from './filter-search/BNFilterSearch'
+
+// File Upload Components
+export { default as BNFileUpload } from './file-upload/BNFileUpload'
+export type { FileUploadProps } from './file-upload/types'
+export { default as BNFileDropzone } from './file-upload/BNFileDropzone'
+export type { FileDropzoneProps } from './file-upload/types'
+export { default as BNFilePreview } from './file-upload/BNFilePreview'
+export type { FilePreviewProps } from './file-upload/types'
+export { default as FileUploadDialog } from './file-upload/FileUploadDialog'
+export type { UploadFile } from './file-upload/types'

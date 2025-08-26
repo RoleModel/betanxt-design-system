@@ -8,9 +8,9 @@ export function VerticalBarChartIcon(props: SvgIconProps) {
       viewBox="0 0 24 24"
       {...props}
     >
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 8V4H12V8H4Z" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 14V10H20V14H4Z" />
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 20V16H15V20H4Z" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M4 8V4H12V8H4Z" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M4 14V10H20V14H4Z" />
+      <path fillRule="evenodd" clipRule="evenodd" d="M4 20V16H15V20H4Z" />
     </SvgIcon>
   )
 }

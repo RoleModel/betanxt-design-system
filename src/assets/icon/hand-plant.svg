@@ -1,0 +1,18 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+    :root {
+      color-scheme: light dark;
+      --stroke-color: light-dark(black, white);
+    }
+</style>
+<path d="M8.42999 29.92L7.23999 20.85C7.09999 19.79 6.2 19 5.13 19C3.95 19 3 19.95 3 21.13V36.34C3 37.4 3.41998 38.42 4.16998 39.17L12.41 47.41C12.79 47.79 13 48.29 13 48.82V48.99" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.9998 49V45.18C26.9998 40.94 24.0498 37.21 19.8898 36.38C19.2998 36.26 18.6599 36.17 17.9799 36.11C17.0399 36.03 16.1598 35.63 15.4898 34.96L11.1499 30.61C10.2199 29.69 8.71984 29.51 7.69984 30.34C6.52984 31.29 6.46984 33.01 7.50984 34.05L14.4699 41.01" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27 49H11V55H27V49Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M49 49H33V55H49V49Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M51.5602 29.92L52.7502 20.85C52.8902 19.79 53.7902 19 54.8602 19C56.0402 19 56.9902 19.95 56.9902 21.13V36.34C56.9902 37.4 56.5703 38.42 55.8203 39.17L47.5803 47.41C47.2003 47.79 46.9902 48.29 46.9902 48.82V48.99" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33 49V45.18C33 40.94 35.95 37.21 40.11 36.38C40.7 36.26 41.34 36.17 42.02 36.11C42.96 36.03 43.84 35.63 44.51 34.96L48.85 30.61C49.78 29.69 51.28 29.51 52.3 30.34C53.47 31.29 53.53 33.01 52.49 34.05L45.53 41.01" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30 35C38.2843 35 45 28.2843 45 20C45 11.7157 38.2843 5 30 5C21.7157 5 15 11.7157 15 20C15 28.2843 21.7157 35 30 35Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33 16H29C27.9 16 27 16.9 27 18C27 19.1 27.9 20 29 20H31C32.1 20 33 20.9 33 22C33 23.1 32.1 24 31 24H27" stroke="#34C0F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30 13V16" stroke="#34C0F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30 24V27" stroke="#34C0F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

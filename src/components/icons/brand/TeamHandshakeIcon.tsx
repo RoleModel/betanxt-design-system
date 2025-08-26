@@ -1,0 +1,106 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledTeamHandshakeIcon = styled(TeamHandshakeIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function TeamHandshakeIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 61 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`TeamHandshakeIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M29.9871 54.96C29.9871 54.96 16.9971 50.01 16.9971 38.98V24.99C16.9971 24.99 22.8171 20.99 29.9871 20.99C37.1571 20.99 42.9771 24.99 42.9771 24.99V38.98C42.9771 50.01 29.9871 54.96 29.9871 54.96Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M35.9871 33.98L31.9871 37.97L27.9871 41.97L23.9971 37.97"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.9971 15C15.7585 15 17.9971 12.7614 17.9971 10C17.9971 7.23858 15.7585 5 12.9971 5C10.2356 5 7.99707 7.23858 7.99707 10C7.99707 12.7614 10.2356 15 12.9971 15Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.9971 40.97V54.96"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M22.647 22.28L22.027 19.96C21.557 18.21 19.977 17 18.167 17H17.997L12.997 22L7.99698 17H7.82698C6.01698 17 4.43698 18.21 3.96698 19.96L1.13698 30.51C0.566981 32.64 1.82698 34.83 3.96698 35.4"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7.29672 22.99L2.81671 39.72C2.64671 40.35 3.12671 40.98 3.78671 40.98H8.00671V53.97C8.00671 54.52 8.45671 54.97 9.00671 54.97H17.0067C17.5567 54.97 18.0067 54.52 18.0067 53.97V50.97"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M49.4873 15C52.3868 15 54.7373 12.7614 54.7373 10C54.7373 7.23858 52.3868 5 49.4873 5C46.5878 5 44.2373 7.23858 44.2373 10C44.2373 12.7614 46.5878 15 49.4873 15Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M43.1865 47.96V53.95C43.1865 54.5 43.6565 54.95 44.2365 54.95H54.7365C55.3165 54.95 55.7865 54.5 55.7865 53.95V24.98"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M38.9873 22.91V21.7C38.9873 20.07 40.0373 18.6 41.6273 17.99L44.2373 17L49.4873 22L54.7373 17L57.3473 17.99C58.9373 18.6 59.9873 20.07 59.9873 21.7V33.98C59.9873 36.19 58.1073 37.98 55.7873 37.98"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M48.9873 36.97V53.96"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function TeamHandshakeIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledTeamHandshakeIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

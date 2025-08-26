@@ -187,7 +187,7 @@ export const basePaletteDark: PaletteOptions = {
   },
   success: {
     main: seagrass[400],
-    dark: seagrass[700],
+    dark: seagrass[500],
     light: seagrass[300],
     contrastText: '#000000',
   },

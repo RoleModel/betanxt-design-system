@@ -1,0 +1,86 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledPersonDuoIcon = styled(PersonDuoIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function PersonDuoIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`PersonDuoIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path d="M13 39V24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M19 15C21.7614 15 24 12.7614 24 10C24 7.23858 21.7614 5 19 5C16.2386 5 14 7.23858 14 10C14 12.7614 16.2386 15 19 15Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M19 37V55" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M45 37V55" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M44.9902 15C47.7502 15 49.9902 12.76 49.9902 10C49.9902 7.24 47.7502 5 44.9902 5C42.2302 5 39.9902 7.24 39.9902 10C39.9902 12.76 42.2302 15 44.9902 15Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M50.9999 39C53.2099 39 54.9999 37.21 54.9999 35V23C54.9999 19.69 52.3099 17 48.9999 17H41.0199C38.5899 17 36.37 18.44 35.4 20.67L30.1699 33.63C29.7399 34.62 30.23 35.76 31.24 36.13C32.29 36.51 33.4499 36.01 33.8899 34.98L38.2199 23.84C38.3899 23.43 38.9999 23.56 38.9999 24V54C38.9999 54.55 39.4499 55 39.9999 55H49.9999C50.5499 55 50.9999 54.55 50.9999 54V24"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M13 47.9999V53.9999C13 54.5499 13.45 54.9999 14 54.9999H24C24.55 54.9999 25 54.5499 25 53.9999V23.7499C25 23.3099 25.61 23.1799 25.79 23.5899L30.13 33.7499"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M32.1802 28.61L28.5902 20.42C28.1002 19.31 27.6302 18.52 26.5802 18C25.9602 17.7 23.9902 17 23.9902 17L18.9902 22L13.9902 17L11.4002 17.89C9.96024 18.37 8.99023 19.72 8.99023 21.23V35C8.99023 37.21 10.7802 39 12.9902 39"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 39H7C5.89543 39 5 39.8954 5 41V46C5 47.1046 5.89543 48 7 48H15C16.1046 48 17 47.1046 17 46V41C17 39.8954 16.1046 39 15 39Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function PersonDuoIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledPersonDuoIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

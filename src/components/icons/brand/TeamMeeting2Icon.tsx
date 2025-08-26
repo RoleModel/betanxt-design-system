@@ -1,0 +1,96 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledTeamMeeting2Icon = styled(TeamMeeting2Icon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function TeamMeeting2Icon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`TeamMeeting2Icon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M43 37C40.79 37 39 35.21 39 33V23C39 21.49 39.97 20.14 41.41 19.66L44 19L48 23L52 19L54.59 19.66C56.03 20.13 57 21.49 57 23V33C57 35.21 55.21 37 53 37"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M48 17C50.2091 17 52 15.2091 52 13C52 10.7909 50.2091 9 48 9C45.7909 9 44 10.7909 44 13C44 15.2091 45.7909 17 48 17Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M43 25V50C43 50.55 43.45 51 44 51H52C52.55 51 53 50.55 53 50V25"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M48 35V51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M7 37C4.79 37 3 35.21 3 33V23C3 21.49 3.96997 20.14 5.40997 19.66L8 19L12 23L16 19L18.59 19.66C20.03 20.13 21 21.49 21 23V33C21 35.21 19.21 37 17 37"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12 17C14.2091 17 16 15.2091 16 13C16 10.7909 14.2091 9 12 9C9.79086 9 8 10.7909 8 13C8 15.2091 9.79086 17 12 17Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 25V50C7 50.55 7.45 51 8 51H16C16.55 51 17 50.55 17 50V25"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M12 35V51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M21 13H31V9L39 16L31 23V19H25"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M35 39H29V35L21 42L29 49V45H39"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function TeamMeeting2IconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledTeamMeeting2Icon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

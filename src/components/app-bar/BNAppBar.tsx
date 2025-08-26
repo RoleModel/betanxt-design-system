@@ -47,10 +47,12 @@ export interface BNAppBarProps {
   slots?: {
     logoComponent?: React.ElementType
     logoImg?: React.ElementType
+    end?: React.ElementType
   }
   slotProps?: {
     logoComponent?: React.ComponentProps<any>
     logoImg?: React.ImgHTMLAttributes<HTMLImageElement>
+    end?: React.ComponentProps<any>
   }
 }
 
@@ -126,6 +128,7 @@ export function BNAppBar({
               LinkComponent={LinkComponent}
             />
           )}
+          {slots.end && React.createElement(slots.end, slotProps.end)}
         </Stack>
       </Toolbar>
       {avatar && menuItems && (

@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
+import { Notifications } from '@mui/icons-material'
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
+import { IconButton } from '@mui/material'
+import { Badge } from '@mui/material'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
@@ -69,6 +72,16 @@ export const Primary: Story = {
   },
 }
 
+const endSlot = () => {
+  return (
+    <IconButton>
+      <Badge badgeContent={4} color="primary">
+        <Notifications />
+      </Badge>
+    </IconButton>
+  )
+}
+
 export const Secondary: Story = {
   args: {
     color: 'secondary',
@@ -78,6 +91,7 @@ export const Secondary: Story = {
     tabs: exampleTabs,
     slots: {
       logoComponent: BNLogo,
+      end: endSlot,
     },
     slotProps: {
       logoComponent: {

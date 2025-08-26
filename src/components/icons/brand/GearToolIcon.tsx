@@ -1,0 +1,68 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledGearToolIcon = styled(GearToolIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function GearToolIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`GearToolIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M6.93001 33.8099C6.39001 33.6799 6 33.2 6 32.64V27.34C6 26.78 6.38001 26.2999 6.93001 26.1699C6.93001 26.1699 11.15 25.19 11.1 25.2C11.57 23.35 13.25 20.01 13.25 20.01C13.22 19.97 10.98 16.38 10.98 16.38C10.69 15.91 10.76 15.29 11.15 14.9L14.9 11.15C15.29 10.76 15.91 10.68 16.38 10.98C16.38 10.98 19.98 13.22 20.01 13.25C20.01 13.25 23.35 11.56 25.2 11.1C25.2 11.15 26.17 6.92993 26.17 6.92993C26.3 6.38993 26.78 6 27.34 6H32.64C33.2 6 33.68 6.37993 33.81 6.92993C33.81 6.92993 34.78 11.05 34.78 11.1C34.78 11.1 38.38 12.3 39.97 13.25C39.93 13.28 43.6 10.98 43.6 10.98C44.07 10.69 44.69 10.76 45.08 11.15L48.83 14.9C49.22 15.29 49.3 15.91 49 16.38C49 16.38 46.76 19.98 46.73 20.01C46.73 20.01 48.42 23.35 48.88 25.2C48.83 25.2 53.05 26.1699 53.05 26.1699C53.59 26.2999 53.98 26.78 53.98 27.34V32.64C53.98 33.2 53.6 33.6799 53.05 33.8099C53.05 33.8099 48.93 34.78 48.88 34.78C48.88 34.78 47.68 38.37 46.73 39.97C46.7 39.93 49 43.6 49 43.6C49.29 44.07 49.22 44.69 48.83 45.08L45.08 48.83C44.69 49.22 44.07 49.3 43.6 49C43.6 49 40 46.76 39.97 46.73C39.97 46.73 36.63 48.42 34.78 48.88C34.78 48.83 33.81 53.0499 33.81 53.0499C33.68 53.5899 33.2 53.98 32.64 53.98H27.34C26.78 53.98 26.3 53.5999 26.17 53.0499C26.17 53.0499 25.2 48.93 25.2 48.88C25.2 48.88 21.6 47.68 20.01 46.73C20.05 46.7 16.38 49 16.38 49C15.91 49.29 15.29 49.22 14.9 48.83L11.15 45.08C10.76 44.69 10.69 44.07 10.98 43.6C10.98 43.6 13.22 40 13.25 39.97C13.25 39.97 11.56 36.63 11.1 34.78C11.15 34.78 6.93001 33.8099 6.93001 33.8099Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 43.99C37.732 43.99 44 37.722 44 29.99C44 22.258 37.732 15.99 30 15.99C22.268 15.99 16 22.258 16 29.99C16 37.722 22.268 43.99 30 43.99Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M32.4804 32.47C31.1104 33.84 28.9004 33.84 27.5304 32.47C26.1604 31.1 26.1604 28.89 27.5304 27.52C28.4304 26.62 32.0404 25.16 34.8804 23.78C35.7304 23.37 36.6304 24.26 36.2104 25.11C34.8304 27.95 33.3704 31.5599 32.4704 32.4599L32.4804 32.47Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function GearToolIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledGearToolIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

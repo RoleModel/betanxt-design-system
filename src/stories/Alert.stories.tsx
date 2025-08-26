@@ -1,22 +1,75 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { forwardRef } from 'react'
 import { expect } from 'storybook/test'
 import { userEvent, waitFor, within } from 'storybook/test'
 
 import {
-  Alert as AlertComponent,
   AlertProps,
   AlertTitle,
   Box,
   Button,
+  Alert as MuiAlert,
   Slide,
   Snackbar,
   Typography,
 } from '@mui/material'
 
+// Custom Alert component that properly handles our custom props
+const AlertComponent = forwardRef<
+  HTMLDivElement,
+  AlertProps & {
+    borderTop?: boolean
+    centerText?: boolean
+    showIcon?: boolean
+  }
+>((props, ref) => {
+  const { borderTop, centerText, showIcon, ...muiProps } = props
+  return (
+    <MuiAlert
+      ref={ref}
+      {...muiProps}
+      // Pass these as data attributes to avoid React warnings
+      {...(borderTop !== undefined && { 'data-border-top': borderTop })}
+      {...(centerText !== undefined && { 'data-center-text': centerText })}
+      {...(showIcon !== undefined && { 'data-show-icon': showIcon })}
+      sx={[
+        // Apply borderTop styling manually since we can't pass the prop directly
+        borderTop &&
+          ((theme) => ({
+            borderRadius: 2,
+            borderTop: `10px solid ${theme.vars?.palette[props.severity || 'info']?.main}`,
+          })),
+        // Apply centerText styling manually
+        centerText && {
+          textAlign: 'center',
+          '& .MuiAlert-message': {
+            textAlign: 'center',
+            width: '100%',
+          },
+        },
+        // Apply showIcon styling manually
+        showIcon === false && {
+          '& .MuiAlert-icon': {
+            display: 'none !important',
+          },
+        },
+        // Include any existing sx prop
+        ...(Array.isArray(props.sx) ? props.sx : props.sx ? [props.sx] : []),
+      ]}
+    />
+  )
+})
+
+AlertComponent.displayName = 'AlertComponent'
+
 interface StoryArgs extends Omit<AlertProps, 'onClose'> {
   onClose?: boolean | ((event: React.SyntheticEvent<Element, Event>) => void)
   action?: boolean
+  actionButtonVariant?: 'text' | 'contained' | 'outlined'
+  borderTop?: boolean
+  centerText?: boolean
+  showIcon?: boolean
 }
 
 const meta = {
@@ -164,14 +217,10 @@ export const Alert: Story = {
         onClose={onClose ? handleClose : undefined}
         action={actionButton}
         closeText="Close"
-        // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
         borderTop={borderTop}
-        // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
         centerText={centerText}
-        // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
         showIcon={showIcon}
         sx={incomingSx}
-        {...otherProps}
       >
         <AlertTitle>{title}</AlertTitle>
         {children}
@@ -328,6 +377,12 @@ export const SnackBarAlert: Story = {
       onClose,
       elevation,
       showIcon,
+      borderTop,
+      centerText,
+      title,
+      children,
+      variant,
+      sx: incomingSx,
       ...otherProps
     } = args
 
@@ -368,15 +423,20 @@ export const SnackBarAlert: Story = {
           data-testid="snackbar"
         >
           <AlertComponent
-            {...otherProps}
             elevation={elevation}
             severity={severity}
             onClose={closeHandler}
             action={actionButton}
-            // @ts-ignore - Linter not picking up augmentation from mui-type-customizations.ts
+            variant={variant}
+            borderTop={borderTop}
+            centerText={centerText}
             showIcon={showIcon}
+            sx={incomingSx}
             data-testid="alert"
-          />
+          >
+            <AlertTitle>{title}</AlertTitle>
+            {children}
+          </AlertComponent>
         </Snackbar>
 
         <Button

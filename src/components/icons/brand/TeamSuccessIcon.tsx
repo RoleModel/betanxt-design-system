@@ -1,14 +1,12 @@
-import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
-
+import { SvgIcon, styled } from '@mui/material'
 import type { BrandIconProps } from './types'
 import { getFontSizeValue } from './types'
 
-const StyledTeamSuccessIcon = styled(TeamSuccessIcon)<{
-  accentColor?: string
-  fontSize?: BrandIconProps['fontSize']
-}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+const StyledTeamSuccessIcon = styled(SvgIcon, {
+  shouldForwardProp: (prop) => prop !== 'accentColor' && prop !== 'fontSize',
+})<{ accentColor?: string; fontSize?: BrandIconProps['fontSize'] }>(({ theme, accentColor = '#34C0F3', fontSize }) => [
   {
-    fill: 'none',
+    fill: 'none', // Prevents MUI's default fill
     width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
     height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
     '& path:not([stroke])': {
@@ -18,21 +16,28 @@ const StyledTeamSuccessIcon = styled(TeamSuccessIcon)<{
       stroke: accentColor,
     },
   },
+  theme.applyStyles('dark', {
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.common.white,
+    },
+  }),
 ])
 
-function TeamSuccessIcon({
+export default function TeamSuccessIconWithAccent({
   accentColor = '#34C0F3',
   fontSize,
   className,
-  ...props
+  ...otherProps
 }: BrandIconProps) {
   return (
-    <SvgIcon
+    <StyledTeamSuccessIcon
       viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={`TeamSuccessIcon ${className || ''}`.trim()}
-      {...props}
+      accentColor={accentColor}
+      fontSize={fontSize}
+      {...(otherProps as any)}
     >
       <path
         d="M30.0107 37.0009V55.0009"
@@ -88,16 +93,6 @@ function TeamSuccessIcon({
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </SvgIcon>
-  )
-}
-
-export default function TeamSuccessIconWithAccent(props: BrandIconProps) {
-  return (
-    <StyledTeamSuccessIcon
-      accentColor={props.accentColor}
-      fontSize={props.fontSize}
-      {...props}
-    />
+    </StyledTeamSuccessIcon>
   )
 }

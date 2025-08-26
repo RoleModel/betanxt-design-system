@@ -1,26 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
+import { forwardRef } from 'react'
 import { expect } from 'storybook/test'
 import { userEvent, waitFor, within } from 'storybook/test'
 
 import {
-  Alert as MuiAlert,
   AlertProps,
   AlertTitle,
   Box,
   Button,
+  Alert as MuiAlert,
   Slide,
   Snackbar,
   Typography,
 } from '@mui/material'
-import { forwardRef } from 'react'
 
 // Custom Alert component that properly handles our custom props
-const AlertComponent = forwardRef<HTMLDivElement, AlertProps & {
-  borderTop?: boolean
-  centerText?: boolean
-  showIcon?: boolean
-}>((props, ref) => {
+const AlertComponent = forwardRef<
+  HTMLDivElement,
+  AlertProps & {
+    borderTop?: boolean
+    centerText?: boolean
+    showIcon?: boolean
+  }
+>((props, ref) => {
   const { borderTop, centerText, showIcon, ...muiProps } = props
   return (
     <MuiAlert
@@ -32,10 +35,11 @@ const AlertComponent = forwardRef<HTMLDivElement, AlertProps & {
       {...(showIcon !== undefined && { 'data-show-icon': showIcon })}
       sx={[
         // Apply borderTop styling manually since we can't pass the prop directly
-        borderTop && ((theme) => ({
-          borderRadius: 2,
-          borderTop: `10px solid ${theme.vars?.palette[props.severity || 'info']?.main}`,
-        })),
+        borderTop &&
+          ((theme) => ({
+            borderRadius: 2,
+            borderTop: `10px solid ${theme.vars?.palette[props.severity || 'info']?.main}`,
+          })),
         // Apply centerText styling manually
         centerText && {
           textAlign: 'center',

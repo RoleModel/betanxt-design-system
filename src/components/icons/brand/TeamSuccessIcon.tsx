@@ -1,27 +1,30 @@
 import { SvgIcon, styled } from '@mui/material'
+
 import type { BrandIconProps } from './types'
 import { getFontSizeValue } from './types'
 
 const StyledTeamSuccessIcon = styled(SvgIcon, {
   shouldForwardProp: (prop) => prop !== 'accentColor' && prop !== 'fontSize',
-})<{ accentColor?: string; fontSize?: BrandIconProps['fontSize'] }>(({ theme, accentColor = '#34C0F3', fontSize }) => [
-  {
-    fill: 'none', // Prevents MUI's default fill
-    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
-    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
-    '& path:not([stroke])': {
-      stroke: theme.vars.palette.text.primary,
+})<{ accentColor?: string; fontSize?: BrandIconProps['fontSize'] }>(
+  ({ theme, accentColor = '#34C0F3', fontSize }) => [
+    {
+      fill: 'none', // Prevents MUI's default fill
+      width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+      height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+      '& path:not([stroke])': {
+        stroke: theme.vars.palette.text.primary,
+      },
+      '& path[stroke="#34C0F3"]': {
+        stroke: accentColor,
+      },
     },
-    '& path[stroke="#34C0F3"]': {
-      stroke: accentColor,
-    },
-  },
-  theme.applyStyles('dark', {
-    '& path:not([stroke])': {
-      stroke: theme.vars.palette.common.white,
-    },
-  }),
-])
+    theme.applyStyles('dark', {
+      '& path:not([stroke])': {
+        stroke: theme.vars.palette.common.white,
+      },
+    }),
+  ]
+)
 
 export default function TeamSuccessIconWithAccent({
   accentColor = '#34C0F3',

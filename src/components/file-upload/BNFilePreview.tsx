@@ -150,11 +150,17 @@ const BNFilePreview: React.FC<FilePreviewProps> = ({
             variant="body2"
             sx={[
               (theme) => ({
-                color: file.status === 'error' ? theme.vars.palette.error.dark : 'text.secondary',
+                color:
+                  file.status === 'error'
+                    ? theme.vars.palette.error.dark
+                    : 'text.secondary',
               }),
               (theme) =>
                 theme.applyStyles('dark', {
-                  color: file.status === 'error' ? theme.vars.palette.error.light : 'text.secondary',
+                  color:
+                    file.status === 'error'
+                      ? theme.vars.palette.error.light
+                      : 'text.secondary',
                 }),
             ]}
           >
@@ -190,7 +196,7 @@ const BNFilePreview: React.FC<FilePreviewProps> = ({
           <DeleteIcon sx={{ width: 20, height: 20 }} />
         </IconButton>
       </Box>
-    </Paper >
+    </Paper>
   )
 }
 

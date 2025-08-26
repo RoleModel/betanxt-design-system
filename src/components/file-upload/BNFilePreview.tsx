@@ -140,17 +140,23 @@ const BNFilePreview: React.FC<FilePreviewProps> = ({
           {file.file.name}
         </Typography>
         <Stack direction="row" spacing={1} alignItems="center">
-          <Typography variant="body3" sx={{ color: 'text.secondary' }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {formatFileSize(file.file.size)}
           </Typography>
-          <Typography variant="body3" sx={{ color: 'text.secondary' }}>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             •
           </Typography>
           <Typography
-            variant="body3"
-            sx={{
-              color: file.status === 'error' ? 'error.main' : 'text.secondary',
-            }}
+            variant="body2"
+            sx={[
+              (theme) => ({
+                color: file.status === 'error' ? theme.vars.palette.error.dark : 'text.secondary',
+              }),
+              (theme) =>
+                theme.applyStyles('dark', {
+                  color: file.status === 'error' ? theme.vars.palette.error.light : 'text.secondary',
+                }),
+            ]}
           >
             {getStatusText()}
           </Typography>
@@ -184,7 +190,7 @@ const BNFilePreview: React.FC<FilePreviewProps> = ({
           <DeleteIcon sx={{ width: 20, height: 20 }} />
         </IconButton>
       </Box>
-    </Paper>
+    </Paper >
   )
 }
 

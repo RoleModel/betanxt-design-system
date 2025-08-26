@@ -1,0 +1,173 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledDocumentEditIcon = styled(DocumentEditIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function DocumentEditIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`DocumentEditIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <mask
+        id="mask0_15567_2521"
+        style={{ maskType: 'luminance' }}
+        maskUnits="userSpaceOnUse"
+        x="5"
+        y="5"
+        width="50"
+        height="50"
+      >
+        <path d="M55 5H5V55H55V5Z" fill="white" />
+      </mask>
+      <g mask="url(#mask0_15567_2521)">
+        <path
+          d="M34.0902 5.99994V15.9999H44.1202L34.0902 5.99994Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+      <mask
+        id="mask1_15567_2521"
+        style={{ maskType: 'luminance' }}
+        maskUnits="userSpaceOnUse"
+        x="6"
+        y="6"
+        width="39"
+        height="48"
+      >
+        <path
+          d="M36.7299 39.1299L40.9899 43.3699L36.0999 43.9999L36.7299 39.1199V39.1299ZM10.0199 5.99994C7.7999 5.99994 6.00989 7.78994 6.00989 9.99994V49.9999C6.00989 52.2099 7.8099 53.9999 10.0199 53.9999H40.1099C42.3299 53.9999 44.1199 52.2099 44.1199 49.9999V40.2399L41.4099 42.9399L37.1599 38.7L44.1199 31.7599V15.9999H34.0899V5.99994H10.0199Z"
+          fill="white"
+        />
+      </mask>
+      <g mask="url(#mask1_15567_2521)">
+        <mask
+          id="mask2_15567_2521"
+          style={{ maskType: 'luminance' }}
+          maskUnits="userSpaceOnUse"
+          x="5"
+          y="5"
+          width="50"
+          height="50"
+        >
+          <path d="M55 5H5V55H55V5Z" fill="white" />
+        </mask>
+        <g mask="url(#mask2_15567_2521)">
+          <path
+            d="M34.09 6H10.02C7.80002 6 6.01001 7.79 6.01001 10V50C6.01001 52.21 7.81002 54 10.02 54H40.11C42.33 54 44.12 52.21 44.12 50V16H34.09V6Z"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+      </g>
+      <mask
+        id="mask3_15567_2521"
+        style={{ maskType: 'luminance' }}
+        maskUnits="userSpaceOnUse"
+        x="5"
+        y="5"
+        width="50"
+        height="50"
+      >
+        <path d="M55 5H5V55H55V5Z" fill="white" />
+      </mask>
+      <g mask="url(#mask3_15567_2521)">
+        <path
+          d="M37.1599 38.7L44.1199 31.7599V15.9999H34.0899V5.99994H10.0199C7.7999 5.99994 6.00989 7.78994 6.00989 9.99994V49.9999C6.00989 52.2099 7.8099 53.9999 10.0199 53.9999H40.1099C42.3299 53.9999 44.1199 52.2099 44.1199 49.9999V40.2399L41.4099 42.9399L37.1599 38.7ZM36.0899 43.9999L36.7299 39.1199L40.9899 43.3599L36.0999 43.9899L36.0899 43.9999Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M36.09 22.0499H14.02C14.02 22.0499 13.97 22.0299 13.97 21.9999C13.97 21.9699 13.99 21.95 14.02 21.95H36.09C36.09 21.95 36.14 21.9699 36.14 21.9999C36.14 22.0299 36.12 22.0499 36.09 22.0499Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M36.09 28.0499H14.02C14.02 28.0499 13.97 28.0299 13.97 27.9999C13.97 27.9699 13.99 27.95 14.02 27.95H36.09C36.09 27.95 36.14 27.9699 36.14 27.9999C36.14 28.0299 36.12 28.0499 36.09 28.0499Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M36.09 34.0499H14.02C14.02 34.0499 13.97 34.0299 13.97 33.9999C13.97 33.9699 13.99 33.95 14.02 33.95H36.09C36.09 33.95 36.14 33.9699 36.14 33.9999C36.14 34.0299 36.12 34.0499 36.09 34.0499Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M28.0699 40.0499H14.0299C14.0299 40.0499 13.9799 40.0299 13.9799 39.9999C13.9799 39.9699 13.9999 39.95 14.0299 39.95H28.0699C28.0699 39.95 28.1199 39.9699 28.1199 39.9999C28.1199 40.0299 28.0999 40.0499 28.0699 40.0499Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M36.0899 48.0499H28.0699C28.0699 48.0499 28.0199 48.0299 28.0199 47.9999C28.0199 47.9699 28.0399 47.95 28.0699 47.95H36.0899C36.0899 47.95 36.1399 47.9699 36.1399 47.9999C36.1399 48.0299 36.1199 48.0499 36.0899 48.0499Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M41.4099 42.9399L37.1599 38.7L47.7999 28.0899L52.0499 32.3399L41.4099 42.9399Z"
+          stroke="#34C0F3"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M36.09 43.9999L40.99 43.3699L36.73 39.1299L36.09 43.9999Z"
+          stroke="#34C0F3"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M47.7999 28.0899L48.8599 27.0299C50.0299 25.8599 51.9399 25.8599 53.1199 27.0299C54.2999 28.1999 54.2999 30.0999 53.1199 31.2699L52.0599 32.3299L47.7999 28.0899Z"
+          stroke="#34C0F3"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </SvgIcon>
+  )
+}
+
+export default function DocumentEditIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledDocumentEditIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

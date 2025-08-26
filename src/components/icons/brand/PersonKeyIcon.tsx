@@ -1,0 +1,87 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledPersonKeyIcon = styled(PersonKeyIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function PersonKeyIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`PersonKeyIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path d="M37 37V55" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M33 38V51L37 55H39L43 51V50L41 48L43 46L41 44L43 42L41 40L43 38V33"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M27 38C29.21 38 31 36.21 31 34V21.23C31 19.72 30.02 18.37 28.59 17.89C27.94 17.67 26 17 26 17L21 22L16 17C16 17 14.06 17.67 13.41 17.89C11.98 18.37 11 19.72 11 21.23V34C11 36.21 12.79 38 15 38"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M21 15C23.7614 15 26 12.7614 26 10C26 7.23858 23.7614 5 21 5C18.2386 5 16 7.23858 16 10C16 12.7614 18.2386 15 21 15Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M27 25V54C27 54.55 26.55 55 26 55H16C15.45 55 15 54.55 15 54V25"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M21 37V55" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M38 25C39.6569 25 41 23.6569 41 22C41 20.3431 39.6569 19 38 19C36.3431 19 35 20.3431 35 22C35 23.6569 36.3431 25 38 25Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M35.0003 33H43.0003C46.3103 33 49.0003 30.31 49.0003 27V18C49.0003 16.34 47.6603 15 46.0003 15H30.0003C28.5603 15 27.3603 16.02 27.0703 17.37"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function PersonKeyIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledPersonKeyIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

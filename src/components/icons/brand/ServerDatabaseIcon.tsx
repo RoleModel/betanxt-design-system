@@ -1,0 +1,148 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledServerDatabaseIcon = styled(ServerDatabaseIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function ServerDatabaseIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`ServerDatabaseIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M26 47.95H6V48.0499H26V47.95Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M54 47.95H34V48.0499H54V47.95Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 52C32.2091 52 34 50.2091 34 48C34 45.7909 32.2091 44 30 44C27.7909 44 26 45.7909 26 48C26 50.2091 27.7909 52 30 52Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30.0502 38H29.9502V44H30.0502V38Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41 38H19C16.25 38 14 35.75 14 33C14 30.25 16.25 28 19 28H41C43.75 28 46 30.25 46 33C46 35.75 43.75 38 41 38Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 32.95H20V33.0499H30V32.95Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M35 33.5C35.2761 33.5 35.5 33.2761 35.5 33C35.5 32.7239 35.2761 32.5 35 32.5C34.7239 32.5 34.5 32.7239 34.5 33C34.5 33.2761 34.7239 33.5 35 33.5Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M40 33.5C40.2761 33.5 40.5 33.2761 40.5 33C40.5 32.7239 40.2761 32.5 40 32.5C39.7239 32.5 39.5 32.7239 39.5 33C39.5 33.2761 39.7239 33.5 40 33.5Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41 28H19C16.25 28 14 25.75 14 23C14 20.25 16.25 18 19 18H41C43.75 18 46 20.25 46 23C46 25.75 43.75 28 41 28Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 22.95H20V23.0499H30V22.95Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M35 23.5C35.2761 23.5 35.5 23.2761 35.5 23C35.5 22.7239 35.2761 22.5 35 22.5C34.7239 22.5 34.5 22.7239 34.5 23C34.5 23.2761 34.7239 23.5 35 23.5Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M40 23.5C40.2761 23.5 40.5 23.2761 40.5 23C40.5 22.7239 40.2761 22.5 40 22.5C39.7239 22.5 39.5 22.7239 39.5 23C39.5 23.2761 39.7239 23.5 40 23.5Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M41 18H19C16.25 18 14 15.75 14 13C14 10.25 16.25 8 19 8H41C43.75 8 46 10.25 46 13C46 15.75 43.75 18 41 18Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 12.95H20V13.0499H30V12.95Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M35 13.5C35.2761 13.5 35.5 13.2761 35.5 13C35.5 12.7239 35.2761 12.5 35 12.5C34.7239 12.5 34.5 12.7239 34.5 13C34.5 13.2761 34.7239 13.5 35 13.5Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M40 13.5C40.2761 13.5 40.5 13.2761 40.5 13C40.5 12.7239 40.2761 12.5 40 12.5C39.7239 12.5 39.5 12.7239 39.5 13C39.5 13.2761 39.7239 13.5 40 13.5Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function ServerDatabaseIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledServerDatabaseIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

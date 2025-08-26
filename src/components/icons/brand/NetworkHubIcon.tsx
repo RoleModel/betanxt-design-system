@@ -1,0 +1,135 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledNetworkHubIcon = styled(NetworkHubIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function NetworkHubIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`NetworkHubIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M30 9C31.6569 9 33 7.65685 33 6C33 4.34315 31.6569 3 30 3C28.3431 3 27 4.34315 27 6C27 7.65685 28.3431 9 30 9Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 57C31.6569 57 33 55.6569 33 54C33 52.3431 31.6569 51 30 51C28.3431 51 27 52.3431 27 54C27 55.6569 28.3431 57 30 57Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6 33C7.65685 33 9 31.6569 9 30C9 28.3431 7.65685 27 6 27C4.34315 27 3 28.3431 3 30C3 31.6569 4.34315 33 6 33Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M54 33C55.6569 33 57 31.6569 57 30C57 28.3431 55.6569 27 54 27C52.3431 27 51 28.3431 51 30C51 31.6569 52.3431 33 54 33Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path d="M30 9V13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M51 30H47" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M30 47V51" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M15.1498 10.91C16.3198 12.08 16.3198 13.98 15.1498 15.15C13.9798 16.32 12.0797 16.32 10.9097 15.15C9.73973 13.98 9.73973 12.08 10.9097 10.91C12.0797 9.73997 13.9798 9.73997 15.1498 10.91Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M49.0902 44.8502C50.2602 46.0202 50.2602 47.9201 49.0902 49.0901C47.9202 50.2601 46.0202 50.2601 44.8502 49.0901C43.6802 47.9201 43.6802 46.0202 44.8502 44.8502C46.0202 43.6802 47.9202 43.6802 49.0902 44.8502Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.1504 15.1599L17.9803 17.9799"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M42.0195 42.02L44.8495 44.85"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M13 30H9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M15.1498 44.8502C16.3198 46.0202 16.3198 47.9201 15.1498 49.0901C13.9798 50.2601 12.0797 50.2601 10.9097 49.0901C9.73973 47.9201 9.73973 46.0202 10.9097 44.8502C12.0797 43.6802 13.9798 43.6802 15.1498 44.8502Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M49.0902 10.91C50.2602 12.08 50.2602 13.98 49.0902 15.15C47.9202 16.32 46.0202 16.32 44.8502 15.15C43.6802 13.98 43.6802 12.08 44.8502 10.91C46.0202 9.73997 47.9202 9.73997 49.0902 10.91Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M44.8495 15.1599L42.0195 17.9799"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M17.9803 42.02L15.1504 44.85"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 31C32.7614 31 35 28.7614 35 26C35 23.2386 32.7614 21 30 21C27.2386 21 25 23.2386 25 26C25 28.7614 27.2386 31 30 31Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M40.8997 37.0699C40.6097 35.6999 39.6296 34.55 38.2596 34.1L34.9996 33.01L29.9996 38.01L24.9996 33.01L21.7396 34.1C20.3696 34.56 19.3896 35.6999 19.0996 37.0699C21.4196 40.6399 25.4296 43.01 29.9996 43.01C34.5696 43.01 38.5897 40.6399 40.8997 37.0699Z"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 43C37.1797 43 43 37.1797 43 30C43 22.8203 37.1797 17 30 17C22.8203 17 17 22.8203 17 30C17 37.1797 22.8203 43 30 43Z"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function NetworkHubIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledNetworkHubIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

@@ -1,0 +1,55 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledArrowDirectionsIcon = styled(ArrowDirectionsIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function ArrowDirectionsIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`ArrowDirectionsIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <path
+        d="M54.55 34.84L45.24 28.6C44.57 28.15 43.67 28.63 43.67 29.45V31.6501C43.67 32.2001 43.23 32.6301 42.69 32.6601C39.53 32.8401 36.59 33.89 34.11 35.57C33.44 36.02 32.54 35.51 32.54 34.7V18.4001C32.54 17.8401 32.99 17.3801 33.55 17.3801H35.71C36.52 17.3801 37 16.47 36.55 15.8L30.34 6.45C29.94 5.85 29.06 5.85 28.66 6.45L22.45 15.8C22 16.48 22.48 17.3801 23.29 17.3801H25.45C26.01 17.3801 26.46 17.8401 26.46 18.4001V34.7C26.46 35.51 25.56 36.03 24.89 35.57C22.41 33.89 19.47 32.8501 16.31 32.6601C15.76 32.6301 15.33 32.1901 15.33 31.6501V29.45C15.33 28.64 14.43 28.15 13.76 28.6L4.45 34.84C3.85 35.24 3.85 36.1301 4.45 36.5301L13.76 42.7701C14.43 43.2201 15.33 42.74 15.33 41.92V39.81C15.33 39.21 15.85 38.73 16.45 38.79C22.07 39.36 26.47 44.13 26.47 49.92V52.97C26.47 53.53 26.92 53.99 27.48 53.99H31.53C32.09 53.99 32.54 53.54 32.54 52.97V49.92C32.54 44.13 36.94 39.35 42.56 38.79C43.16 38.73 43.68 39.21 43.68 39.81V41.92C43.68 42.73 44.58 43.2201 45.25 42.7701L54.56 36.5301C55.16 36.1301 55.16 35.24 54.56 34.84H54.55Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function ArrowDirectionsIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledArrowDirectionsIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

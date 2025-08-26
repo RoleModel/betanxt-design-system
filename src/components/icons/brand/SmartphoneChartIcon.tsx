@@ -1,0 +1,119 @@
+import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
+
+import type { BrandIconProps } from './types'
+import { getFontSizeValue } from './types'
+
+const StyledSmartphoneChartIcon = styled(SmartphoneChartIcon)<{
+  accentColor?: string
+  fontSize?: BrandIconProps['fontSize']
+}>(({ theme, accentColor = '#34C0F3', fontSize }) => [
+  {
+    fill: 'none',
+    width: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    height: fontSize ? getFontSizeValue(fontSize) : '1.25rem',
+    '& path:not([stroke])': {
+      stroke: theme.vars.palette.text.primary,
+    },
+    '& path[stroke="#34C0F3"]': {
+      stroke: accentColor,
+    },
+  },
+])
+
+function SmartphoneChartIcon({
+  accentColor = '#34C0F3',
+  fontSize,
+  className,
+  ...props
+}: BrandIconProps) {
+  return (
+    <SvgIcon
+      viewBox="0 0 60 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`SmartphoneChartIcon ${className || ''}`.trim()}
+      {...props}
+    >
+      <circle cx="31.9902" cy="7" r="1" fill="var(--stroke-color)" />
+      <path
+        d="M48.82 41.6701C47.71 42.7801 45.92 42.7801 44.81 41.6701C43.7 40.5601 43.7 38.7701 44.81 37.6701L46.1401 36.3301C47.2501 35.2201 49.0401 35.2201 50.1501 36.3301C51.2601 37.4401 51.2601 39.2301 50.1501 40.3401L48.82 41.6701Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M47.82 35.1701C46.71 36.2801 44.92 36.2801 43.81 35.1701C42.7 34.0601 42.7 32.2701 43.81 31.1701L46.1401 28.8301C47.2501 27.7201 49.0401 27.7201 50.1501 28.8301C51.2601 29.9401 51.2601 31.7301 50.1501 32.8401L47.82 35.1701Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M46.82 28.1701C45.71 29.2801 43.92 29.2801 42.81 28.1701C41.7 27.0601 41.7 25.2701 42.81 24.1701L46.1401 20.8301C47.2501 19.7201 49.0401 19.7201 50.1501 20.8301C51.2601 21.9401 51.2601 23.7301 50.1501 24.8401L46.82 28.1701Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M44.9902 20L52.1602 12.83C53.2602 11.72 53.2602 9.93 52.1602 8.83C51.0502 7.73 49.2602 7.73 48.1602 8.83L44.9902 12"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M33.9902 43H29.9902"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M18.99 33C21.98 24.02 22.89 16.08 18.74 13.68C17.49 12.96 15.94 13.9 15.82 15.34C15.29 21.73 12.97 26.07 11.18 28.53C9.72999 30.53 9 32.96 9 35.43V40.52C9 42.11 8.36999 43.64 7.23999 44.76L7 45"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M44.9902 22V7C44.9902 4.79 43.2002 3 40.9902 3H22.9902C20.7802 3 18.9902 4.79 18.9902 7V13.86C22.8402 16.45 21.9202 24.22 18.9902 33V45C18.9902 47.21 20.7802 49 22.9902 49H40.9902C43.2002 49 44.9902 47.21 44.9902 45V41.83"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M36.9402 49C34.2402 52.17 30.4002 54.35 26.0602 54.88C24.6802 55.05 23.3803 55.62 22.3903 56.61L21.9902 57.01"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M34.9902 21H30.9902C29.8902 21 28.9902 21.9 28.9902 23C28.9902 24.1 29.8902 25 30.9902 25H32.9902C34.0902 25 34.9902 25.9 34.9902 27C34.9902 28.1 34.0902 29 32.9902 29H28.9902"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M31.9902 18V21"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M31.9902 29V32"
+        stroke="#34C0F3"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </SvgIcon>
+  )
+}
+
+export default function SmartphoneChartIconWithAccent(props: BrandIconProps) {
+  return (
+    <StyledSmartphoneChartIcon
+      accentColor={props.accentColor}
+      fontSize={props.fontSize}
+      {...props}
+    />
+  )
+}

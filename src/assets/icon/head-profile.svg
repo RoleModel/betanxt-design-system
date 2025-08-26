@@ -1,0 +1,13 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+    :root {
+      color-scheme: light dark;
+      --stroke-color: light-dark(black, white);
+    }
+</style>
+<path d="M47.0042 55V37.83C50.6942 34.36 53.0042 29.46 53.0042 24C53.0042 13.51 44.4942 5 34.0042 5C23.5142 5 15.0042 13.51 15.0042 24C15.0042 24 15.0042 24.01 15.0042 24.02L7.60425 31.46C6.31425 32.76 7.22421 34.99 9.06421 34.99H13.0042V44.99C13.0042 47.2 14.7942 48.99 17.0042 48.99H25.0042V54.99" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34.0039 27C35.6608 27 37.0039 25.6569 37.0039 24C37.0039 22.3431 35.6608 21 34.0039 21C32.3471 21 31.0039 22.3431 31.0039 24C31.0039 25.6569 32.3471 27 34.0039 27Z" stroke="#34C0F3" stroke-width="2" stroke-linejoin="round"/>
+<path d="M44.6041 13.39L36.124 21.88" stroke="#34C0F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M39.9139 12.43C38.1439 11.52 36.1339 11 34.0039 11C26.8239 11 21.0039 16.82 21.0039 24C21.0039 26.58 21.7639 28.98 23.0639 31" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M44.9443 31C46.2443 28.98 47.0043 26.58 47.0043 24C47.0043 21.87 46.4843 19.86 45.5743 18.09" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

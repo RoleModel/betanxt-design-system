@@ -1,0 +1,14 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+    :root {
+      color-scheme: light dark;
+      --stroke-color: light-dark(black, white);
+    }
+</style>
+<path d="M44.9941 27H38.9941L47.9941 11L56.9941 27H50.9941V52C50.9941 52.55 50.5441 53 49.9941 53H45.9941C45.4441 53 44.9941 52.55 44.9941 52V27Z" stroke="#34C0F3" stroke-width="2" stroke-linejoin="round"/>
+<path d="M39.9941 33H35.9941C35.4419 33 34.9941 33.4477 34.9941 34V52C34.9941 52.5523 35.4419 53 35.9941 53H39.9941C40.5464 53 40.9941 52.5523 40.9941 52V34C40.9941 33.4477 40.5464 33 39.9941 33Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linejoin="round"/>
+<path d="M29.9941 43H25.9941C25.4419 43 24.9941 43.4477 24.9941 44V52C24.9941 52.5523 25.4419 53 25.9941 53H29.9941C30.5464 53 30.9941 52.5523 30.9941 52V44C30.9941 43.4477 30.5464 43 29.9941 43Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linejoin="round"/>
+<path d="M13.9941 15C16.2033 15 17.9941 13.2091 17.9941 11C17.9941 8.79086 16.2033 7 13.9941 7C11.785 7 9.99414 8.79086 9.99414 11C9.99414 13.2091 11.785 15 13.9941 15Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linejoin="round"/>
+<path d="M13.9941 39V53" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.99429 24L4.99429 39H8.99429V52C8.99429 52.55 9.44429 53 9.99429 53H17.9943C18.5443 53 18.9943 52.55 18.9943 52V39H22.9943L19.5343 23.43C19.2543 22.18 20.2043 21 21.4843 21H33.9943C35.0943 21 35.9943 20.1 35.9943 19C35.9943 17.9 35.0943 17 33.9943 17H17.9943L13.9943 22L9.99429 17C8.21429 17 6.65428 18.18 6.16428 19.88L3.16428 30.29C2.55428 32.36 3.69428 34.53 5.73428 35.21L5.98428 35.3" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

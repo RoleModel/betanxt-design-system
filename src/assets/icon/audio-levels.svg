@@ -1,0 +1,20 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+    :root {
+      color-scheme: light dark;
+      --stroke-color: light-dark(black, white);
+    }
+</style>
+<path d="M13 27H5V41H13V27Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M55 15H47V35H55V15Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M41 31H33V49H41V31Z" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23 5V9" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9 15V27" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23 35V45" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M51 9V15" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M37 49V55" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9 41V47" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M51 35V45" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M37 15V31" stroke="var(--stroke-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27 9H19V35H27V9Z" stroke="#34C0F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

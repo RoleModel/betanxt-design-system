@@ -32,3 +32,6 @@ export { default as BNFilePreview } from './file-upload/BNFilePreview'
 export type { FilePreviewProps } from './file-upload/types'
 export { default as FileUploadDialog } from './file-upload/FileUploadDialog'
 export type { UploadFile } from './file-upload/types'
+
+ // Icons
+  export * from './icons'

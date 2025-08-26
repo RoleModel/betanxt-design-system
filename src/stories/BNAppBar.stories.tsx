@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
+import { Notifications } from '@mui/icons-material'
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
+import { IconButton } from '@mui/material'
+import { Badge } from '@mui/material'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
 import BNAppBar from '../components/app-bar/BNAppBar'
 import { MockLinkComponent } from './utils/MockLinkComponent'
-import { IconButton } from '@mui/material'
-import { Notifications } from '@mui/icons-material'
-import { Badge } from '@mui/material'
 
 const meta = {
   title: 'Custom Components/BNAppBar',
@@ -51,7 +51,6 @@ const exampleTabs = [
   },
 ]
 
-
 export const Primary: Story = {
   parameters: {
     layout: 'fullscreen',
@@ -74,11 +73,13 @@ export const Primary: Story = {
 }
 
 const endSlot = () => {
-  return <IconButton>
-    <Badge badgeContent={4} color="primary">
-      <Notifications />
-    </Badge>
-  </IconButton>
+  return (
+    <IconButton>
+      <Badge badgeContent={4} color="primary">
+        <Notifications />
+      </Badge>
+    </IconButton>
+  )
 }
 
 export const Secondary: Story = {
@@ -90,7 +91,7 @@ export const Secondary: Story = {
     tabs: exampleTabs,
     slots: {
       logoComponent: BNLogo,
-      end: endSlot
+      end: endSlot,
     },
     slotProps: {
       logoComponent: {

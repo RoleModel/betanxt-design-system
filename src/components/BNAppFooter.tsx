@@ -9,10 +9,12 @@ import { BNLogo } from './BNLogo'
 export function BNAppFooter({
   logoEnabled = true,
   privacyPolicyLink = 'https://betanxt.com/privacy-policy',
+  additionalCopyright,
   links = [],
 }: {
   logoEnabled?: boolean
   privacyPolicyLink?: string
+  additionalCopyright?: string
   links?: {
     label: string
     href: string
@@ -51,6 +53,19 @@ export function BNAppFooter({
           flexItem
           sx={{ backgroundColor: 'common.white', display: { xs: 'none', sm: 'block' } }}
         />
+        {additionalCopyright && (
+          <>
+            <Typography variant="body2" sx={{ color: 'inherit' }}>
+              {additionalCopyright}
+            </Typography>
+            <Divider
+              orientation="vertical"
+              variant="fullWidth"
+              flexItem
+              sx={{ backgroundColor: 'common.white' }}
+            />
+          </>
+        )}
         {links && links.length > 0 && (
           <>
             {links.map((link) => (

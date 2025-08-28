@@ -2,26 +2,25 @@ import { addons } from 'storybook/manager-api'
 
 import { dark, light } from './theme'
 
-// Get stored theme preference immediately and synchronously
+// Set the theme immediately to ensure it loads
+addons.setConfig({
+  theme: light,
+})
+
+// Get stored theme preference
 const getStoredTheme = () => {
   try {
     const stored = localStorage.getItem('mui-mode')
-    const theme = stored === 'dark' ? dark : light
-    return theme
+    return stored === 'dark' ? dark : light
   } catch (error) {
-    return light // fallback if localStorage unavailable
+    return light
   }
 }
 
-// Set initial theme immediately
-const initialTheme = getStoredTheme()
-addons.setConfig({
-  theme: initialTheme,
-})
-
-// Set up channel listeners for theme changes
+// Set up channel for theme changes
 const channel = addons.getChannel()
 
+// Listen for theme changes from the preview
 channel.on('mui-theme-mode-changed', (mode: string) => {
   const newTheme = mode === 'dark' ? dark : light
   addons.setConfig({
@@ -29,7 +28,11 @@ channel.on('mui-theme-mode-changed', (mode: string) => {
   })
 })
 
-// Request current theme from preview after a short delay to ensure preview is ready
+// Apply stored theme after initial setup
 setTimeout(() => {
+  const storedTheme = getStoredTheme()
+  addons.setConfig({
+    theme: storedTheme,
+  })
   channel.emit('mui-theme-mode-request')
 }, 100)

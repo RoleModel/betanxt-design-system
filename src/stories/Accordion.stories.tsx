@@ -1,8 +1,18 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
-import { Accordion as MuiAccordion, AccordionSummary, AccordionDetails, Typography, Accordion, AccordionActions, Button } from '@mui/material'
-import '../themes/mui-type-customizations'
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import {
+  Accordion,
+  AccordionActions,
+  AccordionDetails,
+  AccordionSummary,
+  Button,
+  Accordion as MuiAccordion,
+  Typography,
+} from '@mui/material'
+
+import '../themes/mui-type-customizations'
 
 const meta = {
   title: 'Components/Accordion',

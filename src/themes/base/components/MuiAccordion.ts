@@ -1,8 +1,8 @@
 // MUi Accordion Overides
-
+import { accordionSummaryClasses } from '@mui/material/AccordionSummary'
 import type { ThemeOptions } from '@mui/material/styles'
-import { accordionSummaryClasses } from '@mui/material/AccordionSummary';
-import { } from '../../mui-type-customizations'
+
+import '../../mui-type-customizations'
 
 const components: ThemeOptions['components'] = {
   MuiAccordion: {
@@ -42,7 +42,6 @@ const components: ThemeOptions['components'] = {
     },
   },
   MuiAccordionSummary: {
-
     styleOverrides: {
       root: {
         variants: [

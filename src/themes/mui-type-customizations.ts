@@ -1,12 +1,12 @@
-import type { } from '@mui/lab/themeAugmentation'
+import type {} from '@mui/lab/themeAugmentation'
+import type { AccordionProps } from '@mui/material/Accordion'
 import type { PaletteColor, PaletteColorOptions } from '@mui/material/styles'
-import type { } from '@mui/material/themeCssVarsAugmentation'
-import type { } from '@mui/x-charts/themeAugmentation'
-import type { } from '@mui/x-data-grid/themeAugmentation'
-import type { } from '@mui/x-date-pickers/themeAugmentation'
+import type {} from '@mui/material/themeCssVarsAugmentation'
+import type {} from '@mui/x-charts/themeAugmentation'
+import type {} from '@mui/x-data-grid/themeAugmentation'
+import type {} from '@mui/x-date-pickers/themeAugmentation'
 
 import type { LayoutVars } from './base/layout'
-import type { AccordionProps } from '@mui/material/Accordion'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -208,9 +208,6 @@ declare module '@mui/material/Accordion' {
     disablePadding?: boolean
   }
 }
-
-
-
 
 declare module '@mui/material/AccordionSummary' {
   interface AccordionSummaryPropsVariantOverrides {

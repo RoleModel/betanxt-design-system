@@ -24,6 +24,9 @@ const meta = {
       control: 'select',
       options: ['simple', 'elevation', 'outlined'],
     },
+    disablePadding: {
+      control: 'boolean',
+    },
     children: {
       table: {
         disable: true,
@@ -40,38 +43,25 @@ type Story = StoryObj<typeof meta>
 export const Simple: Story = {
   args: {
     variant: 'simple',
-    children: 'Accordion Content',
+    disablePadding: false,
+    children: <div />,
   },
-  render: () => {
+  render: (args) => {
+    const { children, ...accordionProps } = args
     return (
-      <div>
-        <Accordion variant="simple">
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1-content"
-            id="panel1-header"
-          >
-            <Typography component="span">Accordion 1</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </AccordionDetails>
-        </Accordion>
-        <Accordion variant="simple">
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2-content"
-            id="panel2-header"
-          >
-            <Typography component="span">Accordion 1</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </AccordionDetails>
-        </Accordion>
-      </div>
+      <Accordion {...accordionProps}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <Typography component="span">Simple Accordion</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+          lacus ex, sit amet blandit leo lobortis eget.
+        </AccordionDetails>
+      </Accordion>
     )
   },
 }
@@ -92,8 +82,8 @@ export const Elevation: Story = {
             <Typography component="span">Accordion 1</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+            lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion variant="elevation">
@@ -107,8 +97,8 @@ export const Elevation: Story = {
             <Typography component="span">Secondary Text</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+            lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion defaultExpanded variant="elevation">
@@ -120,8 +110,8 @@ export const Elevation: Story = {
             <Typography component="span">Accordion Actions</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+            lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
       </div>
@@ -139,11 +129,13 @@ export const AccordionSummaryColumn: Story = {
         <Accordion variant="simple" disableGutters={true}>
           <AccordionSummary variant="column" expandIcon={<ExpandMoreIcon />}>
             <Typography component="span">Main Header</Typography>
-            <Typography component="span" variant="body2">Secondary text</Typography>
+            <Typography component="span" variant="body2">
+              Secondary text
+            </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+            lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
       </div>
@@ -163,8 +155,8 @@ export const DisablePadding: Story = {
             <Typography component="span">Accordion 1</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+            lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
         <Accordion variant="simple" disablePadding>
@@ -172,8 +164,8 @@ export const DisablePadding: Story = {
             <Typography component="span">Accordion 1</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
+            lacus ex, sit amet blandit leo lobortis eget.
           </AccordionDetails>
         </Accordion>
       </div>

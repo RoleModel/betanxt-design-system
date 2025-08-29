@@ -1,11 +1,12 @@
-import type {} from '@mui/lab/themeAugmentation'
+import type { } from '@mui/lab/themeAugmentation'
 import type { PaletteColor, PaletteColorOptions } from '@mui/material/styles'
-import type {} from '@mui/material/themeCssVarsAugmentation'
-import type {} from '@mui/x-charts/themeAugmentation'
-import type {} from '@mui/x-data-grid/themeAugmentation'
-import type {} from '@mui/x-date-pickers/themeAugmentation'
+import type { } from '@mui/material/themeCssVarsAugmentation'
+import type { } from '@mui/x-charts/themeAugmentation'
+import type { } from '@mui/x-data-grid/themeAugmentation'
+import type { } from '@mui/x-date-pickers/themeAugmentation'
 
 import type { LayoutVars } from './base/layout'
+import type { AccordionProps } from '@mui/material/Accordion'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -199,6 +200,27 @@ declare module '@mui/material/Typography' {
   }
 }
 
+declare module '@mui/material/Accordion' {
+  interface AccordionPropsVariantOverrides {
+    simple: true
+  }
+  interface AccordionOwnProps {
+    disablePadding?: boolean
+  }
+}
+
+
+
+
+declare module '@mui/material/AccordionSummary' {
+  interface AccordionSummaryPropsVariantOverrides {
+    column?: true
+  }
+  interface AccordionSummaryOwnProps {
+    variant?: 'column'
+  }
+}
+
 declare module '@mui/material/Alert' {
   interface AlertPropsVariantOverrides {
     standard?: true
@@ -227,6 +249,15 @@ declare module '@mui/material/Badge' {
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     tertiary: true
+  }
+}
+
+declare module '@mui/material/Paper' {
+  interface PaperPropsVariantOverrides {
+    simple: true
+  }
+  interface PaperOwnProps {
+    disablePadding?: boolean
   }
 }
 

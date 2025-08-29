@@ -28,10 +28,12 @@ const components: ThemeOptions['components'] = {
             props: { disablePadding: true },
             style: {
               '& .MuiButtonBase-root.MuiAccordionSummary-root': {
-                paddingX: 0,
+                paddingLeft: 0,
+                paddingRight: 0,
               },
               '& .MuiAccordionDetails-root': {
-                paddingX: 0,
+                paddingLeft: 0,
+                paddingRight: 0,
               },
             },
           },

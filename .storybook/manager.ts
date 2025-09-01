@@ -1,6 +1,6 @@
 import { addons } from 'storybook/manager-api'
 
-import { dark, light } from './theme'
+import { dark, light } from './theme.js'
 
 // Set the theme immediately to ensure it loads
 addons.setConfig({

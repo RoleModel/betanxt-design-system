@@ -3,7 +3,7 @@ import React from 'react'
 import { IconButton } from 'storybook/internal/components'
 import { addons, types } from 'storybook/manager-api'
 
-import { dark, light } from '../../theme'
+import { dark, light } from '../../theme.js'
 
 const ADDON_ID = 'mui-theme-toggle'
 const TOOL_ID = `${ADDON_ID}/tool`

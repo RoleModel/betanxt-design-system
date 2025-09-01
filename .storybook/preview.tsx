@@ -11,10 +11,10 @@ import React from 'react'
 
 import { CssBaseline, ThemeProvider, useColorScheme } from '@mui/material'
 
-import betanxtTheme from '../src/themes/betanxtTheme'
-import '../src/themes/mui-type-customizations'
+import betanxtTheme from '../src/themes/betanxtTheme.js'
+import '../src/themes/mui-type-customizations.js'
 import { MuiThemeModeToggle } from './addons/mui-theme-toggle/preview'
-import { dark, light } from './theme'
+import { dark, light } from './theme.js'
 import './utils/patch-mui-display-name'
 
 // Get stored theme preference for initial mode

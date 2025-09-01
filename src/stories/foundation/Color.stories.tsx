@@ -14,7 +14,7 @@ import {
   orangered,
   persimmon,
   seagrass,
-} from '../../themes/base/palette-tokens/brand-tokens'
+} from '../../themes/base/palette-tokens/brand-tokens.js'
 
 interface ColorVars {
   [category: string]: {

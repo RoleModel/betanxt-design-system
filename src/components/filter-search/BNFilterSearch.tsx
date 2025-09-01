@@ -19,7 +19,7 @@ import generateUtilityClass from '@mui/utils/generateUtilityClass'
 
 import BNFilterSearchAutocomplete, {
   type BNFilterSearchAutocompleteProps,
-} from './BNFilterSearchAutocomplete'
+} from './BNFilterSearchAutocomplete.js'
 
 // Styled components
 const RootStyled = styled('div', {

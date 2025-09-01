@@ -5,7 +5,7 @@ import { ChartsTooltip } from '@mui/x-charts'
 import type { LineChartProps } from '@mui/x-charts/LineChart'
 import { LineChart } from '@mui/x-charts/LineChart'
 
-import BNChartGradientFill, { useChartGradients } from '../components/BNChartGradientFill'
+import BNChartGradientFill, { useChartGradients } from '../components/BNChartGradientFill.js'
 
 const LineChartForStorybook = (props: LineChartProps) => <LineChart {...props} />
 Object.defineProperty(LineChartForStorybook, 'name', { value: 'LineChart' })

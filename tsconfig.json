@@ -16,7 +16,8 @@
     "noImplicitOverride": true,
     /* Output Options */
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": false,
     "outDir": "dist",
     "sourceMap": true,
     "rootDir": "src",

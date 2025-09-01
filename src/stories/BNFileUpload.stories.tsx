@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 
 import { Box, Button, Stack, Typography } from '@mui/material'
 
-import { BNFileDropzone, BNFileUpload, FileUploadDialog } from '../components'
-import type { UploadFile } from '../components'
+import { BNFileDropzone, BNFileUpload, FileUploadDialog } from '../components.js'
+import type { UploadFile } from '../components.js'
 
 const meta: Meta<typeof BNFileUpload> = {
   title: 'Custom Components/File Upload/BNFileUpload',

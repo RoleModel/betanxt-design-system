@@ -3,8 +3,8 @@ import React from 'react'
 
 import { Box } from '@mui/material'
 
-import BNFilterSearch from '../components/filter-search/BNFilterSearch'
-import BNFilterSelect from '../components/filter-search/BNFilterSelect'
+import BNFilterSearch from '../components/filter-search/BNFilterSearch.js'
+import BNFilterSelect from '../components/filter-search/BNFilterSelect.js'
 import {
   type MockFinancialAccount,
   accountFilterOptions,
@@ -13,8 +13,8 @@ import {
   formatDate,
   repFilterOptions,
   simulateAsyncSearch,
-} from './mockData/financialAccounts'
-import { MockLinkComponent } from './utils/MockLinkComponent'
+} from './mockData/financialAccounts.js'
+import { MockLinkComponent } from './utils/MockLinkComponent.js'
 
 const meta = {
   title: 'Custom Components/BNFilterSearch',

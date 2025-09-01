@@ -12,8 +12,8 @@ import {
   persimmon,
   seagrass,
   turquoise,
-} from './palette-tokens/brand-tokens'
-import { chartsDark, chartsLight } from './palette-tokens/charts'
+} from './palette-tokens/brand-tokens.js'
+import { chartsDark, chartsLight } from './palette-tokens/charts.js'
 
 const basePaletteThemeOptions = {
   tonalOffset: 0.2,

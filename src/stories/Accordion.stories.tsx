@@ -126,7 +126,7 @@ export const AccordionSummaryColumn: Story = {
   render: () => {
     return (
       <div>
-        <Accordion variant="simple" disableGutters={true}>
+        <Accordion variant="simple">
           <AccordionSummary variant="column" expandIcon={<ExpandMoreIcon />}>
             <Typography component="span">Main Header</Typography>
             <Typography component="span" variant="body2">
@@ -143,7 +143,7 @@ export const AccordionSummaryColumn: Story = {
   },
 }
 
-export const DisablePadding: Story = {
+export const disablepadding: Story = {
   args: {
     children: <div />,
   },

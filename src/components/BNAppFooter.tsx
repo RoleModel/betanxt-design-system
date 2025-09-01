@@ -4,7 +4,7 @@ import React from 'react'
 
 import { Box, Divider, Link, Typography } from '@mui/material'
 
-import { BNLogo } from './BNLogo'
+import { BNLogo } from './BNLogo.js'
 
 export function BNAppFooter({
   logoEnabled = true,

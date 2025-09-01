@@ -12,8 +12,8 @@ import {
   Typography,
 } from '@mui/material'
 
-import BNFileUpload from './BNFileUpload'
-import type { UploadFile } from './types'
+import BNFileUpload from './BNFileUpload.js'
+import type { UploadFile } from './types.js'
 
 interface FileUploadDialogProps {
   open: boolean

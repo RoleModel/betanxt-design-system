@@ -23,8 +23,8 @@ import {
   VerticalBarChartIcon,
   XlsIcon,
   XlsxIcon,
-} from '../components/icons'
-import * as BrandIcon from '../components/icons/brand'
+} from '../components/icons.js'
+import * as BrandIcon from '../components/icons/brand.js'
 
 const meta = {
   title: 'Custom Components/Icons',

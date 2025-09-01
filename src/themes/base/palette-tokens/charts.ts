@@ -1,7 +1,7 @@
 import { deepPurple, pink } from '@mui/material/colors'
 import type { PaletteOptions } from '@mui/material/styles'
 
-import { bnteal, gold, nxtBlue, orangered, persimmon, seagrass } from './brand-tokens'
+import { bnteal, gold, nxtBlue, orangered, persimmon, seagrass } from './brand-tokens.js'
 
 export const chartsLight: PaletteOptions = {
   chartSeries: [

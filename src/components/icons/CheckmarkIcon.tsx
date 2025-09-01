@@ -1,6 +1,6 @@
 import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
 
-import { neutral } from '../../themes/base/palette-tokens/brand-tokens'
+import { neutral } from '../../themes/base/palette-tokens/brand-tokens.js'
 
 const StyledCheckmarkIcon = styled(CheckmarkIcon)(({ theme }) => [
   {

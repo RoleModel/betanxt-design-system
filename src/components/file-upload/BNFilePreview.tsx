@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material'
 
-import type { FilePreviewProps } from './types'
+import type { FilePreviewProps } from './types.js'
 
 const BNFilePreview: React.FC<FilePreviewProps> = ({
   file,

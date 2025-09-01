@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined'
 import { Stack } from '@mui/material'
 
-import { BNSelectCard } from '../components/BNSelectCard'
+import { BNSelectCard } from '../components/BNSelectCard.js'
 
 const meta = {
   title: 'Custom Components/BNSelectCard',

@@ -11,8 +11,8 @@ import {
   useTheme,
 } from '@mui/material'
 
-import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
-import { BNAppBarDrawer } from './BNAppBarDrawer'
+import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon.js'
+import { BNAppBarDrawer } from './BNAppBarDrawer.js'
 
 const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({
   display: 'inline-flex',

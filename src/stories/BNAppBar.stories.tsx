@@ -6,10 +6,10 @@ import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 import { IconButton } from '@mui/material'
 import { Badge } from '@mui/material'
 
-import { BNAppSwitcher } from '../components/BNAppSwitcher'
-import { BNLogo } from '../components/BNLogo'
-import BNAppBar from '../components/app-bar/BNAppBar'
-import { MockLinkComponent } from './utils/MockLinkComponent'
+import { BNAppSwitcher } from '../components/BNAppSwitcher.js'
+import { BNLogo } from '../components/BNLogo.js'
+import BNAppBar from '../components/app-bar/BNAppBar.js'
+import { MockLinkComponent } from './utils/MockLinkComponent.js'
 
 const meta = {
   title: 'Custom Components/BNAppBar',

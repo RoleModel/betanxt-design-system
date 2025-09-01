@@ -1,10 +1,10 @@
-import { CsvIcon } from './CsvIcon'
-import { DocIcon } from './DocIcon'
-import { HtmlIcon } from './HtmlIcon'
-import { PdfIcon } from './PdfIcon'
-import { TxtIcon } from './TxtIcon'
-import { XlsIcon } from './XlsIcon'
-import { XlsxIcon } from './XlsxIcon'
+import { CsvIcon } from './CsvIcon.js'
+import { DocIcon } from './DocIcon.js'
+import { HtmlIcon } from './HtmlIcon.js'
+import { PdfIcon } from './PdfIcon.js'
+import { TxtIcon } from './TxtIcon.js'
+import { XlsIcon } from './XlsIcon.js'
+import { XlsxIcon } from './XlsxIcon.js'
 
 type FileType = 'PDF' | 'HTML' | 'TXT' | 'XLS' | 'XLSX' | 'CSV'
 

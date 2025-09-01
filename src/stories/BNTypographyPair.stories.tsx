@@ -3,7 +3,7 @@ import React from 'react'
 
 import type { TypographyProps } from '@mui/material/Typography'
 
-import { BNTypographyPair as BNTypographyPairComponent } from '../components/BNTypographyPair'
+import { BNTypographyPair as BNTypographyPairComponent } from '../components/BNTypographyPair.js'
 
 type TypographyVariant = NonNullable<TypographyProps['variant']>
 

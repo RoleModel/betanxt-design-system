@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { BNStatCard } from '../components/BNStatCard'
+import { BNStatCard } from '../components/BNStatCard.js'
 
 const meta = {
   title: 'Custom Components/BNStatCard',

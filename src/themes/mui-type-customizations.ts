@@ -1,11 +1,11 @@
 import type {} from '@mui/lab/themeAugmentation'
 import type { PaletteColor, PaletteColorOptions } from '@mui/material/styles'
-import type {} from '@mui/material/themeCssVarsAugmentation'
-import type {} from '@mui/x-charts/themeAugmentation'
-import type {} from '@mui/x-data-grid/themeAugmentation'
-import type {} from '@mui/x-date-pickers/themeAugmentation'
+import type { } from '@mui/material/themeCssVarsAugmentation'
+import type { } from '@mui/x-charts/themeAugmentation'
+import type { } from '@mui/x-data-grid/themeAugmentation'
+import type { } from '@mui/x-date-pickers/themeAugmentation'
 
-import type { LayoutVars } from './base/layout'
+import type { LayoutVars } from './base/layout.js'
 
 declare module '@mui/material/styles' {
   interface Palette {

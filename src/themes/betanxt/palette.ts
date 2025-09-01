@@ -1,7 +1,7 @@
 import type { PaletteOptions } from '@mui/material/styles'
 
-import { bnblue, bnteal, neutral, nxtBlue } from '../base/palette-tokens/brand-tokens'
-import baseTheme from '../baseTheme'
+import { bnblue, bnteal, neutral, nxtBlue } from '../base/palette-tokens/brand-tokens.js'
+import baseTheme from '../baseTheme.js'
 
 export const betanxtPaletteLight: PaletteOptions = {
   mode: 'light',

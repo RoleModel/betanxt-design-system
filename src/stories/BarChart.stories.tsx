@@ -3,7 +3,7 @@ import React from 'react'
 
 import { ChartsTooltip, BarChart as MuiBarChart } from '@mui/x-charts'
 
-import { BarChart, type BarChartProps } from '../components/BarChart'
+import { BarChart, type BarChartProps } from '../components/BarChart.js'
 
 const dataset = [
   { software: 86, hardware: 57, services: 59, cloud: 91, month: 'January' },

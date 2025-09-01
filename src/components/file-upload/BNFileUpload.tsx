@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { Stack } from '@mui/material'
 
-import BNFileDropzone from './BNFileDropzone'
-import BNFilePreview from './BNFilePreview'
-import type { FileUploadProps, UploadFile } from './types'
-import { DEFAULT_ACCEPTED_TYPES, DEFAULT_MAX_SIZE } from './types'
+import BNFileDropzone from './BNFileDropzone.js'
+import BNFilePreview from './BNFilePreview.js'
+import type { FileUploadProps, UploadFile } from './types.js'
+import { DEFAULT_ACCEPTED_TYPES, DEFAULT_MAX_SIZE } from './types.js'
 
 const BNFileUpload: React.FC<FileUploadProps> = ({
   maxFiles = 5,

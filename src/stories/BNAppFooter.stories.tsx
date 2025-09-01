@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { BNAppFooter as BNAppFooterComponent } from '../components/BNAppFooter'
+import { BNAppFooter as BNAppFooterComponent } from '../components/BNAppFooter.js'
 
 const meta: Meta<typeof BNAppFooterComponent> = {
   title: 'Custom Components/BNAppFooter',

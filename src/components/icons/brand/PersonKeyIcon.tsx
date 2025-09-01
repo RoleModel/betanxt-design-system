@@ -1,7 +1,7 @@
 import { SvgIcon, type SvgIconProps, styled } from '@mui/material'
 
-import type { BrandIconProps } from './types'
-import { getFontSizeValue } from './types'
+import type { BrandIconProps } from './types.js'
+import { getFontSizeValue } from './types.js'
 
 const StyledPersonKeyIcon = styled(PersonKeyIcon)<{
   accentColor?: string

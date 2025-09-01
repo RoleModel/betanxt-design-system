@@ -5,8 +5,8 @@ import type { FileRejection } from 'react-dropzone'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
 import { Box, Link, Paper, Stack, Typography, useTheme } from '@mui/material'
 
-import type { FileDropzoneProps } from './types'
-import { DEFAULT_ACCEPTED_TYPES, DEFAULT_MAX_SIZE } from './types'
+import type { FileDropzoneProps } from './types.js'
+import { DEFAULT_ACCEPTED_TYPES, DEFAULT_MAX_SIZE } from './types.js'
 
 const BNFileDropzone: React.FC<FileDropzoneProps> = ({
   onFilesSelected,

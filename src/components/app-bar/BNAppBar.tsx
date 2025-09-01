@@ -11,7 +11,11 @@ import {
   useTheme,
 } from '@mui/material'
 
-import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon.js'
+import {
+  type AvatarProps,
+  BNAnimatedMenuIcon,
+  type MenuItem,
+} from './BNAnimatedMenuIcon.js'
 import { BNAppBarDrawer } from './BNAppBarDrawer.js'
 
 const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({

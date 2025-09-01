@@ -12,7 +12,6 @@ import { typography } from './base/typography.js'
 const baseThemeOptions = {
   cssVariables: {
     colorSchemeSelector: 'class',
-    nativeColor: true,
   },
   modularCssLayers: '@layer global, base, mui, components, theme, sx, utilities;',
   colorSchemes: {

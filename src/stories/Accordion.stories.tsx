@@ -11,10 +11,9 @@ import {
   Typography,
 } from '@mui/material'
 
-import { BNDataListItem } from '../components/data-list/BNDataListItem'
 import { BNTypographyPair } from '../components/BNTypographyPair'
 import { BNDataList } from '../components/data-list/BNDataList'
-
+import { BNDataListItem } from '../components/data-list/BNDataListItem'
 import '../themes/mui-type-customizations'
 
 const meta = {

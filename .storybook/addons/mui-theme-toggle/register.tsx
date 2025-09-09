@@ -18,7 +18,7 @@ addons.setConfig({
 })
 
 addons.register(ADDON_ID, () => {
-  ; (addons.add(TOOL_ID, {
+  ;(addons.add(TOOL_ID, {
     type: types.TOOL,
     title: 'Light/Dark theme toggle',
     match: ({ viewMode }) => viewMode === 'story' || viewMode === 'docs',
@@ -40,7 +40,6 @@ addons.register(ADDON_ID, () => {
         }
       }, [])
 
-
       const toggleLightDark = (event: React.SyntheticEvent): void => {
         event.preventDefault()
         event.stopPropagation()
@@ -52,7 +51,6 @@ addons.register(ADDON_ID, () => {
 
         addons.setConfig({ theme: newMode === 'dark' ? dark : light })
       }
-
 
       const title =
         currentMuiMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'

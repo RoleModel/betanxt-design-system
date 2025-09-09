@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { List, type ListProps } from '@mui/material'
 
 interface BNDataListProps extends ListProps {
@@ -12,16 +13,9 @@ const BNDataListClasses = {
   root: 'BNDataList',
 }
 
-export function BNDataList({
-  children,
-  className,
-  ...listProps
-}: BNDataListProps) {
+export function BNDataList({ children, className, ...listProps }: BNDataListProps) {
   return (
-    <List
-      className={`${BNDataListClasses.root} ${className || ''}`}
-      {...listProps}
-    >
+    <List className={`${BNDataListClasses.root} ${className || ''}`} {...listProps}>
       {children}
     </List>
   )

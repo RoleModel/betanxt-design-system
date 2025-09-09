@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React from 'react'
 
 import { Stack, type StackProps, Typography, type TypographyProps } from '@mui/material'
@@ -28,7 +29,12 @@ interface BNTypographyPairProps {
   alignItems?: StackProps['alignItems']
   justifyContent?: StackProps['justifyContent']
   sx?: StackProps['sx']
-  variant?: TypographyProps['variant']
+  fullWidth?: boolean
+  split?: boolean
+}
+
+const BNTypographyPairClasses = {
+  root: 'BNTypographyPair',
 }
 
 export function BNTypographyPair({
@@ -39,21 +45,40 @@ export function BNTypographyPair({
   alignItems,
   justifyContent,
   sx,
+  fullWidth = true,
+  split,
 }: BNTypographyPairProps) {
   return (
     <Stack
+      className={clsx(BNTypographyPairClasses.root)}
       direction={direction}
+      display={fullWidth ? 'flex' : 'inline-flex'}
       spacing={spacing}
       alignItems={alignItems}
       justifyContent={justifyContent}
-      sx={sx}
+      sx={{
+        ...sx,
+        ...(fullWidth && {
+          width: '100%',
+        }),
+        ...(split && {
+          flexDirection: 'row',
+          gap: spacing || 2,
+        }),
+      }}
       useFlexGap
     >
       <Typography
         variant={primary.variant}
-        fontWeight={primary.fontWeight}
+        {...(primary.fontWeight && { fontWeight: primary.fontWeight })}
         color={primary.color}
-        sx={primary.sx}
+        sx={{
+          ...primary.sx,
+          ...(split && {
+            flex: 1,
+            whiteSpace: 'nowrap',
+          }),
+        }}
         gutterBottom={primary.gutterBottom}
         {...(primary.component && { component: primary.component })}
       >
@@ -63,9 +88,16 @@ export function BNTypographyPair({
       {secondary?.text && (
         <Typography
           variant={secondary.variant}
-          fontWeight={secondary.fontWeight}
+          {...(secondary.fontWeight && { fontWeight: secondary.fontWeight })}
           color={secondary.color}
-          sx={secondary.sx}
+          sx={{
+            ...secondary.sx,
+            ...(split && {
+              flex: 1,
+              textAlign: 'right',
+              whiteSpace: 'nowrap',
+            }),
+          }}
           gutterBottom={secondary.gutterBottom}
           {...(secondary.component && { component: secondary.component })}
         >
@@ -75,3 +107,5 @@ export function BNTypographyPair({
     </Stack>
   )
 }
+
+export type { BNTypographyPairProps }

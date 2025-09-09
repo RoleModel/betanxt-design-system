@@ -285,7 +285,7 @@ export const AccordionSummaryColumn: Story = {
           </AccordionSummary>
           <AccordionDetails aria-label="Accordion content">
             <Typography variant="body2" component="span">
-              Lorrem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
               malesuada lacus ex, sit amet blandit leo lobortis eget.
             </Typography>
           </AccordionDetails>

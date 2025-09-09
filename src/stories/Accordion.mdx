@@ -1,0 +1,30 @@
+import { Canvas, Controls, Meta, Stories, Story } from '@storybook/addon-docs/blocks'
+
+import meta, * as AccordionStories from './Accordion.stories.tsx'
+
+<Meta of={meta} />
+
+# Accordion
+
+The Material UI Accordion component includes several complementary utility components to handle various use cases:
+
+- `Accordion`: the wrapper for grouping related components.
+- `Accordion Summary`: the wrapper for the Accordion header, which expands or collapses the content when clicked.
+- `Accordion Details`: the wrapper for the Accordion content.
+- `Accordion Actions`: an optional wrapper that groups a set of buttons.
+
+## Elevation
+
+<Canvas of={AccordionStories.Elevation} />
+
+# With List
+
+With a list inside the accordion.
+
+<Canvas of={AccordionStories.WithList} />
+
+## Acordion Summary
+
+The `AccordionSummary` component is used to display the header of the accordion. You can use the `variant="column"` prop to change the layout of the header.
+
+<Canvas of={AccordionStories.AccordionSummaryColumn} />

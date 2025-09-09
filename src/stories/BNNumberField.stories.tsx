@@ -38,7 +38,8 @@ const meta: Meta<typeof BNNumberField> = {
     },
     prefix: {
       control: { type: 'text' },
-      description: 'Custom prefix to display instead of currency symbol. Overrides any currency symbol when provided.',
+      description:
+        'Custom prefix to display instead of currency symbol. Overrides any currency symbol when provided.',
     },
     variant: {
       control: { type: 'select' },

@@ -26,7 +26,7 @@ export const currencyConfig: Record<
     decimalPlaces: number
     locale: string
     thousandSeparator: string // Character used to group thousands
-    decimalSeparator: string  // Radix character - separates integer from fractional part
+    decimalSeparator: string // Radix character - separates integer from fractional part
   }
 > = {
   USD: {

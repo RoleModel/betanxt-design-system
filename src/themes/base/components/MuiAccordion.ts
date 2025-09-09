@@ -1,4 +1,4 @@
-// MUi Accordion Overides
+// MUI Accordion Overrides
 import { accordionClasses } from '@mui/material/Accordion'
 import { accordionSummaryClasses } from '@mui/material/AccordionSummary'
 import type { ThemeOptions } from '@mui/material/styles'

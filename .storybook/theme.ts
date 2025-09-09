@@ -33,7 +33,7 @@ export const light = create({
   // Form colors
   inputBg: '#FFFFFF',
   inputBorder: 'rgba(31, 30, 28, 0.12)',
-  inputTextColor: '##1f1e1c',
+  inputTextColor: '#1f1e1c',
   inputBorderRadius: 4,
 
   // Typography

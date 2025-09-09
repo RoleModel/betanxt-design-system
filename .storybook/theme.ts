@@ -4,6 +4,7 @@ export const light = create({
   base: 'light',
   brandTitle: 'BetaNXT Connected Design System',
   brandImage: '/betanxt-logo-light.svg',
+  brandTarget: '_self',
 
   // Color palette
   colorPrimary: '#032f3f',
@@ -20,11 +21,11 @@ export const light = create({
   textColor: '#1e1e1e',
   textInverseColor: '#FFFFFF',
 
-  buttonBg: '#032f3f',
-  buttonBorder: '#053f5a',
+  buttonBg: '#0d5a7d',
+  buttonBorder: '#0d5a7d',
 
   // Toolbar default and active colors
-  barTextColor: '#ffffff',
+  barTextColor: '#FFFFFF',
   barSelectedColor: '#34c0f3',
   barHoverColor: '#229fd3',
   barBg: '#021d27',
@@ -32,7 +33,7 @@ export const light = create({
   // Form colors
   inputBg: '#FFFFFF',
   inputBorder: 'rgba(31, 30, 28, 0.12)',
-  inputTextColor: '#1e1e1e',
+  inputTextColor: '##1f1e1c',
   inputBorderRadius: 4,
 
   // Typography
@@ -45,7 +46,7 @@ export const dark = create({
   base: 'dark',
   brandTitle: 'BetaNXT Connected Design System',
   brandImage: '/betanxt-logo-dark.svg',
-
+  brandTarget: '_self',
   // Color palette
   colorPrimary: '#34c0f3',
   colorSecondary: '#34c0f3',
@@ -73,7 +74,7 @@ export const dark = create({
   // Form colors
   inputBg: 'rgba(0, 0, 0, 0.56)',
   inputBorder: 'rgba(255, 255, 255, 0.25)',
-  inputTextColor: '#FFFFFF',
+  inputTextColor: '#1f1e1c',
   inputBorderRadius: 4,
 
   // Typography

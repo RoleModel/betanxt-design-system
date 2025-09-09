@@ -14,6 +14,12 @@ export { BNStatCard } from './BNStatCard'
 export { BNSelectCard } from './BNSelectCard'
 export { BNTimeline } from './BNTimeline'
 export { BNTypographyPair } from './BNTypographyPair'
+export type { BNTypographyPairProps } from './BNTypographyPair'
+
+// Number Field Components
+export { default as BNNumberField } from './BNNumberField'
+export { currencyConfig } from './BNNumberField'
+export type { BNNumberFieldProps, Currency } from './BNNumberField'
 
 // Filter Search Components
 export { default as BNFilterSelect } from './filter-search/BNFilterSelect'

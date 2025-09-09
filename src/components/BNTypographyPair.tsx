@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Stack, type StackProps, Typography, type TypographyProps } from '@mui/material'
 
-interface BNTypographyPairProps {
+export interface BNTypographyPairProps {
   primary: {
     text: React.ReactNode
     variant?: TypographyProps['variant']

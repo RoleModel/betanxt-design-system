@@ -68,9 +68,9 @@
     "vitest": "^3.2.1"
   },
   "dependencies": {
-    "react-number-format": "^5.4.4"
   },
   "peerDependencies": {
+    "react-number-format": "^5.4.4",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",

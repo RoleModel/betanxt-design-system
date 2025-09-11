@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import React from 'react'
 
+import { Box, Divider, Typography } from '@mui/material'
 import type { TypographyProps } from '@mui/material/Typography'
 
 import { BNTypographyPair as BNTypographyPairComponent } from '../components/BNTypographyPair'
@@ -12,6 +13,8 @@ interface FlatTypographyPairArgs {
   spacing?: number
   alignItems?: string
   justifyContent?: string
+  split?: boolean
+  fullWidth?: boolean
   primary?: {
     text: React.ReactNode
     variant?: string
@@ -46,6 +49,16 @@ const meta = {
   title: 'Custom Components/BNTypographyPair',
   component: BNTypographyPairComponent,
   argTypes: {
+    split: {
+      control: 'boolean',
+      description:
+        'Split the text elements into two columns, align secondary text to the right',
+    },
+    fullWidth: {
+      control: 'boolean',
+      description:
+        'Make the text elements take the full width of the container (default: true)',
+    },
     direction: {
       control: 'select',
       options: ['row', 'column'],
@@ -124,6 +137,7 @@ const meta = {
     primaryGutterBottom: {
       control: 'boolean',
       description: 'Adds bottom margin to primary text',
+      name: 'Primary Gutter Bottom',
     },
     secondaryText: {
       control: 'text',
@@ -176,6 +190,7 @@ const meta = {
     secondaryGutterBottom: {
       control: 'boolean',
       description: 'Adds bottom margin to secondary text',
+      name: 'Secondary Gutter Bottom',
     },
   },
   parameters: {
@@ -210,6 +225,8 @@ const createBNTypographyPairProps = (args: FlatTypographyPairArgs) => {
     secondaryFontWeight,
     secondaryColor,
     secondaryGutterBottom,
+    split,
+    fullWidth,
     ...rest
   } = args
 
@@ -255,8 +272,10 @@ const createBNTypographyPairProps = (args: FlatTypographyPairArgs) => {
       : undefined
   }
 
-  return {
+  const result = {
     ...rest,
+    split,
+    fullWidth,
     primary: {
       text: primaryText,
       variant: getPrimaryVariant(),
@@ -274,6 +293,8 @@ const createBNTypographyPairProps = (args: FlatTypographyPairArgs) => {
         }
       : undefined,
   }
+
+  return result
 }
 
 export const BNTypographyPair: Story = {
@@ -288,6 +309,7 @@ export const BNTypographyPair: Story = {
     primaryFontWeight: 'medium',
     primaryColor: 'text.primary',
     primaryGutterBottom: false,
+    fullWidth: true,
     secondaryText: 'Secondary Text',
     secondaryVariant: 'body1',
     secondaryFontWeight: 'regular',
@@ -300,8 +322,46 @@ export const BNTypographyPair: Story = {
   },
 }
 
+export const BNTypographyPairSplit: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  name: 'BNTypographyPair Split',
+  args: {
+    direction: 'row',
+    spacing: 0,
+    split: true,
+    fullWidth: true,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    primaryText: 'Primary Text',
+    primaryVariant: 'body2',
+    primaryFontWeight: 'medium',
+    primaryColor: 'text.primary',
+    primaryGutterBottom: false,
+    secondaryText: 'Secondary Text',
+    secondaryVariant: 'body2',
+    secondaryFontWeight: 'regular',
+    secondaryColor: 'text.secondary',
+    secondaryGutterBottom: false,
+  },
+  render: (args: any) => {
+    const props = createBNTypographyPairProps(args as FlatTypographyPairArgs)
+    return (
+      <Box sx={{ width: '100%', p: 8 }}>
+        <Typography variant="body1" gutterBottom>
+          Demo <code>split</code> and <code>fullwidth</code> functionality
+        </Typography>
+        <Divider sx={{ mb: 2 }} />
+        <BNTypographyPairComponent {...props} />
+        <BNTypographyPairComponent {...props} />
+      </Box>
+    )
+  },
+}
+
 export const PageTitle: Story = {
-  name: 'Example Usage',
+  name: 'Page Title',
   args: {
     direction: 'column',
     spacing: 0.5,
@@ -318,6 +378,10 @@ export const PageTitle: Story = {
   },
   render: (args: any) => {
     const props = createBNTypographyPairProps(args as FlatTypographyPairArgs)
-    return <BNTypographyPairComponent {...props} />
+    return (
+      <Box sx={{ width: '100%', p: 8 }}>
+        <BNTypographyPairComponent {...props} />
+      </Box>
+    )
   },
 }

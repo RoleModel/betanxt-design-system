@@ -2,20 +2,14 @@ import { addons } from 'storybook/manager-api'
 
 import { dark, light } from './theme'
 
-// Set the theme immediately to ensure it loads
+// Configure Storybook with custom theme
 addons.setConfig({
   theme: light,
+  // Disable logo link to prevent theme reset
+  brandUrl: null,
+  // Force brand title to prevent default
+  brandTitle: 'BetaNXT Connected Design System',
 })
-
-// Get stored theme preference
-const getStoredTheme = () => {
-  try {
-    const stored = localStorage.getItem('mui-mode')
-    return stored === 'dark' ? dark : light
-  } catch (error) {
-    return light
-  }
-}
 
 // Set up channel for theme changes
 const channel = addons.getChannel()
@@ -25,14 +19,7 @@ channel.on('mui-theme-mode-changed', (mode: string) => {
   const newTheme = mode === 'dark' ? dark : light
   addons.setConfig({
     theme: newTheme,
+    brandUrl: null,
+    brandTitle: 'BetaNXT Connected Design System',
   })
 })
-
-// Apply stored theme after initial setup
-setTimeout(() => {
-  const storedTheme = getStoredTheme()
-  addons.setConfig({
-    theme: storedTheme,
-  })
-  channel.emit('mui-theme-mode-request')
-}, 100)

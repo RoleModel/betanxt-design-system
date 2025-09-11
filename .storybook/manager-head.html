@@ -20,6 +20,7 @@
       color 200ms ease;
     margin-bottom: 4px;
   }
+
   #storybook-explorer-tree .sidebar-item svg {
     transition: color 200ms ease;
     color: inherit;
@@ -40,10 +41,19 @@
   #storybook-explorer-tree .sidebar-item[data-selected='true'] svg {
     color: inherit !important;
   }
+
   #storybook-explorer-tree .sidebar-item:hover svg {
     color: inherit !important;
   }
+
   #storybook-testing-module {
     transition: none !important;
+  }
+
+  @layer global {
+    textarea,
+    input {
+      color: #000000 !important;
+    }
   }
 </style>

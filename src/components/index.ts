@@ -14,6 +14,11 @@ export { BNStatCard } from './BNStatCard'
 export { BNSelectCard } from './BNSelectCard'
 export { BNTimeline } from './BNTimeline'
 export { BNTypographyPair } from './BNTypographyPair'
+export type { BNTypographyPairProps } from './BNTypographyPair'
+export { BNDataListItem } from './data-list/BNDataListItem'
+export type { BNDataListItemProps } from './data-list/BNDataListItem'
+export { BNDataList } from './data-list/BNDataList'
+export type { BNDataListProps } from './data-list/BNDataList'
 
 // Filter Search Components
 export { default as BNFilterSelect } from './filter-search/BNFilterSelect'

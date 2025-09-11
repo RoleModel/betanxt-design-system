@@ -9,7 +9,15 @@ const ADDON_ID = 'mui-theme-toggle'
 const TOOL_ID = `${ADDON_ID}/tool`
 const SYSTEM_TOOL_ID = `${ADDON_ID}/system-tool`
 
-addons.register(ADDON_ID, (api) => {
+addons.setConfig({
+  theme: light,
+  // Disable logo link to prevent theme reset
+  brandUrl: null,
+  // Force brand title to prevent default
+  brandTitle: 'BetaNXT Connected Design System',
+})
+
+addons.register(ADDON_ID, () => {
   ;(addons.add(TOOL_ID, {
     type: types.TOOL,
     title: 'Light/Dark theme toggle',

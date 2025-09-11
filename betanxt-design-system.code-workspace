@@ -1,0 +1,35 @@
+{
+  "folders": [
+    {
+      "name": "Design System",
+      "path": "src",
+    },
+    {
+      "name": "Stories",
+      "path": "src/stories",
+    },
+    {
+      "name": "Components",
+      "path": "src/components",
+    },
+    {
+      "name": "All",
+      "path": ".",
+    },
+  ],
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+    },
+    "files.exclude": {
+      "supabase/functions/": true,
+    },
+    "search.useParentIgnoreFiles": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "files.eol": "\n",
+    "eslint.useFlatConfig": true,
+    "git.allowForcePush": true,
+  },
+}

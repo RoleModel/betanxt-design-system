@@ -31,9 +31,9 @@ export const light = create({
   barBg: '#021d27',
 
   // Form colors
-  inputBg: '#1e1e1e',
+  inputBg: '#0d5a7d',
   inputBorder: 'rgba(31, 30, 28, 0.12)',
-  inputTextColor: '#1f1e1c',
+  inputTextColor: '#FFFFFF',
   inputBorderRadius: 4,
 
   // Typography
@@ -74,7 +74,7 @@ export const dark = create({
   // Form colors
   inputBg: '#FFFFFF',
   inputBorder: 'rgba(255, 255, 255, 0.25)',
-  inputTextColor: '#1f1e1c',
+  inputTextColor: '#FFFFFF',
   inputBorderRadius: 4,
 
   // Typography

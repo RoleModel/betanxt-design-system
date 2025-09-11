@@ -142,7 +142,7 @@ export const ListItemButtonStory: Story = {
       variant: 'body3',
       fontWeight: 500,
     },
-    disableGutters: false,
+    disableGutters: true,
     disablePadding: false,
     dense: false,
     button: true,

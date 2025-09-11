@@ -60,6 +60,9 @@ const meta: Meta<typeof BNDataListItem> = {
     className: {
       table: { disable: true },
     },
+    alignItems: {
+      table: { disable: true },
+    },
     style: {
       table: { disable: true },
     },
@@ -103,6 +106,7 @@ export const Dense: Story = {
 
     disableGutters: true,
     disablePadding: false,
+    alignItems: 'center',
   },
   render: (args) => (
     <Box sx={{ width: 400 }}>
@@ -138,6 +142,11 @@ export const ListItemButtonStory: Story = {
       variant: 'body3',
       fontWeight: 500,
     },
+    disableGutters: false,
+    disablePadding: false,
+    dense: false,
+    button: true,
+    divider: true,
   },
   render: (args) => {
     const [selectedAccountId, setSelectedAccountId] = React.useState<number | null>(null)
@@ -150,18 +159,13 @@ export const ListItemButtonStory: Story = {
 
     return (
       <Box sx={{ width: 400 }}>
-        <BNDataList disablePadding dense>
+        <BNDataList>
           {accountList.map((account, index) => (
             <BNDataListItem
               key={`list-item-${index}`}
               divider={index < accountList.length - 1}
-              slots={{
-                root: ListItemButton,
-              }}
-              slotProps={{
-                root: {
-                  onClick: () => handleAccountClick(account.id),
-                },
+              listItemButtonProps={{
+                onClick: () => handleAccountClick(account.id),
               }}
               {...args}
               primary={{

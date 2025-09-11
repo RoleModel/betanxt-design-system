@@ -15,6 +15,10 @@ export { BNSelectCard } from './BNSelectCard'
 export { BNTimeline } from './BNTimeline'
 export { BNTypographyPair } from './BNTypographyPair'
 export type { BNTypographyPairProps } from './BNTypographyPair'
+export { BNDataListItem } from './data-list/BNDataListItem'
+export type { BNDataListItemProps } from './data-list/BNDataListItem'
+export { BNDataList } from './data-list/BNDataList'
+export type { BNDataListProps } from './data-list/BNDataList'
 
 // Number Field Components
 export { default as BNNumberField } from './BNNumberField'

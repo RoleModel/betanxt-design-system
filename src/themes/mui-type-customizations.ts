@@ -1,4 +1,5 @@
 import type {} from '@mui/lab/themeAugmentation'
+import type { AccordionProps } from '@mui/material/Accordion'
 import type { PaletteColor, PaletteColorOptions } from '@mui/material/styles'
 import type {} from '@mui/material/themeCssVarsAugmentation'
 import type {} from '@mui/x-charts/themeAugmentation'
@@ -199,6 +200,24 @@ declare module '@mui/material/Typography' {
   }
 }
 
+declare module '@mui/material/Accordion' {
+  interface AccordionPropsVariantOverrides {
+    simple: true
+  }
+  interface AccordionOwnProps {
+    disablePadding?: boolean
+  }
+}
+
+declare module '@mui/material/AccordionSummary' {
+  interface AccordionSummaryPropsVariantOverrides {
+    column?: true
+  }
+  interface AccordionSummaryOwnProps {
+    variant?: 'column'
+  }
+}
+
 declare module '@mui/material/Alert' {
   interface AlertPropsVariantOverrides {
     standard?: true
@@ -227,6 +246,15 @@ declare module '@mui/material/Badge' {
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     tertiary: true
+  }
+}
+
+declare module '@mui/material/Paper' {
+  interface PaperPropsVariantOverrides {
+    simple: true
+  }
+  interface PaperOwnProps {
+    disablePadding?: boolean
   }
 }
 

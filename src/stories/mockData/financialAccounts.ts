@@ -20,7 +20,7 @@ export interface MockFinancialAccount {
 export const financialAccounts: MockFinancialAccount[] = [
   {
     id: 1,
-    name: 'John Smith Retirement Account',
+    name: 'John Smith Retirement',
     type: 'retirement',
     rep: 'Jane Wilson',
     scope: 'individual',

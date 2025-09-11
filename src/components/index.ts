@@ -20,6 +20,11 @@ export type { BNDataListItemProps } from './data-list/BNDataListItem'
 export { BNDataList } from './data-list/BNDataList'
 export type { BNDataListProps } from './data-list/BNDataList'
 
+// Number Field Components
+export { default as BNNumberField } from './BNNumberField'
+export { currencyConfig } from './BNNumberField'
+export type { BNNumberFieldProps, Currency } from './BNNumberField'
+
 // Filter Search Components
 export { default as BNFilterSelect } from './filter-search/BNFilterSelect'
 export type { BNFilterSelectProps, FilterOption } from './filter-search/BNFilterSelect'

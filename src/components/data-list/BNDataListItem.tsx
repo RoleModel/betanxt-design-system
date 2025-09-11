@@ -1,11 +1,10 @@
 import React from 'react'
 
 import { ListItem, type ListItemProps } from '@mui/material'
+import { ListItemButton, type ListItemButtonProps } from '@mui/material'
 
 import { BNTypographyPair } from '../BNTypographyPair'
 import type { BNTypographyPairProps } from '../BNTypographyPair'
-
-import { ListItemButton, type ListItemButtonProps } from '@mui/material'
 
 interface BNDataListItemProps extends Omit<ListItemProps, 'children'> {
   /**
@@ -49,8 +48,9 @@ export function BNDataListItem({
   listItemButtonProps,
   ...listItemProps
 }: BNDataListItemProps) {
-  const content = children || (
-    primary && (
+  const content =
+    children ||
+    (primary && (
       <BNTypographyPair
         primary={primary}
         secondary={secondary}
@@ -59,8 +59,7 @@ export function BNDataListItem({
         direction="row"
         {...typographyPairProps}
       />
-    )
-  )
+    ))
 
   if (button) {
     // For button version, we need disableGutters on ListItem so button extends full width
@@ -87,10 +86,7 @@ export function BNDataListItem({
   }
 
   return (
-    <ListItem
-      className={BNDataListItemClasses.root}
-      {...listItemProps}
-    >
+    <ListItem className={BNDataListItemClasses.root} {...listItemProps}>
       {content}
     </ListItem>
   )

@@ -65,7 +65,7 @@ export const Primary: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -134,10 +134,11 @@ export const WithLogoComponent: Story = {
       },
     },
     tabs: exampleTabs,
+    menuSubheaderLabel: 'User Menu',
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -168,7 +169,7 @@ export const WithLogoImg: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -195,7 +196,7 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],

@@ -7,6 +7,7 @@ import {
   IconButton,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
   Menu,
   MenuItem as MuiMenuItem,
   useMediaQuery,
@@ -46,6 +47,9 @@ export interface MenuItem extends Omit<MenuItemProps, 'onClick'> {
   onClick?: () => void
   to?: string | { pathname: string; search?: string; hash?: string; state?: any }
   href?: string
+  ariaLabel?: string
+  hasSubeader?: boolean
+  subeaderLabel?: string
 }
 
 export interface AvatarProps {
@@ -61,60 +65,15 @@ export interface BNAnimatedMenuIconProps {
   avatar: AvatarProps
   useAnimatedIconOnly?: boolean
   LinkComponent?: React.ElementType
+  subheaderLabel?: string
 }
 
-const StyledMenuIcon = styled('button', {
-  shouldForwardProp: (prop) => prop !== 'open',
-})<{ open: boolean }>(
-  ({ open }): CSSObject => ({
-    border: 'none',
-    margin: 0,
-    padding: 0,
-    overflow: 'visible',
-    background: 'transparent',
-    color: 'inherit',
-    font: 'inherit',
-    lineHeight: 'normal',
-    appearance: 'none',
-    outline: 'none',
-    cursor: 'pointer',
-    position: 'relative',
-    width: '28px',
-    height: '28px',
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    borderRadius: '50%',
-    top: 0,
-    '&:focus': {
-      outline: '2px solid currentColor',
-      outlineOffset: '2px',
-    },
-    '&:focus:not(:focus-visible)': {
-      outline: 'none',
-    },
-    '& div': {
-      display: 'block',
-      position: 'absolute',
-      height: 2,
-      width: '100%',
-      background: 'currentColor',
-      opacity: 1,
-      left: 0,
-      transformOrigin: 'center center',
-    },
-    '& div:nth-of-type(1)': {
-      animation: `${open ? topbarOpen : topbarClose} 0.65s ease forwards`,
-    },
-    '& div:nth-of-type(2)': {
-      animation: `${open ? bottombarOpen : bottombarClose} 0.65s ease forwards`,
-    },
-  })
-)
 
 export const BNAnimatedMenuIcon = ({
+  subheaderLabel,
   menuItems,
   onDrawerToggle,
-  drawerOpen = false,
+  drawerOpen: _drawerOpen = false,
   avatar,
   useAnimatedIconOnly = false,
   LinkComponent,
@@ -140,53 +99,19 @@ export const BNAnimatedMenuIcon = ({
     handleMenuClose()
   }
 
-  // Use animated icon for mobile OR when useAnimatedIconOnly is true
-  if (isMobile || useAnimatedIconOnly) {
-    return (
-      <>
-        <StyledMenuIcon
-          open={drawerOpen}
-          onClick={handleMenuClick}
-          aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={drawerOpen}
-          type="button"
-        >
-          <div />
-          <div />
-        </StyledMenuIcon>
-        {/* Show dropdown menu when using animated icon only on desktop */}
-        {useAnimatedIconOnly && !isMobile && (
-          <Menu
-            anchorEl={menuAnchorEl}
-            open={Boolean(menuAnchorEl)}
-            onClose={handleMenuClose}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          >
-            {menuItems.map((item, index) => {
-              const { label, icon, onClick, ...menuItemProps } = item
-              return (
-                <MuiMenuItem
-                  key={index}
-                  LinkComponent={LinkComponent}
-                  onClick={() => handleMenuItemClick(item)}
-                  {...menuItemProps}
-                >
-                  {icon && <ListItemIcon>{icon}</ListItemIcon>}
-                  <ListItemText primary={label} />
-                </MuiMenuItem>
-              )
-            })}
-          </Menu>
-        )}
-      </>
-    )
-  }
+  const StyledListHeader = styled(ListSubheader)({
+    backgroundImage: 'var(--Paper-overlay)',
+    lineHeight: "2.5rem",
+  });
 
   // Default desktop behavior with avatar
   return (
     <>
       <IconButton
+        id="menu-icon"
+        aria-controls={menuAnchorEl ? 'menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={menuAnchorEl ? 'true' : undefined}
         aria-label="Open Menu"
         color="inherit"
         onClick={handleMenuClick}
@@ -201,17 +126,34 @@ export const BNAnimatedMenuIcon = ({
         </Avatar>
       </IconButton>
       <Menu
+        id="menu"
+        component="nav"
+        role="navigation"
         anchorEl={menuAnchorEl}
         open={Boolean(menuAnchorEl)}
         onClose={handleMenuClose}
+        marginThreshold={0}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        slotProps={{
+          paper: {
+            role: 'menu',
+            style: { maxHeight: '100vh', overflowY: 'auto' },
+          },
+          list: {
+            'aria-labelledby': 'menu-icon',
+          },
+        }}
       >
+        {typeof subheaderLabel === 'string' && subheaderLabel.trim().length > 0 && (
+          <StyledListHeader tabIndex={0} role="menuitem">{subheaderLabel}</StyledListHeader>
+        )}
         {menuItems.map((item, index) => {
-          const { label, icon, onClick, ...menuItemProps } = item
+          const { label, icon, onClick: _onClick, ...menuItemProps } = item
           return (
             <MuiMenuItem
               key={index}
+              aria-label={item.ariaLabel}
               LinkComponent={LinkComponent}
               onClick={() => handleMenuItemClick(item)}
               {...menuItemProps}

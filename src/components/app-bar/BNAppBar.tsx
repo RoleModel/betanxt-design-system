@@ -20,10 +20,10 @@ const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({
   height: 44,
   ...(src &&
     !src?.endsWith('.svg') && {
-      backgroundColor: theme.vars.palette.common.white,
-      padding: theme.spacing(0.5),
-      borderRadius: 4,
-    }),
+    backgroundColor: theme.vars.palette.common.white,
+    padding: theme.spacing(0.5),
+    borderRadius: 4,
+  }),
 })
 
 type BNAppBarLink = {
@@ -42,6 +42,7 @@ export interface BNAppBarProps {
   LinkComponent?: React.ElementType
   avatar?: AvatarProps
   menuItems?: MenuItem[]
+  menuSubheaderLabel?: string
   'aria-label'?: string
   children?: React.ReactNode
   slots?: {
@@ -56,7 +57,7 @@ export interface BNAppBarProps {
   }
 }
 
-export function BNAppBar({
+export default function BNAppBar({
   title,
   color = 'primary',
   tabs,
@@ -64,6 +65,7 @@ export function BNAppBar({
   LinkComponent = 'a',
   menuItems,
   avatar,
+  menuSubheaderLabel,
   'aria-label': ariaLabel,
   children,
   slots = {},
@@ -74,7 +76,7 @@ export function BNAppBar({
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
 
   const handleDrawerToggle = () => {
-    setDrawerOpen(!drawerOpen)
+    setDrawerOpen((prev) => !prev)
   }
 
   return (
@@ -90,10 +92,10 @@ export function BNAppBar({
             ? React.createElement(slots.logoComponent, slotProps.logoComponent)
             : slots.logoImg
               ? React.createElement(slots.logoImg, {
-                  alt: 'Logo',
-                  style: getLogoImgStyles(theme, slotProps.logoImg?.src),
-                  ...slotProps.logoImg,
-                })
+                alt: 'Logo',
+                style: getLogoImgStyles(theme, slotProps.logoImg?.src),
+                ...slotProps.logoImg,
+              })
               : null}
           {title && (
             <Typography variant="appTitle" aria-level={1}>
@@ -126,6 +128,7 @@ export function BNAppBar({
               onDrawerToggle={handleDrawerToggle}
               drawerOpen={drawerOpen}
               LinkComponent={LinkComponent}
+              subheaderLabel={menuSubheaderLabel}
             />
           )}
           {slots.end && React.createElement(slots.end, slotProps.end)}
@@ -151,5 +154,3 @@ export function BNAppBar({
     </MuiAppBar>
   )
 }
-
-export default BNAppBar

@@ -107,5 +107,3 @@ export function BNTypographyPair({
     </Stack>
   )
 }
-
-export type { BNTypographyPairProps }

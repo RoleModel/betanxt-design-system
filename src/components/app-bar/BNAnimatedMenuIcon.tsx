@@ -7,6 +7,7 @@ import {
   IconButton,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
   Menu,
   MenuItem as MuiMenuItem,
   useMediaQuery,
@@ -46,6 +47,9 @@ export interface MenuItem extends Omit<MenuItemProps, 'onClick'> {
   onClick?: () => void
   to?: string | { pathname: string; search?: string; hash?: string; state?: any }
   href?: string
+  ariaLabel?: string
+  hasSubeader?: boolean
+  subeaderLabel?: string
 }
 
 export interface AvatarProps {
@@ -61,6 +65,7 @@ export interface BNAnimatedMenuIconProps {
   avatar: AvatarProps
   useAnimatedIconOnly?: boolean
   LinkComponent?: React.ElementType
+  subheaderLabel?: string
 }
 
 const StyledMenuIcon = styled('button', {
@@ -112,6 +117,7 @@ const StyledMenuIcon = styled('button', {
 )
 
 export const BNAnimatedMenuIcon = ({
+  subheaderLabel,
   menuItems,
   onDrawerToggle,
   drawerOpen = false,
@@ -140,6 +146,10 @@ export const BNAnimatedMenuIcon = ({
     handleMenuClose()
   }
 
+  const StyledListHeader = styled(ListSubheader)({
+    backgroundImage: 'var(--Paper-overlay)',
+    lineHeight: '2.5rem',
+  })
   // Use animated icon for mobile OR when useAnimatedIconOnly is true
   if (isMobile || useAnimatedIconOnly) {
     return (
@@ -187,6 +197,10 @@ export const BNAnimatedMenuIcon = ({
   return (
     <>
       <IconButton
+        id="menu-icon"
+        aria-controls={menuAnchorEl ? 'menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={menuAnchorEl ? 'true' : undefined}
         aria-label="Open Menu"
         color="inherit"
         onClick={handleMenuClick}
@@ -201,17 +215,34 @@ export const BNAnimatedMenuIcon = ({
         </Avatar>
       </IconButton>
       <Menu
+        id="menu"
+        component="nav"
+        role="navigation"
         anchorEl={menuAnchorEl}
         open={Boolean(menuAnchorEl)}
         onClose={handleMenuClose}
+        marginThreshold={0}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        slotProps={{
+          paper: {
+            role: 'menu',
+            style: { maxHeight: '100vh', overflowY: 'auto' },
+          },
+          list: {
+            'aria-labelledby': 'menu-icon',
+          },
+        }}
       >
+        {typeof subheaderLabel === 'string' && subheaderLabel.trim().length > 0 && (
+          <StyledListHeader role="menuitem">{subheaderLabel}</StyledListHeader>
+        )}
         {menuItems.map((item, index) => {
-          const { label, icon, onClick, ...menuItemProps } = item
+          const { label, icon, onClick: _onClick, ...menuItemProps } = item
           return (
             <MuiMenuItem
               key={index}
+              aria-label={item.ariaLabel}
               LinkComponent={LinkComponent}
               onClick={() => handleMenuItemClick(item)}
               {...menuItemProps}

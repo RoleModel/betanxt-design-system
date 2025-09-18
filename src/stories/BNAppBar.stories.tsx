@@ -134,6 +134,7 @@ export const WithLogoComponent: Story = {
       },
     },
     tabs: exampleTabs,
+    menuSubheaderLabel: 'User Menu',
     menuItems: [
       {
         label: 'Logout',

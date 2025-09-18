@@ -42,6 +42,7 @@ export interface BNAppBarProps {
   LinkComponent?: React.ElementType
   avatar?: AvatarProps
   menuItems?: MenuItem[]
+  menuSubheaderLabel?: string
   'aria-label'?: string
   children?: React.ReactNode
   slots?: {
@@ -64,6 +65,7 @@ export function BNAppBar({
   LinkComponent = 'a',
   menuItems,
   avatar,
+  menuSubheaderLabel,
   'aria-label': ariaLabel,
   children,
   slots = {},
@@ -74,7 +76,7 @@ export function BNAppBar({
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
 
   const handleDrawerToggle = () => {
-    setDrawerOpen(!drawerOpen)
+    setDrawerOpen((prev) => !prev)
   }
 
   return (
@@ -126,6 +128,7 @@ export function BNAppBar({
               onDrawerToggle={handleDrawerToggle}
               drawerOpen={drawerOpen}
               LinkComponent={LinkComponent}
+              subheaderLabel={menuSubheaderLabel}
             />
           )}
           {slots.end && React.createElement(slots.end, slotProps.end)}

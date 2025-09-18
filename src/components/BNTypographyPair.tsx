@@ -45,7 +45,7 @@ export function BNTypographyPair({
   alignItems,
   justifyContent,
   sx,
-  fullWidth = true,
+  fullWidth,
   split,
 }: BNTypographyPairProps) {
   return (

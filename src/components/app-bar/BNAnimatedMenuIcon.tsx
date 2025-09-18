@@ -68,7 +68,6 @@ export interface BNAnimatedMenuIconProps {
   subheaderLabel?: string
 }
 
-
 const StyledMenuIcon = styled('button', {
   shouldForwardProp: (prop) => prop !== 'open',
 })<{ open: boolean }>(
@@ -117,7 +116,6 @@ const StyledMenuIcon = styled('button', {
   })
 )
 
-
 export const BNAnimatedMenuIcon = ({
   subheaderLabel,
   menuItems,
@@ -150,9 +148,9 @@ export const BNAnimatedMenuIcon = ({
 
   const StyledListHeader = styled(ListSubheader)({
     backgroundImage: 'var(--Paper-overlay)',
-    lineHeight: "2.5rem",
-  });
-    // Use animated icon for mobile OR when useAnimatedIconOnly is true
+    lineHeight: '2.5rem',
+  })
+  // Use animated icon for mobile OR when useAnimatedIconOnly is true
   if (isMobile || useAnimatedIconOnly) {
     return (
       <>

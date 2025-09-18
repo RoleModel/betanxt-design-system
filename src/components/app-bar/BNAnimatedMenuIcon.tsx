@@ -69,11 +69,60 @@ export interface BNAnimatedMenuIconProps {
 }
 
 
+const StyledMenuIcon = styled('button', {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<{ open: boolean }>(
+  ({ open }): CSSObject => ({
+    border: 'none',
+    margin: 0,
+    padding: 0,
+    overflow: 'visible',
+    background: 'transparent',
+    color: 'inherit',
+    font: 'inherit',
+    lineHeight: 'normal',
+    appearance: 'none',
+    outline: 'none',
+    cursor: 'pointer',
+    position: 'relative',
+    width: '28px',
+    height: '28px',
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    borderRadius: '50%',
+    top: 0,
+    '&:focus': {
+      outline: '2px solid currentColor',
+      outlineOffset: '2px',
+    },
+    '&:focus:not(:focus-visible)': {
+      outline: 'none',
+    },
+    '& div': {
+      display: 'block',
+      position: 'absolute',
+      height: 2,
+      width: '100%',
+      background: 'currentColor',
+      opacity: 1,
+      left: 0,
+      transformOrigin: 'center center',
+    },
+    '& div:nth-of-type(1)': {
+      animation: `${open ? topbarOpen : topbarClose} 0.65s ease forwards`,
+    },
+    '& div:nth-of-type(2)': {
+      animation: `${open ? bottombarOpen : bottombarClose} 0.65s ease forwards`,
+    },
+  })
+)
+
+
 export const BNAnimatedMenuIcon = ({
   subheaderLabel,
   menuItems,
   onDrawerToggle,
-  drawerOpen: _drawerOpen = false,
+  drawerOpen = false,
   avatar,
   useAnimatedIconOnly = false,
   LinkComponent,
@@ -103,6 +152,48 @@ export const BNAnimatedMenuIcon = ({
     backgroundImage: 'var(--Paper-overlay)',
     lineHeight: "2.5rem",
   });
+    // Use animated icon for mobile OR when useAnimatedIconOnly is true
+  if (isMobile || useAnimatedIconOnly) {
+    return (
+      <>
+        <StyledMenuIcon
+          open={drawerOpen}
+          onClick={handleMenuClick}
+          aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={drawerOpen}
+          type="button"
+        >
+          <div />
+          <div />
+        </StyledMenuIcon>
+        {/* Show dropdown menu when using animated icon only on desktop */}
+        {useAnimatedIconOnly && !isMobile && (
+          <Menu
+            anchorEl={menuAnchorEl}
+            open={Boolean(menuAnchorEl)}
+            onClose={handleMenuClose}
+            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          >
+            {menuItems.map((item, index) => {
+              const { label, icon, onClick, ...menuItemProps } = item
+              return (
+                <MuiMenuItem
+                  key={index}
+                  LinkComponent={LinkComponent}
+                  onClick={() => handleMenuItemClick(item)}
+                  {...menuItemProps}
+                >
+                  {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                  <ListItemText primary={label} />
+                </MuiMenuItem>
+              )
+            })}
+          </Menu>
+        )}
+      </>
+    )
+  }
 
   // Default desktop behavior with avatar
   return (
@@ -146,7 +237,7 @@ export const BNAnimatedMenuIcon = ({
         }}
       >
         {typeof subheaderLabel === 'string' && subheaderLabel.trim().length > 0 && (
-          <StyledListHeader tabIndex={0} role="menuitem">{subheaderLabel}</StyledListHeader>
+          <StyledListHeader role="menuitem">{subheaderLabel}</StyledListHeader>
         )}
         {menuItems.map((item, index) => {
           const { label, icon, onClick: _onClick, ...menuItemProps } = item

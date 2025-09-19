@@ -15,21 +15,35 @@ const meta: Meta<typeof BNNumberField> = {
     currency: {
       control: {
         type: 'select',
+        labels: {
+          false: 'None',
+          true: 'Auto (USD)',
+          USD: 'US Dollar ($)',
+          EUR: 'Euro (€)',
+          GBP: 'British Pound (£)',
+          JPY: 'Japanese Yen (¥)',
+          CAD: 'Canadian Dollar (C$)',
+          CHF: 'Swiss Franc (CHF)',
+          AUD: 'Australian Dollar (A$)',
+          CNY: 'Chinese Yuan (¥)',
+          SEK: 'Swedish Krona (kr)',
+          NOK: 'Norwegian Krone (kr)',
+        },
       },
-      options: {
-        'None (number only)': false,
-        'Auto (USD)': true,
-        'US Dollar ($)': 'USD',
-        'Euro (€)': 'EUR',
-        'British Pound (£)': 'GBP',
-        'Japanese Yen (¥)': 'JPY',
-        'Canadian Dollar (C$)': 'CAD',
-        'Swiss Franc (CHF)': 'CHF',
-        'Australian Dollar (A$)': 'AUD',
-        'Chinese Yuan (¥)': 'CNY',
-        'Swedish Krona (kr)': 'SEK',
-        'Norwegian Krone (kr)': 'NOK',
-      },
+      options: [
+        false,
+        true,
+        'USD',
+        'EUR',
+        'GBP',
+        'JPY',
+        'CAD',
+        'CHF',
+        'AUD',
+        'CNY',
+        'SEK',
+        'NOK',
+      ],
       description: 'Enable currency formatting. If true, defaults to USD.',
     },
     value: {
@@ -339,14 +353,6 @@ export const ErrorStates: Story = {
           helperText={
             requiredValue === null ? 'This field is required' : 'Valid value entered'
           }
-        />
-
-        <BNNumberField
-          label="Disabled Field"
-          currency="GBP"
-          value={5000}
-          disabled
-          helperText="This field is disabled"
         />
       </Stack>
     )

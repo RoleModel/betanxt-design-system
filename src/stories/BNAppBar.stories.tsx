@@ -22,7 +22,7 @@ const meta = {
   argTypes: {
     color: {
       control: 'select',
-      options: ['primary', 'secondary'],
+      options: ['default', 'secondary'],
     },
   },
   component: BNAppBar,
@@ -61,11 +61,18 @@ export const Primary: Story = {
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,
+    slotProps: {
+      logoComponent: {
+        color: 'primary', // Uses theme.vars.palette.logoFill
+        height: 32,
+        href: '/',
+      },
+    },
     tabs: exampleTabs,
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -139,7 +146,7 @@ export const WithLogoComponent: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -170,7 +177,7 @@ export const WithLogoImg: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -197,7 +204,7 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -272,6 +279,7 @@ export const WithLinkComponent: Story = {
     },
     slotProps: {
       logoComponent: {
+        color: 'white',
         height: 32,
         href: '/',
         alt: 'Go Home',

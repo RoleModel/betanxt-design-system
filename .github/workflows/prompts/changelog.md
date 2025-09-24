@@ -6,15 +6,10 @@ Given the context provided as an argument, do this:
 
 1. Run `.changelog/scripts/bash/update-chagne-log.sh --json` from the repo root and parse REPO_ROOT, CURRENT_BRANCH, CURRENT_VERSION, and AVAILABLE_COMPONENTS. All paths must be absolute. If that path fails, try .changelog/scripts/bash/update-change-log.sh --json.
 
-2. Collect unreleased fragments:
-   • Directory: <REPO_ROOT>/.changelog/unreleased/
-   • Templates directory: <REPO_ROOT>/.changelog/templates/
-   • Each fragment filename follows: YYYY-MM-DD-<type>-<slug>.md where <type> ∈ {feat, fix, docs, chore, refactor, perf, test, build, ci, style}.
-   • Read each fragment’s markdown body to use as the entry text.
-3. Determine the release version and date:
+2. Determine the release version and date:
    • Version: prefer CURRENT_VERSION (from package.json via the script JSON). If $ARGUMENTS contains an explicit version, use that instead.
    • Date: YYYY-MM-DD (today) unless $ARGUMENTS supplies a date.
-4. Output a single markdown block that is ready to be appended into src/CHANGELOG.md, formatted to Keep a Changelog:
+3. Output a single markdown block that is ready to be appended into src/CHANGELOG.md, formatted to Keep a Changelog:
    • Heading: ## [<version>] - <date>
    • Subsections in this order; include only those that have entries:
    • Added (feat)
@@ -29,13 +24,13 @@ Given the context provided as an argument, do this:
    • For each fragment, place a bullet under the correct subsection:
    • Bullet format: - <entry text> (<slug>, <YYYY-MM-DD>)
    • If $ARGUMENTS provides issue/PR links or scopes, append: [#123](link) / (scope: xyz).
-5. Rules for merging & normalization:
+4. Rules for merging & normalization:
    • Preserve fragment markdown (inline code, links) exactly.
    • Capitalize first word; no trailing periods for bullets.
    • De-duplicate identical lines across fragments.
    • Sort bullets within each subsection by date descending, then by slug.
    • If no fragments are found, output a stub section with ### Changed and a single bullet: - Internal updates (only if $ARGUMENTS specifies allowEmpty=true).
-6. Do not include any shell commands or status text in the output — only the markdown section. Do not modify existing CHANGELOG headers. The output must be immediately appendable to <REPO_ROOT>/src/CHANGELOG.md.
+5. Do not include any shell commands or status text in the output — only the markdown section. Do not modify existing CHANGELOG headers. The output must be immediately appendable to <REPO_ROOT>/src/CHANGELOG.md.
 
 Context for generation: $ARGUMENTS
 

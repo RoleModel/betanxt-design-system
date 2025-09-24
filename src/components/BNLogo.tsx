@@ -4,6 +4,8 @@ import { useTheme } from '@mui/material/styles'
 
 export interface BNLogoProps {
   showPoweredBy?: boolean
+  color?: 'primary' | 'secondary' | 'inherit' | 'white' | string
+  /** @deprecated Use `color` prop instead. Will be removed in a future version. */
   logoFill?: string
   height?: number
   alt?: string
@@ -17,6 +19,7 @@ export interface BNLogoProps {
 
 export function BNLogo({
   showPoweredBy = false,
+  color = 'primary',
   logoFill,
   height = 22,
   alt,
@@ -28,7 +31,40 @@ export function BNLogo({
   role = 'img',
 }: BNLogoProps) {
   const theme = useTheme()
-  const primaryColor = logoFill || theme.vars.palette.common.white
+
+  // Handle backward compatibility and deprecation warning
+  React.useEffect(() => {
+    if (logoFill && process.env.NODE_ENV === 'development') {
+      console.warn(
+        'BNLogo: The `logoFill` prop is deprecated and will be removed in a future version. Please use the `color` prop instead.'
+      )
+    }
+  }, [logoFill])
+
+  // Determine the logo fill color with backward compatibility
+  const getLogoFill = () => {
+    // Backward compatibility: logoFill takes precedence if provided
+    if (logoFill) {
+      return logoFill
+    }
+
+    // New color API
+    switch (color) {
+      case 'primary':
+        return theme.vars.palette.logoFill
+      case 'secondary':
+        return theme.vars.palette.secondary.main
+      case 'inherit':
+        return 'currentColor'
+      case 'white':
+        return theme.vars.palette.common.white
+      default:
+        // If it's a custom color string
+        return color
+    }
+  }
+
+  const primaryColor = getLogoFill()
   const poweredBy = theme.vars.palette.logoPoweredBy
 
   // Original SVG dimensions and positions

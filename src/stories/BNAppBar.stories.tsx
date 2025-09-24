@@ -95,7 +95,7 @@ export const Secondary: Story = {
     },
     slotProps: {
       logoComponent: {
-        logoFill: 'var(--mui-palette-logoFill)',
+        color: 'primary', // Uses theme.vars.palette.logoFill
         height: 32,
         href: '/',
       },
@@ -127,6 +127,7 @@ export const WithLogoComponent: Story = {
     },
     slotProps: {
       logoComponent: {
+        color: 'white',
         height: 32,
         href: '/',
         alt: 'Go Home',

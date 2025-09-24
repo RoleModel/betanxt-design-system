@@ -274,7 +274,8 @@ const BNNumberField = React.forwardRef<HTMLDivElement, BNNumberFieldProps>(
         if (value === null || value === undefined) {
           return { numericFormatValue: '', valueIsNumericString: false }
         }
-        const strValue = typeof value === 'number' ? value.toFixed(fixedDecimalPlaces) : String(value)
+        const strValue =
+          typeof value === 'number' ? value.toFixed(fixedDecimalPlaces) : String(value)
         return { numericFormatValue: strValue, valueIsNumericString: true }
       }
       return { numericFormatValue: value ?? '', valueIsNumericString: false }

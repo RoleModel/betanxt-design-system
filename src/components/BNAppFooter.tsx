@@ -105,6 +105,7 @@ export function BNAppFooter({
         <BNLogo
           showPoweredBy
           height={24}
+          color="white"
           href={'https://betanxt.com'}
           alt={'Go to BetaNXT.com'}
         />

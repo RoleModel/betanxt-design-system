@@ -86,7 +86,7 @@ const meta: Meta<typeof BNNumberField> = {
     label: 'Amount',
     variant: 'outlined',
     size: 'small',
-    thousandSeparator: true,
+    thousandSeparator: false,
   },
 }
 
@@ -98,9 +98,13 @@ export const Default: Story = {
   args: {
     label: 'Number Field',
     placeholder: 'Enter a number',
+    currency: true,
+    value: 34419.9,
+    fixedDecimalPlaces: 2,
+    thousandSeparator: true,
   },
   render: (args) => {
-    const [value, setValue] = useState<number | null>(1234.56)
+    const [value, setValue] = useState<number | null>(args.value ?? null)
     return <BNNumberField {...args} value={value} onValueChange={setValue} />
   },
 }
@@ -284,7 +288,7 @@ export const Variants: Story = {
 // Prefix examples
 export const PrefixExamples: Story = {
   render: () => {
-    const [dollarValue, setDollarValue] = useState<number | null>(1234.56)
+    const [dollarValue, setDollarValue] = useState<number | null>(123456789.9)
     const [yenValue, setYenValue] = useState<number | null>(150000)
     const [poundValue, setPoundValue] = useState<number | null>(999.99)
 

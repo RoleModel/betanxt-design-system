@@ -22,7 +22,7 @@ const meta = {
   argTypes: {
     color: {
       control: 'select',
-      options: ['primary', 'secondary'],
+      options: ['default', 'secondary'],
     },
   },
   component: BNAppBar,
@@ -61,6 +61,13 @@ export const Primary: Story = {
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,
+    slotProps: {
+      logoComponent: {
+        color: 'default',
+        height: 32,
+        href: '/',
+      },
+    },
     tabs: exampleTabs,
     menuItems: [
       {
@@ -95,7 +102,7 @@ export const Secondary: Story = {
     },
     slotProps: {
       logoComponent: {
-        logoFill: 'var(--mui-palette-logoFill)',
+        color: 'default', // Uses theme.vars.palette.logoFill
         height: 32,
         href: '/',
       },
@@ -127,6 +134,7 @@ export const WithLogoComponent: Story = {
     },
     slotProps: {
       logoComponent: {
+        color: 'white',
         height: 32,
         href: '/',
         alt: 'Go Home',
@@ -271,6 +279,7 @@ export const WithLinkComponent: Story = {
     },
     slotProps: {
       logoComponent: {
+        color: 'white',
         height: 32,
         href: '/',
         alt: 'Go Home',

@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles'
 
 export interface BNLogoProps {
   showPoweredBy?: boolean
-  logoFill?: string
+  color?: 'default' | 'white'
   height?: number
   alt?: string
   title?: string
@@ -17,7 +17,7 @@ export interface BNLogoProps {
 
 export function BNLogo({
   showPoweredBy = false,
-  logoFill,
+  color = 'default',
   height = 22,
   alt,
   title,
@@ -28,7 +28,20 @@ export function BNLogo({
   role = 'img',
 }: BNLogoProps) {
   const theme = useTheme()
-  const primaryColor = logoFill || theme.vars.palette.common.white
+
+  const getLogoFill = () => {
+    switch (color) {
+      case 'default':
+        return theme.vars.palette.logoFill
+      case 'white':
+        return theme.vars.palette.common.white
+      default:
+        // If it's a custom color string
+        return color
+    }
+  }
+
+  const fill = getLogoFill()
   const poweredBy = theme.vars.palette.logoPoweredBy
 
   // Original SVG dimensions and positions
@@ -113,31 +126,31 @@ export function BNLogo({
 
         <path
           d="M84.4577 14.9763C84.4577 17.6643 83.0038 20.1882 80.3158 20.1882H74.5V1.28806H79.7943C82.1535 1.28806 83.6897 3.01583 83.6897 5.95141C83.6897 7.70701 83.0037 9.46261 81.6323 10.1211C83.4703 10.7795 84.4577 13.0559 84.4577 14.9763ZM79.7123 2.98876H76.3106V9.40771H79.9317C81.1662 9.40771 81.8792 7.95383 81.8792 6.08836C81.8792 4.16798 81.0838 2.98876 79.7123 2.98876ZM80.0415 18.4875C81.6873 18.4875 82.6475 16.7868 82.6475 14.8393C82.6475 12.809 81.6598 10.9985 79.9591 10.9985H76.3106V18.4875H80.0415Z"
-          fill={primaryColor}
+          fill={fill}
         />
         <path
           d="M96.0907 14.5097H88.0809C88.3003 17.1435 89.5348 18.8442 91.2904 18.8442C92.5523 18.8442 93.677 17.939 94.2805 16.595L95.6245 17.2534C94.7741 19.2558 93.1284 20.5171 91.1805 20.5171C88.3826 20.5171 86.3253 17.802 86.3253 13.7144C86.3253 9.70952 88.3277 7.0486 91.3178 7.0486C94.1981 7.0486 96.1181 9.5176 96.1181 13.7422C96.1181 13.9063 96.0907 14.208 96.0907 14.5097ZM94.39 13.0559C94.3351 10.2309 92.9911 8.72215 91.3453 8.72215C89.5073 8.72215 88.3002 10.4499 88.0809 13.0559H94.39Z"
-          fill={primaryColor}
+          fill={fill}
         />
         <path
           d="M102.923 7.37739V8.88616H100.756V20.1881H99.0281V8.88616H97.2996V7.37739H99.0281V2.57716H100.756V7.37746L102.923 7.37739Z"
-          fill={primaryColor}
+          fill={fill}
         />
         <path
           d="M112.443 7.3774H114.171V20.1882H112.443V17.966C111.812 19.5298 110.441 20.5171 108.767 20.5171C105.887 20.5171 103.967 17.802 103.967 13.7693C103.967 9.73652 105.887 7.0486 108.767 7.0486C110.441 7.0486 111.812 8.0359 112.443 9.5725V7.3774ZM112.416 13.7963C112.416 10.7795 111.044 8.72215 109.041 8.72215C107.039 8.72215 105.722 10.7246 105.722 13.7693C105.722 16.814 107.039 18.8442 109.041 18.8442C111.044 18.8442 112.416 16.7868 112.416 13.7963Z"
-          fill={primaryColor}
+          fill={fill}
         />
         <path
           d="M124.158 1.28806H128.245V20.1882H124.707L121.278 10.313V20.1882H117.218V1.28806H121.003L124.158 10.5049V1.28806Z"
-          fill={primaryColor}
+          fill={fill}
         />
         <path
           d="M144.048 20.1882H139.248L136.806 13.7422L134.31 20.1882H129.537L134.42 10.121L129.838 1.28806H134.776L136.779 6.52711L138.836 1.28806H143.719L139.138 10.1482L144.048 20.1882Z"
-          fill={primaryColor}
+          fill={fill}
         />
         <path
           d="M155.078 1.28806V4.85423H151.676V20.1882H147.617V4.85423H144.188V1.28806H155.078Z"
-          fill={primaryColor}
+          fill={fill}
         />
       </svg>
     </>

@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2025-09-24
+
+### Added
+
+- MUI-style color API for BNLogo component with support for 'default', 'white' (b278591, 2025-09-24)
+- Breaking change: Removed support for 'logoFill' prop, use 'default' or 'white' instead. (5997b4d, 2025-09-24)
+
+### Changed
+
+- BNAppFooter component updated to use new `color="white"` prop instead of deprecated variant approach (5997b4d, 2025-09-24)
+- Remove logoFill and extra color variants (2397316, 2025-09-24)
+- Update fill variable (0520cca, 2025-09-24)
+
+### Fixed
+
+- Update fixed decimal places handling in BNNumberField to preserve trailing zeros (6b4889c, 2025-09-24)
+
+### Documentation
+
+- Updated BNLogo docs to reflect removal of `logoFill` prop; use `color="default" | "white"` instead (5997b4d, 2025-09-24)
+- Add story and update docs (b21dcfe, 2025-09-24)
+
 ## [0.0.58] - 2025-09-18
 
 ### Added

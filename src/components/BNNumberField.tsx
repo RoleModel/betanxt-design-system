@@ -148,6 +148,11 @@ export interface BNNumberFieldProps
    */
   decimalScale?: number
   /**
+   * Force a fixed number of decimal places to always display.
+   * When provided, this sets both decimalScale and fixedDecimalScale to keep trailing zeros.
+   */
+  fixedDecimalPlaces?: number
+  /**
    * Minimum value allowed
    */
   min?: number
@@ -176,6 +181,7 @@ const BNNumberField = React.forwardRef<HTMLDivElement, BNNumberFieldProps>(
       thousandSeparator = true,
       decimalSeparator = '.',
       decimalScale,
+      fixedDecimalPlaces,
       min,
       max,
       numericFormatProps,
@@ -201,7 +207,26 @@ const BNNumberField = React.forwardRef<HTMLDivElement, BNNumberFieldProps>(
     // Determine decimal settings
     const shouldAllowDecimals =
       allowDecimals ?? (config ? config.decimalPlaces > 0 : true)
-    const finalDecimalScale = decimalScale ?? (config ? config.decimalPlaces : undefined)
+    const finalDecimalScale =
+      fixedDecimalPlaces ?? decimalScale ?? (config ? config.decimalPlaces : undefined)
+
+    // Ensure trailing zeros are displayed when appropriate
+    const finalFixedDecimalScale = React.useMemo(() => {
+      // If consumer explicitly requests fixed decimal places, enforce regardless of currency rules
+      if (fixedDecimalPlaces !== undefined) return true
+
+      // If decimals are not allowed by config/prop, do not fix decimal scale
+      if (!shouldAllowDecimals) return false
+
+      // When a currency with decimal places is active, always fix to that scale
+      if (config && config.decimalPlaces > 0) return true
+
+      // If a specific decimalScale is provided, respect it by fixing the scale
+      if (decimalScale !== undefined) return true
+
+      // Otherwise, leave it unset (defaults to false in NumericFormat)
+      return undefined as unknown as boolean
+    }, [shouldAllowDecimals, fixedDecimalPlaces, config, decimalScale])
 
     // Determine separators based on currency or use defaults/props
     const finalThousandSeparator = React.useMemo(() => {
@@ -243,6 +268,19 @@ const BNNumberField = React.forwardRef<HTMLDivElement, BNNumberFieldProps>(
       return undefined
     }, [config, prefix])
 
+    // When fixedDecimalPlaces is set, supply value as a numeric string with trailing zeros preserved
+    const { numericFormatValue, valueIsNumericString } = React.useMemo(() => {
+      if (fixedDecimalPlaces !== undefined) {
+        if (value === null || value === undefined) {
+          return { numericFormatValue: '', valueIsNumericString: false }
+        }
+        const strValue =
+          typeof value === 'number' ? value.toFixed(fixedDecimalPlaces) : String(value)
+        return { numericFormatValue: strValue, valueIsNumericString: true }
+      }
+      return { numericFormatValue: value ?? '', valueIsNumericString: false }
+    }, [value, fixedDecimalPlaces])
+
     // Merge slot props to include the start adornment
     const mergedSlotProps = React.useMemo(() => {
       const inputSlotProps = slotProps?.input || {}
@@ -263,7 +301,8 @@ const BNNumberField = React.forwardRef<HTMLDivElement, BNNumberFieldProps>(
     return (
       <NumericFormat
         {...numericFormatProps}
-        value={value ?? ''}
+        value={numericFormatValue}
+        valueIsNumericString={valueIsNumericString}
         defaultValue={defaultValue}
         onValueChange={handleValueChange}
         thousandSeparator={finalThousandSeparator}
@@ -271,7 +310,7 @@ const BNNumberField = React.forwardRef<HTMLDivElement, BNNumberFieldProps>(
         prefix={!startAdornment ? prefix : undefined}
         allowNegative={min !== undefined ? min < 0 : true}
         decimalScale={finalDecimalScale}
-        fixedDecimalScale={config?.decimalPlaces === 0 ? false : undefined}
+        fixedDecimalScale={finalFixedDecimalScale}
         allowLeadingZeros={false}
         getInputRef={ref}
         isAllowed={(values) => {

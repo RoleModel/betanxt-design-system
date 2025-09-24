@@ -63,7 +63,7 @@ export const Primary: Story = {
     LinkComponent: MockLinkComponent,
     slotProps: {
       logoComponent: {
-        color: 'primary', // Uses theme.vars.palette.logoFill
+        color: 'default',
         height: 32,
         href: '/',
       },
@@ -72,7 +72,7 @@ export const Primary: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -102,7 +102,7 @@ export const Secondary: Story = {
     },
     slotProps: {
       logoComponent: {
-        color: 'primary', // Uses theme.vars.palette.logoFill
+        color: 'default', // Uses theme.vars.palette.logoFill
         height: 32,
         href: '/',
       },
@@ -146,7 +146,7 @@ export const WithLogoComponent: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -177,7 +177,7 @@ export const WithLogoImg: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -204,7 +204,7 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => {},
+        onClick: () => { },
         icon: <LogoutIconOutlined />,
       },
     ],

@@ -29,9 +29,7 @@ export function BNLogo({
 }: BNLogoProps) {
   const theme = useTheme()
 
-  // Determine the logo fill color with backward compatibility
   const getLogoFill = () => {
-    // New color API
     switch (color) {
       case 'default':
         return theme.vars.palette.logoFill

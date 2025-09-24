@@ -5,20 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2024-12-19
+## [1.0.0] - 2025-09-24
 
 ### Added
 
-- MUI-style color API for BNLogo component with support for 'primary', 'secondary', 'inherit', 'white', and custom color values (logo-color-api, 2024-12-19)
-- Backward compatibility support for deprecated `logoFill` prop in BNLogo with development-mode deprecation warnings (logo-backward-compat, 2024-12-19)
+- MUI-style color API for BNLogo component with support for 'default', 'white' (b278591, 2025-09-24)
+- Breaking change: Removed support for 'logoFill' prop, use 'default' or 'white' instead. (5997b4d, 2025-09-24)
 
 ### Changed
 
-- BNAppFooter component updated to use new `color="white"` prop instead of deprecated variant approach (footer-logo-color, 2024-12-19)
+- BNAppFooter component updated to use new `color="white"` prop instead of deprecated variant approach (5997b4d, 2025-09-24)
 
 ### Documentation
 
-- Updated BNLogo component interface with proper TypeScript deprecation annotations for `logoFill` prop (logo-docs, 2024-12-19)
+- Updated BNLogo docs to reflect removal of `logoFill` prop; use `color="default" | "white"` instead (5997b4d, 2025-09-24)
 
 
 ## [0.0.58] - 2025-09-18

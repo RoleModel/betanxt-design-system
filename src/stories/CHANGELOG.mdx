@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-10-13
+
+### Added
+
+- Theme mode toggle in `BNAnimatedMenuIcon` using `ToggleButtonGroup` and `useColorScheme`; `BNAppBar` supports `includeThemeToggle` to auto-insert the toggle before Logout (bnappbar-theme-toggle, 2025-10-13)
+- Tabs dropdown menus: `BNAppBar` tabs accept `children` to render a desktop dropdown; mobile drawer shows child links under a non-clickable parent label (tabs-dropdown, 2025-10-13)
+
+### Changed
+
+- Normalize tab alignment/height and icon spacing via `MuiAppBar` theme overrides to align dropdown tab with others (tabs-alignment, 2025-10-13)
+- Reposition account `Popper` closer to avatar and adjust offset when App Switcher is present (popper-offset, 2025-10-13)
+- Refine `MuiAccordion` outlined variants, borders, and radius across expanded/collapsed states; add column summary layout variant and hover/spacing tweaks (accordion-styles, 2025-10-13)
+
+### Fixed
+
+- Remove blank menu items and unnecessary dividers in tab dropdown and mobile drawer; render divider-only items as real `Divider` elements and collapse consecutive dividers (menu-divider-fix, 2025-10-13)
+
+### Documentation
+
+- Add stories for theme toggle in menu, tab dropdown menu, long menu with subheader, and app switcher offset scenarios (stories-added, 2025-10-13)
+
+### Build
+
+- Migrate from deprecated `vitest.workspace.js` to `projects` in `vite.config.js` using `@storybook/addon-vitest` (vite-projects-migration, 2025-10-13)
+
 ## [1.0.0] - 2025-09-24
 
 ### Added

@@ -26,6 +26,8 @@ export interface BNAppBarDrawerMenuItem {
   disabled?: boolean
   onClick?: () => void
   to?: string | { pathname: string; search?: string; hash?: string; state?: any }
+  divider?: boolean
+  isThemeToggle?: boolean
 }
 
 export interface BNAppBarDrawerProps {
@@ -51,6 +53,28 @@ export const BNAppBarDrawer = ({
   LinkComponent,
   hasAppSwitcher = false,
 }: BNAppBarDrawerProps) => {
+  const sanitizedMenuItems = React.useMemo(() => {
+    // Remove theme toggle items if any slipped through
+    const withoutToggles = (menuItems || []).filter((i: any) => i?.isThemeToggle !== true)
+    // Collapse consecutive dividers and trim leading/trailing dividers
+    const compact: BNAppBarDrawerMenuItem[] = []
+    let lastWasDivider = false
+    for (const item of withoutToggles) {
+      const isDivider = (item as any)?.divider === true
+      if (isDivider) {
+        if (compact.length === 0 || lastWasDivider) continue
+        compact.push({ divider: true, label: '' } as any)
+        lastWasDivider = true
+      } else {
+        compact.push(item)
+        lastWasDivider = false
+      }
+    }
+    if (compact.length > 0 && (compact[compact.length - 1] as any)?.divider === true) {
+      compact.pop()
+    }
+    return compact
+  }, [menuItems])
   return (
     <Drawer
       anchor="right"
@@ -117,27 +141,32 @@ export const BNAppBarDrawer = ({
         )}
 
         {/* Account Menu Section */}
-        {menuItems.length > 0 && (
+        {sanitizedMenuItems.length > 0 && (
           <List>
-            {menuItems.map((item, index) => (
-              <ListItem key={index} disablePadding>
-                <ListItemButton
-                  LinkComponent={LinkComponent}
-                  disabled={item.disabled}
-                  onClick={() => {
-                    item.onClick?.()
-                    onMenuItemClick?.(item.label)
-                  }}
-                  role="button"
-                  aria-label={item.label}
-                  tabIndex={0}
-                  {...item}
-                >
-                  {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                  <ListItemText primary={item.label} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {sanitizedMenuItems.map((item, index) => {
+              if ((item as any)?.divider === true) {
+                return <Divider key={`divider-${index}`} sx={{ my: 1 }} />
+              }
+              return (
+                <ListItem key={index} disablePadding>
+                  <ListItemButton
+                    LinkComponent={LinkComponent}
+                    disabled={item.disabled}
+                    onClick={() => {
+                      item.onClick?.()
+                      onMenuItemClick?.(item.label)
+                    }}
+                    role="button"
+                    aria-label={item.label}
+                    tabIndex={0}
+                    {...item}
+                  >
+                    {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+                    <ListItemText primary={item.label} />
+                  </ListItemButton>
+                </ListItem>
+              )
+            })}
           </List>
         )}
       </Box>

@@ -2,19 +2,29 @@
 
 import { type MouseEvent, type ReactNode, useState } from 'react'
 
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
 import {
   Avatar,
+  Box,
+  ClickAwayListener,
+  Divider,
   IconButton,
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Menu,
+  MenuList,
   MenuItem as MuiMenuItem,
+  Paper,
+  Popper,
+  ToggleButton,
+  ToggleButtonGroup,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
 import type { MenuItemProps } from '@mui/material'
-import { type CSSObject, keyframes, styled } from '@mui/material/styles'
+import { type CSSObject, keyframes, styled, useColorScheme } from '@mui/material/styles'
 
 // Define Keyframes
 const bottombarOpen = keyframes`
@@ -50,6 +60,10 @@ export interface MenuItem extends Omit<MenuItemProps, 'onClick'> {
   ariaLabel?: string
   hasSubeader?: boolean
   subeaderLabel?: string
+  /** Optional custom content to render inside the menu list */
+  render?: React.ReactNode
+  /** Marker used by BNAppBar to request theme toggle injection */
+  isThemeToggle?: boolean
 }
 
 export interface AvatarProps {
@@ -59,6 +73,7 @@ export interface AvatarProps {
 }
 
 export interface BNAnimatedMenuIconProps {
+  open?: boolean
   menuItems: MenuItem[]
   onDrawerToggle?: () => void
   drawerOpen?: boolean
@@ -66,6 +81,23 @@ export interface BNAnimatedMenuIconProps {
   useAnimatedIconOnly?: boolean
   LinkComponent?: React.ElementType
   subheaderLabel?: string
+  hasAppSwitcher?: boolean
+  slots?: {
+    popper?: React.ElementType
+    paper?: React.ElementType
+    menuList?: React.ElementType
+    menuItem?: React.ElementType
+    iconButton?: React.ElementType
+    avatar?: React.ElementType
+  }
+  slotProps?: {
+    popper?: React.ComponentProps<any>
+    paper?: React.ComponentProps<any>
+    menuList?: React.ComponentProps<any>
+    menuItem?: React.ComponentProps<any>
+    iconButton?: React.ComponentProps<any>
+    avatar?: React.ComponentProps<any>
+  }
 }
 
 const StyledMenuIcon = styled('button', {
@@ -117,6 +149,7 @@ const StyledMenuIcon = styled('button', {
 )
 
 export const BNAnimatedMenuIcon = ({
+  open,
   subheaderLabel,
   menuItems,
   onDrawerToggle,
@@ -124,10 +157,17 @@ export const BNAnimatedMenuIcon = ({
   avatar,
   useAnimatedIconOnly = false,
   LinkComponent,
+  hasAppSwitcher,
+  slots = {},
+  slotProps = {},
 }: BNAnimatedMenuIconProps) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const appSwitcherTopOffset =
+    typeof (theme as any)?.layout?.appSwitcher?.top === 'number'
+      ? (theme as any).layout.appSwitcher.top
+      : 0
 
   const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
     if ((isMobile || useAnimatedIconOnly) && onDrawerToggle) {
@@ -150,6 +190,42 @@ export const BNAnimatedMenuIcon = ({
     backgroundImage: 'var(--Paper-overlay)',
     lineHeight: '2.5rem',
   })
+
+  const ThemeToggleItem = () => {
+    const { mode, setMode } = useColorScheme()
+    const handleChange = (
+      _event: React.MouseEvent<HTMLElement>,
+      nextMode: 'light' | 'dark' | 'system' | null
+    ) => {
+      if (nextMode) setMode(nextMode)
+    }
+    return (
+      <Box sx={{ p: 1.5 }}>
+        <ToggleButtonGroup
+          size="small"
+          exclusive
+          fullWidth
+          value={mode}
+          onChange={handleChange}
+          aria-label="Theme mode"
+        >
+          <ToggleButton value="light" aria-label="Light mode" sx={{ flex: 1, px: 2 }}>
+            <LightModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Light
+          </ToggleButton>
+          <ToggleButton value="system" aria-label="System mode" sx={{ flex: 1, px: 2 }}>
+            <SettingsRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            System
+          </ToggleButton>
+          <ToggleButton value="dark" aria-label="Dark mode" sx={{ flex: 1, px: 2 }}>
+            <DarkModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Dark
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+    )
+  }
+
   // Use animated icon for mobile OR when useAnimatedIconOnly is true
   if (isMobile || useAnimatedIconOnly) {
     return (
@@ -165,30 +241,67 @@ export const BNAnimatedMenuIcon = ({
           <div />
         </StyledMenuIcon>
         {/* Show dropdown menu when using animated icon only on desktop */}
-        {useAnimatedIconOnly && !isMobile && (
-          <Menu
-            anchorEl={menuAnchorEl}
-            open={Boolean(menuAnchorEl)}
-            onClose={handleMenuClose}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-          >
-            {menuItems.map((item, index) => {
-              const { label, icon, onClick, ...menuItemProps } = item
-              return (
-                <MuiMenuItem
-                  key={index}
-                  LinkComponent={LinkComponent}
-                  onClick={() => handleMenuItemClick(item)}
-                  {...menuItemProps}
-                >
-                  {icon && <ListItemIcon>{icon}</ListItemIcon>}
-                  <ListItemText primary={label} />
-                </MuiMenuItem>
-              )
-            })}
-          </Menu>
-        )}
+        {useAnimatedIconOnly &&
+          !isMobile &&
+          (() => {
+            const PopperComp = slots.popper ?? Popper
+            const PaperComp = slots.paper ?? Paper
+            const MenuListComp = slots.menuList ?? MenuList
+            const MenuItemComp = slots.menuItem ?? MuiMenuItem
+            const [pos, setPos] = useState<{ top: number; left: number } | null>(null)
+            return (
+              <PopperComp
+                open={open && !!pos}
+                anchorEl={menuAnchorEl}
+                anchorReference="anchorPosition"
+                anchorPosition={pos ?? { top: 30, left: 0 }}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                placement="bottom-end"
+                modifiers={[
+                  {
+                    name: 'offset',
+                    options: {
+                      offset: [
+                        0,
+                        (hasAppSwitcher
+                          ? Math.max(0, (appSwitcherTopOffset as number) - 4)
+                          : 4) as number,
+                      ],
+                    },
+                  },
+                ]}
+                {...(slotProps.popper || {})}
+              >
+                <PaperComp elevation={18} {...(slotProps.paper || {})}>
+                  <ClickAwayListener onClickAway={handleMenuClose}>
+                    <MenuListComp {...(slotProps.menuList || {})}>
+                      {menuItems.map((item, index) => {
+                        const { label, icon, onClick, ...menuItemProps } = item
+                        const isDividerOnly =
+                          (menuItemProps as any)?.divider === true &&
+                          (!label || String(label).trim() === '')
+                        if (isDividerOnly) {
+                          return <Divider key={`divider-${index}`} component="li" />
+                        }
+                        return (
+                          <MenuItemComp
+                            key={index}
+                            LinkComponent={LinkComponent}
+                            onClick={() => handleMenuItemClick(item)}
+                            {...(slotProps.menuItem || {})}
+                            {...menuItemProps}
+                          >
+                            {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                            <ListItemText primary={label} />
+                          </MenuItemComp>
+                        )
+                      })}
+                    </MenuListComp>
+                  </ClickAwayListener>
+                </PaperComp>
+              </PopperComp>
+            )
+          })()}
       </>
     )
   }
@@ -196,63 +309,107 @@ export const BNAnimatedMenuIcon = ({
   // Default desktop behavior with avatar
   return (
     <>
-      <IconButton
-        id="menu-icon"
-        aria-controls={menuAnchorEl ? 'menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={menuAnchorEl ? 'true' : undefined}
-        aria-label="Open Menu"
-        color="inherit"
-        onClick={handleMenuClick}
-        sx={{ position: 'relative' }}
-      >
-        <Avatar
-          src={avatar.src}
-          alt={avatar.alt}
-          sx={{ width: 40, height: 40, backgroundColor: 'primary.main' }}
-        >
-          {avatar.children}
-        </Avatar>
-      </IconButton>
-      <Menu
-        id="menu"
-        component="nav"
-        role="navigation"
-        anchorEl={menuAnchorEl}
-        open={Boolean(menuAnchorEl)}
-        onClose={handleMenuClose}
-        marginThreshold={0}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        slotProps={{
-          paper: {
-            role: 'menu',
-            style: { maxHeight: '100vh', overflowY: 'auto' },
-          },
-          list: {
-            'aria-labelledby': 'menu-icon',
-          },
-        }}
-      >
-        {typeof subheaderLabel === 'string' && subheaderLabel.trim().length > 0 && (
-          <StyledListHeader role="menuitem">{subheaderLabel}</StyledListHeader>
-        )}
-        {menuItems.map((item, index) => {
-          const { label, icon, onClick: _onClick, ...menuItemProps } = item
-          return (
-            <MuiMenuItem
-              key={index}
-              aria-label={item.ariaLabel}
-              LinkComponent={LinkComponent}
-              onClick={() => handleMenuItemClick(item)}
-              {...menuItemProps}
+      {(() => {
+        const IconButtonComp = slots.iconButton ?? IconButton
+        const AvatarComp = slots.avatar ?? Avatar
+        return (
+          <IconButtonComp
+            id="menu-icon"
+            aria-controls={menuAnchorEl ? 'menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={menuAnchorEl ? 'true' : undefined}
+            aria-label="Open Menu"
+            color="inherit"
+            onClick={handleMenuClick}
+            sx={{ position: 'relative' }}
+            {...(slotProps.iconButton || {})}
+          >
+            <AvatarComp
+              src={avatar.src}
+              alt={avatar.alt}
+              sx={{ width: 40, height: 40, backgroundColor: 'primary.main' }}
+              {...(slotProps.avatar || {})}
             >
-              {icon && <ListItemIcon>{icon}</ListItemIcon>}
-              <ListItemText primary={label} />
-            </MuiMenuItem>
-          )
-        })}
-      </Menu>
+              {avatar.children}
+            </AvatarComp>
+          </IconButtonComp>
+        )
+      })()}
+      {(() => {
+        const PopperComp = slots.popper ?? Popper
+        const PaperComp = slots.paper ?? Paper
+        const MenuListComp = slots.menuList ?? MenuList
+        const MenuItemComp = slots.menuItem ?? MuiMenuItem
+        return (
+          <PopperComp
+            id="menu"
+            role="navigation"
+            open={Boolean(menuAnchorEl)}
+            anchorEl={menuAnchorEl}
+            placement="bottom-end"
+            modifiers={[
+              {
+                name: 'offset',
+                options: {
+                  offset: [
+                    0,
+                    (hasAppSwitcher
+                      ? Math.max(0, (appSwitcherTopOffset as number) - 8)
+                      : 0) as number,
+                  ],
+                },
+              },
+            ]}
+            {...(slotProps.popper || {})}
+          >
+            <PaperComp
+              role="menu"
+              sx={{ maxHeight: '100vh', overflowY: 'auto' }}
+              {...(slotProps.paper || {})}
+            >
+              <>
+                {typeof subheaderLabel === 'string' &&
+                  subheaderLabel.trim().length > 0 && (
+                    <StyledListHeader role="menuitem">{subheaderLabel}</StyledListHeader>
+                  )}
+                <ClickAwayListener onClickAway={handleMenuClose}>
+                  <MenuListComp
+                    aria-labelledby="menu-icon"
+                    {...(slotProps.menuList || {})}
+                  >
+                    {menuItems.map((item, index) => {
+                      const { label, icon, onClick: _onClick, ...menuItemProps } = item
+                      const isDividerOnly =
+                        (menuItemProps as any)?.divider === true &&
+                        (!label || String(label).trim() === '')
+                      if (isDividerOnly) {
+                        return <Divider key={`divider-${index}`} component="li" />
+                      }
+                      if ((item as any).isThemeToggle) {
+                        if (isMobile) return null
+                        return <ThemeToggleItem key={`theme-${index}`} />
+                      }
+                      return (
+                        <MenuItemComp
+                          key={index}
+                          aria-label={item.ariaLabel}
+                          LinkComponent={LinkComponent}
+                          onClick={() => handleMenuItemClick(item)}
+                          {...(slotProps.menuItem || {})}
+                          {...menuItemProps}
+                        >
+                          {icon && <ListItemIcon>{icon}</ListItemIcon>}
+                          <ListItemText primary={label} />
+                        </MenuItemComp>
+                      )
+                    })}
+                  </MenuListComp>
+                </ClickAwayListener>
+              </>
+            </PaperComp>
+          </PopperComp>
+        )
+      })()}
     </>
   )
 }

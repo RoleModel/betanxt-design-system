@@ -1,6 +1,6 @@
 'use client'
 
-import { type MouseEvent, type ReactNode, useState } from 'react'
+import { type MouseEvent, type ReactNode, useState, memo } from 'react'
 
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
@@ -148,6 +148,42 @@ const StyledMenuIcon = styled('button', {
   })
 )
 
+// Extracted to avoid re-creating the component on each BNAnimatedMenuIcon render
+const ThemeToggleItem = memo(() => {
+  const { mode, setMode } = useColorScheme()
+  const handleChange = (
+    _event: React.MouseEvent<HTMLElement>,
+    nextMode: 'light' | 'dark' | 'system' | null
+  ) => {
+    if (nextMode) setMode(nextMode)
+  }
+  return (
+    <Box sx={{ p: 1.5 }}>
+      <ToggleButtonGroup
+        size="small"
+        exclusive
+        fullWidth
+        value={mode}
+        onChange={handleChange}
+        aria-label="Theme mode"
+      >
+        <ToggleButton value="light" aria-label="Light mode" sx={{ flex: 1, px: 2 }}>
+          <LightModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+          Light
+        </ToggleButton>
+        <ToggleButton value="system" aria-label="System mode" sx={{ flex: 1, px: 2 }}>
+          <SettingsRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+          System
+        </ToggleButton>
+        <ToggleButton value="dark" aria-label="Dark mode" sx={{ flex: 1, px: 2 }}>
+          <DarkModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+          Dark
+        </ToggleButton>
+      </ToggleButtonGroup>
+    </Box>
+  )
+})
+
 export const BNAnimatedMenuIcon = ({
   open,
   subheaderLabel,
@@ -164,10 +200,11 @@ export const BNAnimatedMenuIcon = ({
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null)
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
-  const appSwitcherTopOffset =
-    typeof (theme as any)?.layout?.appSwitcher?.top === 'number'
-      ? (theme as any).layout.appSwitcher.top
-      : 0
+  const appSwitcherTopOffset = (() => {
+    const anyTheme = theme as unknown as { layout?: { appSwitcher?: { top?: number } } }
+    const top = anyTheme.layout?.appSwitcher?.top
+    return typeof top === 'number' ? top : 0
+  })()
 
   const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
     if ((isMobile || useAnimatedIconOnly) && onDrawerToggle) {
@@ -191,40 +228,7 @@ export const BNAnimatedMenuIcon = ({
     lineHeight: '2.5rem',
   })
 
-  const ThemeToggleItem = () => {
-    const { mode, setMode } = useColorScheme()
-    const handleChange = (
-      _event: React.MouseEvent<HTMLElement>,
-      nextMode: 'light' | 'dark' | 'system' | null
-    ) => {
-      if (nextMode) setMode(nextMode)
-    }
-    return (
-      <Box sx={{ p: 1.5 }}>
-        <ToggleButtonGroup
-          size="small"
-          exclusive
-          fullWidth
-          value={mode}
-          onChange={handleChange}
-          aria-label="Theme mode"
-        >
-          <ToggleButton value="light" aria-label="Light mode" sx={{ flex: 1, px: 2 }}>
-            <LightModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
-            Light
-          </ToggleButton>
-          <ToggleButton value="system" aria-label="System mode" sx={{ flex: 1, px: 2 }}>
-            <SettingsRoundedIcon fontSize="small" sx={{ mr: 1 }} />
-            System
-          </ToggleButton>
-          <ToggleButton value="dark" aria-label="Dark mode" sx={{ flex: 1, px: 2 }}>
-            <DarkModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
-            Dark
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </Box>
-    )
-  }
+
 
   // Use animated icon for mobile OR when useAnimatedIconOnly is true
   if (isMobile || useAnimatedIconOnly) {

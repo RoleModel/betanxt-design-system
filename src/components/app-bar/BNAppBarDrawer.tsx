@@ -27,15 +27,32 @@ export interface BNAppBarDrawerTab {
   to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
-export interface BNAppBarDrawerMenuItem {
+type DrawerLink = string | { pathname: string; search?: string; hash?: string; state?: any }
+
+type DrawerActionItem = {
   label: string
   icon?: React.ReactNode
   disabled?: boolean
   onClick?: () => void
-  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
-  divider?: boolean
-  isThemeToggle?: boolean
+  to?: DrawerLink
+  divider?: false
+  isThemeToggle?: false
 }
+
+type DrawerDividerItem = {
+  divider: true
+  label?: string
+}
+
+type DrawerThemeToggleItem = {
+  isThemeToggle: true
+  label?: string
+}
+
+export type BNAppBarDrawerMenuItem =
+  | DrawerActionItem
+  | DrawerDividerItem
+  | DrawerThemeToggleItem
 
 export interface BNAppBarDrawerProps {
   open: boolean
@@ -94,24 +111,23 @@ export const BNAppBarDrawer = ({
       </Box>
     )
   }
-  const sanitizedMenuItems = React.useMemo(() => {
-    // Keep theme toggle in drawer; just sanitize dividers
-    const withoutToggles = (menuItems || [])
-    // Collapse consecutive dividers and trim leading/trailing dividers
+  const sanitizedMenuItems: BNAppBarDrawerMenuItem[] = React.useMemo(() => {
+    const items = menuItems || []
     const compact: BNAppBarDrawerMenuItem[] = []
     let lastWasDivider = false
-    for (const item of withoutToggles) {
-      const isDivider = (item as any)?.divider === true
+    for (const item of items) {
+      const isDivider = 'divider' in item && item.divider === true
       if (isDivider) {
         if (compact.length === 0 || lastWasDivider) continue
-        compact.push({ divider: true, label: '' } as any)
+        compact.push({ divider: true } as DrawerDividerItem)
         lastWasDivider = true
       } else {
         compact.push(item)
         lastWasDivider = false
       }
     }
-    if (compact.length > 0 && (compact[compact.length - 1] as any)?.divider === true) {
+    const last = compact[compact.length - 1]
+    if (last && 'divider' in last && last.divider === true) {
       compact.pop()
     }
     return compact
@@ -231,28 +247,28 @@ export const BNAppBarDrawer = ({
         {sanitizedMenuItems.length > 0 && (
           <List>
             {sanitizedMenuItems.map((item, index) => {
-              if ((item as any)?.divider === true) {
+              if ('divider' in item && item.divider === true) {
                 return <Divider key={`divider-${index}`} sx={{ my: 1 }} />
               }
-              if ((item as any)?.isThemeToggle === true) {
+              if ('isThemeToggle' in item && item.isThemeToggle === true) {
                 return <ThemeToggleItem key={`theme-${index}`} />
               }
+              const action = item as DrawerActionItem
               return (
                 <ListItem key={index} disablePadding>
                   <ListItemButton
                     LinkComponent={LinkComponent}
-                    disabled={item.disabled}
+                    disabled={action.disabled}
                     onClick={() => {
-                      item.onClick?.()
-                      onMenuItemClick?.(item.label)
+                      action.onClick?.()
+                      onMenuItemClick?.(action.label)
                     }}
                     role="button"
-                    aria-label={item.label}
+                    aria-label={action.label}
                     tabIndex={0}
-                    {...item}
                   >
-                    {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                    <ListItemText primary={item.label} />
+                    {action.icon && <ListItemIcon>{action.icon}</ListItemIcon>}
+                    <ListItemText primary={action.label} />
                   </ListItemButton>
                 </ListItem>
               )

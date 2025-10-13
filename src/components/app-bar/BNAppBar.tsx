@@ -29,6 +29,7 @@ import type {
 import type { MenuItem as BNMenuItem } from './BNAnimatedMenuIcon'
 import { type AvatarProps, BNAnimatedMenuIcon, type MenuItem } from './BNAnimatedMenuIcon'
 import { BNAppBarDrawer } from './BNAppBarDrawer'
+import type { BNAppBarDrawerMenuItem } from './BNAppBarDrawer'
 
 const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({
   display: 'inline-flex',
@@ -155,6 +156,25 @@ export function BNAppBar({
     }
     return items
   }, [menuItems, includeThemeToggle])
+
+  const drawerMenuItems: BNAppBarDrawerMenuItem[] | undefined = React.useMemo(() => {
+    if (!processedMenuItems) return undefined
+    return processedMenuItems.map((item) => {
+      if (item.isThemeToggle) {
+        return { isThemeToggle: true }
+      }
+      if (item.divider === true) {
+        return { divider: true }
+      }
+      return {
+        label: item.label,
+        icon: item.icon,
+        disabled: item.disabled,
+        onClick: item.onClick,
+        to: item.to as any,
+      }
+    }) as BNAppBarDrawerMenuItem[]
+  }, [processedMenuItems])
 
   return (
     <MuiAppBar
@@ -314,7 +334,7 @@ export function BNAppBar({
       {avatar && processedMenuItems && (
         <BNAppBarDrawer
           tabs={tabs}
-          menuItems={processedMenuItems}
+          menuItems={drawerMenuItems}
           selectedTabValue={selectedTabValue}
           hasAppSwitcher={!!children}
           LinkComponent={LinkComponent}

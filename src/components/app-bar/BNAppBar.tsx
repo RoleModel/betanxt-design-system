@@ -156,13 +156,6 @@ export function BNAppBar({
     return items
   }, [menuItems, includeThemeToggle])
 
-  // Hide theme toggle in the mobile drawer
-  const drawerMenuItems = React.useMemo(() => {
-    if (!processedMenuItems) return processedMenuItems
-    if (isDesktop) return processedMenuItems
-    return processedMenuItems.filter((i: any) => i?.isThemeToggle !== true)
-  }, [processedMenuItems, isDesktop])
-
   return (
     <MuiAppBar
       color={color}
@@ -321,7 +314,7 @@ export function BNAppBar({
       {avatar && processedMenuItems && (
         <BNAppBarDrawer
           tabs={tabs}
-          menuItems={drawerMenuItems}
+          menuItems={processedMenuItems}
           selectedTabValue={selectedTabValue}
           hasAppSwitcher={!!children}
           LinkComponent={LinkComponent}

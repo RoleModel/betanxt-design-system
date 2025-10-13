@@ -248,14 +248,10 @@ export const BNAnimatedMenuIcon = ({
             const PaperComp = slots.paper ?? Paper
             const MenuListComp = slots.menuList ?? MenuList
             const MenuItemComp = slots.menuItem ?? MuiMenuItem
-            const [pos, setPos] = useState<{ top: number; left: number } | null>(null)
             return (
               <PopperComp
-                open={open && !!pos}
+                open={Boolean(menuAnchorEl)}
                 anchorEl={menuAnchorEl}
-                anchorReference="anchorPosition"
-                anchorPosition={pos ?? { top: 30, left: 0 }}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                 placement="bottom-end"
                 modifiers={[
                   {
@@ -386,7 +382,6 @@ export const BNAnimatedMenuIcon = ({
                         return <Divider key={`divider-${index}`} component="li" />
                       }
                       if ((item as any).isThemeToggle) {
-                        if (isMobile) return null
                         return <ThemeToggleItem key={`theme-${index}`} />
                       }
                       return (

@@ -9,7 +9,14 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Typography,
+  ToggleButton,
+  ToggleButtonGroup,
 } from '@mui/material'
+import { useColorScheme } from '@mui/material/styles'
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
 
 export interface BNAppBarDrawerTab {
   label: string
@@ -53,9 +60,43 @@ export const BNAppBarDrawer = ({
   LinkComponent,
   hasAppSwitcher = false,
 }: BNAppBarDrawerProps) => {
+  const ThemeToggleItem = () => {
+    const { mode, setMode } = useColorScheme()
+    const handleChange = (
+      _event: React.MouseEvent<HTMLElement>,
+      nextMode: 'light' | 'dark' | 'system' | null
+    ) => {
+      if (nextMode) setMode(nextMode)
+    }
+    return (
+      <Box sx={{ px: 2, py: 1.5 }}>
+        <ToggleButtonGroup
+          size="small"
+          exclusive
+          fullWidth
+          value={mode}
+          onChange={handleChange}
+          aria-label="Theme mode"
+        >
+          <ToggleButton value="light" aria-label="Light mode" sx={{ flex: 1, px: 2 }}>
+            <LightModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Light
+          </ToggleButton>
+          <ToggleButton value="system" aria-label="System mode" sx={{ flex: 1, px: 2 }}>
+            <SettingsRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            System
+          </ToggleButton>
+          <ToggleButton value="dark" aria-label="Dark mode" sx={{ flex: 1, px: 2 }}>
+            <DarkModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Dark
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+    )
+  }
   const sanitizedMenuItems = React.useMemo(() => {
-    // Remove theme toggle items if any slipped through
-    const withoutToggles = (menuItems || []).filter((i: any) => i?.isThemeToggle !== true)
+    // Keep theme toggle in drawer; just sanitize dividers
+    const withoutToggles = (menuItems || [])
     // Collapse consecutive dividers and trim leading/trailing dividers
     const compact: BNAppBarDrawerMenuItem[] = []
     let lastWasDivider = false
@@ -93,7 +134,7 @@ export const BNAppBarDrawer = ({
 
         return {
           '& .MuiDrawer-paper': {
-            width: 280,
+            width: 320,
             top: totalTopOffset,
             height: `calc(100vh - ${totalTopOffset}px)`,
           },
@@ -116,27 +157,73 @@ export const BNAppBarDrawer = ({
         {tabs.length > 0 && (
           <>
             <List>
-              {tabs.map((tab) => (
-                <ListItem key={tab.value} disablePadding>
-                  <ListItemButton
-                    selected={tab.selected || selectedTabValue === tab.value}
-                    disabled={tab.disabled}
-                    LinkComponent={LinkComponent}
-                    onClick={() => {
-                      tab.onClick?.()
-                      onTabClick?.(tab.value)
-                    }}
-                    role="button"
-                    aria-label={`Navigate to ${tab.label}`}
-                    tabIndex={0}
-                    {...tab}
-                  >
-                    <ListItemText primary={tab.label} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
+              {tabs.map((tab) => {
+                const children = (tab as any)?.children
+                const hasChildren = Array.isArray(children) && children.length > 0
+                if (!hasChildren) {
+                  return (
+                    <ListItem key={tab.value} disablePadding>
+                      <ListItemButton
+                        selected={tab.selected || selectedTabValue === tab.value}
+                        disabled={tab.disabled}
+                        LinkComponent={LinkComponent}
+                        onClick={() => {
+                          tab.onClick?.()
+                          onTabClick?.(tab.value)
+                        }}
+                        role="button"
+                        aria-label={`Navigate to ${tab.label}`}
+                        tabIndex={0}
+                        {...tab}
+                      >
+                        <ListItemText primary={tab.label} />
+                      </ListItemButton>
+                    </ListItem>
+                  )
+                }
+                // Non-clickable parent label and clickable child entries
+                return (
+                  <React.Fragment key={tab.value}>
+                    <ListItem disableGutters sx={{ px: 2, py: 0.5 }}>
+                      <ListItemText
+                        disableTypography
+                        primary={
+                          <Typography variant="body3" fontWeight={400} color="text.secondary">
+                            {tab.label}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                    {children.map((item: any, idx: number) => {
+                      if (item?.divider === true && (!item.label || String(item.label).trim() === '')) {
+                        return <Divider key={`tab-divider-${tab.value}-${idx}`} sx={{ my: 0.5 }} />
+                      }
+                      return (
+                        <ListItem key={`tab-child-${tab.value}-${idx}`} disablePadding>
+                          <ListItemButton
+                            LinkComponent={LinkComponent}
+                            disabled={item.disabled}
+                            onClick={() => {
+                              item.onClick?.()
+                              onMenuItemClick?.(item.label)
+                            }}
+                            role="button"
+                            aria-label={item.label}
+                            tabIndex={0}
+                            sx={{ pl: 3 }}
+                            {...item}
+                          >
+                            {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+                            <ListItemText primary={item.label} />
+                          </ListItemButton>
+                        </ListItem>
+                      )
+                    })}
+                  </React.Fragment>
+                )
+              })}
             </List>
-            {menuItems.length > 0 && <Divider sx={{ my: 1 }} />}
+            {sanitizedMenuItems.length > 0 && <Divider sx={{ my: 1 }} />}
           </>
         )}
 
@@ -146,6 +233,9 @@ export const BNAppBarDrawer = ({
             {sanitizedMenuItems.map((item, index) => {
               if ((item as any)?.divider === true) {
                 return <Divider key={`divider-${index}`} sx={{ my: 1 }} />
+              }
+              if ((item as any)?.isThemeToggle === true) {
+                return <ThemeToggleItem key={`theme-${index}`} />
               }
               return (
                 <ListItem key={index} disablePadding>

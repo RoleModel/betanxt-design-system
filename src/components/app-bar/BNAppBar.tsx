@@ -107,6 +107,7 @@ export function BNAppBar({
   const [drawerOpen, setDrawerOpen] = React.useState(false)
   const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+  const titleId = React.useId()
 
   // Dropdown tab state
   const [tabMenuAnchorEl, setTabMenuAnchorEl] = React.useState<HTMLElement | null>(null)
@@ -196,7 +197,7 @@ export function BNAppBar({
               })
               : null}
           {title && (
-            <Typography variant="appTitle" aria-level={1}>
+            <Typography id={titleId} variant="appTitle" aria-level={1}>
               {title}
             </Typography>
           )}
@@ -212,7 +213,8 @@ export function BNAppBar({
                   <TabsComponent
                     component="nav"
                     value={selectedTabValue}
-                    aria-label="Main navigation tabs"
+                    aria-label={title ? `${title} navigation tabs` : 'Main navigation tabs'}
+                    aria-labelledby={title ? titleId : undefined}
                     {...(slotProps.tabsContainer || {})}
                   >
                     {tabs.map((tab) => {

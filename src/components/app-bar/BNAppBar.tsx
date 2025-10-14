@@ -37,10 +37,10 @@ const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({
   height: 44,
   ...(src &&
     !src?.endsWith('.svg') && {
-    backgroundColor: theme.vars.palette.common.white,
-    padding: theme.spacing(0.5),
-    borderRadius: 4,
-  }),
+      backgroundColor: theme.vars.palette.common.white,
+      padding: theme.spacing(0.5),
+      borderRadius: 4,
+    }),
 })
 
 type BNAppBarLink = {
@@ -189,10 +189,10 @@ export function BNAppBar({
             ? React.createElement(slots.logoComponent, slotProps.logoComponent)
             : slots.logoImg
               ? React.createElement(slots.logoImg, {
-                alt: 'Logo',
-                style: getLogoImgStyles(theme, slotProps.logoImg?.src),
-                ...slotProps.logoImg,
-              })
+                  alt: 'Logo',
+                  style: getLogoImgStyles(theme, slotProps.logoImg?.src),
+                  ...slotProps.logoImg,
+                })
               : null}
           {title && (
             <Typography variant="appTitle" aria-level={1}>

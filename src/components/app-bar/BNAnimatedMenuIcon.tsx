@@ -1,6 +1,6 @@
 'use client'
 
-import { type MouseEvent, type ReactNode, useState, memo } from 'react'
+import { type MouseEvent, type ReactNode, memo, useState } from 'react'
 
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
@@ -227,8 +227,6 @@ export const BNAnimatedMenuIcon = ({
     backgroundImage: 'var(--Paper-overlay)',
     lineHeight: '2.5rem',
   })
-
-
 
   // Use animated icon for mobile OR when useAnimatedIconOnly is true
   if (isMobile || useAnimatedIconOnly) {

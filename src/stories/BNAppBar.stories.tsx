@@ -73,7 +73,7 @@ export const Primary: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -147,7 +147,7 @@ export const WithLogoComponent: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -178,7 +178,7 @@ export const WithLogoImg: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -205,7 +205,7 @@ export const WithAppSwitcher: Story = {
     menuItems: [
       {
         label: 'Logout',
-        onClick: () => { },
+        onClick: () => {},
         icon: <LogoutIconOutlined />,
       },
     ],
@@ -305,12 +305,12 @@ export const WithMenuSubheaderAndLongMenu: Story = {
     menuItems: Array.from({ length: 10 })
       .map((_, i) => ({
         label: `Menu Item ${i + 1}`,
-        onClick: () => { },
+        onClick: () => {},
         dense: true,
       }))
       .concat([
         { divider: true } as any,
-        { label: 'Sign Out', icon: <LogoutIconOutlined />, onClick: () => { } },
+        { label: 'Sign Out', icon: <LogoutIconOutlined />, onClick: () => {} },
       ]),
   },
 }
@@ -341,7 +341,7 @@ export const WithAppSwitcherAndMenuOffset: Story = {
       { label: 'Profile', to: '/profile' },
       { label: 'Settings', to: '/settings' },
       { divider: true } as any,
-      { label: 'Sign Out', icon: <LogoutIconOutlined />, onClick: () => { } },
+      { label: 'Sign Out', icon: <LogoutIconOutlined />, onClick: () => {} },
     ],
   },
 }
@@ -362,7 +362,7 @@ export const WithThemeToggleInMenu: Story = {
       { label: 'Profile', to: '/profile' },
       { label: 'Settings', to: '/settings' },
       { divider: true } as any,
-      { label: 'Logout', onClick: () => { }, icon: <LogoutIconOutlined /> },
+      { label: 'Logout', onClick: () => {}, icon: <LogoutIconOutlined /> },
     ],
   },
 }
@@ -385,7 +385,7 @@ export const WithThemeToggleMobile: Story = {
       { label: 'Preferences', to: '/settings/preferences' },
       { label: 'Help', to: '/help' },
       { divider: true } as any,
-      { label: 'Logout', onClick: () => { }, icon: <LogoutIconOutlined /> },
+      { label: 'Logout', onClick: () => {}, icon: <LogoutIconOutlined /> },
     ],
   },
 }
@@ -417,7 +417,7 @@ export const WithTabDropdownMenu: Story = {
     menuItems: [
       { label: 'Account', to: '/account' },
       { divider: true } as any,
-      { label: 'Logout', onClick: () => { }, icon: <LogoutIconOutlined /> },
+      { label: 'Logout', onClick: () => {}, icon: <LogoutIconOutlined /> },
     ],
   },
 }

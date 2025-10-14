@@ -1,7 +1,7 @@
-import reactSwc from '@vitejs/plugin-react-swc'
-import { defineConfig } from 'vite'
-import path from 'node:path'
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
+import reactSwc from '@vitejs/plugin-react-swc'
+import path from 'node:path'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [reactSwc()],
@@ -19,9 +19,7 @@ export default defineConfig({
   // Define additional Vitest projects replacing vitest.workspace.js
   projects: [
     {
-      plugins: [
-        storybookTest({ configDir: path.join(process.cwd(), '.storybook') }),
-      ],
+      plugins: [storybookTest({ configDir: path.join(process.cwd(), '.storybook') })],
       test: {
         name: 'storybook',
         browser: {

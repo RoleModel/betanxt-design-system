@@ -1,5 +1,8 @@
 import React from 'react'
 
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
 import {
   Box,
   Divider,
@@ -9,14 +12,11 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Typography,
   ToggleButton,
   ToggleButtonGroup,
+  Typography,
 } from '@mui/material'
 import { useColorScheme } from '@mui/material/styles'
-import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
-import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
 
 export interface BNAppBarDrawerTab {
   label: string
@@ -27,7 +27,9 @@ export interface BNAppBarDrawerTab {
   to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
-type DrawerLink = string | { pathname: string; search?: string; hash?: string; state?: any }
+type DrawerLink =
+  | string
+  | { pathname: string; search?: string; hash?: string; state?: any }
 
 type DrawerActionItem = {
   label: string
@@ -204,15 +206,27 @@ export const BNAppBarDrawer = ({
                       <ListItemText
                         disableTypography
                         primary={
-                          <Typography variant="body3" fontWeight={400} color="text.secondary">
+                          <Typography
+                            variant="body3"
+                            fontWeight={400}
+                            color="text.secondary"
+                          >
                             {tab.label}
                           </Typography>
                         }
                       />
                     </ListItem>
                     {children.map((item: any, idx: number) => {
-                      if (item?.divider === true && (!item.label || String(item.label).trim() === '')) {
-                        return <Divider key={`tab-divider-${tab.value}-${idx}`} sx={{ my: 0.5 }} />
+                      if (
+                        item?.divider === true &&
+                        (!item.label || String(item.label).trim() === '')
+                      ) {
+                        return (
+                          <Divider
+                            key={`tab-divider-${tab.value}-${idx}`}
+                            sx={{ my: 0.5 }}
+                          />
+                        )
                       }
                       return (
                         <ListItem key={`tab-child-${tab.value}-${idx}`} disablePadding>

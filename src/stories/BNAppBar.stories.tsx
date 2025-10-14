@@ -290,7 +290,7 @@ export const WithLinkComponent: Story = {
   },
 }
 
-export const WithMenuSubheaderAndLongMenu: Story = {
+export const MenuSubheader: Story = {
   parameters: {
     layout: 'fullscreen',
   },
@@ -302,7 +302,7 @@ export const WithMenuSubheaderAndLongMenu: Story = {
     LinkComponent: MockLinkComponent,
     menuSubheaderLabel: 'User Menu',
     tabs: exampleTabs,
-    menuItems: Array.from({ length: 10 })
+    menuItems: Array.from({ length: 5 })
       .map((_, i) => ({
         label: `Menu Item ${i + 1}`,
         onClick: () => { },
@@ -312,37 +312,6 @@ export const WithMenuSubheaderAndLongMenu: Story = {
         { divider: true } as any,
         { label: 'Sign Out', icon: <LogoutIconOutlined />, onClick: () => { } },
       ]),
-  },
-}
-
-export const WithAppSwitcherAndMenuOffset: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
-  args: {
-    color: 'secondary',
-    selectedTabValue: 'home',
-    avatar: exampleAvatar,
-    LinkComponent: MockLinkComponent,
-    tabs: exampleTabs,
-    children: (
-      <BNAppSwitcher
-        apps={[
-          { title: 'MIC Ops', url: '#' },
-          { title: 'Client Communications', url: '#' },
-          { title: 'MIC Wealth Manager', url: '#' },
-        ]}
-        currentAppTitle="MIC Ops"
-        clientName="Client Name"
-      />
-    ),
-    menuSubheaderLabel: 'User Menu',
-    menuItems: [
-      { label: 'Profile', to: '/profile' },
-      { label: 'Settings', to: '/settings' },
-      { divider: true } as any,
-      { label: 'Sign Out', icon: <LogoutIconOutlined />, onClick: () => { } },
-    ],
   },
 }
 

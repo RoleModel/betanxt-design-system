@@ -25,6 +25,12 @@ export { default as BNNumberField } from './BNNumberField'
 export { currencyConfig } from './BNNumberField'
 export type { BNNumberFieldProps, Currency } from './BNNumberField'
 
+// Drawer Components
+export { BNDrawer } from './drawer/BNDrawer'
+export type { BNDrawerProps } from './drawer/BNDrawer'
+export { BNDialogTitle } from './drawer/BNDialogTitle'
+export type { BNDialogTitleProps } from './drawer/BNDialogTitle'
+
 // Filter Search Components
 export { default as BNFilterSelect } from './filter-search/BNFilterSelect'
 export type { BNFilterSelectProps, FilterOption } from './filter-search/BNFilterSelect'

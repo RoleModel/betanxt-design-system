@@ -17,15 +17,13 @@ const meta = {
   title: 'Custom Components/BNDrawer',
   parameters: {
     layout: 'fullscreen',
-    controls: {
-      exclude: ['LinkComponent'],
-    },
   },
   argTypes: {
-    color: {
-      control: 'select',
-      options: ['default', 'secondary'],
-    },
+    open: { control: 'boolean' },
+    anchor: { control: 'select', options: ['left', 'right', 'top', 'bottom'] },
+    variant: { control: 'select', options: ['temporary', 'persistent', 'permanent'] },
+    onClose: { action: 'onClose' },
+    titleProps: { control: 'object' },
   },
   component: BNDrawer,
 } satisfies Meta<typeof BNDrawer>
@@ -41,9 +39,9 @@ export const Primary: Story = {
   args: {
     variant: 'temporary',
     titleProps: {
-      title: 'Drawer Title',
       variant: 'primary',
     },
+    heading: 'Drawer Title',
   },
   render: (args) => {
     const [open, setOpen] = React.useState(false)

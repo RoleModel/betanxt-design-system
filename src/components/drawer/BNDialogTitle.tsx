@@ -27,8 +27,8 @@ export const BNDialogTitle = ({
   textColorVariant,
   variant,
   onClose,
-  closeAriaLabel = 'Close dialog',
-  title,
+  closeAriaLabel = 'Close',
+  children,
   sx,
   ...rest
 }: BNDialogTitleProps) => {
@@ -60,7 +60,7 @@ export const BNDialogTitle = ({
   return (
     <DialogTitle sx={mergedSx} {...rest}>
       <Stack direction="row" alignItems="center" justifyContent="space-between" gap={1}>
-        <Typography variant="h4">{title}</Typography>
+        {children}
         {onClose && (
           <IconButton
             aria-label={closeAriaLabel}

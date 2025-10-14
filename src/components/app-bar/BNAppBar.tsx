@@ -37,10 +37,10 @@ const getLogoImgStyles = (theme: any, src?: string): React.CSSProperties => ({
   height: 44,
   ...(src &&
     !src?.endsWith('.svg') && {
-      backgroundColor: theme.vars.palette.common.white,
-      padding: theme.spacing(0.5),
-      borderRadius: 4,
-    }),
+    backgroundColor: theme.vars.palette.common.white,
+    padding: theme.spacing(0.5),
+    borderRadius: 4,
+  }),
 })
 
 type BNAppBarLink = {
@@ -131,8 +131,9 @@ export function BNAppBar({
     if (!menuItems || menuItems.length === 0) return menuItems
 
     const items = [...menuItems]
-    if (includeThemeToggle && !items.some((i: any) => i.isThemeToggle)) {
-      items.push({ label: 'Theme', isThemeToggle: true } as any)
+    if (includeThemeToggle && !items.some((i) => i.isThemeToggle === true)) {
+      const toggleItem: MenuItem = { label: 'Theme', isThemeToggle: true }
+      items.push(toggleItem)
     }
     const toggleIndex = items.findIndex((i) => (i as any).isThemeToggle === true)
     if (toggleIndex === -1) return items
@@ -189,10 +190,10 @@ export function BNAppBar({
             ? React.createElement(slots.logoComponent, slotProps.logoComponent)
             : slots.logoImg
               ? React.createElement(slots.logoImg, {
-                  alt: 'Logo',
-                  style: getLogoImgStyles(theme, slotProps.logoImg?.src),
-                  ...slotProps.logoImg,
-                })
+                alt: 'Logo',
+                style: getLogoImgStyles(theme, slotProps.logoImg?.src),
+                ...slotProps.logoImg,
+              })
               : null}
           {title && (
             <Typography variant="appTitle" aria-level={1}>

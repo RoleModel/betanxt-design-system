@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Start } from '@mui/icons-material'
-import { Divider, Link, MenuItem, Tab, Tabs, Typography } from '@mui/material'
+import { Divider, Link, MenuItem, MenuList, Tab, Tabs, Typography } from '@mui/material'
 
 import { BNLogo } from '../BNLogo'
 import BNAppHeader from './BNAppHeader'
@@ -26,12 +26,28 @@ export const Default: Story = {
           <BNAppHeader.Logo src="/company-logo.png" />
           <BNAppHeader.Title>My App</BNAppHeader.Title>
         </BNAppHeader.Section>
-        <BNAppHeader.Section>
+        <BNAppHeader.DesktopOnlySection>
           <BNAppHeader.Tabs value="home">
             <BNAppHeader.Tab label="Home" value="home" LinkComponent="a" href="#" />
-            <BNAppHeader.Tab label="More" value="more" LinkComponent="a" href="#" />
+            <BNAppHeader.TabWithSubMenu label="Jobs">
+              <MenuList autoFocusItem>
+                <MenuItem LinkComponent="a" href="#">
+                  Proxy
+                </MenuItem>
+                <MenuItem LinkComponent="a" href="#">
+                  Bankruptcy
+                </MenuItem>
+                <MenuItem LinkComponent="a" href="#">
+                  Reorg
+                </MenuItem>
+              </MenuList>
+            </BNAppHeader.TabWithSubMenu>
+            <BNAppHeader.Tab label="About" value="about" LinkComponent="a" href="#" />
           </BNAppHeader.Tabs>
-        </BNAppHeader.Section>
+        </BNAppHeader.DesktopOnlySection>
+        <BNAppHeader.MobileOnlySection>
+          <Typography>Mobile Menu</Typography>
+        </BNAppHeader.MobileOnlySection>
       </BNAppHeader.Toolbar>
     </BNAppHeader>
   ),

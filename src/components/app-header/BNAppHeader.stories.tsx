@@ -1,10 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Start } from '@mui/icons-material'
-import { Divider, Link, MenuItem, MenuList, Tab, Tabs, Typography } from '@mui/material'
+import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
+import {
+  Divider,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  MenuItem,
+  MenuList,
+  Typography,
+} from '@mui/material'
 
 import { BNLogo } from '../BNLogo'
+import AvatarMenu from './AvatarMenu'
 import BNAppHeader from './BNAppHeader'
+import { ThemeToggle } from './ThemeToggle'
 
 const meta = {
   title: 'Custom Components/BNAppHeader',
@@ -27,23 +38,47 @@ export const Default: Story = {
           <BNAppHeader.Title>My App</BNAppHeader.Title>
         </BNAppHeader.Section>
         <BNAppHeader.DesktopOnlySection>
-          <BNAppHeader.Tabs value="home">
-            <BNAppHeader.Tab label="Home" value="home" LinkComponent="a" href="#" />
-            <BNAppHeader.TabWithSubMenu label="Jobs">
-              <MenuList autoFocusItem>
+          <BNAppHeader.Section>
+            <BNAppHeader.Tabs value="home">
+              <BNAppHeader.Tab label="Home" value="home" LinkComponent="a" href="#" />
+              <BNAppHeader.TabWithSubMenu label="Jobs">
+                <MenuList autoFocusItem>
+                  <MenuItem LinkComponent="a" href="#">
+                    Proxy
+                  </MenuItem>
+                  <MenuItem LinkComponent="a" href="#">
+                    Bankruptcy
+                  </MenuItem>
+                  <MenuItem LinkComponent="a" href="#">
+                    Reorg
+                  </MenuItem>
+                </MenuList>
+              </BNAppHeader.TabWithSubMenu>
+              <BNAppHeader.Tab label="About" value="about" LinkComponent="a" href="#" />
+            </BNAppHeader.Tabs>
+            <AvatarMenu
+              src="https://untitledui.com/images/avatars/transparent/loki-bright"
+              alt="User Avatar"
+            >
+              <ThemeToggle />
+              <AvatarMenu.SubHeader>Account</AvatarMenu.SubHeader>
+              <MenuList>
                 <MenuItem LinkComponent="a" href="#">
-                  Proxy
+                  Profile
                 </MenuItem>
                 <MenuItem LinkComponent="a" href="#">
-                  Bankruptcy
+                  Settings
                 </MenuItem>
+                <Divider />
                 <MenuItem LinkComponent="a" href="#">
-                  Reorg
+                  <ListItemIcon>
+                    <LogoutIconOutlined fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText>Logout</ListItemText>
                 </MenuItem>
               </MenuList>
-            </BNAppHeader.TabWithSubMenu>
-            <BNAppHeader.Tab label="About" value="about" LinkComponent="a" href="#" />
-          </BNAppHeader.Tabs>
+            </AvatarMenu>
+          </BNAppHeader.Section>
         </BNAppHeader.DesktopOnlySection>
         <BNAppHeader.MobileOnlySection>
           <Typography>Mobile Menu</Typography>

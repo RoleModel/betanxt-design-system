@@ -3,7 +3,7 @@ import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
 import { Box, ToggleButton, ToggleButtonGroup, useColorScheme } from '@mui/material'
 
-export function ThemeToggleItem() {
+export function ThemeToggle() {
   const { mode, setMode } = useColorScheme()
 
   const handleChange = (

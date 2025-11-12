@@ -35,6 +35,9 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   render: () => (
     <BNAppHeader>
+      <BNAppHeader.ControlBar>
+        <Typography>Client Name</Typography>
+      </BNAppHeader.ControlBar>
       <BNAppHeader.Toolbar>
         <BNAppHeader.Section>
           <BNAppHeader.Logo src="/company-logo.png" />

@@ -7,16 +7,15 @@ import {
   ListSubheader,
   Paper,
   Popper,
-  styled,
 } from '@mui/material'
 
-export interface AvatarProps {
+export interface AvatarMenuProps {
   src: string
   alt: string
-  children?: ReactNode
+  children: ReactNode
 }
 
-function AvatarMenu(props: AvatarProps) {
+export function BNAvatarMenu({ src, alt, children }: AvatarMenuProps) {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
@@ -26,11 +25,6 @@ function AvatarMenu(props: AvatarProps) {
   const handleMenuClose = () => {
     setMenuAnchorEl(null)
   }
-
-  // TODO: Dummy implementation for now
-  const hasAppSwitcher = false
-  const appSwitcherTopOffset = 0
-  const subheaderLabel = 'User Menu'
 
   return (
     <>
@@ -45,12 +39,10 @@ function AvatarMenu(props: AvatarProps) {
         sx={{ position: 'relative' }}
       >
         <Avatar
-          src={props.src}
-          alt={props.alt}
+          src={src}
+          alt={alt}
           sx={{ width: 40, height: 40, backgroundColor: 'primary.main' }}
-        >
-          {props.children}
-        </Avatar>
+        />
       </IconButton>
       <Popper
         id="menu"
@@ -58,23 +50,10 @@ function AvatarMenu(props: AvatarProps) {
         open={Boolean(menuAnchorEl)}
         anchorEl={menuAnchorEl}
         placement="bottom-end"
-        modifiers={[
-          {
-            name: 'offset',
-            options: {
-              offset: [
-                0,
-                (hasAppSwitcher
-                  ? Math.max(0, (appSwitcherTopOffset as number) - 8)
-                  : 0) as number,
-              ],
-            },
-          },
-        ]}
       >
         <Paper role="menu" sx={{ maxHeight: '100vh', overflowY: 'auto' }}>
           <ClickAwayListener onClickAway={handleMenuClose}>
-            <div>{props.children}</div>
+            <div>{children}</div>
           </ClickAwayListener>
         </Paper>
       </Popper>
@@ -82,12 +61,10 @@ function AvatarMenu(props: AvatarProps) {
   )
 }
 
-AvatarMenu.SubHeader = (props: { children: ReactNode }) => {
+BNAvatarMenu.SubHeader = (props: { children: ReactNode }) => {
   return (
     <ListSubheader sx={{ lineHeight: '2.5rem' }} role="menuitem">
       {props.children}
     </ListSubheader>
   )
 }
-
-export default AvatarMenu

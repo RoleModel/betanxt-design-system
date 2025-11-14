@@ -15,8 +15,8 @@ import {
 
 import { BNLogo } from '../BNLogo'
 import AppSwitcher from './AppSwitcher'
-import AvatarMenu from './AvatarMenu'
 import BNAppHeader from './BNAppHeader'
+import { BNAvatarMenu } from './BNAvatarMenu'
 import DrawerMenu from './DrawerMenu'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -67,12 +67,12 @@ export const Default: Story = {
               </BNAppHeader.TabWithSubMenu>
               <BNAppHeader.Tab label="About" value="about" LinkComponent="a" href="#" />
             </BNAppHeader.Tabs>
-            <AvatarMenu
+            <BNAvatarMenu
               src="https://untitledui.com/images/avatars/transparent/loki-bright"
               alt="User Avatar"
             >
               <ThemeToggle />
-              <AvatarMenu.SubHeader>Account</AvatarMenu.SubHeader>
+              <BNAvatarMenu.SubHeader>Account</BNAvatarMenu.SubHeader>
               <MenuList>
                 <MenuItem LinkComponent="a" href="#">
                   Profile
@@ -88,7 +88,7 @@ export const Default: Story = {
                   <ListItemText>Logout</ListItemText>
                 </MenuItem>
               </MenuList>
-            </AvatarMenu>
+            </BNAvatarMenu>
           </BNAppHeader.Section>
         </BNAppHeader.DesktopOnlySection>
         <BNAppHeader.MobileOnlySection>

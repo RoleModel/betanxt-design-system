@@ -14,8 +14,8 @@ import {
 } from '@mui/material'
 
 import { BNLogo } from '../BNLogo'
-import AppSwitcher from './AppSwitcher'
 import BNAppHeader from './BNAppHeader'
+import { BNAppSwitcher } from './BNAppSwitcher'
 import { BNAvatarMenu } from './BNAvatarMenu'
 import DrawerMenu from './DrawerMenu'
 import { ThemeToggle } from './ThemeToggle'
@@ -37,11 +37,11 @@ export const Default: Story = {
     <BNAppHeader>
       <BNAppHeader.ControlBar>
         <Typography>Client Name</Typography>
-        <AppSwitcher currentAppTitle="Current App">
-          <MenuItem>MIC Ops</MenuItem>
-          <MenuItem>Client Communications</MenuItem>
-          <MenuItem>Wealth Manager</MenuItem>
-        </AppSwitcher>
+        <BNAppSwitcher currentAppName="Current App">
+          <BNAppSwitcher.Item name="MIC Ops" component="a" href="#" />
+          <BNAppSwitcher.Item name="Client Communications" component="a" href="#" />
+          <BNAppSwitcher.Item name="Wealth Manager" component="a" href="#" />
+        </BNAppSwitcher>
       </BNAppHeader.ControlBar>
       <BNAppHeader.Toolbar>
         <BNAppHeader.Section>

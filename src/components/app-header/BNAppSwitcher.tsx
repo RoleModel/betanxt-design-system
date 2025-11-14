@@ -1,13 +1,13 @@
 import { type ReactNode, useState } from 'react'
 
 import AppsIcon from '@mui/icons-material/Apps'
-import { Button, Menu } from '@mui/material'
+import { Button, Menu, MenuItem, type MenuItemProps, styled } from '@mui/material'
 
-export default function AppSwitcher({
-  currentAppTitle,
+export function BNAppSwitcher({
+  currentAppName,
   children,
 }: {
-  currentAppTitle: string
+  currentAppName: string
   children: ReactNode
 }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -29,7 +29,7 @@ export default function AppSwitcher({
         onClick={handleClick}
         endIcon={<AppsIcon />}
       >
-        {currentAppTitle}
+        {currentAppName}
       </Button>
       <Menu
         role="region"
@@ -50,12 +50,29 @@ export default function AppSwitcher({
           '& .MuiPaper-root': {
             backgroundColor: theme.vars.palette.appSwitcher.background,
             backgroundImage: 'none',
-            color: 'common.white',
+            color: theme.vars.palette.appSwitcher.contrastText,
           },
         })}
       >
         {children}
       </Menu>
     </>
+  )
+}
+
+const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+  width: '100%',
+  '&:hover': {
+    backgroundColor: theme.vars.palette.appSwitcher.hover,
+  },
+}))
+
+BNAppSwitcher.Item = <C extends React.ElementType = 'a', P = {}>(
+  props: { name: string } & MenuItemProps<C, P>
+) => {
+  return (
+    <StyledMenuItem aria-label={props.name} {...props}>
+      {props.name}
+    </StyledMenuItem>
   )
 }

@@ -15,6 +15,7 @@ import {
   useTheme,
 } from '@mui/material'
 
+import { ControlBar } from './ControlBar'
 import { Tab, TabWithSubMenu, Tabs } from './header-tabs'
 
 function BNAppHeader({ children }: { children?: React.ReactNode }) {
@@ -84,27 +85,9 @@ BNAppHeader.MobileOnlySection = ({ children }: { children?: ReactNode }) => {
   return isMobile ? children : null
 }
 
-BNAppHeader.ControlBar = ({ children }: { children?: ReactNode }) => {
-  return (
-    <Box
-      sx={(theme) => ({
-        px: 2,
-        backgroundColor:
-          theme.vars.palette.appSwitcher?.background || theme.palette.primary.main,
-        minHeight: theme.layout?.appSwitcherHeight || 48,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        color: theme.palette.common.white,
-      })}
-    >
-      {children}
-    </Box>
-  )
-}
-
-BNAppHeader.Tabs = Tabs
+BNAppHeader.ControlBar = ControlBar
 BNAppHeader.Tab = Tab
+BNAppHeader.Tabs = Tabs
 BNAppHeader.TabWithSubMenu = TabWithSubMenu
 
 export default BNAppHeader

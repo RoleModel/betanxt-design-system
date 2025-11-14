@@ -15,7 +15,7 @@ import {
   useTheme,
 } from '@mui/material'
 
-import { ControlBar } from './ControlBar'
+import { BNControlBar } from './BNControlBar'
 import { Tab, TabWithSubMenu, Tabs } from './header-tabs'
 
 function BNAppHeader({ children }: { children?: React.ReactNode }) {
@@ -85,7 +85,7 @@ BNAppHeader.MobileOnlySection = ({ children }: { children?: ReactNode }) => {
   return isMobile ? children : null
 }
 
-BNAppHeader.ControlBar = ControlBar
+BNAppHeader.ControlBar = BNControlBar
 BNAppHeader.Tab = Tab
 BNAppHeader.Tabs = Tabs
 BNAppHeader.TabWithSubMenu = TabWithSubMenu

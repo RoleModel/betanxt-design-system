@@ -2,7 +2,7 @@ import { type ReactNode } from 'react'
 
 import { Box } from '@mui/material'
 
-export function ControlBar({ children }: { children?: ReactNode }) {
+export function BNControlBar({ children }: { children?: ReactNode }) {
   return (
     <Box
       sx={(theme) => ({

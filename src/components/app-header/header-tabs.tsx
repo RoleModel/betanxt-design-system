@@ -19,9 +19,8 @@ export const Tabs = (props: TabsProps) => {
     </MuiTabs>
   )
 }
-export const Tab = function BNAppHeaderTab<C extends React.ElementType = 'div', P = {}>(
-  props: TabProps<C, P>
-) {
+
+export function Tab<C extends React.ElementType>(props: TabProps<C, { component?: C }>) {
   return <MuiTab aria-label={`Navigate to ${props.label}`} tabIndex={0} {...props} />
 }
 
@@ -46,7 +45,7 @@ export const TabWithSubMenu = ({
 
   return (
     <>
-      <Tab
+      <MuiTab
         label={label}
         aria-haspopup="menu"
         aria-expanded={isOpen}
@@ -54,6 +53,7 @@ export const TabWithSubMenu = ({
         iconPosition="end"
         tabIndex={0}
         onClick={handleTabClick}
+        sx={{ opacity: 1, paddingRight: 0 }}
       />
       <Popper
         open={isOpen}

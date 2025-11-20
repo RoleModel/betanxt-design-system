@@ -67,8 +67,8 @@ const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   },
 }))
 
-BNAppSwitcher.Item = <C extends React.ElementType = 'a', P = {}>(
-  props: { name: string } & MenuItemProps<C, P>
+BNAppSwitcher.Item = <C extends React.ElementType>(
+  props: { name: string } & MenuItemProps<C, { component?: C }>
 ) => {
   return (
     <StyledMenuItem aria-label={props.name} {...props}>

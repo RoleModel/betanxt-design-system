@@ -52,6 +52,7 @@ export function BNAvatarMenu(props: BNAvatarMenuProps) {
         open={menuIsOpen}
         anchorEl={menuAnchorEl}
         placement="bottom-end"
+        sx={{ zIndex: (theme) => theme.zIndex.appBar + 1 }}
         modifiers={[{ name: 'offset', options: { offset: [0, 8] } }]}
       >
         <Paper sx={{ maxHeight: '100vh', overflowY: 'auto' }}>

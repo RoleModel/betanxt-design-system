@@ -14,9 +14,9 @@ import {
 } from '@mui/material'
 
 import { BNLogo } from '../BNLogo'
+import { BNAvatarMenu } from '../layout/avatar-menu/BNAvatarMenu'
 import BNAppHeader from './BNAppHeader'
 import { BNAppSwitcher } from './BNAppSwitcher'
-import { BNAvatarMenu } from './BNAvatarMenu'
 import DrawerMenu from './DrawerMenu'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -72,8 +72,8 @@ export const Default: Story = {
               alt="User Avatar"
             >
               <ThemeToggle />
-              <BNAvatarMenu.SubHeader>Account</BNAvatarMenu.SubHeader>
-              <MenuList>
+              <BNAvatarMenu.MenuList>
+                <BNAvatarMenu.SubHeader>Account</BNAvatarMenu.SubHeader>
                 <MenuItem LinkComponent="a" href="#">
                   Profile
                 </MenuItem>
@@ -87,7 +87,7 @@ export const Default: Story = {
                   </ListItemIcon>
                   <ListItemText>Logout</ListItemText>
                 </MenuItem>
-              </MenuList>
+              </BNAvatarMenu.MenuList>
             </BNAvatarMenu>
           </BNAppHeader.Section>
         </BNAppHeader.DesktopOnlySection>

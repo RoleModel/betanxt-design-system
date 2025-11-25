@@ -1,11 +1,10 @@
-import { type ReactNode, useState } from 'react'
+import { type ReactNode } from 'react'
 
 import {
   AppBar,
   Box,
   type BoxProps,
   Stack,
-  type TabProps,
   type TabsProps,
   Toolbar,
   type ToolbarProps,

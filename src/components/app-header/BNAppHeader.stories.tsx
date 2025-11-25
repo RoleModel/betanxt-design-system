@@ -21,7 +21,7 @@ import { ThemeToggle } from './ThemeToggle'
 import { BNAvatarMenu } from './avatar-menu/BNAvatarMenu'
 
 const meta = {
-  title: 'Custom Components/BNAppHeader',
+  title: 'Custom Components/App Header/BNAppHeader',
   component: BNAppHeader,
   parameters: {
     layout: 'fullscreen',

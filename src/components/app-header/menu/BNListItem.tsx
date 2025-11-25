@@ -36,7 +36,7 @@ export function BNListItem<C extends React.ElementType>(
   }
 
   return (
-    <ListItem onClick={closeMenuWithDelay} disablePadding {...otherProps}>
+    <ListItem onClick={closeMenuWithDelay} disablePadding role="menuitem">
       <ListItemButton
         role="button"
         aria-label={`Navigate to ${label}`}

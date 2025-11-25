@@ -1,11 +1,4 @@
-import {
-  type MouseEvent,
-  type ReactNode,
-  createContext,
-  useContext,
-  useRef,
-  useState,
-} from 'react'
+import { type ReactNode, createContext, useContext, useRef, useState } from 'react'
 
 import {
   type AvatarProps,
@@ -37,7 +30,7 @@ export function BNHamburgerMenu(props: BNHamburgerMenuProps) {
   const [isOpen, setIsOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
 
-  const toggleMenu = (event: MouseEvent<HTMLElement>) => {
+  const toggleMenu = () => {
     setIsOpen((prev) => !prev)
   }
 

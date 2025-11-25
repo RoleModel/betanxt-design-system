@@ -25,18 +25,18 @@ function BNAppHeader({ children }: { children?: React.ReactNode }) {
   )
 }
 
-BNAppHeader.Toolbar = (props: ToolbarProps) => {
+BNAppHeader.Toolbar = ({ children, ...otherProps }: ToolbarProps) => {
   return (
-    <Toolbar sx={{ justifyContent: 'space-between' }} {...props}>
-      {props.children}
+    <Toolbar sx={{ justifyContent: 'space-between' }} {...otherProps}>
+      {children}
     </Toolbar>
   )
 }
 
-BNAppHeader.Title = (props: TypographyProps) => {
+BNAppHeader.Title = ({ children, ...otherProps }: TypographyProps) => {
   return (
-    <Typography variant="appTitle" aria-level={1} {...props}>
-      {props.children}
+    <Typography variant="appTitle" aria-level={1} {...otherProps}>
+      {children}
     </Typography>
   )
 }

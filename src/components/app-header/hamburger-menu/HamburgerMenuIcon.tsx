@@ -1,4 +1,4 @@
-import { type CSSObject, keyframes, styled } from '@mui/material'
+import { keyframes, styled } from '@mui/material'
 
 // Define Keyframes
 const bottombarOpen = keyframes`

@@ -8,7 +8,7 @@ import { ThemeToggle } from '../ThemeToggle'
 import { BNAvatarMenu } from './BNAvatarMenu'
 
 const meta = {
-  title: 'Custom Components/Layout/BNAvatarMenu',
+  title: 'Custom Components/App Header/BNAvatarMenu',
   component: BNAvatarMenu,
   parameters: {
     layout: 'centered',

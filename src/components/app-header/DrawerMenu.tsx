@@ -8,11 +8,10 @@ import {
   Drawer,
   ListItem,
   ListItemButton,
-  type ListItemButtonProps,
   type ListItemProps,
   ListItemText,
 } from '@mui/material'
-import { type CSSObject, keyframes, styled, useColorScheme } from '@mui/material/styles'
+import { type CSSObject, keyframes, styled } from '@mui/material/styles'
 
 // Define Keyframes
 const bottombarOpen = keyframes`

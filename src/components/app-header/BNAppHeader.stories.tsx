@@ -14,11 +14,11 @@ import {
 } from '@mui/material'
 
 import { BNLogo } from '../BNLogo'
-import { BNAvatarMenu } from '../layout/avatar-menu/BNAvatarMenu'
 import BNAppHeader from './BNAppHeader'
 import { BNAppSwitcher } from './BNAppSwitcher'
 import DrawerMenu from './DrawerMenu'
 import { ThemeToggle } from './ThemeToggle'
+import { BNAvatarMenu } from './avatar-menu/BNAvatarMenu'
 
 const meta = {
   title: 'Custom Components/BNAppHeader',

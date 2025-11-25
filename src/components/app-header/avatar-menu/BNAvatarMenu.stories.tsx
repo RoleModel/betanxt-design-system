@@ -4,7 +4,7 @@ import { expect, within } from 'storybook/test'
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 import { Divider, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material'
 
-import { ThemeToggle } from '../../app-header/ThemeToggle'
+import { ThemeToggle } from '../ThemeToggle'
 import { BNAvatarMenu } from './BNAvatarMenu'
 
 const meta = {

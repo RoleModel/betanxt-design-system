@@ -16,9 +16,11 @@ import {
 import { BNLogo } from '../BNLogo'
 import BNAppHeader from './BNAppHeader'
 import { BNAppSwitcher } from './BNAppSwitcher'
-import DrawerMenu from './DrawerMenu'
 import { ThemeToggle } from './ThemeToggle'
 import { BNAvatarMenu } from './avatar-menu/BNAvatarMenu'
+import { BNHamburgerMenu } from './hamburger-menu/BNHamburgerMenu'
+import { BNListItem } from './menu/BNListItem'
+import { BNListItemWithChildren } from './menu/BNListItemWithChildren'
 
 const meta = {
   title: 'Custom Components/App Header/BNAppHeader',
@@ -92,110 +94,32 @@ export const Default: Story = {
           </BNAppHeader.Section>
         </BNAppHeader.DesktopOnlySection>
         <BNAppHeader.MobileOnlySection>
-          <DrawerMenu hasAppSwitcher>
+          <BNHamburgerMenu>
             <List>
-              <DrawerMenu.ListItem>
-                <ListItemButton
-                  LinkComponent="a"
-                  href="#"
-                  role="button"
-                  aria-label="Navigate to Home"
-                  tabIndex={0}
-                >
-                  <ListItemText primary="Home" />
-                </ListItemButton>
-              </DrawerMenu.ListItem>
-              <DrawerMenu.ListItemWithChildren label="Jobs">
+              <BNListItem LinkComponent="a" href="#" label="Home" />
+              <BNListItemWithChildren label="Jobs">
                 <List>
-                  <DrawerMenu.ListItem>
-                    <ListItemButton
-                      LinkComponent="a"
-                      href="#"
-                      role="button"
-                      aria-label="Navigate to Proxy"
-                      tabIndex={0}
-                    >
-                      <ListItemText primary="Proxy" />
-                    </ListItemButton>
-                  </DrawerMenu.ListItem>
-                  <DrawerMenu.ListItem>
-                    <ListItemButton
-                      LinkComponent="a"
-                      href="#"
-                      role="button"
-                      aria-label="Navigate to Bankruptcy"
-                      tabIndex={0}
-                    >
-                      <ListItemText primary="Bankruptcy" />
-                    </ListItemButton>
-                  </DrawerMenu.ListItem>
-                  <DrawerMenu.ListItem>
-                    <ListItemButton
-                      LinkComponent="a"
-                      href="#"
-                      role="button"
-                      aria-label="Navigate to Reorg"
-                      tabIndex={0}
-                    >
-                      <ListItemText primary="Reorg" />
-                    </ListItemButton>
-                  </DrawerMenu.ListItem>
+                  <BNListItem label="Proxy" LinkComponent="a" href="#" />
+                  <BNListItem label="Bankruptcy" LinkComponent="a" href="#" />
+                  <BNListItem label="Reorg" LinkComponent="a" href="#" />
                 </List>
-              </DrawerMenu.ListItemWithChildren>
-              <DrawerMenu.ListItem>
-                <ListItemButton
-                  LinkComponent="a"
-                  href="#"
-                  role="button"
-                  aria-label="Navigate to About"
-                  tabIndex={0}
-                >
-                  <ListItemText primary="About" />
-                </ListItemButton>
-              </DrawerMenu.ListItem>
+              </BNListItemWithChildren>
+              <BNListItem label="About" LinkComponent="a" href="#" />
             </List>
             <Divider />
             <List subheader={<ListSubheader>Account</ListSubheader>}>
-              <DrawerMenu.ListItem>
-                <ListItemButton
-                  LinkComponent="a"
-                  href="#"
-                  role="button"
-                  aria-label="Navigate to Profile"
-                  tabIndex={0}
-                >
-                  <ListItemText primary="Profile" />
-                </ListItemButton>
-              </DrawerMenu.ListItem>
-              <DrawerMenu.ListItem>
-                <ListItemButton
-                  LinkComponent="a"
-                  href="#"
-                  role="button"
-                  aria-label="Navigate to Settings"
-                  tabIndex={0}
-                >
-                  <ListItemText primary="Settings" />
-                </ListItemButton>
-              </DrawerMenu.ListItem>
-              <DrawerMenu.ListItem>
-                <ListItemButton
-                  LinkComponent="a"
-                  href="#"
-                  role="button"
-                  aria-label="Logout"
-                  tabIndex={0}
-                >
-                  <ListItemIcon>
-                    <LogoutIconOutlined fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary="Logout" />
-                </ListItemButton>
-              </DrawerMenu.ListItem>
+              <BNListItem label="Profile" LinkComponent="a" href="#" />
+              <BNListItem label="Settings" LinkComponent="a" href="#" />
+              <BNListItem
+                label="Logout"
+                LinkComponent="a"
+                href="#"
+                icon={<LogoutIconOutlined fontSize="small" />}
+              />
             </List>
             <Divider />
             <ThemeToggle />
-          </DrawerMenu>
+          </BNHamburgerMenu>
         </BNAppHeader.MobileOnlySection>
       </BNAppHeader.Toolbar>
     </BNAppHeader>

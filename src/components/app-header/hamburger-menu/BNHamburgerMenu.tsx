@@ -1,12 +1,6 @@
 import { type ReactNode, createContext, useContext, useRef, useState } from 'react'
 
-import {
-  type AvatarProps,
-  ClickAwayListener,
-  ListItem,
-  Paper,
-  Popper,
-} from '@mui/material'
+import { type AvatarProps, ClickAwayListener, Paper, Popper } from '@mui/material'
 
 import { HamburgerMenuIcon } from './HamburgerMenuIcon'
 
@@ -71,28 +65,5 @@ export function BNHamburgerMenu(props: BNHamburgerMenuProps) {
         </div>
       </ClickAwayListener>
     </HamburgerMenuContext.Provider>
-  )
-}
-
-BNHamburgerMenu.ListItem = (props: {
-  hideMenuOnClick?: boolean
-  children: ReactNode
-}) => {
-  const { hideMenuOnClick = true, children, ...otherProps } = props
-  const { closeMenu } = useHamburgerMenu()
-
-  // Allow time for click ripple animation so the user sees feedback their click was registered
-  const closeMenuWithDelay = () => {
-    if (hideMenuOnClick) {
-      setTimeout(() => {
-        closeMenu()
-      }, 300)
-    }
-  }
-
-  return (
-    <ListItem onClick={closeMenuWithDelay} disablePadding {...otherProps}>
-      {children}
-    </ListItem>
   )
 }

@@ -4,7 +4,6 @@ import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 import {
   Divider,
   List,
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   ListSubheader,

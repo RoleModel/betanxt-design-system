@@ -13,18 +13,13 @@ export function BNListItemWithChildren({
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const toggleDrawer = () => {
+  const toggleSubmenu = () => {
     setIsOpen((prev) => !prev)
   }
 
   return (
     <>
-      <ListItemButton
-        onClick={toggleDrawer}
-        role="button"
-        aria-label={`Toggle ${label} submenu`}
-        tabIndex={0}
-      >
+      <ListItemButton onClick={toggleSubmenu} aria-label={`Toggle ${label} submenu`}>
         <ListItemText primary={label} />
         {isOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </ListItemButton>

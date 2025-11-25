@@ -36,13 +36,8 @@ export function BNListItem<C extends React.ElementType>(
   }
 
   return (
-    <ListItem onClick={closeMenuWithDelay} disablePadding role="menuitem">
-      <ListItemButton
-        role="button"
-        aria-label={`Navigate to ${label}`}
-        tabIndex={0}
-        {...otherProps}
-      >
+    <ListItem onClick={closeMenuWithDelay} disablePadding>
+      <ListItemButton aria-label={`Navigate to ${label}`} {...otherProps}>
         {props.icon && <ListItemIcon>{props.icon}</ListItemIcon>}
         <ListItemText primary={label} />
       </ListItemButton>

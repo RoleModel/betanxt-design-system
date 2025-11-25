@@ -70,9 +70,5 @@ BNAvatarMenu.MenuList = (props: { children: ReactNode }) => {
 }
 
 BNAvatarMenu.SubHeader = (props: { children: ReactNode }) => {
-  return (
-    <ListSubheader sx={{ lineHeight: '2.5rem' }} role="menuitem">
-      {props.children}
-    </ListSubheader>
-  )
+  return <ListSubheader sx={{ lineHeight: '2.5rem' }}>{props.children}</ListSubheader>
 }

@@ -21,7 +21,7 @@ export const Tabs = (props: TabsProps) => {
 }
 
 export function Tab<C extends React.ElementType>(props: TabProps<C, { component?: C }>) {
-  return <MuiTab aria-label={`Navigate to ${props.label}`} tabIndex={0} {...props} />
+  return <MuiTab aria-label={`Navigate to ${props.label}`} {...props} />
 }
 
 export const TabWithSubMenu = ({
@@ -47,11 +47,11 @@ export const TabWithSubMenu = ({
     <>
       <MuiTab
         label={label}
+        aria-label={isOpen ? `Close ${label} menu` : `Open ${label} menu`}
         aria-haspopup="menu"
         aria-expanded={isOpen}
         icon={isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         iconPosition="end"
-        tabIndex={0}
         onClick={handleTabClick}
         sx={{ opacity: 1, paddingRight: 0 }}
       />

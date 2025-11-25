@@ -32,7 +32,6 @@ export function BNAppSwitcher({
         {currentAppName}
       </Button>
       <Menu
-        role="region"
         id="app-switcher-menu"
         aria-labelledby="app-switcher-menu"
         anchorEl={anchorEl}

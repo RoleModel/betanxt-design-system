@@ -5,6 +5,7 @@ import { Notifications } from '@mui/icons-material'
 import LogoutIconOutlined from '@mui/icons-material/LogoutOutlined'
 import { IconButton } from '@mui/material'
 import { Badge } from '@mui/material'
+import { useColorScheme } from '@mui/material/styles'
 
 import { BNAppSwitcher } from '../components/BNAppSwitcher'
 import { BNLogo } from '../components/BNLogo'
@@ -286,5 +287,83 @@ export const WithLinkComponent: Story = {
         title: 'Home',
       },
     },
+  },
+}
+
+export const MenuSubheader: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    title: 'App Title',
+    color: 'primary',
+    selectedTabValue: 'home',
+    avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
+    menuSubheaderLabel: 'User Menu',
+    tabs: exampleTabs,
+    menuItems: Array.from({ length: 5 })
+      .map((_, i) => ({
+        label: `Menu Item ${i + 1}`,
+        onClick: () => {},
+        dense: true,
+      }))
+      .concat([
+        { divider: true } as any,
+        { label: 'Sign Out', icon: <LogoutIconOutlined />, onClick: () => {} },
+      ]),
+  },
+}
+
+export const ThemeToggle: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    title: 'App Title',
+    color: 'primary',
+    selectedTabValue: 'home',
+    avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
+    tabs: exampleTabs,
+    includeThemeToggle: true,
+    menuItems: [
+      { label: 'Profile', to: '/profile' },
+      { label: 'Settings', to: '/settings' },
+      { divider: true } as any,
+      { label: 'Logout', onClick: () => {}, icon: <LogoutIconOutlined /> },
+    ],
+  },
+}
+
+export const TabDropdownMenu: Story = {
+  parameters: {
+    layout: 'fullscreen',
+  },
+  args: {
+    title: 'App Title',
+    color: 'primary',
+    selectedTabValue: 'home',
+    avatar: exampleAvatar,
+    LinkComponent: MockLinkComponent,
+    tabs: [
+      ...exampleTabs,
+      {
+        label: 'Jobs',
+        value: 'jobs',
+        children: [
+          { label: 'Proxy', to: '/proxy' },
+          { label: 'Post Sale', to: '/post-sale' },
+          { label: 'Regulatory', to: '/regulatory' },
+          { label: 'Corporate Actions', to: '/corporate-actions' },
+          { label: 'Bankruptcy', to: '/bankruptcy' },
+        ],
+      },
+    ],
+    menuItems: [
+      { label: 'Account', to: '/account' },
+      { divider: true } as any,
+      { label: 'Logout', onClick: () => {}, icon: <LogoutIconOutlined /> },
+    ],
   },
 }

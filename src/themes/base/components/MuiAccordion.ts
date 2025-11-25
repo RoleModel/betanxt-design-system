@@ -16,6 +16,19 @@ const components: ThemeOptions['components'] = {
         '& .MuiList-root': {
           padding: 0,
         },
+        '&:first-of-type': {
+          '& .MuiButtonBase-root': {
+            borderTopLeftRadius: 4,
+            borderTopRightRadius: 4,
+          },
+        },
+        '&:last-of-type': {
+          borderBlockEnd: `1px solid ${theme.vars.palette.divider}`,
+          '& .MuiButtonBase-root': {
+            borderBottomLeftRadius: 4,
+            borderBottomRightRadius: 4,
+          },
+        },
         variants: [
           {
             props: { variant: 'outlined', disableGutters: true },

@@ -1,5 +1,8 @@
 import React from 'react'
 
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded'
 import {
   Box,
   Divider,
@@ -9,7 +12,11 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
 } from '@mui/material'
+import { useColorScheme } from '@mui/material/styles'
 
 export interface BNAppBarDrawerTab {
   label: string
@@ -20,13 +27,34 @@ export interface BNAppBarDrawerTab {
   to?: string | { pathname: string; search?: string; hash?: string; state?: any }
 }
 
-export interface BNAppBarDrawerMenuItem {
+type DrawerLink =
+  | string
+  | { pathname: string; search?: string; hash?: string; state?: any }
+
+type DrawerActionItem = {
   label: string
   icon?: React.ReactNode
   disabled?: boolean
   onClick?: () => void
-  to?: string | { pathname: string; search?: string; hash?: string; state?: any }
+  to?: DrawerLink
+  divider?: false
+  isThemeToggle?: false
 }
+
+type DrawerDividerItem = {
+  divider: true
+  label?: string
+}
+
+type DrawerThemeToggleItem = {
+  isThemeToggle: true
+  label?: string
+}
+
+export type BNAppBarDrawerMenuItem =
+  | DrawerActionItem
+  | DrawerDividerItem
+  | DrawerThemeToggleItem
 
 export interface BNAppBarDrawerProps {
   open: boolean
@@ -51,6 +79,61 @@ export const BNAppBarDrawer = ({
   LinkComponent,
   hasAppSwitcher = false,
 }: BNAppBarDrawerProps) => {
+  const ThemeToggleItem = () => {
+    const { mode, setMode } = useColorScheme()
+    const handleChange = (
+      _event: React.MouseEvent<HTMLElement>,
+      nextMode: 'light' | 'dark' | 'system' | null
+    ) => {
+      if (nextMode) setMode(nextMode)
+    }
+    return (
+      <Box sx={{ px: 2, py: 1.5 }}>
+        <ToggleButtonGroup
+          size="small"
+          exclusive
+          fullWidth
+          value={mode}
+          onChange={handleChange}
+          aria-label="Theme mode"
+        >
+          <ToggleButton value="light" aria-label="Light mode" sx={{ flex: 1, px: 2 }}>
+            <LightModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Light
+          </ToggleButton>
+          <ToggleButton value="system" aria-label="System mode" sx={{ flex: 1, px: 2 }}>
+            <SettingsRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            System
+          </ToggleButton>
+          <ToggleButton value="dark" aria-label="Dark mode" sx={{ flex: 1, px: 2 }}>
+            <DarkModeRoundedIcon fontSize="small" sx={{ mr: 1 }} />
+            Dark
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+    )
+  }
+  const sanitizedMenuItems: BNAppBarDrawerMenuItem[] = React.useMemo(() => {
+    const items = menuItems || []
+    const compact: BNAppBarDrawerMenuItem[] = []
+    let lastWasDivider = false
+    for (const item of items) {
+      const isDivider = 'divider' in item && item.divider === true
+      if (isDivider) {
+        if (compact.length === 0 || lastWasDivider) continue
+        compact.push({ divider: true } as DrawerDividerItem)
+        lastWasDivider = true
+      } else {
+        compact.push(item)
+        lastWasDivider = false
+      }
+    }
+    const last = compact[compact.length - 1]
+    if (last && 'divider' in last && last.divider === true) {
+      compact.pop()
+    }
+    return compact
+  }, [menuItems])
   return (
     <Drawer
       anchor="right"
@@ -69,7 +152,7 @@ export const BNAppBarDrawer = ({
 
         return {
           '& .MuiDrawer-paper': {
-            width: 280,
+            width: 320,
             top: totalTopOffset,
             height: `calc(100vh - ${totalTopOffset}px)`,
           },
@@ -92,52 +175,118 @@ export const BNAppBarDrawer = ({
         {tabs.length > 0 && (
           <>
             <List>
-              {tabs.map((tab) => (
-                <ListItem key={tab.value} disablePadding>
-                  <ListItemButton
-                    selected={tab.selected || selectedTabValue === tab.value}
-                    disabled={tab.disabled}
-                    LinkComponent={LinkComponent}
-                    onClick={() => {
-                      tab.onClick?.()
-                      onTabClick?.(tab.value)
-                    }}
-                    role="button"
-                    aria-label={`Navigate to ${tab.label}`}
-                    tabIndex={0}
-                    {...tab}
-                  >
-                    <ListItemText primary={tab.label} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
+              {tabs.map((tab) => {
+                const children = (tab as any)?.children
+                const hasChildren = Array.isArray(children) && children.length > 0
+                if (!hasChildren) {
+                  return (
+                    <ListItem key={tab.value} disablePadding>
+                      <ListItemButton
+                        selected={tab.selected || selectedTabValue === tab.value}
+                        disabled={tab.disabled}
+                        LinkComponent={LinkComponent}
+                        onClick={() => {
+                          tab.onClick?.()
+                          onTabClick?.(tab.value)
+                        }}
+                        role="button"
+                        aria-label={`Navigate to ${tab.label}`}
+                        tabIndex={0}
+                        {...tab}
+                      >
+                        <ListItemText primary={tab.label} />
+                      </ListItemButton>
+                    </ListItem>
+                  )
+                }
+                // Non-clickable parent label and clickable child entries
+                return (
+                  <React.Fragment key={tab.value}>
+                    <ListItem disableGutters sx={{ px: 2, py: 0.5 }}>
+                      <ListItemText
+                        disableTypography
+                        primary={
+                          <Typography
+                            variant="body3"
+                            fontWeight={400}
+                            color="text.secondary"
+                          >
+                            {tab.label}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                    {children.map((item: any, idx: number) => {
+                      if (
+                        item?.divider === true &&
+                        (!item.label || String(item.label).trim() === '')
+                      ) {
+                        return (
+                          <Divider
+                            key={`tab-divider-${tab.value}-${idx}`}
+                            sx={{ my: 0.5 }}
+                          />
+                        )
+                      }
+                      return (
+                        <ListItem key={`tab-child-${tab.value}-${idx}`} disablePadding>
+                          <ListItemButton
+                            LinkComponent={LinkComponent}
+                            disabled={item.disabled}
+                            onClick={() => {
+                              item.onClick?.()
+                              onMenuItemClick?.(item.label)
+                            }}
+                            role="button"
+                            aria-label={item.label}
+                            tabIndex={0}
+                            sx={{ pl: 3 }}
+                            {...item}
+                          >
+                            {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+                            <ListItemText primary={item.label} />
+                          </ListItemButton>
+                        </ListItem>
+                      )
+                    })}
+                  </React.Fragment>
+                )
+              })}
             </List>
-            {menuItems.length > 0 && <Divider sx={{ my: 1 }} />}
+            {sanitizedMenuItems.length > 0 && <Divider sx={{ my: 1 }} />}
           </>
         )}
 
         {/* Account Menu Section */}
-        {menuItems.length > 0 && (
+        {sanitizedMenuItems.length > 0 && (
           <List>
-            {menuItems.map((item, index) => (
-              <ListItem key={index} disablePadding>
-                <ListItemButton
-                  LinkComponent={LinkComponent}
-                  disabled={item.disabled}
-                  onClick={() => {
-                    item.onClick?.()
-                    onMenuItemClick?.(item.label)
-                  }}
-                  role="button"
-                  aria-label={item.label}
-                  tabIndex={0}
-                  {...item}
-                >
-                  {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                  <ListItemText primary={item.label} />
-                </ListItemButton>
-              </ListItem>
-            ))}
+            {sanitizedMenuItems.map((item, index) => {
+              if ('divider' in item && item.divider === true) {
+                return <Divider key={`divider-${index}`} sx={{ my: 1 }} />
+              }
+              if ('isThemeToggle' in item && item.isThemeToggle === true) {
+                return <ThemeToggleItem key={`theme-${index}`} />
+              }
+              const action = item as DrawerActionItem
+              return (
+                <ListItem key={index} disablePadding>
+                  <ListItemButton
+                    LinkComponent={LinkComponent}
+                    disabled={action.disabled}
+                    onClick={() => {
+                      action.onClick?.()
+                      onMenuItemClick?.(action.label)
+                    }}
+                    role="button"
+                    aria-label={action.label}
+                    tabIndex={0}
+                  >
+                    {action.icon && <ListItemIcon>{action.icon}</ListItemIcon>}
+                    <ListItemText primary={action.label} />
+                  </ListItemButton>
+                </ListItem>
+              )
+            })}
           </List>
         )}
       </Box>

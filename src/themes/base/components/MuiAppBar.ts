@@ -17,6 +17,28 @@ const components: ThemeOptions['components'] = {
         '& .MuiTabs-flexContainer': {
           height: theme.layout?.navbarHeight,
         },
+        // Normalize tab layout so tabs with icons (labelIcon) don't get taller/misaligned
+        '& .MuiTab-root': {
+          lineHeight: 1,
+          textTransform: 'none',
+          alignItems: 'center',
+          flexDirection: 'row',
+          minHeight: 48,
+          paddingTop: 0,
+          paddingBottom: 0,
+          '& .MuiTab-iconWrapper': {
+            marginBottom: 0,
+            marginLeft: theme.spacing(0.5),
+          },
+          '&.MuiTab-labelIcon': {
+            minHeight: 48,
+            paddingTop: 0,
+            paddingBottom: 0,
+            '& .MuiTab-iconWrapper': {
+              marginBottom: 0,
+            },
+          },
+        },
         '&.MuiAppBar-root.MuiAppBar-colorPrimary': {
           backgroundColor: theme.vars.palette.appBarPrimary?.defaultFill,
           color: theme.vars.palette.appBarPrimary?.defaultContrast,

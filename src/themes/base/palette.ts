@@ -20,7 +20,7 @@ const basePaletteThemeOptions = {
   contrastThreshold: 4.5,
 } as const
 
-const baseTheme = createTheme()
+const baseTheme = createTheme({ cssVariables: true })
 
 export const basePaletteLight: PaletteOptions = {
   ...basePaletteThemeOptions,
@@ -71,17 +71,11 @@ export const basePaletteLight: PaletteOptions = {
   inputOutlinedEnabledBorder: 'rgba(0, 0, 0, 0.23)',
   inputOutlinedHoverBorder: '#000000',
   inputOutlinedEnabledFill: '#ffffff',
-  appBarPrimary: {
-    defaultContrast: '#ffffff',
-    hover: nxtBlue[300],
-    defaultFill: nxtBlue[800],
-    tabIndicator: '#ffffff',
-  },
-  appBarSecondary: {
-    defaultFill: '#ffffff',
-    defaultContrast: bnteal[700],
-    tabIndicator: nxtBlue[700],
-    hover: nxtBlue[500],
+  appBar: {
+    defaultContrast: baseTheme.vars.palette.text.primary,
+    hover: baseTheme.vars.palette.primary.main,
+    background: baseTheme.palette.common.white,
+    tabIndicator: baseTheme.vars.palette.primary.main,
   },
   appSwitcher: {
     background: micGrey[900],
@@ -201,17 +195,11 @@ export const basePaletteDark: PaletteOptions = {
   inputOutlinedEnabledBorder: 'rgba(243, 243, 243, 0.3)',
   inputOutlinedHoverBorder: '#ffffff',
   inputOutlinedEnabledFill: 'rgba(0, 0, 0, 0.3)',
-  appBarPrimary: {
-    defaultContrast: '#ffffff',
-    hover: nxtBlue[300],
-    defaultFill: '#171717',
-    tabIndicator: '#ffffff',
-  },
-  appBarSecondary: {
-    defaultFill: '#171717',
-    defaultContrast: '#ffffff',
-    tabIndicator: nxtBlue[300],
-    hover: nxtBlue[300],
+  appBar: {
+    defaultContrast: baseTheme.vars.palette.text.primary,
+    hover: baseTheme.vars.palette.primary.main,
+    background: '#171717',
+    tabIndicator: baseTheme.vars.palette.primary.main,
   },
   appSwitcher: {
     background: micGrey[900],

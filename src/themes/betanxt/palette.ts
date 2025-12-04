@@ -77,17 +77,11 @@ export const betanxtPaletteDark: PaletteOptions = {
     restingFill: '#053b50',
     border: '#125b76',
   },
-  appBarPrimary: {
+  appBar: {
     hover: nxtBlue[300],
-    defaultFill: nxtBlue[800],
+    background: nxtBlue[800],
     tabIndicator: nxtBlue[300],
     defaultContrast: '#ffffff',
-  },
-  appBarSecondary: {
-    defaultFill: nxtBlue[800],
-    defaultContrast: '#ffffff',
-    tabIndicator: nxtBlue[300],
-    hover: nxtBlue[300],
   },
   dataGridHeaderRow: {
     restingFill: '#042e3e',

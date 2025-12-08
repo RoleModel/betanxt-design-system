@@ -17,7 +17,6 @@ declare module '@mui/material/styles' {
     appBar: {
       background: string
       defaultContrast: string
-      tabIndicator: string
       hover: string
     }
     appSwitcher: {
@@ -85,7 +84,6 @@ declare module '@mui/material/styles' {
       defaultContrast?: string
       hover?: string
       background?: string
-      tabIndicator?: string
     }
     appSwitcher?: {
       background?: string

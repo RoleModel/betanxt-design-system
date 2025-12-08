@@ -18,8 +18,8 @@ const components: ThemeOptions['components'] = {
           height: theme.layout?.navbarHeight,
         },
         '&.MuiAppBar-root': {
-          backgroundColor: theme.vars.palette.appBar?.background,
-          color: theme.vars.palette.appBar?.defaultContrast,
+          backgroundColor: theme.vars.palette.appBar.background,
+          color: theme.vars.palette.appBar.defaultContrast,
           backgroundImage: 'none',
           boxShadow: 'none',
           alignItems: 'stretch',
@@ -29,14 +29,14 @@ const components: ThemeOptions['components'] = {
             height: 4,
           },
           '& .MuiTabs-root .Mui-selected': {
-            color: theme.vars.palette.appBar?.defaultContrast,
+            color: theme.vars.palette.appBar.defaultContrast,
           },
           '& .MuiTab-root ': {
             transition: `all ${theme.transitions.duration.shorter}ms ease-in`,
-            color: theme.vars.palette.appBar?.defaultContrast,
+            color: theme.vars.palette.appBar.defaultContrast,
             '&:hover': {
-              color: theme.vars.palette.appBar?.hover,
-              boxShadow: `inset 0 -4px 0 0 ${theme.vars.palette.appBar?.hover}`,
+              color: theme.vars.palette.appBar.hover,
+              boxShadow: `inset 0 -4px 0 0 ${theme.vars.palette.appBar.hover}`,
             },
           },
         },

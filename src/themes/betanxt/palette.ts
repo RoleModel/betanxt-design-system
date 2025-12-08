@@ -80,7 +80,6 @@ export const betanxtPaletteDark: PaletteOptions = {
   appBar: {
     hover: nxtBlue[300],
     background: nxtBlue[800],
-    tabIndicator: nxtBlue[300],
     defaultContrast: '#ffffff',
   },
   dataGridHeaderRow: {

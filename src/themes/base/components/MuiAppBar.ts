@@ -20,6 +20,7 @@ const components: ThemeOptions['components'] = {
         '&.MuiAppBar-root': {
           backgroundColor: theme.vars.palette.appBar.background,
           color: theme.vars.palette.appBar.defaultContrast,
+          borderBottom: `1px solid ${theme.vars.palette.appBar.bottomBorder}`,
           backgroundImage: 'none',
           boxShadow: 'none',
           alignItems: 'stretch',

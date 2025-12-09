@@ -75,6 +75,7 @@ export const basePaletteLight: PaletteOptions = {
     defaultContrast: baseTheme.vars.palette.text.primary,
     hover: baseTheme.vars.palette.primary.main,
     background: baseTheme.palette.common.white,
+    bottomBorder: baseTheme.vars.palette.primary.main,
   },
   appSwitcher: {
     background: micGrey[900],
@@ -198,6 +199,7 @@ export const basePaletteDark: PaletteOptions = {
     defaultContrast: baseTheme.vars.palette.text.primary,
     hover: baseTheme.vars.palette.primary.main,
     background: '#171717',
+    bottomBorder: baseTheme.vars.palette.primary.main,
   },
   appSwitcher: {
     background: micGrey[900],

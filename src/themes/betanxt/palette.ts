@@ -81,6 +81,7 @@ export const betanxtPaletteDark: PaletteOptions = {
     hover: nxtBlue[300],
     background: nxtBlue[800],
     defaultContrast: '#ffffff',
+    bottomBorder: 'transparent',
   },
   dataGridHeaderRow: {
     restingFill: '#042e3e',

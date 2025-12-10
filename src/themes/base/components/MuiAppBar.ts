@@ -20,13 +20,13 @@ const components: ThemeOptions['components'] = {
         '&.MuiAppBar-root': {
           backgroundColor: theme.vars.palette.appBar.background,
           color: theme.vars.palette.appBar.defaultContrast,
-          borderBottom: `1px solid ${theme.vars.palette.appBar.bottomBorder}`,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
           backgroundImage: 'none',
           boxShadow: 'none',
           alignItems: 'stretch',
           justifyContent: 'center',
           '& .MuiTabs-indicator': {
-            backgroundColor: theme.vars.palette.primary.main,
+            backgroundColor: theme.vars.palette.appBar.indicator,
             height: 4,
           },
           '& .MuiTabs-root .Mui-selected': {

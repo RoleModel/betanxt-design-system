@@ -36,7 +36,6 @@ type BNAppBarLink = {
 
 export interface BNAppBarProps {
   title?: string
-  color?: 'primary' | 'secondary'
   tabs?: BNAppBarLink[]
   selectedTabValue?: string
   LinkComponent?: React.ElementType
@@ -59,7 +58,6 @@ export interface BNAppBarProps {
 
 export function BNAppBar({
   title,
-  color = 'primary',
   tabs,
   selectedTabValue,
   LinkComponent = 'a',
@@ -81,7 +79,7 @@ export function BNAppBar({
 
   return (
     <MuiAppBar
-      color={color}
+      color="primary"
       position="static"
       aria-label={ariaLabel || 'Main navigation'}
     >

@@ -14,17 +14,11 @@ declare module '@mui/material/styles' {
     tertiary: PaletteColorOptions
     micGrey: PaletteColorOptions
     inputOutlinedEnabledFill: string
-    appBarPrimary: {
-      defaultFill: string
+    appBar: {
+      background: string
       defaultContrast: string
-      tabIndicator: string
       hover: string
-    }
-    appBarSecondary: {
-      defaultFill: string
-      defaultContrast: string
-      tabIndicator: string
-      hover: string
+      indicator: string
     }
     appSwitcher: {
       background: string
@@ -87,17 +81,11 @@ declare module '@mui/material/styles' {
     footer?: {
       background?: string
     }
-    appBarPrimary?: {
+    appBar?: {
       defaultContrast?: string
       hover?: string
-      defaultFill?: string
-      tabIndicator?: string
-    }
-    appBarSecondary?: {
-      defaultFill?: string
-      defaultContrast?: string
-      tabIndicator?: string
-      hover?: string
+      background?: string
+      indicator?: string
     }
     appSwitcher?: {
       background?: string

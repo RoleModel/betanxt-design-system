@@ -14,7 +14,14 @@ import {
 
 export const Tabs = (props: TabsProps) => {
   return (
-    <MuiTabs component="nav" aria-label="Main navigation tabs" {...props}>
+    <MuiTabs
+      component="nav"
+      slotProps={{
+        ...props.slotProps,
+        root: { 'aria-label': 'Main navigation tabs', ...props.slotProps?.root },
+      }}
+      {...props}
+    >
       {props.children}
     </MuiTabs>
   )

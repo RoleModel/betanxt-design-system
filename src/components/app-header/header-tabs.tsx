@@ -34,9 +34,11 @@ export function Tab<C extends React.ElementType>(props: TabProps<C, { component?
 export const TabWithSubMenu = ({
   label,
   children,
+  value,
 }: {
   label: string
   children: ReactNode
+  value: string
 }) => {
   const [tabMenuAnchorEl, setTabMenuAnchorEl] = useState<null | HTMLElement>(null)
 
@@ -60,6 +62,7 @@ export const TabWithSubMenu = ({
         icon={isOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         iconPosition="end"
         onClick={handleTabClick}
+        value={value}
         sx={{ opacity: 1, paddingRight: 0 }}
       />
       <Popper
@@ -67,6 +70,7 @@ export const TabWithSubMenu = ({
         anchorEl={tabMenuAnchorEl}
         placement="bottom-start"
         modifiers={[{ name: 'offset', options: { offset: [0, 4] } }]}
+        sx={{ zIndex: (theme) => theme.zIndex.appBar + 1 }}
       >
         <Paper elevation={4}>
           <ClickAwayListener onClickAway={handleTabClose}>

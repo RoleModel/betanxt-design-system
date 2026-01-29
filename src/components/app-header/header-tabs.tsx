@@ -63,7 +63,11 @@ export const TabWithSubMenu = ({
         iconPosition="end"
         onClick={handleTabClick}
         value={value}
-        sx={{ opacity: 1, paddingRight: 0 }}
+        sx={(theme) => ({
+          opacity: 1,
+          paddingRight: 0,
+          minHeight: theme.layout?.navbarHeight,
+        })}
       />
       <Popper
         open={isOpen}

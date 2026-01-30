@@ -53,7 +53,7 @@ export const Default: Story = {
           <BNAppHeader.Section>
             <BNAppHeader.Tabs value="home">
               <BNAppHeader.Tab label="Home" value="home" LinkComponent="a" href="#" />
-              <BNAppHeader.TabWithSubMenu label="Jobs">
+              <BNAppHeader.TabWithSubMenu label="Jobs" value="Jobs">
                 <MenuList autoFocusItem>
                   <MenuItem LinkComponent="a" href="#">
                     Proxy

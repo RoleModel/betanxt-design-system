@@ -12,9 +12,9 @@ import {
   Typography,
 } from '@mui/material'
 
+import { BNAppSwitcher } from '../BNAppSwitcher'
 import { BNLogo } from '../BNLogo'
 import BNAppHeader from './BNAppHeader'
-import { BNAppSwitcher } from './BNAppSwitcher'
 import { ThemeToggle } from './ThemeToggle'
 import { BNAvatarMenu } from './avatar-menu/BNAvatarMenu'
 import { BNHamburgerMenu } from './hamburger-menu/BNHamburgerMenu'

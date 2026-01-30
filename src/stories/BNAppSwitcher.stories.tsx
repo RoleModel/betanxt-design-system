@@ -17,21 +17,17 @@ export const Default: Story = {
     layout: 'fullscreen',
   },
   args: {
-    apps: [
-      {
-        title: 'MIC Ops',
-        url: '#',
-      },
-      {
-        title: 'Client Communications',
-        url: '#',
-      },
-      {
-        title: 'MIC Wealth Manager',
-        url: '#',
-      },
-    ],
-    currentAppTitle: 'MIC Ops',
-    clientName: 'Client Name',
+    currentAppName: 'MIC Ops',
+    children: (
+      <>
+        <BNAppSwitcher.Item key="MIC Ops" name="MIC Ops" component="a" href="#" />
+        <BNAppSwitcher.Item
+          key="MIC ReOrg"
+          name="MIC ReOrg"
+          component="button"
+          onClick={() => console.log('MIC ReOrg button clicked')}
+        />
+      </>
+    ),
   },
 }

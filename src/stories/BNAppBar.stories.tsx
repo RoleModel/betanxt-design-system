@@ -199,21 +199,19 @@ export const WithAppSwitcher: Story = {
     ],
     children: (
       <BNAppSwitcher currentAppName="MIC Ops">
-        <>
-          <BNAppSwitcher.Item key="MIC Ops" name="MIC Ops" component="a" href="#" />
-          <BNAppSwitcher.Item
-            key="Client Communications"
-            name="Client Communications"
-            component="a"
-            href="#"
-          />
-          <BNAppSwitcher.Item
-            key="MIC Wealth Manager"
-            name="MIC Wealth Manager"
-            component="button"
-            onClick={() => console.log('MIC Wealth Manager button clicked')}
-          />
-        </>
+        <BNAppSwitcher.Item key="MIC Ops" name="MIC Ops" component="a" href="#" />
+        <BNAppSwitcher.Item
+          key="Client Communications"
+          name="Client Communications"
+          component="a"
+          href="#"
+        />
+        <BNAppSwitcher.Item
+          key="MIC Wealth Manager"
+          name="MIC Wealth Manager"
+          component="button"
+          onClick={() => console.log('MIC Wealth Manager button clicked')}
+        />
       </BNAppSwitcher>
     ),
   },

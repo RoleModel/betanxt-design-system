@@ -19,12 +19,6 @@ const meta = {
       exclude: ['LinkComponent'],
     },
   },
-  argTypes: {
-    color: {
-      control: 'select',
-      options: ['default', 'secondary'],
-    },
-  },
   component: BNAppBar,
 } satisfies Meta<typeof BNAppBar>
 
@@ -57,7 +51,6 @@ export const Primary: Story = {
   },
   args: {
     title: 'App Title',
-    color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,
@@ -91,7 +84,6 @@ const endSlot = () => {
 
 export const Secondary: Story = {
   args: {
-    color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,
@@ -125,7 +117,6 @@ export const WithLogoComponent: Story = {
     layout: 'fullscreen',
   },
   args: {
-    color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,
@@ -158,7 +149,6 @@ export const WithLogoImg: Story = {
     layout: 'fullscreen',
   },
   args: {
-    color: 'primary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,
@@ -186,7 +176,6 @@ export const WithLogoImg: Story = {
 
 export const WithAppSwitcher: Story = {
   args: {
-    color: 'secondary',
     selectedTabValue: 'home',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,
@@ -209,15 +198,21 @@ export const WithAppSwitcher: Story = {
       },
     ],
     children: (
-      <BNAppSwitcher
-        apps={[
-          { title: 'MIC Ops', url: '#' },
-          { title: 'Client Communications', url: '#' },
-          { title: 'MIC Wealth Manager', url: '#' },
-        ]}
-        currentAppTitle="MIC Ops"
-        clientName="Client Name"
-      />
+      <BNAppSwitcher currentAppName="MIC Ops">
+        <BNAppSwitcher.Item key="MIC Ops" name="MIC Ops" component="a" href="#" />
+        <BNAppSwitcher.Item
+          key="Client Communications"
+          name="Client Communications"
+          component="a"
+          href="#"
+        />
+        <BNAppSwitcher.Item
+          key="MIC Wealth Manager"
+          name="MIC Wealth Manager"
+          component="button"
+          onClick={() => console.log('MIC Wealth Manager button clicked')}
+        />
+      </BNAppSwitcher>
     ),
   },
 }
@@ -230,7 +225,6 @@ export const WithLinkComponent: Story = {
     layout: 'fullscreen',
   },
   args: {
-    color: 'primary',
     selectedTabValue: 'profile',
     avatar: exampleAvatar,
     LinkComponent: MockLinkComponent,

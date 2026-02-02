@@ -13,25 +13,19 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  parameters: {
-    layout: 'fullscreen',
-  },
   args: {
-    apps: [
-      {
-        title: 'MIC Ops',
-        url: '#',
-      },
-      {
-        title: 'Client Communications',
-        url: '#',
-      },
-      {
-        title: 'MIC Wealth Manager',
-        url: '#',
-      },
-    ],
-    currentAppTitle: 'MIC Ops',
-    clientName: 'Client Name',
+    currentAppName: 'MIC Ops',
+    children: null,
   },
+  render: ({ ...args }) => (
+    <BNAppSwitcher {...args}>
+      <BNAppSwitcher.Item key="MIC Ops" name="MIC Ops" component="a" href="#" />
+      <BNAppSwitcher.Item
+        key="MIC ReOrg"
+        name="MIC ReOrg"
+        component="button"
+        onClick={() => console.log('MIC ReOrg button clicked')}
+      />
+    </BNAppSwitcher>
+  ),
 }

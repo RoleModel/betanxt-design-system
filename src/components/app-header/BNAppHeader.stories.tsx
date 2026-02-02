@@ -12,9 +12,9 @@ import {
   Typography,
 } from '@mui/material'
 
+import { BNAppSwitcher } from '../BNAppSwitcher'
 import { BNLogo } from '../BNLogo'
 import BNAppHeader from './BNAppHeader'
-import { BNAppSwitcher } from './BNAppSwitcher'
 import { ThemeToggle } from './ThemeToggle'
 import { BNAvatarMenu } from './avatar-menu/BNAvatarMenu'
 import { BNHamburgerMenu } from './hamburger-menu/BNHamburgerMenu'
@@ -53,7 +53,7 @@ export const Default: Story = {
           <BNAppHeader.Section>
             <BNAppHeader.Tabs value="home">
               <BNAppHeader.Tab label="Home" value="home" LinkComponent="a" href="#" />
-              <BNAppHeader.TabWithSubMenu label="Jobs">
+              <BNAppHeader.TabWithSubMenu label="Jobs" value="Jobs">
                 <MenuList autoFocusItem>
                   <MenuItem LinkComponent="a" href="#">
                     Proxy

@@ -8,12 +8,13 @@ on:
       version:
         description: 'Version to publish (e.g., patch, minor, major, or specific version)'
         required: true
-        default: 'patch'
+        default: patch
         type: string
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: read
       packages: write
@@ -25,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.node-version'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@rolemodel'
 

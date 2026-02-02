@@ -5,6 +5,7 @@ on: [push]
 jobs:
   test:
     runs-on: blacksmith-4vcpu-ubuntu-2204
+    timeout-minutes: 10
     container:
       # Make sure to grab the latest version of the Playwright image
       # https://playwright.dev/docs/docker#pull-the-image

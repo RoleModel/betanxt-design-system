@@ -1,21 +1,14 @@
-import { useState } from 'react'
+import { type ReactNode, useState } from 'react'
 
-import { Apps as AppsIcon } from '@mui/icons-material'
-import { Box, Button, Menu, MenuItem, Typography } from '@mui/material'
-
-export type App = {
-  title: string
-  url: string
-}
+import AppsIcon from '@mui/icons-material/Apps'
+import { Button, Menu, MenuItem, type MenuItemProps, styled } from '@mui/material'
 
 export function BNAppSwitcher({
-  apps,
-  currentAppTitle,
-  clientName,
+  currentAppName,
+  children,
 }: {
-  apps: App[]
-  currentAppTitle?: string
-  clientName?: React.ReactNode
+  currentAppName: string
+  children: ReactNode
 }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
@@ -28,21 +21,7 @@ export function BNAppSwitcher({
   }
 
   return (
-    <Box
-      sx={(theme) => ({
-        px: 2,
-        backgroundColor:
-          theme.vars?.palette?.appSwitcher?.background || theme.palette.primary.main,
-        minHeight: theme.layout?.appSwitcherHeight || 48,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        color: theme.palette.common.white,
-      })}
-    >
-      <Typography variant="button" color="inherit">
-        {clientName}
-      </Typography>
+    <>
       <Button
         aria-label="App Switcher"
         variant="text"
@@ -50,10 +29,9 @@ export function BNAppSwitcher({
         onClick={handleClick}
         endIcon={<AppsIcon />}
       >
-        {currentAppTitle}
+        {currentAppName}
       </Button>
       <Menu
-        role="region"
         id="app-switcher-menu"
         aria-labelledby="app-switcher-menu"
         anchorEl={anchorEl}
@@ -71,30 +49,29 @@ export function BNAppSwitcher({
           '& .MuiPaper-root': {
             backgroundColor: theme.vars.palette.appSwitcher.background,
             backgroundImage: 'none',
-            color: 'common.white',
+            color: theme.vars.palette.appSwitcher.contrastText,
           },
         })}
       >
-        {apps.map((app, index) => (
-          <MenuItem
-            dense
-            aria-label={app.title}
-            key={app.title}
-            component="a"
-            href={app.url}
-            divider={index !== apps.length - 1}
-            sx={(theme) => ({
-              '&:hover': {
-                backgroundColor: theme.vars.palette.appSwitcher.hover,
-              },
-            })}
-          >
-            {app.title}
-          </MenuItem>
-        ))}
+        {children}
       </Menu>
-    </Box>
+    </>
   )
 }
 
-export default BNAppSwitcher
+const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+  width: '100%',
+  '&:hover': {
+    backgroundColor: theme.vars.palette.appSwitcher.hover,
+  },
+}))
+
+BNAppSwitcher.Item = <C extends React.ElementType>(
+  props: { name: string } & MenuItemProps<C, { component?: C }>
+) => {
+  return (
+    <StyledMenuItem aria-label={props.name} {...props}>
+      {props.name}
+    </StyledMenuItem>
+  )
+}

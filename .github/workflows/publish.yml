@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: "Version to publish (e.g., patch, minor, major, or specific version)"
+        description: 'Version to publish (e.g., patch, minor, major, or specific version)'
         required: true
-        default: "patch"
+        default: patch
         type: string
 
 jobs:
@@ -26,9 +26,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ".node-version"
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@rolemodel"
+          node-version-file: '.node-version'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@rolemodel'
 
       - name: Install dependencies
         run: npm ci
